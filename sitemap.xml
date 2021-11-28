@@ -11,6 +11,204 @@
   </url>
   
   <url>
+    <loc>https://bqlin.github.io/posts/concurrency_pg_introduction/</loc>
+    
+    <lastmod>2021-11-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://bqlin.github.io/posts/concurrency_pg_concurrency_and_application_design/</loc>
+    
+    <lastmod>2021-11-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://bqlin.github.io/posts/concurrency_pg_operation_queues/</loc>
+    
+    <lastmod>2021-11-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://bqlin.github.io/posts/concurrency_pg_dispatch_sources/</loc>
+    
+    <lastmod>2021-11-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://bqlin.github.io/posts/concurrency_pg_dispatch_queues/</loc>
+    
+    <lastmod>2021-11-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://bqlin.github.io/posts/concurrency_pg_migrating_away_from_threads/</loc>
+    
+    <lastmod>2021-11-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://bqlin.github.io/posts/concurrency_pg_glossary/</loc>
+    
+    <lastmod>2021-11-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://bqlin.github.io/posts/audio_queue_services_pg_introduction/</loc>
+    
+    <lastmod>2021-11-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://bqlin.github.io/posts/audio_queue_services_pg_about_audio_queues/</loc>
+    
+    <lastmod>2021-11-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://bqlin.github.io/posts/audio_queue_services_pg_playing_audio/</loc>
+    
+    <lastmod>2021-11-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://bqlin.github.io/posts/audio_queue_services_pg_recording_audio/</loc>
+    
+    <lastmod>2021-11-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://bqlin.github.io/posts/ffmpeg_compilation/</loc>
+    
+    <lastmod>2021-11-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://bqlin.github.io/posts/ffmpeg_audio_and_video_synchronization/</loc>
+    
+    <lastmod>2021-11-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://bqlin.github.io/posts/ffmpeg_api_new_deprecated/</loc>
+    
+    <lastmod>2021-11-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://bqlin.github.io/posts/ffmpeg_api_struct/</loc>
+    
+    <lastmod>2021-11-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://bqlin.github.io/posts/ffmpeg_api_source_code_analysis/</loc>
+    
+    <lastmod>2021-11-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://bqlin.github.io/posts/ffmpeg_api/</loc>
+    
+    <lastmod>2021-11-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://bqlin.github.io/posts/ffmpeg_coding_yuv/</loc>
+    
+    <lastmod>2021-11-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://bqlin.github.io/posts/ffmpeg_coding_h264/</loc>
+    
+    <lastmod>2021-11-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://bqlin.github.io/posts/ffmpeg_coding_audio_recording_encoding_resampling/</loc>
+    
+    <lastmod>2021-11-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://bqlin.github.io/posts/compilation_basic_concepts/</loc>
+    
+    <lastmod>2021-11-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://bqlin.github.io/posts/ffmpeg_command/</loc>
+    
+    <lastmod>2021-11-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://bqlin.github.io/posts/live_optimization/</loc>
     
     <lastmod>2021-11-28</lastmod>
@@ -182,214 +380,7 @@
   </url>
   
   <url>
-    <loc>https://bqlin.github.io/posts/audio_queue_services_pg_recording_audio/</loc>
-    
-    <lastmod>2021-11-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://bqlin.github.io/posts/concurrency_pg_introduction/</loc>
-    
-    <lastmod>2021-11-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://bqlin.github.io/posts/concurrency_pg_concurrency_and_application_design/</loc>
-    
-    <lastmod>2021-11-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://bqlin.github.io/posts/concurrency_pg_operation_queues/</loc>
-    
-    <lastmod>2021-11-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://bqlin.github.io/posts/concurrency_pg_dispatch_queues/</loc>
-    
-    <lastmod>2021-11-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://bqlin.github.io/posts/concurrency_pg_dispatch_sources/</loc>
-    
-    <lastmod>2021-11-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://bqlin.github.io/posts/concurrency_pg_migrating_away_from_threads/</loc>
-    
-    <lastmod>2021-11-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://bqlin.github.io/posts/concurrency_pg_glossary/</loc>
-    
-    <lastmod>2021-11-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://bqlin.github.io/posts/audio_queue_services_pg_about_audio_queues/</loc>
-    
-    <lastmod>2021-11-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://bqlin.github.io/posts/audio_queue_services_pg_introduction/</loc>
-    
-    <lastmod>2021-11-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://bqlin.github.io/posts/audio_queue_services_pg_playing_audio/</loc>
-    
-    <lastmod>2021-11-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://bqlin.github.io/posts/audio_and_video_general_technology/</loc>
-    
-    <lastmod>2021-11-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://bqlin.github.io/posts/ffmpeg_api/</loc>
-    
-    <lastmod>2021-11-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://bqlin.github.io/posts/ffmpeg_api_struct/</loc>
-    
-    <lastmod>2021-11-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://bqlin.github.io/posts/ffmpeg_audio_and_video_synchronization/</loc>
-    
-    <lastmod>2021-11-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://bqlin.github.io/posts/ffmpeg_api_source_code_analysis/</loc>
-    
-    <lastmod>2021-11-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://bqlin.github.io/posts/null/</loc>
-    
-    <lastmod>2021-11-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://bqlin.github.io/posts/ffmpeg_command/</loc>
-    
-    <lastmod>2021-11-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://bqlin.github.io/posts/ffmpeg_compilation/</loc>
-    
-    <lastmod>2021-11-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://bqlin.github.io/posts/ffmpeg_coding_h264/</loc>
-    
-    <lastmod>2021-11-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://bqlin.github.io/posts/ffmpeg_coding_yuv/</loc>
-    
-    <lastmod>2021-11-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://bqlin.github.io/posts/ffmpeg_coding_audio_recording_encoding_resampling/</loc>
-    
-    <lastmod>2021-11-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://bqlin.github.io/posts/compilation_basic_concepts/</loc>
-    
-    <lastmod>2021-11-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://bqlin.github.io/posts/ffmpeg_api_new_deprecated/</loc>
     
     <lastmod>2021-11-28</lastmod>
     
@@ -467,6 +458,20 @@
   
   <url>
     <loc>https://bqlin.github.io/tags/Concurrency-Programming-Guide/</loc>
+    <lastmod>2021-11-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/</loc>
+    <lastmod>2021-11-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://bqlin.github.io/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/</loc>
     <lastmod>2021-11-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
