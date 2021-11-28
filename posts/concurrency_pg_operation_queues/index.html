@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/ficon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/icon.png">
+  <link rel="mask-icon" href="/images/icon.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"bqlin.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":false,"preload":false},"motion":{"enable":false,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Cocoa操作对象是一种以面向对象的方式来封你需要异步执行的任务。操作对象被设计成跟操作队列队列一起使用，或者单独使用。因为是基于Objective-C实现的，操作对象可同时在 OS X 和 iOS 中使用。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Concurrency Programming Guide：操作队列">
+<meta property="og:url" content="https://bqlin.github.io/posts/concurrency_pg_operation_queues/index.html">
+<meta property="og:site_name" content="權咚领域">
+<meta property="og:description" content="Cocoa操作对象是一种以面向对象的方式来封你需要异步执行的任务。操作对象被设计成跟操作队列队列一起使用，或者单独使用。因为是基于Objective-C实现的，操作对象可同时在 OS X 和 iOS 中使用。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-09-08T09:41:58.000Z">
+<meta property="article:modified_time" content="2021-11-28T10:16:19.211Z">
+<meta property="article:author" content="權咚">
+<meta property="article:tag" content="Apple">
+<meta property="article:tag" content="Concurrency Programming Guide">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://bqlin.github.io/posts/concurrency_pg_operation_queues/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Concurrency Programming Guide：操作队列 | 權咚领域</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-105338942-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-105338942-1');
+      }
+    </script>
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?98fcf61fd269408d07dcbc1e49311f9a";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="權咚领域" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">權咚领域</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Making app a work of art.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://bqlin.github.io/posts/concurrency_pg_operation_queues/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/icon.png">
+      <meta itemprop="name" content="權咚">
+      <meta itemprop="description" content="🤘🤯👾">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="權咚领域">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Concurrency Programming Guide：操作队列
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-09-08 17:41:58" itemprop="dateCreated datePublished" datetime="2021-09-08T17:41:58+08:00">2021-09-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-11-28 18:16:19" itemprop="dateModified" datetime="2021-11-28T18:16:19+08:00">2021-11-28</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BF%BB%E8%AF%91/" itemprop="url" rel="index"><span itemprop="name">翻译</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>16k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>15 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>Cocoa操作对象是一种以面向对象的方式来封你需要异步执行的任务。操作对象被设计成跟操作队列队列一起使用，或者单独使用。因为是基于Objective-C实现的，操作对象可同时在 OS X 和 iOS 中使用。</p>
+<span id="more"></span>
+<h2 id="关于操作对象">关于操作对象</h2>
+<p>一个<em>操作对象</em>是一个 <code>NSOperation</code> 类的实例，用其封装需要执行的任务。<code>NSOperation</code> 是抽象基类，如果你要做啥具体的任务，必须要通过其子类来完成。尽管是抽象基类，<code>NSOperation</code> 仍然提供了重要的基础设施，以减少子类的工作量。另外，Foundation框架提供了两个具体的子类供开发者直接使用。</p>
+<table>
+<colgroup>
+<col style="width: 27%" />
+<col style="width: 72%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>类</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>NSInvocationOperation</code></td>
+<td>该类可以直接使用，通过程序对象和selector直接创建一个操作对象。你可以对已有的任务方法使用该类。因为其不需要子类化，所以也可以用该类以更动态的方式创建操作对象。关于如何使用该类的更多信息，可参阅<a target="_blank" rel="noopener" href="https://developer.apple.com/library/archive/documentation/General/Conceptual/ConcurrencyProgrammingGuide/OperationObjects/OperationObjects.html#//apple_ref/doc/uid/TP40008091-CH101-SW6">Creating an NSInvocationOperation Object</a>。</td>
+</tr>
+<tr class="even">
+<td><code>NSBlockOperation</code></td>
+<td>该类可以直接使用，可以执行一到多个block。因为其可以执行一到多个block，所以该操作对象使用组的语义进行操作，只有当相关的block都执行完毕时，操作对象本身才算完成。关于使用该类的更多信息，可参阅<a target="_blank" rel="noopener" href="https://developer.apple.com/library/archive/documentation/General/Conceptual/ConcurrencyProgrammingGuide/OperationObjects/OperationObjects.html#//apple_ref/doc/uid/TP40008091-CH101-SW2">Creating an NSBlockOperation Object</a>。</td>
+</tr>
+<tr class="odd">
+<td><code>NSOperation</code></td>
+<td>该类是用于自定义操作对象的基类。通过子类化<code>NSOperation</code>，你可以完全控制自己的操作实现，包括改变操作执行和汇报状态的默认方式。关于如何自定义操作对象的更多信息，可参阅<a href="#自定义操作对象">自定义操作对象</a>。</td>
+</tr>
+</tbody>
+</table>
+<p>所有操作对象都支持以下特性：</p>
+<ul>
+<li>支持在操作对象间建立基于图的依赖关系。关于如何配置依赖，可参阅<a href="#配置交互依赖">配置交互依赖</a>。</li>
+<li>支持一个可选的完成回调block，该block在任务结束后执行。(仅限OS X v10.6及以后版本。）关于如何设置完成回调block，可参阅<a target="_blank" rel="noopener" href="https://developer.apple.com/library/archive/documentation/General/Conceptual/ConcurrencyProgrammingGuide/OperationObjects/OperationObjects.html#//apple_ref/doc/uid/TP40008091-CH101-SW33">Setting Up a Completion Block</a>。</li>
+<li>支持通过 KVO 观察任务执行的状态。关于如何观察KVO通知，可参阅<a target="_blank" rel="noopener" href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/KeyValueObserving/KeyValueObserving.html#//apple_ref/doc/uid/10000177i">Key-Value Observing Programming Guide</a>。</li>
+<li>支持对操作对象优先级排序，从而改变操作对象间相对执行的顺序。了解更多信息，可参阅<a target="_blank" rel="noopener" href="https://developer.apple.com/library/archive/documentation/General/Conceptual/ConcurrencyProgrammingGuide/OperationObjects/OperationObjects.html#//apple_ref/doc/uid/TP40008091-CH101-SW31">Changing an Operation’s Execution Priority</a>。</li>
+<li>支持取消的语义，当任务在执行的过程中可以取消任务。有关如何取消操作对象，可参阅<a target="_blank" rel="noopener" href="https://developer.apple.com/library/archive/documentation/General/Conceptual/ConcurrencyProgrammingGuide/OperationObjects/OperationObjects.html#//apple_ref/doc/uid/TP40008091-CH101-SW39">Canceling Operations</a>。有关如何在自己的操作对象中支持取消，可参阅<a target="_blank" rel="noopener" href="https://developer.apple.com/library/archive/documentation/General/Conceptual/ConcurrencyProgrammingGuide/OperationObjects/OperationObjects.html#//apple_ref/doc/uid/TP40008091-CH101-SW24">Responding to Cancellation Events</a>。</li>
+</ul>
+<p>操作对象被设计来提高应用的并发水平。操作对象也是组织和封装程序行为到简单离散块的方式。你可以把一到多个操作提交到一个队列，让相应的工作在一到多个单独的线程上异步执行，而不是全都集中在程序主线程上执行。</p>
+<h2 id="并发与非并发操作对象">并发与非并发操作对象</h2>
+<p>尽管通常把操作添加操作队列来执行，但这样做不是必须的。也可以直接手动调用<code>start</code>来执行一个操作对象，但这样做并不能保证与其他代码并行执行。<code>NSOperation</code>类的<code>isConcurrent</code>告诉你该操作对象相对于调用 <code>start</code> 方法的线程是否是异步的。默认返回 <code>NO</code>，表示操作对象同步地跑在调用的线程上。</p>
+<p>如果你需要实现一个<em>并发的操作对象</em>，也就是说，相对于调用线程而言是异步执行的，你必须写额外的代码异步的启动操作对象。例如，你可能创建一个线程，调用异步系统函数，或者任何保证 <code>start</code> 方法启动任务，并立即返回，而且很有可能在任务完成之前返回。</p>
+<p>大部分开发者应该绝不需要实现并发操作对象。如果你总是将操作对象添加到队列中，你不需要实现并发操作对象。当你提交一个非并发操作对象到操作队列的时候，队列自身会创建一个执行操作对象的线程。因此，添加一个非并发操作对象到操作队列仍然导致了操作对象的异步执行。你应只在需要异步执行操作对象但又不添加到操作队列的情况下才定义并发操作对象。</p>
+<p>关于如何创建一个并发操作对象，可参阅<a target="_blank" rel="noopener" href="https://developer.apple.com/library/archive/documentation/General/Conceptual/ConcurrencyProgrammingGuide/OperationObjects/OperationObjects.html#//apple_ref/doc/uid/TP40008091-CH101-SW8">Configuring Operations for Concurrent Execution</a>和<a target="_blank" rel="noopener" href="https://developer.apple.com/documentation/foundation/nsoperation">NSOperation Class Reference</a>。</p>
+<h2 id="创建nsinvocationoperation对象">创建NSInvocationOperation对象</h2>
+<p><code>NSInvocationOperation</code> 类是 <code>NSOperation</code> 的具体子类，运行时调用你指定对象的selector。使用这个类可以减少大量的自定义操作对象的需求，尤其是修改程序已实现的对象和任务方法时。当你希望调用的方法可以修改时也可以使用该类。例如，你可以使用一个调用操作来执行一个基于用户输入动态选择的selector。</p>
+<p>创建invocation操作对象很简单。创建并初始化该类的实例，把需要执行的对象和selector传递给初始化方法。清单2-1展示了一个自定义类的两个方法，演示了创建过程：</p>
+<p><strong>清单2-1</strong> 创建一个<code>NSInvocationOperation</code>对象</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">MyCustomClass</span></span></span><br><span class="line">- (<span class="built_in">NSOperation</span>*)taskWithData:(<span class="keyword">id</span>)data &#123;</span><br><span class="line">    <span class="built_in">NSInvocationOperation</span>* theOp = [[<span class="built_in">NSInvocationOperation</span> alloc] initWithTarget:<span class="keyword">self</span></span><br><span class="line">                    selector:<span class="keyword">@selector</span>(myTaskMethod:) object:data];</span><br><span class="line"> </span><br><span class="line">   <span class="keyword">return</span> theOp;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="comment">// This is the method that does the actual work of the task.</span></span><br><span class="line">- (<span class="keyword">void</span>)myTaskMethod:(<span class="keyword">id</span>)data &#123;</span><br><span class="line">    <span class="comment">// Perform the task.</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<h2 id="创建nsblockoperation对象">创建NSBlockOperation对象</h2>
+<p><code>NSBlockOperation</code> 同样是 <code>NSOperation</code> 的具体子类，用来封装一个或多个block。这个类给那些已经使用了操作队列并不想创调度发队列的应用提供了面向对象的封装。通过操作队列可以使用那些调度队列没有的一些特性，如操作对象依赖、KVO通知等。</p>
+<p>当你创建一个block操作对象的时，通常在初始化的时候你添加一个 block；后续你还可以添加多个block。当执行一个 <code>NSBlockOperation</code> 对象的时候，该对象会把所有的 block提交给默认优先级的并发调度队列上。对象会等待所有的 block 执行完毕。当最后的一个 block 执行完后，对象会置自己的状态为完成。因此，你可以使用一个 block操作对象来追踪一组执行的 block，就像使用一个线程 join merge 多个线程执行的结果。因为 block操作对象跑在独立的线程上，程序的其他线程中的任务不受影响，同时可以等待 block操作对象的完成。</p>
+<p>清单2-2显示了一个如何创建<code>NSBlockOperation</code>对象的简单示例。该block本身没有参数，也没有重要的返回结果。</p>
+<p><strong>清单2-2</strong> 创建一个<code>NSBlockOperation</code>对象</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSBlockOperation</span>* theOp = [<span class="built_in">NSBlockOperation</span> blockOperationWithBlock: ^&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;Beginning operation.\n&quot;</span>);</span><br><span class="line">    <span class="comment">// Do some work.</span></span><br><span class="line">&#125;];</span><br></pre></td></tr></table></figure>
+<p>创建了 block 操作对象之后，你可以使用 <code>addExecutionBlock:</code> 方法添加更多的 block。如果你需要串行执行 block，你必须直接把 block 提交给指定的调度队列。</p>
+<h2 id="自定义操作对象">自定义操作对象</h2>
+<p>如果 block 操作对象和 invocation 操作对象都不能满足程序的需求，你可以直接实现 <code>NSOperation</code> 的子类，添加需要的行为。<code>NSOperation</code> 类对所有操作对象提供了通用的子类，也提供了大量的基础设施来处理依赖管理和 KVO 通知。然而，仍然有些时候你需要补充先有的基础设施以确保操作行为的正确。要做的额外工作量取决于你在实现一个非并发还是并发操作对象。</p>
+<p>定义一个非并发操作比并发操作简单得多。对于非并发操作对象而言，所有你需要做的是 main task 和合理的响应取消事件；已经存在的基础设施已经为你完成了其他工作。对于一个并发操作对象而言，你必须使用自定义的代码替换掉现有的基础设施。下来的部分将要说明怎么实现这两种类型。</p>
+<h3 id="执行main-task">执行Main Task</h3>
+<p>每个操作对象至少实现以下方法：</p>
+<ul>
+<li>一个自定义的初始化方法</li>
+<li><code>main</code>方法</li>
+</ul>
+<p>你需要一个自定义的初始化方法将你的操作对象放入已知的状态，一个 <code>main</code> 方法来执行的你的任务。当然可以根据需要实现额外的方法，如下：</p>
+<ul>
+<li>打算从 <code>main</code> 方法调用的自定义方法</li>
+<li>设置数据和获取结果的属性访问器</li>
+<li><code>NSCoding</code>中的归档和解档方法</li>
+</ul>
+<p>下例展示了一个自定义 <code>NSOperation</code> 的启动模板（代码中没有展示在怎么处理 cancellation，但展示了你通常需要的方法）。</p>
+<p>清单2-3展示了一个自定义<code>NSOperation</code>子类的初始模板。(这个清单没有显示如何处理取消，但显示了你通常实现的方法。关于处理取消，可参阅<a target="_blank" rel="noopener" href="https://developer.apple.com/library/archive/documentation/General/Conceptual/ConcurrencyProgrammingGuide/OperationObjects/OperationObjects.html#//apple_ref/doc/uid/TP40008091-CH101-SW24">Responding to Cancellation Events</a>）。) 该类的初始化方法需要一个单一的对象作为数据参数，并在操作对象中存储对它的引用。<code>main</code>方法表面上是对该数据对象进行处理，然后将结果返回给程序。</p>
+<p><strong>清单2-3</strong> 定义一个简单的操作对象</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">MyNonConcurrentOperation</span> : <span class="title">NSOperation</span></span></span><br><span class="line"><span class="keyword">@property</span> <span class="keyword">id</span> (<span class="keyword">strong</span>) myData;</span><br><span class="line">-(<span class="keyword">id</span>)initWithData:(<span class="keyword">id</span>)data;</span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">MyNonConcurrentOperation</span></span></span><br><span class="line">- (<span class="keyword">id</span>)initWithData:(<span class="keyword">id</span>)data &#123;</span><br><span class="line">   <span class="keyword">if</span> (<span class="keyword">self</span> = [<span class="keyword">super</span> init])</span><br><span class="line">      myData = data;</span><br><span class="line">   <span class="keyword">return</span> <span class="keyword">self</span>;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">-(<span class="keyword">void</span>)main &#123;</span><br><span class="line">   <span class="keyword">@try</span> &#123;</span><br><span class="line">      <span class="comment">// Do some work on myData and report the results.</span></span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">@catch</span>(...) &#123;</span><br><span class="line">      <span class="comment">// Do not rethrow exceptions.</span></span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<h3 id="响应取消事件">响应取消事件</h3>
+<p>在操作对象开始执行后，它要么持续执行到任务完成，要么被显式取消。取消可以发生在任何时候，甚至在操作对象开始执行之前。尽管 <code>NSOperation</code> 类给用户提供了一种方式来取消一个操作对象，但是否识别取消事件是还是开发者决定的。如果一个操作对象被错误地停止了，可能就没有办法回收已经分配的资源。所以，操作对象应该在执行的过程中检查取消事件，并在操作过程中发生取消事件时优雅地退出。</p>
+<p>为了支持操作对象的取消，你所要做的就是定期从你的自定义代码中调用对象的<code>isCancelled</code>方法，如果它返回<code>YES</code>就立即返回。无论你的操作持续时间长短，也无论你是直接对<code>NSOperation</code>进行子类化还是使用其具体的子类，支持取消都很重要。<code>isCancelled</code>方法本身是非常轻量的，可以在不影响性能的情况下频繁调用。当设计你的操作对象时，你应考虑在代码中的以下地方调用<code>isCancelled</code>方法：</p>
+<ul>
+<li>在执行任何实际工作前立即调用；</li>
+<li>每次循环迭代至少调用一次，如果单次循环确实很长的话，可以多次检查；</li>
+<li>在代码中任何一个相对容易中止操作的地方；</li>
+</ul>
+<p>清单2-4展示了一个非常简单的示例，说明如何在一个操作对象的<code>main</code>方法中响应取消事件。在这种情况下，每次通过<code>while</code>循环调用<code>isCancelled</code>方法，允许在工作开始前快速退出，并以一定的间隔再次退出。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)main &#123;</span><br><span class="line">   <span class="keyword">@try</span> &#123;</span><br><span class="line">      <span class="built_in">BOOL</span> isDone = <span class="literal">NO</span>;</span><br><span class="line"> </span><br><span class="line">      <span class="keyword">while</span> (![<span class="keyword">self</span> isCancelled] &amp;&amp; !isDone) &#123;</span><br><span class="line">          <span class="comment">// Do some work and set isDone to YES when finished</span></span><br><span class="line">      &#125;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">@catch</span>(...) &#123;</span><br><span class="line">      <span class="comment">// Do not rethrow exceptions.</span></span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>尽管上述代码中没有包含清理资源的代码，但是你自己的代码中应该清理任何你分配的资源。</p>
+<h3 id="为并发执行配置操作对象">为并发执行配置操作对象</h3>
+<p>操作对象默认以同步方式执行，也就是说，它们在调用其<code>start</code>方法的线程中执行任务。因为操作队列为非并发操作提供了线程，尽管如此，大多数操作仍然以异步方式运行。然而，如果你打算手动执行操作，并且仍然希望它们异步运行，你就可以通过把操作对象定义为一个并发操作来达到目的。</p>
+<p>下表列出了在实现并发操作对象时需要 override 的方法：</p>
+<table>
+<colgroup>
+<col style="width: 34%" />
+<col style="width: 65%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>start</code></td>
+<td><strong>必须</strong> 所有的并发操作都必须覆盖这个方法，用自定义实现替换默认行为。要手动执行一个操作，要调用其<code>start</code>方法。因此，你对这个方法的实现是你的操作的起点，是你设置线程或其他执行环境来执行你的任务的地方。自定义实现在任何时候都不能调用<code>super</code>方法。</td>
+</tr>
+<tr class="even">
+<td><code>main</code></td>
+<td><strong>可选</strong> 这个方法通常用于实现与操作对象相关的任务。尽管你可以在<code>start</code>方法中执行任务，但使用这个方法实现任务可以使你的设置和任务代码更清晰地分开。</td>
+</tr>
+<tr class="odd">
+<td><code>isExecuting</code> <br> <code>isFinished</code></td>
+<td><strong>必须</strong> 并发操作负责设置其执行环境并向外部客户报告该环境的状态。因此，一个并发操作必须维护一些状态信息，以知道它何时在执行任务，何时完成了该任务。然后，它必须使用这些方法汇报该状态。<br />对这些方法的实现必须是安全的，可以从其他线程同时调用。当改变这些方法所汇报的值时，你还必须为预期的key path生成适当的KVO通知。</td>
+</tr>
+<tr class="even">
+<td><code>isConcurrent</code></td>
+<td><strong>必须</strong> 要确定操作对象是一个并发操作，覆盖这个方法并返回<code>YES</code>。</td>
+</tr>
+</tbody>
+</table>
+<p>这节剩余的部分展示 <code>MyOperation</code> 类的实现示例，展示了实现一个并发操作所需的基本代码。 <code>MyOperation</code> 只是简单在它创建的线程上执行 <code>main</code> 方法。<code>main</code> 方法的具体内容在这里是不相关的。示例的意义在于展示在定义一个并发操作时需要提供的基础设施。</p>
+<p>清单2-5显示了<code>MyOperation</code>类的接口和部分实现。<code>MyOperation</code>类的<code>isConcurrent</code>、<code>isExecuting</code>和<code>isFinished</code>方法的实现相对简单。<code>isConcurrent</code>方法应该简单地返回<code>YES</code>，表示这是一个并发操作。<code>isExecuting</code>和<code>isFinished</code>方法只是返回存储在类本身的实例变量中的值。</p>
+<p><strong>清单2-5</strong> 定义一个并发操作队列</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">MyOperation</span> : <span class="title">NSOperation</span> </span>&#123;</span><br><span class="line">    <span class="built_in">BOOL</span>        executing;</span><br><span class="line">    <span class="built_in">BOOL</span>        finished;</span><br><span class="line">&#125;</span><br><span class="line">- (<span class="keyword">void</span>)completeOperation;</span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">MyOperation</span></span></span><br><span class="line">- (<span class="keyword">id</span>)init &#123;</span><br><span class="line">    <span class="keyword">self</span> = [<span class="keyword">super</span> init];</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">self</span>) &#123;</span><br><span class="line">        executing = <span class="literal">NO</span>;</span><br><span class="line">        finished = <span class="literal">NO</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">self</span>;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">- (<span class="built_in">BOOL</span>)isConcurrent &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">YES</span>;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">- (<span class="built_in">BOOL</span>)isExecuting &#123;</span><br><span class="line">    <span class="keyword">return</span> executing;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">- (<span class="built_in">BOOL</span>)isFinished &#123;</span><br><span class="line">    <span class="keyword">return</span> finished;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<p>清单2-6显示了<code>MyOperation</code>的<code>start</code>方法。这个方法的实现是最小的，以便展示你绝对必须执行的任务。在这种情况下，该方法只是启动了一个新的线程，并配置它来调用<code>main</code>方法。该方法还更新了<code>executing</code>成员变量，并为<code>isExecuting</code> key path生成KVO通知，以反映该值的变化。完成工作后，这个方法就简单地返回，让新分离的线程来执行实际的任务。</p>
+<p><strong>清单2-6</strong> <code>start</code>方法</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)start &#123;</span><br><span class="line">   <span class="comment">// Always check for cancellation before launching the task.</span></span><br><span class="line">   <span class="keyword">if</span> ([<span class="keyword">self</span> isCancelled])</span><br><span class="line">   &#123;</span><br><span class="line">      <span class="comment">// Must move the operation to the finished state if it is canceled.</span></span><br><span class="line">      [<span class="keyword">self</span> willChangeValueForKey:<span class="string">@&quot;isFinished&quot;</span>];</span><br><span class="line">      finished = <span class="literal">YES</span>;</span><br><span class="line">      [<span class="keyword">self</span> didChangeValueForKey:<span class="string">@&quot;isFinished&quot;</span>];</span><br><span class="line">      <span class="keyword">return</span>;</span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="comment">// If the operation is not canceled, begin executing the task.</span></span><br><span class="line">   [<span class="keyword">self</span> willChangeValueForKey:<span class="string">@&quot;isExecuting&quot;</span>];</span><br><span class="line">   [<span class="built_in">NSThread</span> detachNewThreadSelector:<span class="keyword">@selector</span>(main) toTarget:<span class="keyword">self</span> withObject:<span class="literal">nil</span>];</span><br><span class="line">   executing = <span class="literal">YES</span>;</span><br><span class="line">   [<span class="keyword">self</span> didChangeValueForKey:<span class="string">@&quot;isExecuting&quot;</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>清单2-7显示了<code>MyOperation</code>类的其余实现。正如在清单2-6中看到的，<code>main</code>方法是一个新线程的入口。它执行与操作对象相关的工作，并在工作最终完成时调用自定义的<code>completeOperation</code>方法。然后<code>completeOperation</code>方法为<code>isExecuting</code>和<code>isFinished</code> key path生成所需的KVO通知，以反映操作状态的变化。</p>
+<p><strong>清单2-7</strong> 在完成时更新操作对象状态</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)main &#123;</span><br><span class="line">   <span class="keyword">@try</span> &#123;</span><br><span class="line"> </span><br><span class="line">       <span class="comment">// Do the main work of the operation here.</span></span><br><span class="line"> </span><br><span class="line">       [<span class="keyword">self</span> completeOperation];</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">@catch</span>(...) &#123;</span><br><span class="line">      <span class="comment">// Do not rethrow exceptions.</span></span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">- (<span class="keyword">void</span>)completeOperation &#123;</span><br><span class="line">    [<span class="keyword">self</span> willChangeValueForKey:<span class="string">@&quot;isFinished&quot;</span>];</span><br><span class="line">    [<span class="keyword">self</span> willChangeValueForKey:<span class="string">@&quot;isExecuting&quot;</span>];</span><br><span class="line"> </span><br><span class="line">    executing = <span class="literal">NO</span>;</span><br><span class="line">    finished = <span class="literal">YES</span>;</span><br><span class="line"> </span><br><span class="line">    [<span class="keyword">self</span> didChangeValueForKey:<span class="string">@&quot;isExecuting&quot;</span>];</span><br><span class="line">    [<span class="keyword">self</span> didChangeValueForKey:<span class="string">@&quot;isFinished&quot;</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>即使一个操作被取消了，你也应始终通知KVO观察者你的操作现在已经完成了它的工作。当一个操作对象依赖于其他操作对象的完成时，它将监听这些对象的<code>isFinished</code> key path。只有当所有对象都汇报已经完成时，依赖的操作才会发出信号说它已经准备好运行。因此，未能生成一个完成通知可能会阻止程序中其他操作对象的执行。</p>
+<h3 id="维护kvo">维护KVO</h3>
+<p><code>NSOperation</code> 类对以下 key path 是 KVO 的：</p>
+<ul>
+<li><code>isCancelled</code></li>
+<li><code>isConcurrent</code></li>
+<li><code>isExecuting</code></li>
+<li><code>isFinished</code></li>
+<li><code>isReady</code></li>
+<li><code>dependencies</code></li>
+<li><code>queuePriority</code></li>
+<li><code>completionBlock</code></li>
+</ul>
+<p>如果你覆盖了 <code>start</code> 方法或大幅度的自定义一个 <code>NSOperation</code> 对象，而不是覆盖 <code>main</code> 方法，你需确保自定义对象仍然保持着这些 key path 的 KVO 兼容性。当你覆盖 <code>start</code> 方法的时候，你应该关心的 key path 是 <code>isExecuting</code> 和 <code>isFinished</code>。这些 key paths 是重写 <code>start</code> 方法最常影响到的。</p>
+<p>如果你想实现对其他操作对象以外的依赖关系的支持，你也可以覆盖<code>isReady</code>方法并强制它返回<code>NO</code>直到你的自定义依赖关系得到满足。（如果你实现了自定义的依赖关系，如果你仍然支持由<code>NSOperation</code>类提供的默认依赖关系管理系统，确保从<code>isReady</code>方法中调用<code>super</code>）。当操作对象的准备状态发生变化时，为<code>isReady</code> key path生成KVO通知以报告这些变化。除非你覆盖了<code>addDependency:</code>或<code>removeDependency:</code>方法，否则你不需要担心为<code>dependencies</code>关键路径产生KVO通知。</p>
+<p>尽管你可以为<code>NSOperation</code>的其他key path生成KVO通知，但你不太可能需要这样做。如果你需要取消一个操作，你可以简单地调用现有的<code>cancel</code>方法来完成。同样地，你应该很少需要修改操作对象中的队列优先级信息。最后，除非你的操作能够动态地改变其并发状态，否则你不需要为<code>isConcurrent</code> key path提供KVO通知。</p>
+<h2 id="自定义操作对象执行行为">自定义操作对象执行行为</h2>
+<p>操作对象的配置发生在创建之后，添加到队列之前。本节描述的配置类型可用于所有的操作对象，无论是对<code>NSOperation</code>进行子类化还是使用现有的<code>NSOperation</code>子类。</p>
+<h3 id="配置交互依赖">配置交互依赖</h3>
+<p>依赖可以串行不同操作对象。依赖其他操作对象的操作对象在其他操作对象完成之前不能开始执行。因此，你可以使用依赖在两个操作对象之间建立简单的一对一的依赖关系，或者建立复杂的对象依赖关系图。</p>
+<p>使用<code>NSOperation</code>的<code>addDependency:</code>方法可以创建依赖关系。这个方法创建单向的依赖关系，当前操作对象依赖于参数给定的操作对象。依赖不限于同一个队列的操作对象。操作对象管理着它们自己的依赖，所以它不受队列局限，但不能创建在操作之间创建循环依赖关系。这是一个开发者的错误，会导致受影响的操作永远无法执行。</p>
+<p>当一个操作对象的所有依赖都结束执行时，通常该操作变成准备执行中状态。（如果你自定义了 <code>isReady</code> 方法的话，操作对象的就绪状态就由你自定义行为决定了）。如果操作对象在队列中，队列可能随时启动执行其中的操作对象。否则如果你想手动执行该操作，则由你来调用该操作的<code>start</code>方法。</p>
+<p><strong>重要提醒：</strong>你应总是在运行操作对象或将其添加到操作队列之前配置依赖关系。在这之后添加的依赖关系可能不会阻止某个操作对象的运行。</p>
+<p>依赖机制依赖于每个操作对象在对象的状态发生变化时发送适当的KVO通知。如果你自定义了操作对象的行为，你可能需要从你自定义代码中生成适当的KVO通知，以避免引起依赖关系的问题。关于KVO通知和操作对象的更多信息，可参阅<a href="#维护KVO">维护KVO</a>。关于配置依赖关系的其他信息，可参阅<a target="_blank" rel="noopener" href="https://developer.apple.com/documentation/foundation/nsoperation">NSOperation Class Reference</a>。</p>
+<h3 id="修改操作对象执行的优先级">修改操作对象执行的优先级</h3>
+<p>对于添加到队列中的操作对象，执行顺序首先由队列中的操作的准备状态决定，然后由其相对优先级决定。准备状态由一个操作对象对其他操作对象的依赖决定，但优先级是操作对象本身的一个属性。默认情况下，所有新的操作对象都有一个normal的优先级，你可以调用操作对象的<code>setQueuePriority:</code>方法来增加或减少优先级。</p>
+<p>优先级只适用于同一操作队列中的操作操作对象。如果程序有多个操作队列，每个队列都会独立于其他队列来确定自己操作的优先级。因此，低优先级的操作仍有可能在不同队列的高优先级操作之前执行。</p>
+<p>优先级不能替代依赖关系。优先级只是决定了操作队列中的那些处于就绪状态的操作对象的执行顺序。例如，如果一个队列同时包含高优先级和低优先级的操作，并且这两个操作都就绪了，那么这个队列会先执行高优先级的操作。但是，如果高优先级的操作对象还没就绪，而低优先级的操作对象已经就绪了，那么队列就会先执行低优先级的操作对象。如果你想阻止一个操作在另一个操作完成之前开始，你必须使用依赖实现。</p>
+<h3 id="修改底层线程的优先级">修改底层线程的优先级</h3>
+<p>在OS X v10.6及以后的版本中，可以配置操作对象的底层线程的执行优先级。系统中的线程策略本身由内核管理，但一般来说，高优先级的线程比低优先级的线程有更多机会运行。在一个操作对象中，可以把线程优先级设置为0.0到1.0范围内的浮点值，0.0为最低优先级，1.0为最高优先级。如果没有设置一个明确的线程优先级，操作对象将以默认的线程优先级0.5运行。</p>
+<p>要设置操作对象的线程优先级，必须在操作对象添加到队列（或手动执行）之前调用操作对象的<code>setThreadPriority:</code>方法。当执行操作的时候，默认的<code>start</code>方法使用你指定的值来修改当前线程的优先级。这个新的优先级只在操作对象的<code>main</code>方法期间保持有效。所有其他代码（包括操作对象的完成block）都以默认的线程优先级运行。如果你创建了一个并发的操作对象，并因此覆盖了<code>start</code>方法，你必须自己配置线程优先级。</p>
+<h3 id="设置完成block">设置完成Block</h3>
+<p>在OS X v10.6和更高版本中，当一个操作对象的主任务执行完毕时，可以执行一个完成block。你可以使用一个完成block来执行任何你认为不属于主任务的工作。例如，你可以使用这个block来通知感兴趣的对象，操作对象本身已经完成。一个并发的操作对象可能会使用这个block来生成其最终的KVO通知。</p>
+<p>要设置完成block，使用<code>NSOperation</code>的<code>setCompletionBlock:</code>方法。该block没有参数也没有返回值。</p>
+<h2 id="实现操作对象的技巧">实现操作对象的技巧</h2>
+<p>尽管操作对象的实现相当容易，但在编写代码时，有几件事你应该注意。下面几节描述了在编写操作对象的代码时应该考虑的一些因素。</p>
+<h3 id="在操作对象中管理内存">在操作对象中管理内存</h3>
+<p>下面的章节描述了操作对象中内存管理的关键。关于Objective-C程序中内存管理的一般信息，可参阅<a target="_blank" rel="noopener" href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/MemoryMgmt/Articles/MemoryMgmt.html#//apple_ref/doc/uid/10000011i">Advanced Memory Management Programming Guide</a>。</p>
+<h4 id="避免按线程存储">避免按线程存储</h4>
+<p>尽管大多数操对象作是在一个线程上执行的，但在非并发操作对象的情况下，这个线程通常是由一个操作队列提供的。如果一个操作队列为你提供了一个线程，你应该认为这个线程是由队列所持有的，而不会被你的操作对象所访问。具体来说，你不应该将任何数据与非自己创建或管理的线程联系起来。由操作队列管理的线程会根据系统和程序的需要而创建和销毁。因此，使用按线程存储在操作之间传递数据是不可靠的，很可能会失败。</p>
+<p>就操作对象而言，无论在什么情况下都不应使用按线程存储。当初始化一个操作对象时，你应该为该对象提供它所需要的一切来完成其工作。因此，操作对象本身提供了你需要的上下文存储。所有传入和传出的数据都应该存储在操作对象中，直到它可以被整合回程序或不再需要的时候。</p>
+<h4 id="根据需要持有操作对象">根据需要持有操作对象</h4>
+<p>仅仅因为操作对象是异步运行的，你不该只是简单地完成它的创建。它们仍只是个对象，你应管理好它的生命周期。如果你需要在一个操作完成后检索结果数据，保持对操作对象的引用尤其重要。</p>
+<p>你应该始终保持对操作的引用，原因是你以后可能没有机会从队列获取到该对象。队列会尽一切努力尽可能快地调度和执行操作。在许多情况下，队列在添加操作对象后几乎立即开始执行操作。当你自己的代码回到队列中获取对操作对象的引用时，该操作可能已经完成并从队列中移除了。</p>
+<h3 id="处理错误和异常">处理错误和异常</h3>
+<p>因为操作对象本质上是程序中的离散实体，它们负责处理任何出现的错误或异常。在OS X v10.6及以后的版本中，<code>NSOperation</code>类提供的默认<code>start</code>方法并不捕捉异常。（在OS X v10.5中，start方法可以捕捉和抑制异常。）代码应该直接捕捉和抑制异常。它还应该检查错误代码，并根据需要通知到程序中合适的地方。如果替换了<code>start</code>方法，你必须在自定义实现中捕捉任何异常，以防止它们离开底层线程的作用域。</p>
+<p>你应该处理以下类型的错误：</p>
+<ul>
+<li>检查和处理UNIX <code>errno</code>形式的error code。</li>
+<li>检查由方法和函数返回的显式error code。</li>
+<li>捕获由自己的代码或其他系统框架抛出的异常。</li>
+<li>捕捉由<code>NSOperation</code>类本身抛出的异常，在以下情况下它会抛出异常：
+<ul>
+<li>当操作对象还没有就绪执行，但它的<code>start</code>方法被调用时；</li>
+<li>当操作对象正在执行或完成时（可能是因为它被取消了），而它的<code>start</code>方法被再次调用时；</li>
+<li>当你试图给一个已经执行或完成的操作对象添加一个完成block时；</li>
+<li>当你试图检索一个被取消的<code>NSInvocationOperation</code>对象的结果时；</li>
+</ul></li>
+</ul>
+<p>如果自定义代码确实遇到了异常或错误，你应该采取任何必要的步骤将该错误传播到程序的其他位置。<code>NSOperation</code>类没有提供明确的方法来实现这部分工作。因此，如果这些信息对程序很重要，你必须提供必要的代码。</p>
+<h2 id="为操作对象确定合适的范围">为操作对象确定合适的范围</h2>
+<p>尽管存在在一个操作队列中添加任意多操作的可能，但这样做往往是不切实际的。像任何对象一样，<code>NSOperation</code>类的实例会消耗内存，执行也有相应的开销。如果每个操作对象只做少量的工作，而你创建了数以万计的操作对象，你可能会发现花在调度操作对象上的时间比做真正的操作任务要多。如果程序已经受到了内存的限制，你可能会发现，仅仅在内存中拥有成千上万的操作对象可能会进一步降低性能。</p>
+<p>有效使用操作对象的关键是在你需要在具体操作任务和保持计算机持续工作之间找到一个适当的平衡点。尽量确保操作对象完成合理的工作量。例如，如果程序创建了100个操作对象来对100个不同的值执行相同的任务，可以考虑改成创建10个操作对象，每个操作对象处理10个值。</p>
+<p>你还应避免一次向队列中添加大量的操作对象，或者避免向队列中添加操作对象的速度超过它们的处理速度。与其一次性添加大量的操作对象，不如分批创建这些对象。当一个批次执行完毕后，使用一个完成block来告诉程序创建一个新的批次。这种方案适用于由大量的任务要进行，想让队列填充足够多的操作对象，来让计算机持续执行的情况。一次性创建大量的操作对象，让直接让程序耗尽内存。</p>
+<p>当然，创建操作对象的数量，以及你在每个操作中执行的工作量是可变的，完全取决于你的程序。你应该总是使用诸如Instruments这样的工具来帮助你在效率和速度之间找到一个适当的平衡点。关于Instruments和其他性能工具的概述，可以用来为你的代码收集指标，可参阅<a target="_blank" rel="noopener" href="https://developer.apple.com/library/archive/documentation/Performance/Conceptual/PerformanceOverview/Introduction/Introduction.html#//apple_ref/doc/uid/TP40001410">Performance Overview</a>。</p>
+<h2 id="执行操作对象">执行操作对象</h2>
+<p>最终，你的应用程序需要执行操作对象，以完成相关的工作。在本节中，将学习几种执行操作对象的方法，以及如何在运行时控制操作对象的执行行为。</p>
+<h3 id="添加操作对象到操作队列中">添加操作对象到操作队列中</h3>
+<p>到目前为止，执行操作对象的最简单方法是使用一个操作队列，它是<code>NSOperationQueue</code>类的实例。程序负责创建和维护使用的任何操作队列。程序可以有任何数量的队列，但在一个给定的时间点上操作对象可以执行的数量是有实际限制的。操作队列与系统配合工作，将并发操作的数量限制在一个适合可用内核和系统负载的数值上。因此，创建更多的队列并不意味着你可以执行更多的操作对象。</p>
+<p>创建队列跟创建其他的对象是一样的：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSOperationQueue</span>* aQueue = [[<span class="built_in">NSOperationQueue</span> alloc] init];</span><br></pre></td></tr></table></figure>
+<p>要向队列添加操作，可以使用<code>addOperation:</code>方法。在OS X v10.6及更高的版本中，你可以使用<code>addOperations:waitUntilFinished:</code>方法添加操作组，或者使用<code>addOperationWithBlock:</code>方法直接向队列添加block对象（不会有相应的操作对象）。这些方法都是排队一个或多个操作对象，并通知队列应该开始处理这些操作对象。在大多数情况下，操作对象在被添加到队列后不久就会被执行，但是操作队列可能会因为一些原因而延迟执行队列中的操作。具体来说，如果排队的操作对象依赖于其他尚未完成的操作，执行可能会被延迟。如果操作队列本身被暂停或已经在执行其最大数量的并发操作，执行也可能被延迟。下面的例子显示了向队列添加操作对象的基本语法：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[aQueue addOperation:anOp]; <span class="comment">// Add a single operation</span></span><br><span class="line">[aQueue addOperations:anArrayOfOps waitUntilFinished:<span class="literal">NO</span>]; <span class="comment">// Add multiple operations</span></span><br><span class="line">[aQueue addOperationWithBlock:^&#123;</span><br><span class="line">   <span class="comment">/* Do something. */</span></span><br><span class="line">&#125;];</span><br></pre></td></tr></table></figure>
+<p><strong>重要提醒：</strong>在将操作对象添加到队列之前，你应该对其完成所有必要的配置和修改，因为一旦添加，操作对象可能会在任何时候被运行，这可能会让修改的时间太晚，无法产生预期的效果。</p>
+<p>虽然<code>NSOperationQueue</code>类是为操作对象的并发执行而设计的，但也可以强制队列一次只运行一个操作。<code>setMaxConcurrentOperationCount:</code>方法可以让你配置操作队列对象的最大并发操作对象数。给这个方法传递1，会使队列一次只执行一个操作。虽然一次只能执行一个操作对象，但执行的顺序仍然是基于其他因素，比如每个操作对象的就绪状态和分配的优先级。因此，一个串行的操作队列所提供的行为与Grand Central Dispatch中的串行调度队列不完全相同。如果操作对象的执行顺序对你很重要，你应该在把操作对象添加到队列之前，使用依赖来建立这个顺序。关于配置依赖关系的信息，可参阅<a href="#配置交互依赖">配置交互依赖</a>。</p>
+<p>关于使用操作队列的信息，可参阅<a target="_blank" rel="noopener" href="https://developer.apple.com/documentation/foundation/nsoperationqueue">NSOperationQueue Class Reference</a>。关于串行调度队列的更多信息，可参阅<a target="_blank" rel="noopener" href="https://developer.apple.com/library/archive/documentation/General/Conceptual/ConcurrencyProgrammingGuide/OperationQueues/OperationQueues.html#//apple_ref/doc/uid/TP40008091-CH102-SW6">Creating Serial Dispatch Queues</a>。</p>
+<h3 id="手动执行操作对象">手动执行操作对象</h3>
+<p>虽然操作队列是运行操作对象的最方便的方式，但也可以不通过队列来执行操作对象。然而，如果你选择手动执行操作，你应该在你的代码中采取一些预防措施。特别是，操作必须准备好运行，你必须始终使用它的<code>start</code>方法来启动它。</p>
+<p>一个操作在它的<code>isReady</code>方法返回<code>YES</code>时才被认为能够运行。<code>isReady</code>方法被集成到<code>NSOperation</code>类的依赖管理系统中，以提供操作的依赖关系的状态。只有当它的依赖关系被清除后，一个操作才可以自由地开始执行。</p>
+<p>当手动执行一个操作时，你应该总是使用<code>start</code>方法来开始执行。而不是<code>main</code>或其他方法，因为<code>start</code>方法在实际运行自定义代码之前会执行一些安全检查。特别是，默认的<code>start</code>方法会生成操对象作所需的KVO通知，以正确处理其依赖关系。如果操作对象已经被取消了，这个方法也会正确地避免执行你的操作，如果操作对象实际上没有就绪运行，则会抛出一个异常。</p>
+<p>如果你的程序定义了并发的操作对象，你也应该考虑在启动操作对象之前调用操作的<code>isConcurrent</code>方法。在该方法返回<code>NO</code>的情况下，本地代码可以决定是在当前线程中同步执行操作还是先创建一个单独的线程。然而，实现这种检查完全由你决定。</p>
+<p>清单2-8显示了一个简单的示例，以说明手动执行操作之前应该进行什么样的检查。如果该方法返回<code>NO</code>，你可以安排一个定时器并在稍后再次调用该方法。然后你会不断地重新安排定时器，直到方法返回<code>YES</code>，这可能是因为操作被取消了。</p>
+<p><strong>清单2-8</strong> 手动执行一个操作对象</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="built_in">BOOL</span>)performOperation:(<span class="built_in">NSOperation</span>*)anOp</span><br><span class="line">&#123;</span><br><span class="line">   <span class="built_in">BOOL</span>        ranIt = <span class="literal">NO</span>;</span><br><span class="line"> </span><br><span class="line">   <span class="keyword">if</span> ([anOp isReady] &amp;&amp; ![anOp isCancelled])</span><br><span class="line">   &#123;</span><br><span class="line">      <span class="keyword">if</span> (![anOp isConcurrent])</span><br><span class="line">         [anOp start];</span><br><span class="line">      <span class="keyword">else</span></span><br><span class="line">         [<span class="built_in">NSThread</span> detachNewThreadSelector:<span class="keyword">@selector</span>(start)</span><br><span class="line">                   toTarget:anOp withObject:<span class="literal">nil</span>];</span><br><span class="line">      ranIt = <span class="literal">YES</span>;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">else</span> <span class="keyword">if</span> ([anOp isCancelled])</span><br><span class="line">   &#123;</span><br><span class="line">      <span class="comment">// If it was canceled before it was started,</span></span><br><span class="line">      <span class="comment">//  move the operation to the finished state.</span></span><br><span class="line">      [<span class="keyword">self</span> willChangeValueForKey:<span class="string">@&quot;isFinished&quot;</span>];</span><br><span class="line">      [<span class="keyword">self</span> willChangeValueForKey:<span class="string">@&quot;isExecuting&quot;</span>];</span><br><span class="line">      executing = <span class="literal">NO</span>;</span><br><span class="line">      finished = <span class="literal">YES</span>;</span><br><span class="line">      [<span class="keyword">self</span> didChangeValueForKey:<span class="string">@&quot;isExecuting&quot;</span>];</span><br><span class="line">      [<span class="keyword">self</span> didChangeValueForKey:<span class="string">@&quot;isFinished&quot;</span>];</span><br><span class="line"> </span><br><span class="line">      <span class="comment">// Set ranIt to YES to prevent the operation from</span></span><br><span class="line">      <span class="comment">// being passed to this method again in the future.</span></span><br><span class="line">      ranIt = <span class="literal">YES</span>;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">return</span> ranIt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="取消操作对象">取消操作对象</h3>
+<p>一旦被添加到一个操作队列中，操作对象就有效地被队列所拥有，并且不能被移除。取消一个操作对象的唯一方法是取消它。你可以通过调用一个单独的操作对象的<code>cancel</code>方法来取消它，或者通过调用队列对象的<code>cancelAllOperations</code>方法来取消队列中的所有操作对象。</p>
+<p>只有当你确定不再需要这些操作对象时，才取消它们。发出取消命令会使操作对象进入canceled状态，这将使它永远无法运行。因为一个被取消的操作仍然被认为是finished的，依赖于它的对象会收到适当的KVO通知来清除这种依赖关系。因此，更常见的情况是，在某些重要事件中取消所有排队的操作对象，比如程序退出或用户特别要求取消，而不是选择性地取消某个操作对象。</p>
+<h3 id="等待操作对象完成">等待操作对象完成</h3>
+<p>为了获得最佳性能，你应该把操作对象设计成尽可能的异步，让程序在操作对象执行时可以自由地做其他工作。如果创建一个操作对象的代码也处理该对象的结果，你可以使用<code>NSOperation</code>的<code>waitUntilFinished</code>方法来阻塞代码，直到操作完成。不过一般来说，如果可以的话，最好避免调用这个方法。阻塞当前线程可能是一个方便的解决方案，但它给你的代码引入了更多的串行，并限制了整体的并发水平。</p>
+<p><strong>重要提醒：</strong>你不应该在程序的主线程中等待一个操作。你只应该从子线程或其他操作对象中进行等待。阻塞你的主线程会阻止程序对用户事件做出响应，并可能使程序看起来没有反应。</p>
+<p>除了等待单个操作完成，你还可以通过调用<code>NSOperationQueue</code>的<code>waitUntilAllOperationsAreFinished</code>方法来等待一个队列中的所有操作对象的完成。当等待整个队列完成时，要注意程序的其他线程仍然可以向队列添加操作，但因此也会延长等待时间。</p>
+<h3 id="暂停和恢复队列">暂停和恢复队列</h3>
+<p>如果要暂停操作对象的执行，你可以使用<code>setSuspended:</code>方法暂停相应的操作队列。暂停一个队列并不会导致已经执行的操作对象在其任务中暂停。它只是阻止队列安排新的操作对象执行。你可以暂停一个队列，以响应用户的请求，暂停任何正在进行的工作，因为预期用户最终可能想要恢复该对队列工作。</p>
+<h2 id="总结">总结</h2>
+<ul>
+<li>NSBlockOperation可以添加多个block，该操作对象使用组的语义进行操作，只有当相关的block都执行完毕时，操作对象本身才算完成。</li>
+<li>对于单个block中的代码来说，其执行都是同步的。</li>
+<li>操作对象的任务要自行处理异常。</li>
+<li>操作对象的配置发生在创建之后，添加到队列之前。</li>
+<li>若要保持对操作对象的检索，最好自己添加对操作对象的引用。</li>
+<li>要手动执行操作对象，则执行<code>start</code>方法。</li>
+<li>取消往往用于对队列的行为，而非个别操作对象。</li>
+</ul>
+<p>使用技巧：</p>
+<ul>
+<li>应只在需要单独异步执行操作对象但又不添加到操作队列的情况下才定义并发操作对象。</li>
+<li>操作对象的执行顺序主要是基于依赖建立的。不建议通过优先级改变操作对象执行顺序。</li>
+<li>操作队列可以通过<code>setMaxConcurrentOperationCount:</code>方法设置并发数量，即使设置为1，其行为也与串行调度队列不完全一致。例如，经测试，操作队列即使并发限制为1，单每次使用的线程可能不同。</li>
+<li>操作对象的完成block执行的语义应是不属于主任务的工作。</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Apple/" rel="tag"># Apple</a>
+              <a href="/tags/Concurrency-Programming-Guide/" rel="tag"># Concurrency Programming Guide</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/posts/concurrency_pg_concurrency_and_application_design/" rel="prev" title="Concurrency Programming Guide：并发与程序设计">
+      <i class="fa fa-chevron-left"></i> Concurrency Programming Guide：并发与程序设计
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/posts/concurrency_pg_dispatch_queues/" rel="next" title="Concurrency Programming Guide：调度队列">
+      Concurrency Programming Guide：调度队列 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E6%93%8D%E4%BD%9C%E5%AF%B9%E8%B1%A1"><span class="nav-text">关于操作对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B9%B6%E5%8F%91%E4%B8%8E%E9%9D%9E%E5%B9%B6%E5%8F%91%E6%93%8D%E4%BD%9C%E5%AF%B9%E8%B1%A1"><span class="nav-text">并发与非并发操作对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9B%E5%BB%BAnsinvocationoperation%E5%AF%B9%E8%B1%A1"><span class="nav-text">创建NSInvocationOperation对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9B%E5%BB%BAnsblockoperation%E5%AF%B9%E8%B1%A1"><span class="nav-text">创建NSBlockOperation对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%93%8D%E4%BD%9C%E5%AF%B9%E8%B1%A1"><span class="nav-text">自定义操作对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%A7%E8%A1%8Cmain-task"><span class="nav-text">执行Main Task</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%93%8D%E5%BA%94%E5%8F%96%E6%B6%88%E4%BA%8B%E4%BB%B6"><span class="nav-text">响应取消事件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BA%E5%B9%B6%E5%8F%91%E6%89%A7%E8%A1%8C%E9%85%8D%E7%BD%AE%E6%93%8D%E4%BD%9C%E5%AF%B9%E8%B1%A1"><span class="nav-text">为并发执行配置操作对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%B4%E6%8A%A4kvo"><span class="nav-text">维护KVO</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%93%8D%E4%BD%9C%E5%AF%B9%E8%B1%A1%E6%89%A7%E8%A1%8C%E8%A1%8C%E4%B8%BA"><span class="nav-text">自定义操作对象执行行为</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E4%BA%A4%E4%BA%92%E4%BE%9D%E8%B5%96"><span class="nav-text">配置交互依赖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E6%93%8D%E4%BD%9C%E5%AF%B9%E8%B1%A1%E6%89%A7%E8%A1%8C%E7%9A%84%E4%BC%98%E5%85%88%E7%BA%A7"><span class="nav-text">修改操作对象执行的优先级</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E5%BA%95%E5%B1%82%E7%BA%BF%E7%A8%8B%E7%9A%84%E4%BC%98%E5%85%88%E7%BA%A7"><span class="nav-text">修改底层线程的优先级</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E5%AE%8C%E6%88%90block"><span class="nav-text">设置完成Block</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E6%93%8D%E4%BD%9C%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%8A%80%E5%B7%A7"><span class="nav-text">实现操作对象的技巧</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8%E6%93%8D%E4%BD%9C%E5%AF%B9%E8%B1%A1%E4%B8%AD%E7%AE%A1%E7%90%86%E5%86%85%E5%AD%98"><span class="nav-text">在操作对象中管理内存</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%81%BF%E5%85%8D%E6%8C%89%E7%BA%BF%E7%A8%8B%E5%AD%98%E5%82%A8"><span class="nav-text">避免按线程存储</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%B9%E6%8D%AE%E9%9C%80%E8%A6%81%E6%8C%81%E6%9C%89%E6%93%8D%E4%BD%9C%E5%AF%B9%E8%B1%A1"><span class="nav-text">根据需要持有操作对象</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%84%E7%90%86%E9%94%99%E8%AF%AF%E5%92%8C%E5%BC%82%E5%B8%B8"><span class="nav-text">处理错误和异常</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E6%93%8D%E4%BD%9C%E5%AF%B9%E8%B1%A1%E7%A1%AE%E5%AE%9A%E5%90%88%E9%80%82%E7%9A%84%E8%8C%83%E5%9B%B4"><span class="nav-text">为操作对象确定合适的范围</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%A7%E8%A1%8C%E6%93%8D%E4%BD%9C%E5%AF%B9%E8%B1%A1"><span class="nav-text">执行操作对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E6%93%8D%E4%BD%9C%E5%AF%B9%E8%B1%A1%E5%88%B0%E6%93%8D%E4%BD%9C%E9%98%9F%E5%88%97%E4%B8%AD"><span class="nav-text">添加操作对象到操作队列中</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%8B%E5%8A%A8%E6%89%A7%E8%A1%8C%E6%93%8D%E4%BD%9C%E5%AF%B9%E8%B1%A1"><span class="nav-text">手动执行操作对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%96%E6%B6%88%E6%93%8D%E4%BD%9C%E5%AF%B9%E8%B1%A1"><span class="nav-text">取消操作对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AD%89%E5%BE%85%E6%93%8D%E4%BD%9C%E5%AF%B9%E8%B1%A1%E5%AE%8C%E6%88%90"><span class="nav-text">等待操作对象完成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9A%82%E5%81%9C%E5%92%8C%E6%81%A2%E5%A4%8D%E9%98%9F%E5%88%97"><span class="nav-text">暂停和恢复队列</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-text">总结</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="權咚"
+      src="/images/icon.png">
+  <p class="site-author-name" itemprop="name">權咚</p>
+  <div class="site-description" itemprop="description">🤘🤯👾</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">44</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/bqlin" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;bqlin" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/hearingdog" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;hearingdog" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://xiaozhuanlan.com/metal-reference-translation" title="https:&#x2F;&#x2F;xiaozhuanlan.com&#x2F;metal-reference-translation" rel="noopener" target="_blank">Metal内参</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://xiaozhuanlan.com/wwdc21" title="https:&#x2F;&#x2F;xiaozhuanlan.com&#x2F;wwdc21" rel="noopener" target="_blank">WWDC21 内参</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2016 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">權咚</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">198k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">3:01</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'default',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","vOffset":-100},"mobile":{"show":false,"scale":0.5},"log":false});</script></body>
+</html>
