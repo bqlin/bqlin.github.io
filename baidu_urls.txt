@@ -1,1 +1,1 @@
-https://bqlin.github.io/posts/null/
+https://bqlin.github.io/posts/avfoundation_device_setup/
