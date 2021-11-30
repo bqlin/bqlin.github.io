@@ -229,17 +229,17 @@
   </entry>
   
   <entry>
-    <title>Runtime：综合面试题</title>
-    <link href="https://bqlin.github.io/posts/runtime_interview_question/"/>
-    <id>https://bqlin.github.io/posts/runtime_interview_question/</id>
-    <published>2021-11-11T09:43:11.000Z</published>
-    <updated>2021-11-11T09:43:11.000Z</updated>
+    <title>锁</title>
+    <link href="https://bqlin.github.io/posts/lock/"/>
+    <id>https://bqlin.github.io/posts/lock/</id>
+    <published>2021-11-12T07:04:29.000Z</published>
+    <updated>2021-11-12T07:04:29.000Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="runtime综合面试题">Runtime综合面试题</h1><h2 id="isa指针">isa指针</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">//***********♦️♦️CLPerson♦️♦️************</span><br><span class="line">@interface CLPerson : NSObject</span><br><span class="line">@property (nonatomic, copy) NSString *name;</span><br><span class="line">-(void)print;</span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">@implementation CLPerson</span><br><span class="line">-(void)print &#123;</span><br><span class="line">    NSLog(@&quot;My name&#x27;s %@&quot;, self.name);</span><br><span class="line">&#125;</span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">//***********🥝🥝ViewController.m🥝🥝************ </span><br><span class="line"></span><br><span class="line">@implementation ViewController</span><br><span class="line">- (void)viewDidLoad &#123;</span><br><span class="line">    [super viewDidLoad];</span><br><span class="line">    </span><br><span class="line">    id cls = [CLPerson class];</span><br><span class="line">    void *obj = &amp;cls;</span><br><span class="line">    [(__bridge id)obj print]; </span><br><span class="line">&#125;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure><p>最终输出结果：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">My name&#x27;s &lt;ViewController: 0x7fce43e08aa0&gt;</span><br></pre></td></tr></table></figure><h3 id="为什么print可以被调用">为什么<code>print</code>可以被调用</h3><p>因为：</p><ul><li>实例对象 = 指向类的指针</li><li>cls指向类，obj指向cls，相当于obj是指向类的指针。</li></ul><p>所以<code>(__bridge id)obj</code>就相当于实例变量的效果。</p><h3 id="为什么打印是viewcontroller-0x7fce43e08aa0">为什么打印是<code>&lt;ViewController: 0x7fce43e08aa0&gt;</code></h3><p>首先<code>self.name</code>就是通过指针调用的<code>self-&gt;_name</code>。</p><p>实例对象底层是一个结构体，存放isa指针和成员变量列表，因为指针在arm64位上占8位，<code>name</code>又是CLPerson的第一个成员，所以<code>self-&gt;_name</code>就是基于对象地址往高地址偏移8位读取的内存。</p><p>栈空间是存放被调用函数内部所定义的局部变量的。先定义的局部变量在栈底高地址。所以上述代码的局部变量布局为：</p><p><img src="https://gitee.com/bqlin/image-land/raw/master/vdgI8O.jpg" /></p><p>这里隐藏了个细节：<code>[super viewDidLoad];</code>。该代码的底层调用是：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">objc_msgSendSuper(</span><br><span class="line">    (__rw_objc_super)&#123;</span><br><span class="line">        (id)self, </span><br><span class="line">        (id)class_getSuperclass(objc_getClass(&quot;ViewController&quot;))&#125;,</span><br><span class="line">    @selector(viewDidLoad));</span><br></pre></td></tr></table></figure><p>相当于cls的高地址方向还有一个self局部变量，就ViewController实例对象，所以<code>self-&gt;_name</code>指向的就是cls的上一个局部变量，即高地址方向偏移8位——ViewController实例对象。</p><p>扩展：类似的，如果没有<code>[super viewDidLoad];</code>就会出现BAD_ACCESS错误。如果cls前面多了个OC对象局部变量，则打印该局部变量。注意还是需要前面有个OC对象，否则还是会BAD_ACCESS。</p><p>更多扩展：<a href="https://juejin.cn/post/6844904079953526791">iOS探索 isa面试题分析 - 掘金</a></p><h2 id="autoreleasepool">autoreleasepool</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">@interface ViewController ()</span><br><span class="line">&#123;</span><br><span class="line">    __weak NSString *string_weak;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">@implementation ViewController</span><br><span class="line"></span><br><span class="line">- (void)viewDidLoad &#123;</span><br><span class="line">    [super viewDidLoad];</span><br><span class="line">    </span><br><span class="line">    // 各场景</span><br><span class="line">    </span><br><span class="line">    NSLog(@&quot;string: %@ %s&quot;, string_weak,__func__);</span><br><span class="line">&#125;</span><br><span class="line">- (void)viewWillAppear:(BOOL)animated&#123;</span><br><span class="line">    [super viewWillAppear:animated];</span><br><span class="line">    NSLog(@&quot;string: %@ %s&quot;, string_weak,__func__);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)viewDidAppear:(BOOL)animated&#123;</span><br><span class="line">    [super viewDidAppear:animated];</span><br><span class="line">    NSLog(@&quot;string: %@ %s&quot;, string_weak,__func__);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="场景一">场景一</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">NSString *str =  [NSString stringWithFormat:@&quot;https://ityongzhen.github.io/&quot;];</span><br><span class="line">string_weak = str;</span><br><span class="line"></span><br><span class="line">// 输出</span><br><span class="line">string: https://ityongzhen.github.io/ -[ViewController viewDidLoad]</span><br><span class="line">string: https://ityongzhen.github.io/ -[ViewController viewWillAppear:]</span><br><span class="line">string: (null) -[ViewController viewDidAppear:]</span><br></pre></td></tr></table></figure><ol type="1"><li>创建对象，ref=1，并添加到当前的autoreleasepool中；</li><li>赋值到局部变量，ref+1=2；</li><li><code>viewDidLoad</code>方法返回，局部变量被回收，ref-1=1；</li><li><code>viewDidLoad</code>和<code>viewWillAppear</code>在同一个RunLoop中，所以还能访问；<code>viewDidLoad</code>已经是下一个RunLoop，已经被释放。</li></ol><h3 id="场景二">场景二</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">@autoreleasepool &#123;</span><br><span class="line">    NSString *str =  [NSString stringWithFormat:@&quot;https://ityongzhen.github.io/&quot;];</span><br><span class="line">    string_weak = str;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 输出</span><br><span class="line">string: (null) -[ViewController viewDidLoad]</span><br><span class="line">string: (null) -[ViewController viewWillAppear:]</span><br><span class="line">string: (null) -[ViewController viewDidAppear:]</span><br></pre></td></tr></table></figure><ol type="1"><li>创建对象，ref=1；</li><li>赋值到局部变量，ref+1=2；</li><li>离开作用域域，ref-1=1；</li><li>离开autoreleasepool，调用release，ref-1=0，对象释放。</li></ol><p>所以后序在<code>viewDidLoad</code>方法中访问的对象已经被释放。</p><h3 id="场景三">场景三</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">NSString *str = nil;</span><br><span class="line">@autoreleasepool &#123;</span><br><span class="line">    str =  [NSString stringWithFormat:@&quot;https://ityongzhen.github.io/&quot;];</span><br><span class="line">    string_weak = str;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 输出</span><br><span class="line">string: https://ityongzhen.github.io/ -[ViewController viewDidLoad]</span><br><span class="line">string: (null) -[ViewController viewWillAppear:]</span><br><span class="line">string: (null) -[ViewController viewDidAppear:]</span><br></pre></td></tr></table></figure><ol type="1"><li>创建对象，ref=1；</li><li>赋值到局部变量，ref+1=2；</li><li>离开autoreleasepool，调用release，ref-1=1，对象释放。</li><li><code>viewDidLoad</code>方法返回时，ref-1=0，对象被释放。</li></ol><p>所以在<code>viewDidLoad</code>方法中访问对象时，还能访问，离开方法后就无法访问。</p><h3 id="注意">注意</h3><ul><li>如果字符串过短，会变成存储在栈的TaggedPointer，无需引用计数管理，在所有方法中都可以访问。</li><li>类似的，如果字符串位<code>@"..."</code>形式，则存储到常量区，也无需引用计数管理，在所有方法中也都可以访问。</li></ul><p>对于栈上的内存，会在离开作用域后被回收。</p><h2 id="更多">更多</h2><ul><li><a href="https://juejin.cn/post/6844904072428912653">深入浅出 Runtime（五）：相关面试题 - 掘金</a></li></ul>]]></content>
+    <content type="html"><![CDATA[<h2 id="概念">概念</h2><p>锁：在执行多线程时，用于强行限制资源访问的同步机制，即用于并发控制中保证对互斥要求的满足。</p><p>锁都是为了互斥（Mutual exclusion，缩写 Mutex）。即防止两条线程同时对同一公共资源（如全局变量）进行读写的机制。</p><h3 id="分类">分类</h3><p>锁从实现上分两种：</p><ul><li>自旋锁。效率高、安全性不足、占用CPU资源大。</li><li>非自旋锁。安全性突出、占用CPU资源小，但休眠、唤醒过程要消耗CPU资源。</li></ul><h3 id="自旋转锁">自旋转锁</h3><p>忙等待的，会一直在那空转（循环），直到使用锁的一方释放。自旋锁不会让线程状态发生切换，一直处于用户态，即线程一直都是active的，不会让线程进入阻塞/休眠，减少了不必要的上下文切换，执行速度快。</p><p>以下情况选用自旋锁：</p><ul><li>预计线程等待锁的时间很短；</li><li>加锁代码（临界区）经常被调用，但竞争情况发生概率很小，对安全性要求不高；</li><li>CPU资源不紧张或多核处理器</li></ul><h3 id="非自旋锁">非自旋锁</h3><p>非忙等待的，操作内核，将自己的状态改为阻塞挂起来，从待执行队列中移出，等待其他线程唤醒。在获取不到锁的时候会进入阻塞状态，从而进入内核态，当获得锁的时候需要从内核态恢复，需要线程上下文切换，影响锁的性能。</p><p>以下情况使用非自旋锁：</p><ul><li>预计线程等待锁的时间比较长；</li><li>单核处理器；</li><li>临界区有IO操作；</li><li>临界区代码复杂度、循环量大</li><li>临界区竞争非常激烈，对安全性要求高</li></ul><h3 id="阻塞与休眠">阻塞与休眠</h3><ul><li>阻塞：等待一个中断事件的到来</li><li>休眠：等待一个超时事件的到来</li></ul><h2 id="ios中的锁">iOS中的锁</h2><p>互斥锁：</p><ul><li>pthread_mutex_t</li><li>NSLock、NSConditionLock（封装了pthread_mutex_t，attr = 普通）</li><li>NSDistributedLock（封装了pthread_mutex_t，attr = 递归）<ul><li>引用计数表的数据结构中使用到，对一张表的多个部分进行同时操作。</li></ul></li><li>NSCondition（封装了pthread_mutex_t和pthread_cond_t）</li><li><span class="citation" data-cites="synchronized">@synchronized</span></li></ul><p>递归锁（基于互斥锁）：</p><ul><li>NSRecursiveLock</li></ul><p>自旋锁：</p><ul><li>OSSpinLock</li></ul><h4 id="nslock">NSLock</h4><p>普通的互斥锁。通过阻塞线程实现。</p><h4 id="nsconditionlock">NSConditionLock</h4><p>条件锁。比NSLock多了个<code>NSInteger condition</code>作为相等的条件。与<code>condition</code>相等则加锁。</p><h4 id="nsrecursivelock">NSRecursiveLock</h4><p>递归锁。与NSLock类似，但可以在同一线程重复加锁而不死锁。实现递归过程原子性。</p><h3 id="osspinlock">OSSpinLock</h3><p>自旋锁。</p><h3 id="os_unfair_lock">os_unfair_lock</h3><p>用于替代OSSpinLock，解决了优先级反转的问题，但其本质是互斥锁。atomic内部也使用该锁。</p><h4 id="nscondition">NSCondition</h4><p>协调线程间的顺序执行。wait-signal。先执行一部分任务，然后跳转到其他地方执行，完了以后再回来。</p><h3 id="synchronizeobject"><span class="citation" data-cites="synchronize">@synchronize</span>(object)</h3><p>通过判断传入的对象是否相同，才满足互斥。</p><h3 id="dispatch_semaphore">dispatch_semaphore</h3><p>信号量。限制有限数量的资源使用。</p><h3 id="pthread_mutex">pthread_mutex</h3><p>互斥锁。</p><h2 id="实现多线程多读单写">实现多线程多读单写</h2><p>实现方案：</p><ul><li>pthread_rwlock，读写锁</li><li>dispatch_barrier_async，异步栅栏调用<ul><li>需要在一个自己创建的并发队列中执行屏障。</li></ul></li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">//手动创建一个并发队列</span><br><span class="line">dispatch_queue_t queue = dispatch_queue_create(&quot;rw_queue&quot;, DISPATCH_QUEUE_CONCURRENT);</span><br><span class="line">dispatch_async(queue, ^&#123; // 普通异步</span><br><span class="line">    /*</span><br><span class="line">     读操作代码</span><br><span class="line">     */</span><br><span class="line">&#125;);</span><br><span class="line">dispatch_barrier_async(queue, ^&#123; // 屏障异步</span><br><span class="line">    /*</span><br><span class="line">     写操作代码</span><br><span class="line">     */</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><p><img src="https://gitee.com/bqlin/image-land/raw/master/7POMTw.jpg" /></p><h2 id="参考">参考</h2><ul><li><a href="https://juejin.cn/post/6844903993563414535">iOS-关于锁的总结 - 掘金</a></li><li><a href="https://www.jianshu.com/p/9447e55fa79d">IOS - 自旋锁和atomic - 简书</a></li><li><a href="https://ityongzhen.github.io/%E5%85%B3%E4%BA%8EiOS%E4%B8%AD%E7%9A%8413%E7%A7%8D%E5%8A%A0%E9%94%81%E6%96%B9%E6%A1%88.html/">关于iOS中的13种加锁方案 | 殷永振</a></li><li><a href="https://zhuanlan.zhihu.com/p/335166736">iOS进阶-细数iOS中的锁 - 知乎</a></li><li><a href="https://juejin.cn/post/6965770220921159694">如何保证iOS的多线程安全 - 掘金</a></li></ul>]]></content>
     
     
-    <summary type="html">&lt;h1 id=&quot;runtime综合面试题&quot;&gt;Runtime综合面试题&lt;/h1&gt;
-&lt;h2 id=&quot;isa指针&quot;&gt;isa指针&lt;/h2&gt;</summary>
+    <summary type="html">&lt;h2 id=&quot;概念&quot;&gt;概念&lt;/h2&gt;
+&lt;p&gt;锁：在执行多线程时，用于强行限制资源访问的同步机制，即用于并发控制中保证对互斥要求的满足。&lt;/p&gt;</summary>
     
     
     
@@ -248,9 +248,7 @@
     
     <category term="Apple" scheme="https://bqlin.github.io/tags/Apple/"/>
     
-    <category term="Objective-C" scheme="https://bqlin.github.io/tags/Objective-C/"/>
-    
-    <category term="Runtime" scheme="https://bqlin.github.io/tags/Runtime/"/>
+    <category term="多线程" scheme="https://bqlin.github.io/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
     
   </entry>
   
@@ -266,6 +264,32 @@
     
     <summary type="html">&lt;p&gt;方法调用的流程：&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;objc_msgSend&lt;/code&gt;调用方法的本质是通过isa指针找到该类，然后寻找方法，找到后调用。如果没有找到则通过&lt;code&gt;superClass&lt;/code&gt;找到父类，继续查找方法。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="iOS" scheme="https://bqlin.github.io/categories/iOS/"/>
+    
+    
+    <category term="Apple" scheme="https://bqlin.github.io/tags/Apple/"/>
+    
+    <category term="Objective-C" scheme="https://bqlin.github.io/tags/Objective-C/"/>
+    
+    <category term="Runtime" scheme="https://bqlin.github.io/tags/Runtime/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Runtime：综合面试题</title>
+    <link href="https://bqlin.github.io/posts/runtime_interview_question/"/>
+    <id>https://bqlin.github.io/posts/runtime_interview_question/</id>
+    <published>2021-11-11T09:43:11.000Z</published>
+    <updated>2021-11-11T09:43:11.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="runtime综合面试题">Runtime综合面试题</h1><h2 id="isa指针">isa指针</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">//***********♦️♦️CLPerson♦️♦️************</span><br><span class="line">@interface CLPerson : NSObject</span><br><span class="line">@property (nonatomic, copy) NSString *name;</span><br><span class="line">-(void)print;</span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">@implementation CLPerson</span><br><span class="line">-(void)print &#123;</span><br><span class="line">    NSLog(@&quot;My name&#x27;s %@&quot;, self.name);</span><br><span class="line">&#125;</span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">//***********🥝🥝ViewController.m🥝🥝************ </span><br><span class="line"></span><br><span class="line">@implementation ViewController</span><br><span class="line">- (void)viewDidLoad &#123;</span><br><span class="line">    [super viewDidLoad];</span><br><span class="line">    </span><br><span class="line">    id cls = [CLPerson class];</span><br><span class="line">    void *obj = &amp;cls;</span><br><span class="line">    [(__bridge id)obj print]; </span><br><span class="line">&#125;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure><p>最终输出结果：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">My name&#x27;s &lt;ViewController: 0x7fce43e08aa0&gt;</span><br></pre></td></tr></table></figure><h3 id="为什么print可以被调用">为什么<code>print</code>可以被调用</h3><p>因为：</p><ul><li>实例对象 = 指向类的指针</li><li>cls指向类，obj指向cls，相当于obj是指向类的指针。</li></ul><p>所以<code>(__bridge id)obj</code>就相当于实例变量的效果。</p><h3 id="为什么打印是viewcontroller-0x7fce43e08aa0">为什么打印是<code>&lt;ViewController: 0x7fce43e08aa0&gt;</code></h3><p>首先<code>self.name</code>就是通过指针调用的<code>self-&gt;_name</code>。</p><p>实例对象底层是一个结构体，存放isa指针和成员变量列表，因为指针在arm64位上占8位，<code>name</code>又是CLPerson的第一个成员，所以<code>self-&gt;_name</code>就是基于对象地址往高地址偏移8位读取的内存。</p><p>栈空间是存放被调用函数内部所定义的局部变量的。先定义的局部变量在栈底高地址。所以上述代码的局部变量布局为：</p><p><img src="https://gitee.com/bqlin/image-land/raw/master/vdgI8O.jpg" /></p><p>这里隐藏了个细节：<code>[super viewDidLoad];</code>。该代码的底层调用是：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">objc_msgSendSuper(</span><br><span class="line">    (__rw_objc_super)&#123;</span><br><span class="line">        (id)self, </span><br><span class="line">        (id)class_getSuperclass(objc_getClass(&quot;ViewController&quot;))&#125;,</span><br><span class="line">    @selector(viewDidLoad));</span><br></pre></td></tr></table></figure><p>相当于cls的高地址方向还有一个self局部变量，就ViewController实例对象，所以<code>self-&gt;_name</code>指向的就是cls的上一个局部变量，即高地址方向偏移8位——ViewController实例对象。</p><p>扩展：类似的，如果没有<code>[super viewDidLoad];</code>就会出现BAD_ACCESS错误。如果cls前面多了个OC对象局部变量，则打印该局部变量。注意还是需要前面有个OC对象，否则还是会BAD_ACCESS。</p><p>更多扩展：<a href="https://juejin.cn/post/6844904079953526791">iOS探索 isa面试题分析 - 掘金</a></p><h2 id="autoreleasepool">autoreleasepool</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">@interface ViewController ()</span><br><span class="line">&#123;</span><br><span class="line">    __weak NSString *string_weak;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">@implementation ViewController</span><br><span class="line"></span><br><span class="line">- (void)viewDidLoad &#123;</span><br><span class="line">    [super viewDidLoad];</span><br><span class="line">    </span><br><span class="line">    // 各场景</span><br><span class="line">    </span><br><span class="line">    NSLog(@&quot;string: %@ %s&quot;, string_weak,__func__);</span><br><span class="line">&#125;</span><br><span class="line">- (void)viewWillAppear:(BOOL)animated&#123;</span><br><span class="line">    [super viewWillAppear:animated];</span><br><span class="line">    NSLog(@&quot;string: %@ %s&quot;, string_weak,__func__);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)viewDidAppear:(BOOL)animated&#123;</span><br><span class="line">    [super viewDidAppear:animated];</span><br><span class="line">    NSLog(@&quot;string: %@ %s&quot;, string_weak,__func__);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="场景一">场景一</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">NSString *str =  [NSString stringWithFormat:@&quot;https://ityongzhen.github.io/&quot;];</span><br><span class="line">string_weak = str;</span><br><span class="line"></span><br><span class="line">// 输出</span><br><span class="line">string: https://ityongzhen.github.io/ -[ViewController viewDidLoad]</span><br><span class="line">string: https://ityongzhen.github.io/ -[ViewController viewWillAppear:]</span><br><span class="line">string: (null) -[ViewController viewDidAppear:]</span><br></pre></td></tr></table></figure><ol type="1"><li>创建对象，ref=1，并添加到当前的autoreleasepool中；</li><li>赋值到局部变量，ref+1=2；</li><li><code>viewDidLoad</code>方法返回，局部变量被回收，ref-1=1；</li><li><code>viewDidLoad</code>和<code>viewWillAppear</code>在同一个RunLoop中，所以还能访问；<code>viewDidLoad</code>已经是下一个RunLoop，已经被释放。</li></ol><h3 id="场景二">场景二</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">@autoreleasepool &#123;</span><br><span class="line">    NSString *str =  [NSString stringWithFormat:@&quot;https://ityongzhen.github.io/&quot;];</span><br><span class="line">    string_weak = str;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 输出</span><br><span class="line">string: (null) -[ViewController viewDidLoad]</span><br><span class="line">string: (null) -[ViewController viewWillAppear:]</span><br><span class="line">string: (null) -[ViewController viewDidAppear:]</span><br></pre></td></tr></table></figure><ol type="1"><li>创建对象，ref=1；</li><li>赋值到局部变量，ref+1=2；</li><li>离开作用域域，ref-1=1；</li><li>离开autoreleasepool，调用release，ref-1=0，对象释放。</li></ol><p>所以后序在<code>viewDidLoad</code>方法中访问的对象已经被释放。</p><h3 id="场景三">场景三</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">NSString *str = nil;</span><br><span class="line">@autoreleasepool &#123;</span><br><span class="line">    str =  [NSString stringWithFormat:@&quot;https://ityongzhen.github.io/&quot;];</span><br><span class="line">    string_weak = str;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 输出</span><br><span class="line">string: https://ityongzhen.github.io/ -[ViewController viewDidLoad]</span><br><span class="line">string: (null) -[ViewController viewWillAppear:]</span><br><span class="line">string: (null) -[ViewController viewDidAppear:]</span><br></pre></td></tr></table></figure><ol type="1"><li>创建对象，ref=1；</li><li>赋值到局部变量，ref+1=2；</li><li>离开autoreleasepool，调用release，ref-1=1，对象释放。</li><li><code>viewDidLoad</code>方法返回时，ref-1=0，对象被释放。</li></ol><p>所以在<code>viewDidLoad</code>方法中访问对象时，还能访问，离开方法后就无法访问。</p><h3 id="注意">注意</h3><ul><li>如果字符串过短，会变成存储在栈的TaggedPointer，无需引用计数管理，在所有方法中都可以访问。</li><li>类似的，如果字符串位<code>@"..."</code>形式，则存储到常量区，也无需引用计数管理，在所有方法中也都可以访问。</li></ul><p>对于栈上的内存，会在离开作用域后被回收。</p><h2 id="更多">更多</h2><ul><li><a href="https://juejin.cn/post/6844904072428912653">深入浅出 Runtime（五）：相关面试题 - 掘金</a></li></ul>]]></content>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;runtime综合面试题&quot;&gt;Runtime综合面试题&lt;/h1&gt;
+&lt;h2 id=&quot;isa指针&quot;&gt;isa指针&lt;/h2&gt;</summary>
     
     
     
@@ -301,6 +325,30 @@
     <category term="Apple" scheme="https://bqlin.github.io/tags/Apple/"/>
     
     <category term="Objective-C" scheme="https://bqlin.github.io/tags/Objective-C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>RunLoop</title>
+    <link href="https://bqlin.github.io/posts/runloop/"/>
+    <id>https://bqlin.github.io/posts/runloop/</id>
+    <published>2021-11-09T04:28:51.000Z</published>
+    <updated>2021-11-09T04:28:51.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>一般来说，一个线程只能执行一个任务，执行完成后线程就会退出。而事件循环（即一个while循环）能让线程能随时处理事件但不退出。</p><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (alive) &#123;</span><br><span class="line">  performTask() <span class="comment">//执行任务</span></span><br><span class="line">  callout_to_observer() <span class="comment">//通知外部</span></span><br><span class="line">  sleep() <span class="comment">//休眠</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>RunLoop是一种事件循环。它可以让线程有任务时忙碌，没有任务时睡眠。RunLoop提供一个入口函数执行事件循环，执行后，就一直处于“接受消息-&gt;等待-&gt;处理” 的循环中，直到这个循环结束，该函数返回。</p><p>RunLoop作用：</p><ul><li><strong>保持程序持续运行，而不是执行完任务退出；</strong></li><li>处理事件，这是保持运行的目的；</li><li>节省CPU资源。当RunLoop休眠的时候，CPU可以吧时间片分配给其他事务。如果RunLoop在某次循环之后，发现程序突然没有收集到更多事件供它处理，它就会休眠，停在RunLoop循环里面的某段代码上。过一会程序为RunLoop接收到了新来的事件，其循环就被系统重新激活以继续运行。</li></ul><p>CFRunLoopRef是在CoreFoundation框架中，提供了C函数API，都是线程安全的。</p><p>NSRunLoop是CFRunLoopRef的封装，但不是线程安全的。</p><p>RunLoop的线程休眠是通过<code>__CFRunLoopServiceMachPort</code>函数实现的，内部使用了<code>mach_msg</code>函数，这是内核提供的API，实现内核层面的线程休眠。而一般while循环，CPU还是会一直执行指令，占用CPU资源。</p><h2 id="与线程的关系">与线程的关系</h2><ul><li>RunLoop就是用来管理线程的，当线程RunLoop开启后，线程在执行完任务后不会退出，而是处于休眠状态，随时等待接受新的任务。没有RunLoop，就不可能执行多任务，延时任务也不会执行。</li><li>线程和RunLoop一一对应，其关系存在一个全局字典中。</li><li>只能在当前线程中操作当前线程的RunLoop，而不能去操作其他线程的。</li><li>RunLoop在首次获取时创建（通过<code>current</code>和<code>main</code>获取），在线程结束时销毁。</li><li>主线程的RunLoop时系统已经创建好了；但子线程的则要自己主动创建，并启动。</li></ul><h2 id="api使用">API使用</h2><h4 id="cfrunloopsourceref">CFRunLoopSourceRef</h4><p>事件产生的地方。包含两个版本：</p><ul><li>Source0：只包含一个回调函数指针，不能主动触发事件。使用时需先调用<code>CFRunLoopSourceSignal(source)</code>标记Source为待处理，然后手动调用<code>CFRunLoopWakeUp(runloop)</code>来唤醒RunLoop处理这个事件。<ul><li>包含触摸事件处理、<code>performSelector</code>。</li></ul></li><li>Source1：包含一个mach_port和回调函数指针，被用于通过内核和其他线程相互发送消息。这种Source能主动唤醒RunLoop线程。<ul><li>包含给予port的线程间通信、系统事件捕捉。</li></ul></li></ul><p>如触摸事件，手指点击屏幕，首先产生一个系统事件，通过Source1来接受捕捉，然后由Springboard程序包装成Source0分发到App处理，因此在App内接收到的触摸事件就是Source0的。</p><h4 id="cfrunlooptimerref">CFRunLoopTimerRef</h4><p>基于时间的触发器。包含一个时长和回调函数指针。</p><h4 id="cfrunloopobserverref">CFRunLoopObserverRef</h4><p>观察者，每个Observer包含一个回调函数指针，当RunLoop状态发生变化时，观察者能通过回调接收到这个变化。可以监听：</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">typedef</span> <span class="title">CF_OPTIONS</span><span class="params">(CFOptionFlags, CFRunLoopActivity)</span> </span>&#123;</span><br><span class="line">    kCFRunLoopEntry         = (<span class="number">1UL</span> &lt;&lt; <span class="number">0</span>), <span class="comment">// 即将进入Loop</span></span><br><span class="line">    kCFRunLoopBeforeTimers  = (<span class="number">1UL</span> &lt;&lt; <span class="number">1</span>), <span class="comment">// 即将处理 Timer</span></span><br><span class="line">    kCFRunLoopBeforeSources = (<span class="number">1UL</span> &lt;&lt; <span class="number">2</span>), <span class="comment">// 即将处理 Source</span></span><br><span class="line">    kCFRunLoopBeforeWaiting = (<span class="number">1UL</span> &lt;&lt; <span class="number">5</span>), <span class="comment">// 即将进入休眠</span></span><br><span class="line">    kCFRunLoopAfterWaiting  = (<span class="number">1UL</span> &lt;&lt; <span class="number">6</span>), <span class="comment">// 刚从休眠中唤醒</span></span><br><span class="line">    kCFRunLoopExit          = (<span class="number">1UL</span> &lt;&lt; <span class="number">7</span>), <span class="comment">// 即将退出Loop</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><h3 id="mode">Mode</h3><p>一个RunLoop包含若干个Mode，每个Mode又包含若干个Source/Timer/Observer。每次调用RunLoop的主函数时，只能指定其中一个Mode，这个Mode被称作CurrentMode。如果需要切换Mode，只能退出Loop，再重新指定一个Mode进入。这样做主要是为了分隔开不同组的Source/Timer/Observer，让其互不影响。Source/Timer/Observer称为mode item，一个item可以被同时加入多个mode。如果一个mode中没有item，则RunLoop会直接退出，不进入循环。</p><p>CommonModes：一个Mode把自己标记为“Common”属性（通过将其ModeName添加到RunLoop的<code>commonModes</code>中）。每当RunLoop内容发生变化时，RunLoop都会自动将<code>_commonModeItems</code>里的Source/Observer/Timer同步到具有“Common”标记的所有mode里。</p><p>主线程的RunLoop有两个预设的mode：<code>kCFRunLoopDefaultMode</code>、<code>UITrackingRunLoopMode</code>。这两个Mode都被标记为“Common”属性。defaultMode是App平时所处的状态，trackingRunLoopMode是追踪ScrollView滚动时的状态。所以把Timer添加到defaultMode时，在滚动列表时，RunLoop会将mode切换为trackingRunLoopMode，使得Timer不会回调。</p><p>要让Timer在滚动时也能回调，可以把Timer分别添加到defaultMode和trackingRunLoopMode中，或者加入到顶层的commonModeItems中。</p><h2 id="具体应用">具体应用</h2><h3 id="dispatch_get_main_queue">dispatch_get_main_queue</h3><p>在主线程中转交给RunLoop调起该方法。注意，只是回到主线程这一步是交给RunLoop处理。</p><h3 id="autoreleasepool">AutoreleasePool</h3><p>NSAutoreleasePool是对象引用计数自动处理器。当对象加入到NSAutoreleasePool时，会对其<code>retain</code>，当NSAutoreleasePool结束时，会对其所有对象发送一次<code>release</code>消息。NSAutoreleasePool可以以栈的方式组织。</p><p>使用容器的block版本的枚举器时会自动添加AutoreleasePool。for循环则没有。</p><p>iOS在主线程的RunLoop中注册了2个Observer：</p><ul><li>第1个Observer监听<code>kCFRunLoopEntry</code>（即将进入RunLoop）事件，会调用<code>objc_autoreleasePoolPush()</code>创建自动释放池，使用最高优先级保证创建在其他回调之前进行。</li><li>第2个Observer<ul><li>监听<code>kCFRunLoopBeforeWaiting</code>（即将进入休眠）事件，会调用<code>objc_autoreleasePoolPop()</code>、<code>objc_autoreleasePoolPush()</code>释放旧的池并创建新的池。</li><li>监听<code>kCFRunLoopExit</code>（即将退出Runloop）事件，会调用<code>objc_autoreleasePoolPop()</code>释放自动释放池，使用最低优先级保证释放池在其他所有回调之后进行。</li></ul></li></ul><h4 id="autoreleasepool的释放时机">AutoreleasePool的释放时机</h4><p>系统在每个runloop中都创建一个Autorelease Pool，并在runloop的末尾进行释放，所以，一般情况下，每个接受autorelease消息的对象，都会在下个runloop开始前被释放。也就是说，在一段同步的代码中执行过程中，生成的对象接受autorelease消息后，一般是不会在作用域结束前释放的。Autorelease对象出了作用域之后，会被添加到最近一次创建的自动释放池中，并会在当前的 runloop 迭代结束时释放。</p><p>所以在AutoreleasePool声明的局部变量，在外面就释放了。</p><p>子线程会默认包裹一个AutoreleasePool，当线程退出时才释放其中的变量。</p><h3 id="事件响应">事件响应</h3><p>苹果注册了一个 Source1 (基于 mach port 的) 用来接收系统事件，其回调函数为 __IOHIDEventSystemClientQueueCallback()。</p><h3 id="手势识别">手势识别</h3><h3 id="界面更新">界面更新</h3><h3 id="定时器">定时器</h3><p>CFRunLoopTimerRef。CADisplayLink。</p><h3 id="performselecterafterdelay">performSelecter:afterDelay:</h3><p>内部会创建定时器添加到当前的RunLoop中。</p><h2 id="参考">参考</h2><ul><li><a href="https://blog.ibireme.com/2015/05/18/runloop/">深入理解RunLoop | Garan no dou</a></li><li><a href="https://www.jianshu.com/p/d3d3196f5edb">AutoreleasePool详解和runloop的关系 - 简书</a></li><li><a href="http://blog.sunnyxx.com/2014/10/15/behind-autorelease/">黑幕背后的Autorelease · sunnyxx的技术博客</a></li><li><a href="https://juejin.cn/post/6965790003951566861">Runloop的内部结构与运行原理 - 掘金</a></li></ul>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;一般来说，一个线程只能执行一个任务，执行完成后线程就会退出。而事件循环（即一个while循环）能让线程能随时处理事件但不退出。&lt;/p&gt;
+&lt;figure class=&quot;highlight swift&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;while&lt;/span&gt; (alive) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  performTask() &lt;span class=&quot;comment&quot;&gt;//执行任务&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  callout_to_observer() &lt;span class=&quot;comment&quot;&gt;//通知外部&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  sleep() &lt;span class=&quot;comment&quot;&gt;//休眠&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</summary>
+    
+    
+    
+    <category term="iOS" scheme="https://bqlin.github.io/categories/iOS/"/>
+    
+    
+    <category term="Apple" scheme="https://bqlin.github.io/tags/Apple/"/>
+    
+    <category term="多线程" scheme="https://bqlin.github.io/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
     
   </entry>
   
@@ -401,6 +449,30 @@
     <category term="Apple" scheme="https://bqlin.github.io/tags/Apple/"/>
     
     <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Atomic也不安全</title>
+    <link href="https://bqlin.github.io/posts/atomic_is_not_safe_either/"/>
+    <id>https://bqlin.github.io/posts/atomic_is_not_safe_either/</id>
+    <published>2021-10-23T14:21:12.000Z</published>
+    <updated>2021-10-23T14:21:12.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>property属性加上atomic属性后，可以<strong>一定程度</strong>地保障多线程安全。</p><p>不安全的定义：多线程访问时出现意料之外的结果。</p><p>atomic的作用：给getter、setter加了锁，保障了进入这两个方法时是安全的。但一旦离开这两个方法，atomic就没法保障线程安全了。</p><p>加了atomic也不安全的表现：</p><ul><li>只是getter和setter是原子操作，但使用属性进行操作的时候，这个语句不是原子的。</li><li>如果属性是指针（如类实例），对内存地址的访问，即对对象的操作，不是线程安全的。</li></ul><p>要做到线程安全，首先要明确需要怎样粒度的线程安全，即要确定哪些代码是要线程安全的，然后对其进行同步访问，具体可以使用锁和同步队列。</p><h2 id="参考">参考</h2><ul><li><a href="https://zhuanlan.zhihu.com/p/23998703">iOS多线程到底不安全在哪里？ - 知乎</a></li></ul>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;property属性加上atomic属性后，可以&lt;strong&gt;一定程度&lt;/strong&gt;地保障多线程安全。&lt;/p&gt;
+&lt;p&gt;不安全的定义：多线程访问时出现意料之外的结果。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="iOS" scheme="https://bqlin.github.io/categories/iOS/"/>
+    
+    
+    <category term="Apple" scheme="https://bqlin.github.io/tags/Apple/"/>
+    
+    <category term="多线程" scheme="https://bqlin.github.io/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
     
   </entry>
   
@@ -550,9 +622,9 @@
     
     <category term="Apple" scheme="https://bqlin.github.io/tags/Apple/"/>
     
-    <category term="Concurrency Programming Guide" scheme="https://bqlin.github.io/tags/Concurrency-Programming-Guide/"/>
-    
     <category term="多线程" scheme="https://bqlin.github.io/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
+    
+    <category term="Concurrency Programming Guide" scheme="https://bqlin.github.io/tags/Concurrency-Programming-Guide/"/>
     
   </entry>
   
@@ -575,9 +647,9 @@
     
     <category term="Apple" scheme="https://bqlin.github.io/tags/Apple/"/>
     
-    <category term="Concurrency Programming Guide" scheme="https://bqlin.github.io/tags/Concurrency-Programming-Guide/"/>
-    
     <category term="多线程" scheme="https://bqlin.github.io/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
+    
+    <category term="Concurrency Programming Guide" scheme="https://bqlin.github.io/tags/Concurrency-Programming-Guide/"/>
     
   </entry>
   
@@ -600,9 +672,9 @@
     
     <category term="Apple" scheme="https://bqlin.github.io/tags/Apple/"/>
     
-    <category term="Concurrency Programming Guide" scheme="https://bqlin.github.io/tags/Concurrency-Programming-Guide/"/>
-    
     <category term="多线程" scheme="https://bqlin.github.io/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
+    
+    <category term="Concurrency Programming Guide" scheme="https://bqlin.github.io/tags/Concurrency-Programming-Guide/"/>
     
   </entry>
   
@@ -626,9 +698,9 @@
     
     <category term="Apple" scheme="https://bqlin.github.io/tags/Apple/"/>
     
-    <category term="Concurrency Programming Guide" scheme="https://bqlin.github.io/tags/Concurrency-Programming-Guide/"/>
-    
     <category term="多线程" scheme="https://bqlin.github.io/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
+    
+    <category term="Concurrency Programming Guide" scheme="https://bqlin.github.io/tags/Concurrency-Programming-Guide/"/>
     
   </entry>
   
@@ -651,9 +723,9 @@
     
     <category term="Apple" scheme="https://bqlin.github.io/tags/Apple/"/>
     
-    <category term="Concurrency Programming Guide" scheme="https://bqlin.github.io/tags/Concurrency-Programming-Guide/"/>
-    
     <category term="多线程" scheme="https://bqlin.github.io/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
+    
+    <category term="Concurrency Programming Guide" scheme="https://bqlin.github.io/tags/Concurrency-Programming-Guide/"/>
     
   </entry>
   
@@ -676,9 +748,9 @@
     
     <category term="Apple" scheme="https://bqlin.github.io/tags/Apple/"/>
     
-    <category term="Concurrency Programming Guide" scheme="https://bqlin.github.io/tags/Concurrency-Programming-Guide/"/>
-    
     <category term="多线程" scheme="https://bqlin.github.io/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
+    
+    <category term="Concurrency Programming Guide" scheme="https://bqlin.github.io/tags/Concurrency-Programming-Guide/"/>
     
   </entry>
   
@@ -703,9 +775,9 @@
     
     <category term="Apple" scheme="https://bqlin.github.io/tags/Apple/"/>
     
-    <category term="Concurrency Programming Guide" scheme="https://bqlin.github.io/tags/Concurrency-Programming-Guide/"/>
-    
     <category term="多线程" scheme="https://bqlin.github.io/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
+    
+    <category term="Concurrency Programming Guide" scheme="https://bqlin.github.io/tags/Concurrency-Programming-Guide/"/>
     
   </entry>
   

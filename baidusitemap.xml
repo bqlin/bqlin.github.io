@@ -49,16 +49,24 @@
     <lastmod>2021-11-12</lastmod>
   </url>
   <url>
-    <loc>https://bqlin.github.io/posts/runtime_interview_question/</loc>
-    <lastmod>2021-11-11</lastmod>
+    <loc>https://bqlin.github.io/posts/lock/</loc>
+    <lastmod>2021-11-12</lastmod>
   </url>
   <url>
     <loc>https://bqlin.github.io/posts/runtime_method_call_and_object_essence/</loc>
     <lastmod>2021-11-11</lastmod>
   </url>
   <url>
+    <loc>https://bqlin.github.io/posts/runtime_interview_question/</loc>
+    <lastmod>2021-11-11</lastmod>
+  </url>
+  <url>
     <loc>https://bqlin.github.io/posts/tagged_pointer/</loc>
     <lastmod>2021-11-10</lastmod>
+  </url>
+  <url>
+    <loc>https://bqlin.github.io/posts/runloop/</loc>
+    <lastmod>2021-11-09</lastmod>
   </url>
   <url>
     <loc>https://bqlin.github.io/posts/avfoundation_export_api/</loc>
@@ -133,11 +141,11 @@
     <lastmod>2021-10-28</lastmod>
   </url>
   <url>
-    <loc>https://bqlin.github.io/posts/cnd/</loc>
+    <loc>https://bqlin.github.io/posts/audio_and_video_synchronization/</loc>
     <lastmod>2021-10-28</lastmod>
   </url>
   <url>
-    <loc>https://bqlin.github.io/posts/audio_and_video_synchronization/</loc>
+    <loc>https://bqlin.github.io/posts/cnd/</loc>
     <lastmod>2021-10-28</lastmod>
   </url>
   <url>
@@ -165,16 +173,20 @@
     <lastmod>2021-10-24</lastmod>
   </url>
   <url>
-    <loc>https://bqlin.github.io/posts/concurrency_pg_migrating_away_from_threads/</loc>
+    <loc>https://bqlin.github.io/posts/concurrency_pg_dispatch_sources/</loc>
     <lastmod>2021-10-24</lastmod>
   </url>
   <url>
-    <loc>https://bqlin.github.io/posts/concurrency_pg_dispatch_sources/</loc>
+    <loc>https://bqlin.github.io/posts/concurrency_pg_migrating_away_from_threads/</loc>
     <lastmod>2021-10-24</lastmod>
   </url>
   <url>
     <loc>https://bqlin.github.io/posts/concurrency_pg_glossary/</loc>
     <lastmod>2021-10-24</lastmod>
+  </url>
+  <url>
+    <loc>https://bqlin.github.io/posts/atomic_is_not_safe_either/</loc>
+    <lastmod>2021-10-23</lastmod>
   </url>
   <url>
     <loc>https://bqlin.github.io/posts/video_toolbox_compression_configuration/</loc>
