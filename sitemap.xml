@@ -83,9 +83,99 @@
   </url>
   
   <url>
+    <loc>https://bqlin.github.io/posts/kvc/</loc>
+    
+    <lastmod>2021-11-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://bqlin.github.io/posts/block/</loc>
+    
+    <lastmod>2021-11-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://bqlin.github.io/posts/concurrency_pg_dispatch_queues/</loc>
     
     <lastmod>2021-11-13</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://bqlin.github.io/posts/runtime_weak/</loc>
+    
+    <lastmod>2021-11-12</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://bqlin.github.io/posts/apns/</loc>
+    
+    <lastmod>2021-11-12</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://bqlin.github.io/posts/introspection/</loc>
+    
+    <lastmod>2021-11-12</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://bqlin.github.io/posts/runtime_associative/</loc>
+    
+    <lastmod>2021-11-12</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://bqlin.github.io/posts/runtime_category/</loc>
+    
+    <lastmod>2021-11-12</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://bqlin.github.io/posts/runtime_method_call_and_object_essence/</loc>
+    
+    <lastmod>2021-11-11</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://bqlin.github.io/posts/runtime_interview_question/</loc>
+    
+    <lastmod>2021-11-11</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://bqlin.github.io/posts/tagged_pointer/</loc>
+    
+    <lastmod>2021-11-10</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -425,6 +515,15 @@
   </url>
   
   <url>
+    <loc>https://bqlin.github.io/posts/kvo/</loc>
+    
+    <lastmod>2021-07-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://bqlin.github.io/posts/compilation_basic_concepts/</loc>
     
     <lastmod>2021-07-10</lastmod>
@@ -515,6 +614,24 @@
   </url>
   
   <url>
+    <loc>https://bqlin.github.io/posts/ios_configuring_the_authentication_certificate/</loc>
+    
+    <lastmod>2020-10-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://bqlin.github.io/posts/get_the_time_api/</loc>
+    
+    <lastmod>2020-10-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://bqlin.github.io/posts/avfoundation_movie_format/</loc>
     
     <lastmod>2020-03-15</lastmod>
@@ -523,10 +640,37 @@
     <priority>0.6</priority>
   </url>
   
+  <url>
+    <loc>https://bqlin.github.io/posts/implement_multiple_proxies_using_object_wrappers/</loc>
+    
+    <lastmod>2020-03-03</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://bqlin.github.io/posts/static_lib_vs_and_dynamic_lib/</loc>
+    
+    <lastmod>2019-09-09</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://bqlin.github.io/posts/extension_type_determination/</loc>
+    
+    <lastmod>2017-08-24</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
 
   <url>
     <loc>https://bqlin.github.io/</loc>
-    <lastmod>2021-11-29</lastmod>
+    <lastmod>2021-11-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -534,35 +678,49 @@
   
   <url>
     <loc>https://bqlin.github.io/tags/Apple/</loc>
-    <lastmod>2021-11-29</lastmod>
+    <lastmod>2021-11-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://bqlin.github.io/tags/Audio-Queue-Services-Programming-Guide/</loc>
-    <lastmod>2021-11-29</lastmod>
+    <lastmod>2021-11-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/</loc>
-    <lastmod>2021-11-29</lastmod>
+    <lastmod>2021-11-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://bqlin.github.io/tags/Concurrency-Programming-Guide/</loc>
-    <lastmod>2021-11-29</lastmod>
+    <lastmod>2021-11-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://bqlin.github.io/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/</loc>
-    <lastmod>2021-11-29</lastmod>
+    <lastmod>2021-11-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://bqlin.github.io/tags/Objective-C/</loc>
+    <lastmod>2021-11-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://bqlin.github.io/tags/Runtime/</loc>
+    <lastmod>2021-11-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -571,28 +729,35 @@
   
   <url>
     <loc>https://bqlin.github.io/categories/%E7%BF%BB%E8%AF%91/</loc>
-    <lastmod>2021-11-29</lastmod>
+    <lastmod>2021-11-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://bqlin.github.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/</loc>
-    <lastmod>2021-11-29</lastmod>
+    <lastmod>2021-11-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://bqlin.github.io/categories/FFmpeg/</loc>
-    <lastmod>2021-11-29</lastmod>
+    <lastmod>2021-11-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://bqlin.github.io/categories/AVFoundation/</loc>
-    <lastmod>2021-11-29</lastmod>
+    <lastmod>2021-11-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://bqlin.github.io/categories/iOS/</loc>
+    <lastmod>2021-11-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
