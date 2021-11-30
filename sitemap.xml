@@ -155,7 +155,7 @@
   </url>
   
   <url>
-    <loc>https://bqlin.github.io/posts/runtime_interview_question/</loc>
+    <loc>https://bqlin.github.io/posts/runtime_method_call_and_object_essence/</loc>
     
     <lastmod>2021-11-11</lastmod>
     
@@ -164,7 +164,7 @@
   </url>
   
   <url>
-    <loc>https://bqlin.github.io/posts/runtime_method_call_and_object_essence/</loc>
+    <loc>https://bqlin.github.io/posts/runtime_interview_question/</loc>
     
     <lastmod>2021-11-11</lastmod>
     
@@ -236,7 +236,7 @@
   </url>
   
   <url>
-    <loc>https://bqlin.github.io/posts/multimedia_container/</loc>
+    <loc>https://bqlin.github.io/posts/rtmp/</loc>
     
     <lastmod>2021-10-28</lastmod>
     
@@ -245,7 +245,7 @@
   </url>
   
   <url>
-    <loc>https://bqlin.github.io/posts/rtmp/</loc>
+    <loc>https://bqlin.github.io/posts/multimedia_container/</loc>
     
     <lastmod>2021-10-28</lastmod>
     
@@ -299,15 +299,6 @@
   </url>
   
   <url>
-    <loc>https://bqlin.github.io/posts/image_basic_technology/</loc>
-    
-    <lastmod>2021-10-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://bqlin.github.io/posts/yuv/</loc>
     
     <lastmod>2021-10-28</lastmod>
@@ -318,6 +309,15 @@
   
   <url>
     <loc>https://bqlin.github.io/posts/video_compression_technology/</loc>
+    
+    <lastmod>2021-10-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://bqlin.github.io/posts/image_basic_technology/</loc>
     
     <lastmod>2021-10-28</lastmod>
     
@@ -742,6 +742,13 @@
   </url>
   
   <url>
+    <loc>https://bqlin.github.io/categories/AVFoundation/</loc>
+    <lastmod>2021-11-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://bqlin.github.io/categories/FFmpeg/</loc>
     <lastmod>2021-11-30</lastmod>
     <changefreq>weekly</changefreq>
@@ -750,13 +757,6 @@
   
   <url>
     <loc>https://bqlin.github.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/</loc>
-    <lastmod>2021-11-30</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://bqlin.github.io/categories/AVFoundation/</loc>
     <lastmod>2021-11-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
