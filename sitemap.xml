@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://bqlin.gitee.io/about/index.html</loc>
+    <loc>https://bqlin.github.io/about/index.html</loc>
     
     <lastmod>2021-11-29</lastmod>
     
@@ -11,7 +11,7 @@
   </url>
   
   <url>
-    <loc>https://bqlin.gitee.io/posts/ffmpeg_api_new_deprecated/</loc>
+    <loc>https://bqlin.github.io/posts/ffmpeg_api_new_deprecated/</loc>
     
     <lastmod>2021-11-28</lastmod>
     
@@ -20,7 +20,7 @@
   </url>
   
   <url>
-    <loc>https://bqlin.gitee.io/google3f24e8e997618db2.html</loc>
+    <loc>https://bqlin.github.io/google3f24e8e997618db2.html</loc>
     
     <lastmod>2021-11-28</lastmod>
     
@@ -29,7 +29,7 @@
   </url>
   
   <url>
-    <loc>https://bqlin.gitee.io/baidu_verify_ESMnezJCFg.html</loc>
+    <loc>https://bqlin.github.io/baidu_verify_ESMnezJCFg.html</loc>
     
     <lastmod>2021-11-28</lastmod>
     
@@ -38,7 +38,7 @@
   </url>
   
   <url>
-    <loc>https://bqlin.gitee.io/tags/index.html</loc>
+    <loc>https://bqlin.github.io/tags/index.html</loc>
     
     <lastmod>2021-11-27</lastmod>
     
@@ -47,7 +47,7 @@
   </url>
   
   <url>
-    <loc>https://bqlin.gitee.io/categories/index.html</loc>
+    <loc>https://bqlin.github.io/categories/index.html</loc>
     
     <lastmod>2021-11-27</lastmod>
     
@@ -56,7 +56,7 @@
   </url>
   
   <url>
-    <loc>https://bqlin.gitee.io/posts/video_bit_rate_control/</loc>
+    <loc>https://bqlin.github.io/posts/video_bit_rate_control/</loc>
     
     <lastmod>2021-11-22</lastmod>
     
@@ -65,7 +65,7 @@
   </url>
   
   <url>
-    <loc>https://bqlin.gitee.io/posts/h264/</loc>
+    <loc>https://bqlin.github.io/posts/h264/</loc>
     
     <lastmod>2021-11-21</lastmod>
     
@@ -74,7 +74,7 @@
   </url>
   
   <url>
-    <loc>https://bqlin.gitee.io/posts/avfoundation_device_setup/</loc>
+    <loc>https://bqlin.github.io/posts/avfoundation_device_setup/</loc>
     
     <lastmod>2021-11-21</lastmod>
     
@@ -83,7 +83,7 @@
   </url>
   
   <url>
-    <loc>https://bqlin.gitee.io/posts/kvc/</loc>
+    <loc>https://bqlin.github.io/posts/kvc/</loc>
     
     <lastmod>2021-11-20</lastmod>
     
@@ -92,7 +92,7 @@
   </url>
   
   <url>
-    <loc>https://bqlin.gitee.io/posts/block/</loc>
+    <loc>https://bqlin.github.io/posts/block/</loc>
     
     <lastmod>2021-11-16</lastmod>
     
@@ -101,7 +101,7 @@
   </url>
   
   <url>
-    <loc>https://bqlin.gitee.io/posts/concurrency_pg_dispatch_queues/</loc>
+    <loc>https://bqlin.github.io/posts/concurrency_pg_dispatch_queues/</loc>
     
     <lastmod>2021-11-13</lastmod>
     
@@ -110,7 +110,7 @@
   </url>
   
   <url>
-    <loc>https://bqlin.gitee.io/posts/runtime_weak/</loc>
+    <loc>https://bqlin.github.io/posts/runtime_weak/</loc>
     
     <lastmod>2021-11-12</lastmod>
     
@@ -119,7 +119,7 @@
   </url>
   
   <url>
-    <loc>https://bqlin.gitee.io/posts/apns/</loc>
+    <loc>https://bqlin.github.io/posts/apns/</loc>
     
     <lastmod>2021-11-12</lastmod>
     
@@ -128,7 +128,7 @@
   </url>
   
   <url>
-    <loc>https://bqlin.gitee.io/posts/introspection/</loc>
+    <loc>https://bqlin.github.io/posts/introspection/</loc>
     
     <lastmod>2021-11-12</lastmod>
     
@@ -137,7 +137,7 @@
   </url>
   
   <url>
-    <loc>https://bqlin.gitee.io/posts/runtime_associative/</loc>
+    <loc>https://bqlin.github.io/posts/runtime_associative/</loc>
     
     <lastmod>2021-11-12</lastmod>
     
@@ -146,7 +146,7 @@
   </url>
   
   <url>
-    <loc>https://bqlin.gitee.io/posts/runtime_category/</loc>
+    <loc>https://bqlin.github.io/posts/runtime_category/</loc>
     
     <lastmod>2021-11-12</lastmod>
     
@@ -155,7 +155,7 @@
   </url>
   
   <url>
-    <loc>https://bqlin.gitee.io/posts/runtime_method_call_and_object_essence/</loc>
+    <loc>https://bqlin.github.io/posts/runtime_interview_question/</loc>
     
     <lastmod>2021-11-11</lastmod>
     
@@ -164,7 +164,7 @@
   </url>
   
   <url>
-    <loc>https://bqlin.gitee.io/posts/runtime_interview_question/</loc>
+    <loc>https://bqlin.github.io/posts/runtime_method_call_and_object_essence/</loc>
     
     <lastmod>2021-11-11</lastmod>
     
@@ -173,7 +173,7 @@
   </url>
   
   <url>
-    <loc>https://bqlin.gitee.io/posts/tagged_pointer/</loc>
+    <loc>https://bqlin.github.io/posts/tagged_pointer/</loc>
     
     <lastmod>2021-11-10</lastmod>
     
@@ -182,7 +182,7 @@
   </url>
   
   <url>
-    <loc>https://bqlin.gitee.io/posts/avfoundation_export_api/</loc>
+    <loc>https://bqlin.github.io/posts/avfoundation_export_api/</loc>
     
     <lastmod>2021-11-08</lastmod>
     
@@ -191,7 +191,7 @@
   </url>
   
   <url>
-    <loc>https://bqlin.gitee.io/posts/avfoundation_movie_edit_api/</loc>
+    <loc>https://bqlin.github.io/posts/avfoundation_movie_edit_api/</loc>
     
     <lastmod>2021-11-08</lastmod>
     
@@ -200,7 +200,7 @@
   </url>
   
   <url>
-    <loc>https://bqlin.gitee.io/posts/x264_encoder_parameter_setting/</loc>
+    <loc>https://bqlin.github.io/posts/x264_encoder_parameter_setting/</loc>
     
     <lastmod>2021-11-07</lastmod>
     
@@ -209,7 +209,7 @@
   </url>
   
   <url>
-    <loc>https://bqlin.gitee.io/posts/avfoundation_video_decode_api/</loc>
+    <loc>https://bqlin.github.io/posts/avfoundation_video_decode_api/</loc>
     
     <lastmod>2021-11-07</lastmod>
     
@@ -218,7 +218,7 @@
   </url>
   
   <url>
-    <loc>https://bqlin.gitee.io/posts/streaming_transfer_protocol/</loc>
+    <loc>https://bqlin.github.io/posts/audio_and_video_general_technology/</loc>
     
     <lastmod>2021-10-28</lastmod>
     
@@ -227,7 +227,7 @@
   </url>
   
   <url>
-    <loc>https://bqlin.gitee.io/posts/audio_and_video_general_technology/</loc>
+    <loc>https://bqlin.github.io/posts/streaming_transfer_protocol/</loc>
     
     <lastmod>2021-10-28</lastmod>
     
@@ -236,7 +236,7 @@
   </url>
   
   <url>
-    <loc>https://bqlin.gitee.io/posts/rtmp/</loc>
+    <loc>https://bqlin.github.io/posts/rtmp/</loc>
     
     <lastmod>2021-10-28</lastmod>
     
@@ -245,7 +245,7 @@
   </url>
   
   <url>
-    <loc>https://bqlin.gitee.io/posts/multimedia_container/</loc>
+    <loc>https://bqlin.github.io/posts/multimedia_container/</loc>
     
     <lastmod>2021-10-28</lastmod>
     
@@ -254,7 +254,7 @@
   </url>
   
   <url>
-    <loc>https://bqlin.gitee.io/posts/audio_basic_technology/</loc>
+    <loc>https://bqlin.github.io/posts/flv/</loc>
     
     <lastmod>2021-10-28</lastmod>
     
@@ -263,7 +263,7 @@
   </url>
   
   <url>
-    <loc>https://bqlin.gitee.io/posts/flv/</loc>
+    <loc>https://bqlin.github.io/posts/common_audio_formats/</loc>
     
     <lastmod>2021-10-28</lastmod>
     
@@ -272,7 +272,7 @@
   </url>
   
   <url>
-    <loc>https://bqlin.gitee.io/posts/common_audio_formats/</loc>
+    <loc>https://bqlin.github.io/posts/audio_basic_technology/</loc>
     
     <lastmod>2021-10-28</lastmod>
     
@@ -281,7 +281,7 @@
   </url>
   
   <url>
-    <loc>https://bqlin.gitee.io/posts/aac/</loc>
+    <loc>https://bqlin.github.io/posts/aac/</loc>
     
     <lastmod>2021-10-28</lastmod>
     
@@ -290,7 +290,7 @@
   </url>
   
   <url>
-    <loc>https://bqlin.gitee.io/posts/basic_video_technology/</loc>
+    <loc>https://bqlin.github.io/posts/basic_video_technology/</loc>
     
     <lastmod>2021-10-28</lastmod>
     
@@ -299,7 +299,7 @@
   </url>
   
   <url>
-    <loc>https://bqlin.gitee.io/posts/image_basic_technology/</loc>
+    <loc>https://bqlin.github.io/posts/image_basic_technology/</loc>
     
     <lastmod>2021-10-28</lastmod>
     
@@ -308,7 +308,7 @@
   </url>
   
   <url>
-    <loc>https://bqlin.gitee.io/posts/yuv/</loc>
+    <loc>https://bqlin.github.io/posts/yuv/</loc>
     
     <lastmod>2021-10-28</lastmod>
     
@@ -317,7 +317,7 @@
   </url>
   
   <url>
-    <loc>https://bqlin.gitee.io/posts/video_compression_technology/</loc>
+    <loc>https://bqlin.github.io/posts/video_compression_technology/</loc>
     
     <lastmod>2021-10-28</lastmod>
     
@@ -326,7 +326,7 @@
   </url>
   
   <url>
-    <loc>https://bqlin.gitee.io/posts/avc_profile_and_level/</loc>
+    <loc>https://bqlin.github.io/posts/common_video_parameter_settings/</loc>
     
     <lastmod>2021-10-28</lastmod>
     
@@ -335,7 +335,7 @@
   </url>
   
   <url>
-    <loc>https://bqlin.gitee.io/posts/common_video_parameter_settings/</loc>
+    <loc>https://bqlin.github.io/posts/avc_profile_and_level/</loc>
     
     <lastmod>2021-10-28</lastmod>
     
@@ -344,7 +344,7 @@
   </url>
   
   <url>
-    <loc>https://bqlin.gitee.io/posts/audio_and_video_synchronization/</loc>
+    <loc>https://bqlin.github.io/posts/audio_and_video_synchronization/</loc>
     
     <lastmod>2021-10-28</lastmod>
     
@@ -353,7 +353,7 @@
   </url>
   
   <url>
-    <loc>https://bqlin.gitee.io/posts/compression_rate_and_compression_ratio/</loc>
+    <loc>https://bqlin.github.io/posts/cnd/</loc>
     
     <lastmod>2021-10-28</lastmod>
     
@@ -362,7 +362,7 @@
   </url>
   
   <url>
-    <loc>https://bqlin.gitee.io/posts/cnd/</loc>
+    <loc>https://bqlin.github.io/posts/compression_rate_and_compression_ratio/</loc>
     
     <lastmod>2021-10-28</lastmod>
     
@@ -371,7 +371,7 @@
   </url>
   
   <url>
-    <loc>https://bqlin.gitee.io/posts/live_optimization/</loc>
+    <loc>https://bqlin.github.io/posts/live_optimization/</loc>
     
     <lastmod>2021-10-28</lastmod>
     
@@ -380,7 +380,7 @@
   </url>
   
   <url>
-    <loc>https://bqlin.gitee.io/posts/ffmpeg_basic/</loc>
+    <loc>https://bqlin.github.io/posts/ffmpeg_basic/</loc>
     
     <lastmod>2021-10-25</lastmod>
     
@@ -389,7 +389,7 @@
   </url>
   
   <url>
-    <loc>https://bqlin.gitee.io/posts/concurrency_pg_introduction/</loc>
+    <loc>https://bqlin.github.io/posts/concurrency_pg_introduction/</loc>
     
     <lastmod>2021-10-24</lastmod>
     
@@ -398,7 +398,7 @@
   </url>
   
   <url>
-    <loc>https://bqlin.gitee.io/posts/concurrency_pg_concurrency_and_application_design/</loc>
+    <loc>https://bqlin.github.io/posts/concurrency_pg_concurrency_and_application_design/</loc>
     
     <lastmod>2021-10-24</lastmod>
     
@@ -407,7 +407,7 @@
   </url>
   
   <url>
-    <loc>https://bqlin.gitee.io/posts/concurrency_pg_operation_queues/</loc>
+    <loc>https://bqlin.github.io/posts/concurrency_pg_operation_queues/</loc>
     
     <lastmod>2021-10-24</lastmod>
     
@@ -416,7 +416,7 @@
   </url>
   
   <url>
-    <loc>https://bqlin.gitee.io/posts/concurrency_pg_migrating_away_from_threads/</loc>
+    <loc>https://bqlin.github.io/posts/concurrency_pg_migrating_away_from_threads/</loc>
     
     <lastmod>2021-10-24</lastmod>
     
@@ -425,7 +425,7 @@
   </url>
   
   <url>
-    <loc>https://bqlin.gitee.io/posts/concurrency_pg_dispatch_sources/</loc>
+    <loc>https://bqlin.github.io/posts/concurrency_pg_glossary/</loc>
     
     <lastmod>2021-10-24</lastmod>
     
@@ -434,7 +434,7 @@
   </url>
   
   <url>
-    <loc>https://bqlin.gitee.io/posts/concurrency_pg_glossary/</loc>
+    <loc>https://bqlin.github.io/posts/concurrency_pg_dispatch_sources/</loc>
     
     <lastmod>2021-10-24</lastmod>
     
@@ -443,7 +443,7 @@
   </url>
   
   <url>
-    <loc>https://bqlin.gitee.io/posts/video_toolbox_compression_configuration/</loc>
+    <loc>https://bqlin.github.io/posts/video_toolbox_compression_configuration/</loc>
     
     <lastmod>2021-10-12</lastmod>
     
@@ -452,7 +452,7 @@
   </url>
   
   <url>
-    <loc>https://bqlin.gitee.io/posts/ffmpeg_command/</loc>
+    <loc>https://bqlin.github.io/posts/ffmpeg_command/</loc>
     
     <lastmod>2021-10-02</lastmod>
     
@@ -461,7 +461,7 @@
   </url>
   
   <url>
-    <loc>https://bqlin.gitee.io/posts/audio_queue_services_pg_playing_audio/</loc>
+    <loc>https://bqlin.github.io/posts/audio_queue_services_pg_playing_audio/</loc>
     
     <lastmod>2021-09-27</lastmod>
     
@@ -470,7 +470,7 @@
   </url>
   
   <url>
-    <loc>https://bqlin.gitee.io/posts/audio_queue_services_pg_recording_audio/</loc>
+    <loc>https://bqlin.github.io/posts/audio_queue_services_pg_recording_audio/</loc>
     
     <lastmod>2021-09-27</lastmod>
     
@@ -479,7 +479,7 @@
   </url>
   
   <url>
-    <loc>https://bqlin.gitee.io/posts/audio_queue_services_pg_about_audio_queues/</loc>
+    <loc>https://bqlin.github.io/posts/audio_queue_services_pg_about_audio_queues/</loc>
     
     <lastmod>2021-09-27</lastmod>
     
@@ -488,7 +488,7 @@
   </url>
   
   <url>
-    <loc>https://bqlin.gitee.io/posts/audio_queue_services_pg_introduction/</loc>
+    <loc>https://bqlin.github.io/posts/audio_queue_services_pg_introduction/</loc>
     
     <lastmod>2021-09-27</lastmod>
     
@@ -497,7 +497,7 @@
   </url>
   
   <url>
-    <loc>https://bqlin.gitee.io/posts/ffmpeg_api_source_code_analysis/</loc>
+    <loc>https://bqlin.github.io/posts/ffmpeg_api_source_code_analysis/</loc>
     
     <lastmod>2021-09-08</lastmod>
     
@@ -506,7 +506,7 @@
   </url>
   
   <url>
-    <loc>https://bqlin.gitee.io/posts/ffmpeg_api/</loc>
+    <loc>https://bqlin.github.io/posts/ffmpeg_api/</loc>
     
     <lastmod>2021-09-08</lastmod>
     
@@ -515,7 +515,7 @@
   </url>
   
   <url>
-    <loc>https://bqlin.gitee.io/posts/kvo/</loc>
+    <loc>https://bqlin.github.io/posts/kvo/</loc>
     
     <lastmod>2021-07-27</lastmod>
     
@@ -524,7 +524,7 @@
   </url>
   
   <url>
-    <loc>https://bqlin.gitee.io/posts/compilation_basic_concepts/</loc>
+    <loc>https://bqlin.github.io/posts/compilation_basic_concepts/</loc>
     
     <lastmod>2021-07-10</lastmod>
     
@@ -533,7 +533,7 @@
   </url>
   
   <url>
-    <loc>https://bqlin.gitee.io/posts/ffmpeg_audio_and_video_synchronization/</loc>
+    <loc>https://bqlin.github.io/posts/ffmpeg_audio_and_video_synchronization/</loc>
     
     <lastmod>2021-07-08</lastmod>
     
@@ -542,7 +542,7 @@
   </url>
   
   <url>
-    <loc>https://bqlin.gitee.io/posts/ffmpeg_api_struct/</loc>
+    <loc>https://bqlin.github.io/posts/ffmpeg_api_struct/</loc>
     
     <lastmod>2021-06-28</lastmod>
     
@@ -551,7 +551,7 @@
   </url>
   
   <url>
-    <loc>https://bqlin.gitee.io/posts/ffmpeg_coding_h264/</loc>
+    <loc>https://bqlin.github.io/posts/ffmpeg_coding_h264/</loc>
     
     <lastmod>2021-06-02</lastmod>
     
@@ -560,7 +560,7 @@
   </url>
   
   <url>
-    <loc>https://bqlin.gitee.io/posts/ffmpeg_coding_yuv/</loc>
+    <loc>https://bqlin.github.io/posts/ffmpeg_coding_yuv/</loc>
     
     <lastmod>2021-06-02</lastmod>
     
@@ -569,7 +569,7 @@
   </url>
   
   <url>
-    <loc>https://bqlin.gitee.io/posts/ffmpeg_coding_audio_recording_encoding_resampling/</loc>
+    <loc>https://bqlin.github.io/posts/ffmpeg_coding_audio_recording_encoding_resampling/</loc>
     
     <lastmod>2021-05-26</lastmod>
     
@@ -578,7 +578,7 @@
   </url>
   
   <url>
-    <loc>https://bqlin.gitee.io/posts/ffmpeg_compilation/</loc>
+    <loc>https://bqlin.github.io/posts/ffmpeg_compilation/</loc>
     
     <lastmod>2021-05-26</lastmod>
     
@@ -587,7 +587,7 @@
   </url>
   
   <url>
-    <loc>https://bqlin.gitee.io/posts/cmsamplebuffer/</loc>
+    <loc>https://bqlin.github.io/posts/cmsamplebuffer/</loc>
     
     <lastmod>2021-03-29</lastmod>
     
@@ -596,7 +596,7 @@
   </url>
   
   <url>
-    <loc>https://bqlin.gitee.io/posts/cvpixelbuffer/</loc>
+    <loc>https://bqlin.github.io/posts/cvpixelbuffer/</loc>
     
     <lastmod>2021-03-15</lastmod>
     
@@ -605,7 +605,7 @@
   </url>
   
   <url>
-    <loc>https://bqlin.gitee.io/posts/avfoundation_capture_api/</loc>
+    <loc>https://bqlin.github.io/posts/avfoundation_capture_api/</loc>
     
     <lastmod>2020-10-23</lastmod>
     
@@ -614,7 +614,7 @@
   </url>
   
   <url>
-    <loc>https://bqlin.gitee.io/posts/ios_configuring_the_authentication_certificate/</loc>
+    <loc>https://bqlin.github.io/posts/ios_configuring_the_authentication_certificate/</loc>
     
     <lastmod>2020-10-19</lastmod>
     
@@ -623,7 +623,7 @@
   </url>
   
   <url>
-    <loc>https://bqlin.gitee.io/posts/get_the_time_api/</loc>
+    <loc>https://bqlin.github.io/posts/get_the_time_api/</loc>
     
     <lastmod>2020-10-19</lastmod>
     
@@ -632,7 +632,7 @@
   </url>
   
   <url>
-    <loc>https://bqlin.gitee.io/posts/avfoundation_movie_format/</loc>
+    <loc>https://bqlin.github.io/posts/avfoundation_movie_format/</loc>
     
     <lastmod>2020-03-15</lastmod>
     
@@ -641,7 +641,7 @@
   </url>
   
   <url>
-    <loc>https://bqlin.gitee.io/posts/implement_multiple_proxies_using_object_wrappers/</loc>
+    <loc>https://bqlin.github.io/posts/implement_multiple_proxies_using_object_wrappers/</loc>
     
     <lastmod>2020-03-03</lastmod>
     
@@ -650,7 +650,7 @@
   </url>
   
   <url>
-    <loc>https://bqlin.gitee.io/posts/static_lib_vs_and_dynamic_lib/</loc>
+    <loc>https://bqlin.github.io/posts/static_lib_vs_and_dynamic_lib/</loc>
     
     <lastmod>2019-09-09</lastmod>
     
@@ -659,7 +659,7 @@
   </url>
   
   <url>
-    <loc>https://bqlin.gitee.io/posts/extension_type_determination/</loc>
+    <loc>https://bqlin.github.io/posts/extension_type_determination/</loc>
     
     <lastmod>2017-08-24</lastmod>
     
@@ -669,7 +669,7 @@
   
 
   <url>
-    <loc>https://bqlin.gitee.io/</loc>
+    <loc>https://bqlin.github.io/</loc>
     <lastmod>2021-11-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
@@ -677,49 +677,49 @@
 
   
   <url>
-    <loc>https://bqlin.gitee.io/tags/Apple/</loc>
+    <loc>https://bqlin.github.io/tags/Apple/</loc>
     <lastmod>2021-11-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://bqlin.gitee.io/tags/Objective-C/</loc>
+    <loc>https://bqlin.github.io/tags/Objective-C/</loc>
     <lastmod>2021-11-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://bqlin.gitee.io/tags/Runtime/</loc>
+    <loc>https://bqlin.github.io/tags/Runtime/</loc>
     <lastmod>2021-11-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://bqlin.gitee.io/tags/Audio-Queue-Services-Programming-Guide/</loc>
+    <loc>https://bqlin.github.io/tags/Audio-Queue-Services-Programming-Guide/</loc>
     <lastmod>2021-11-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/</loc>
+    <loc>https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/</loc>
     <lastmod>2021-11-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://bqlin.gitee.io/tags/Concurrency-Programming-Guide/</loc>
+    <loc>https://bqlin.github.io/tags/Concurrency-Programming-Guide/</loc>
     <lastmod>2021-11-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://bqlin.gitee.io/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/</loc>
+    <loc>https://bqlin.github.io/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/</loc>
     <lastmod>2021-11-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -728,35 +728,35 @@
 
   
   <url>
-    <loc>https://bqlin.gitee.io/categories/iOS/</loc>
+    <loc>https://bqlin.github.io/categories/iOS/</loc>
     <lastmod>2021-11-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://bqlin.gitee.io/categories/%E7%BF%BB%E8%AF%91/</loc>
+    <loc>https://bqlin.github.io/categories/%E7%BF%BB%E8%AF%91/</loc>
     <lastmod>2021-11-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://bqlin.gitee.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/</loc>
+    <loc>https://bqlin.github.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/</loc>
     <lastmod>2021-11-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://bqlin.gitee.io/categories/AVFoundation/</loc>
+    <loc>https://bqlin.github.io/categories/AVFoundation/</loc>
     <lastmod>2021-11-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://bqlin.gitee.io/categories/FFmpeg/</loc>
+    <loc>https://bqlin.github.io/categories/FFmpeg/</loc>
     <lastmod>2021-11-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

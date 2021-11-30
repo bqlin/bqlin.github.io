@@ -3,11 +3,11 @@
   <title>權咚领域</title>
   
   <subtitle>Making app a work of art.</subtitle>
-  <link href="https://bqlin.gitee.io/atom.xml" rel="self"/>
+  <link href="https://bqlin.github.io/atom.xml" rel="self"/>
   
-  <link href="https://bqlin.gitee.io/"/>
+  <link href="https://bqlin.github.io/"/>
   <updated>2021-11-21T03:18:58.000Z</updated>
-  <id>https://bqlin.gitee.io/</id>
+  <id>https://bqlin.github.io/</id>
   
   <author>
     <name>權咚</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>AVFoundation设备配置</title>
-    <link href="https://bqlin.gitee.io/posts/avfoundation_device_setup/"/>
-    <id>https://bqlin.gitee.io/posts/avfoundation_device_setup/</id>
+    <link href="https://bqlin.github.io/posts/avfoundation_device_setup/"/>
+    <id>https://bqlin.github.io/posts/avfoundation_device_setup/</id>
     <published>2021-11-21T03:18:58.000Z</published>
     <updated>2021-11-21T03:18:58.000Z</updated>
     
@@ -31,19 +31,19 @@
     
     
     
-    <category term="AVFoundation" scheme="https://bqlin.gitee.io/categories/AVFoundation/"/>
+    <category term="AVFoundation" scheme="https://bqlin.github.io/categories/AVFoundation/"/>
     
     
-    <category term="Apple" scheme="https://bqlin.gitee.io/tags/Apple/"/>
+    <category term="Apple" scheme="https://bqlin.github.io/tags/Apple/"/>
     
-    <category term="音视频" scheme="https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title>KVC</title>
-    <link href="https://bqlin.gitee.io/posts/kvc/"/>
-    <id>https://bqlin.gitee.io/posts/kvc/</id>
+    <link href="https://bqlin.github.io/posts/kvc/"/>
+    <id>https://bqlin.github.io/posts/kvc/</id>
     <published>2021-11-20T03:12:33.000Z</published>
     <updated>2021-11-20T03:12:33.000Z</updated>
     
@@ -55,17 +55,17 @@
     
     
     
-    <category term="iOS" scheme="https://bqlin.gitee.io/categories/iOS/"/>
+    <category term="iOS" scheme="https://bqlin.github.io/categories/iOS/"/>
     
     
-    <category term="Apple" scheme="https://bqlin.gitee.io/tags/Apple/"/>
+    <category term="Apple" scheme="https://bqlin.github.io/tags/Apple/"/>
     
   </entry>
   
   <entry>
     <title>Objective-C：Block</title>
-    <link href="https://bqlin.gitee.io/posts/block/"/>
-    <id>https://bqlin.gitee.io/posts/block/</id>
+    <link href="https://bqlin.github.io/posts/block/"/>
+    <id>https://bqlin.github.io/posts/block/</id>
     <published>2021-11-16T09:55:04.000Z</published>
     <updated>2021-11-16T09:55:04.000Z</updated>
     
@@ -82,19 +82,19 @@
     
     
     
-    <category term="iOS" scheme="https://bqlin.gitee.io/categories/iOS/"/>
+    <category term="iOS" scheme="https://bqlin.github.io/categories/iOS/"/>
     
     
-    <category term="Apple" scheme="https://bqlin.gitee.io/tags/Apple/"/>
+    <category term="Apple" scheme="https://bqlin.github.io/tags/Apple/"/>
     
-    <category term="Objective-C" scheme="https://bqlin.gitee.io/tags/Objective-C/"/>
+    <category term="Objective-C" scheme="https://bqlin.github.io/tags/Objective-C/"/>
     
   </entry>
   
   <entry>
     <title>Runtime：weak</title>
-    <link href="https://bqlin.gitee.io/posts/runtime_weak/"/>
-    <id>https://bqlin.gitee.io/posts/runtime_weak/</id>
+    <link href="https://bqlin.github.io/posts/runtime_weak/"/>
+    <id>https://bqlin.github.io/posts/runtime_weak/</id>
     <published>2021-11-12T10:33:52.000Z</published>
     <updated>2021-11-12T10:33:52.000Z</updated>
     
@@ -109,21 +109,21 @@
     
     
     
-    <category term="iOS" scheme="https://bqlin.gitee.io/categories/iOS/"/>
+    <category term="iOS" scheme="https://bqlin.github.io/categories/iOS/"/>
     
     
-    <category term="Apple" scheme="https://bqlin.gitee.io/tags/Apple/"/>
+    <category term="Apple" scheme="https://bqlin.github.io/tags/Apple/"/>
     
-    <category term="Objective-C" scheme="https://bqlin.gitee.io/tags/Objective-C/"/>
+    <category term="Objective-C" scheme="https://bqlin.github.io/tags/Objective-C/"/>
     
-    <category term="Runtime" scheme="https://bqlin.gitee.io/tags/Runtime/"/>
+    <category term="Runtime" scheme="https://bqlin.github.io/tags/Runtime/"/>
     
   </entry>
   
   <entry>
     <title>APNs</title>
-    <link href="https://bqlin.gitee.io/posts/apns/"/>
-    <id>https://bqlin.gitee.io/posts/apns/</id>
+    <link href="https://bqlin.github.io/posts/apns/"/>
+    <id>https://bqlin.github.io/posts/apns/</id>
     <published>2021-11-12T10:23:59.000Z</published>
     <updated>2021-11-12T10:23:59.000Z</updated>
     
@@ -139,17 +139,17 @@
     
     
     
-    <category term="iOS" scheme="https://bqlin.gitee.io/categories/iOS/"/>
+    <category term="iOS" scheme="https://bqlin.github.io/categories/iOS/"/>
     
     
-    <category term="Apple" scheme="https://bqlin.gitee.io/tags/Apple/"/>
+    <category term="Apple" scheme="https://bqlin.github.io/tags/Apple/"/>
     
   </entry>
   
   <entry>
     <title>Objective-C：内省</title>
-    <link href="https://bqlin.gitee.io/posts/introspection/"/>
-    <id>https://bqlin.gitee.io/posts/introspection/</id>
+    <link href="https://bqlin.github.io/posts/introspection/"/>
+    <id>https://bqlin.github.io/posts/introspection/</id>
     <published>2021-11-12T10:07:48.000Z</published>
     <updated>2021-11-12T10:07:48.000Z</updated>
     
@@ -167,19 +167,19 @@
     
     
     
-    <category term="iOS" scheme="https://bqlin.gitee.io/categories/iOS/"/>
+    <category term="iOS" scheme="https://bqlin.github.io/categories/iOS/"/>
     
     
-    <category term="Apple" scheme="https://bqlin.gitee.io/tags/Apple/"/>
+    <category term="Apple" scheme="https://bqlin.github.io/tags/Apple/"/>
     
-    <category term="Objective-C" scheme="https://bqlin.gitee.io/tags/Objective-C/"/>
+    <category term="Objective-C" scheme="https://bqlin.github.io/tags/Objective-C/"/>
     
   </entry>
   
   <entry>
     <title>Runtime：关联对象</title>
-    <link href="https://bqlin.gitee.io/posts/runtime_associative/"/>
-    <id>https://bqlin.gitee.io/posts/runtime_associative/</id>
+    <link href="https://bqlin.github.io/posts/runtime_associative/"/>
+    <id>https://bqlin.github.io/posts/runtime_associative/</id>
     <published>2021-11-12T08:35:38.000Z</published>
     <updated>2021-11-12T08:35:38.000Z</updated>
     
@@ -191,21 +191,21 @@
     
     
     
-    <category term="iOS" scheme="https://bqlin.gitee.io/categories/iOS/"/>
+    <category term="iOS" scheme="https://bqlin.github.io/categories/iOS/"/>
     
     
-    <category term="Apple" scheme="https://bqlin.gitee.io/tags/Apple/"/>
+    <category term="Apple" scheme="https://bqlin.github.io/tags/Apple/"/>
     
-    <category term="Objective-C" scheme="https://bqlin.gitee.io/tags/Objective-C/"/>
+    <category term="Objective-C" scheme="https://bqlin.github.io/tags/Objective-C/"/>
     
-    <category term="Runtime" scheme="https://bqlin.gitee.io/tags/Runtime/"/>
+    <category term="Runtime" scheme="https://bqlin.github.io/tags/Runtime/"/>
     
   </entry>
   
   <entry>
     <title>Runtime：Category</title>
-    <link href="https://bqlin.gitee.io/posts/runtime_category/"/>
-    <id>https://bqlin.gitee.io/posts/runtime_category/</id>
+    <link href="https://bqlin.github.io/posts/runtime_category/"/>
+    <id>https://bqlin.github.io/posts/runtime_category/</id>
     <published>2021-11-12T07:04:29.000Z</published>
     <updated>2021-11-12T07:04:29.000Z</updated>
     
@@ -217,47 +217,21 @@
     
     
     
-    <category term="iOS" scheme="https://bqlin.gitee.io/categories/iOS/"/>
+    <category term="iOS" scheme="https://bqlin.github.io/categories/iOS/"/>
     
     
-    <category term="Apple" scheme="https://bqlin.gitee.io/tags/Apple/"/>
+    <category term="Apple" scheme="https://bqlin.github.io/tags/Apple/"/>
     
-    <category term="Objective-C" scheme="https://bqlin.gitee.io/tags/Objective-C/"/>
+    <category term="Objective-C" scheme="https://bqlin.github.io/tags/Objective-C/"/>
     
-    <category term="Runtime" scheme="https://bqlin.gitee.io/tags/Runtime/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Runtime：方法调用与对象本质</title>
-    <link href="https://bqlin.gitee.io/posts/runtime_method_call_and_object_essence/"/>
-    <id>https://bqlin.gitee.io/posts/runtime_method_call_and_object_essence/</id>
-    <published>2021-11-11T09:43:11.000Z</published>
-    <updated>2021-11-11T09:43:11.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>方法调用的流程：</p><p><code>objc_msgSend</code>调用方法的本质是通过isa指针找到该类，然后寻找方法，找到后调用。如果没有找到则通过<code>superClass</code>找到父类，继续查找方法。</p><p>对象结构体中的isa指向类对象。类对象的isa指向元类。元类的isa指向NSObject的元类。</p><p>对象方法是保存在类对象的结构体中，所以调用实例方法时，要去类对象中查找。以此类推，类方法也是如此。</p><p>实例对象存放isa指针以及示例变量，通过isa指针可以找到实例对象所属的类对象。类中存放着方法列表。方法列表中SEL作为key，IMP作为value。在编译期间，根据方法名字会生成唯一的标识SEL。IMP是指向最终函数实现的函数指针。整个Runtime的核心是<code>objc_msgSend</code>函数，通过给类发送SEL传递消息，找到匹配的IMP再获得最终的实现，并执行方法。</p><p><strong>消息发送阶段</strong>：</p><ol type="1"><li>判断receiver是否为空，是则直接返回，否则继续。</li><li>从receiverClass的缓存中，查找方法找到则调用方法，否则继续。</li><li>从receiverClass的<code>class_rw_t</code>中查找方法，如果找到了则缓存下来，调用方法，否则继续。</li><li>去父类的缓存和<code>class_rw_t</code>中查找，步骤同上，找到了则缓存下来，没有则继续往上找父类，都没有则消息发送阶段结束，进入第二阶段：动态方法解析。</li></ol><p><strong>动态方法解析阶段</strong>：</p><p>调用<code>-/+resolveClassMethod:</code>，在方法中调用<code>class_addMethod</code>函数添加SEL对应的方法实现IMP。以上方法中没有处理，则进入第三阶段：消息转发。</p><p><strong>消息转发阶段</strong>：</p><ol type="1"><li>判断<code>-/+forwardingTargetForSelector:</code>的返回值，非空则调用<code>objc_msgSend(返回值, SEL)</code>，向返回值发送消息。返回空则继续。</li><li>调用<code>-/+methodSignatureForSelector:</code>方法，如果返回不为空，则调用<code>-/+forwardInvocation:</code>方法中处理。若本类无法处理则继续往父类查询。如果返回空，则继续。</li><li>调用<code>-doesNotRecognizeSelector:</code>方法。</li></ol><p>注意：只能对运行时动态创建的类添加成员变量（ivars），不能向已存在的类添加成员变量。因为在编译时只读的class_ro_t结构体就被确定下来，其包含了分配对象的空间大小，在运行时不可改变。</p><h3 id="nsproxy">NSProxy</h3><p>NSProxy和NSObject是同一层级的，可以理解为NSProxy是一个基类，都遵循了NSObject协议。NSProxy就是专门用来解决重点对象转发的问题。</p><p>与NSObject接收消息流程不一样，NSProxy简化了其中的流程：</p><ol type="1"><li><code>[proxyObj message]</code></li><li>到proxyObj类对象寻找对应的方法，找到调用。否则继续。</li><li>尝试调用<code>resolveClassMethod</code>进行动态方法解析</li><li><del>尝试进入父类对象递归查找方法，找到调用。否则继续。</del></li><li><del>尝试调用<code>forwardingTargetForSelector</code>进行消息转发。返回空则继续。</del></li><li>尝试调用<code>methodSignatureForSelector</code>+<code>forwardInvocation</code>进行消息转发。</li></ol><p>所以对于处理消息转发，它比NSObject更高效。也阐明了该类的使用方式就是实现消息转发的两个方法即可。</p><p>注意，无需调用init方法。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">#import &quot;CLProxy2.h&quot;</span><br><span class="line"></span><br><span class="line">@implementation CLProxy2</span><br><span class="line"></span><br><span class="line">+(instancetype)proxyWithTarget: (id)target &#123;</span><br><span class="line">// NSProxy对象不需要调用init，因为它本来就没有init方法，直接alloc之后就可以使用</span><br><span class="line">    CLProxy2 *proxy = [CLProxy2 alloc];</span><br><span class="line">    proxy.target = target;</span><br><span class="line">    return proxy;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">-(NSMethodSignature *)methodSignatureForSelector:(SEL)sel &#123;</span><br><span class="line">    return [self.target methodSignatureForSelector:sel];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">-(void)forwardInvocation:(NSInvocation *)invocation &#123;</span><br><span class="line">    invocation.target = self.target;</span><br><span class="line">    [invocation invoke];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@end</span><br></pre></td></tr></table></figure><h2 id="isa">isa</h2><p>从arm64架构开始，isa变成了一个共用体（union）结果，使用位域来存储更多信息。</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">union</span> <span class="title">isa_t</span> &#123;</span></span><br><span class="line">    <span class="keyword">isa_t</span>() &#123; &#125;</span><br><span class="line">    <span class="keyword">isa_t</span>(<span class="keyword">uintptr_t</span> value) : bits(value) &#123; &#125;</span><br><span class="line"></span><br><span class="line">    Class cls;</span><br><span class="line">    <span class="keyword">uintptr_t</span> bits;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">        ISA_BITFIELD;  <span class="comment">// defined in isa.h</span></span><br><span class="line">    &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">define ISA_BITFIELD                                                      \</span><br><span class="line">      <span class="keyword">uintptr_t</span> nonpointer        : <span class="number">1</span>;   <span class="comment">//指针是否优化过                                   \</span></span><br><span class="line"><span class="comment">      uintptr_t has_assoc         : 1;   //是否有设置过关联对象，如果没有，释放时会更快                                   \</span></span><br><span class="line"><span class="comment">      uintptr_t has_cxx_dtor      : 1;  //是否有C++的析构函数（.cxx_destruct），如果没有，释放时会更快                                     \</span></span><br><span class="line"><span class="comment">      uintptr_t shiftcls          : 33; //存储着Class、Meta-Class对象的内存地址信息 \</span></span><br><span class="line"><span class="comment">      uintptr_t magic             : 6;  //用于在调试时分辨对象是否未完成初始化                                     \</span></span><br><span class="line"><span class="comment">      uintptr_t weakly_referenced : 1;  //是否有被弱引用指向过，如果没有，释放时会更快                                     \</span></span><br><span class="line"><span class="comment">      uintptr_t deallocating      : 1;  //对象是否正在释放                                     \</span></span><br><span class="line"><span class="comment">      uintptr_t has_sidetable_rc  : 1;  //引用计数器是否过大无法存储在isa中                                     \</span></span><br><span class="line"><span class="comment">      uintptr_t extra_rc          : 19 //里面存储的值是引用计数器减1</span></span><br><span class="line"><span class="meta">#   <span class="meta-keyword">define</span> RC_ONE   (1ULL&lt;&lt;45)</span></span><br><span class="line"><span class="meta">#   <span class="meta-keyword">define</span> RC_HALF  (1ULL&lt;&lt;18)</span></span><br></pre></td></tr></table></figure><ul><li><code>nonpointer</code>：0：普通指针，存储着Class、Meta-Class对象的内存地址；1：优化过，使用位域存储更多的信息。</li><li><code>has_assoc</code>：是否有关联过对象。否：释放更快。</li><li><code>has_cxx_dtor</code>：是否有C++析构函数（.cxx_destruct）。否：释放更快。</li><li><code>shiftcls</code>：存储着Class、Meta-Class对象的内存地址信息。</li><li><code>magic</code>：调试时分辨是否完成初始化。</li><li><code>weakly_referenced</code>：是否被弱引用指向过。否：释放更快。</li><li><code>deallocating</code>：对象是否正在释放。</li><li><code>extra_rc</code>：引用计数器-1。</li><li><code>has_sidetable_rc</code>：引用计数器是否过大无法存储在isa中。1：引用计数器会存储在SideTable类的属性中。</li></ul><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> *<span class="title">objc_destructInstance</span><span class="params">(id obj)</span> </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (obj) &#123;</span><br><span class="line">        <span class="comment">//是否有C++的析构函数</span></span><br><span class="line">        <span class="keyword">bool</span> cxx = obj-&gt;hasCxxDtor();</span><br><span class="line">        <span class="comment">//是否有设置过关联对象</span></span><br><span class="line">        <span class="keyword">bool</span> assoc = obj-&gt;hasAssociatedObjects();</span><br><span class="line">        <span class="comment">//有C++的析构函数，就去销毁</span></span><br><span class="line">        <span class="keyword">if</span> (cxx) object_cxxDestruct(obj);</span><br><span class="line">         <span class="comment">//有设置过关联对象，就去移除管理对象</span></span><br><span class="line">        <span class="keyword">if</span> (assoc) _object_remove_assocations(obj);</span><br><span class="line">        </span><br><span class="line">        obj-&gt;clearDeallocating();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> obj;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="class">class</h2><figure><img src="https://gitee.com/bqlin/image-land/raw/master/image-20211111175507815.png" alt="image-20211111175507815" /><figcaption aria-hidden="true">image-20211111175507815</figcaption></figure><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">objc_object</span> &#123;</span></span><br><span class="line">    Class _Nonnull isa  OBJC_ISA_AVAILABILITY;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">objc_class</span> :</span> objc_object &#123;</span><br><span class="line">    <span class="comment">// Class ISA;</span></span><br><span class="line">    Class superclass;</span><br><span class="line">    <span class="keyword">cache_t</span> cache;    <span class="comment">//方法缓存</span></span><br><span class="line">    <span class="keyword">class_data_bits_t</span> bits;    <span class="comment">// 用于获取具体的类的信息</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>method_array_t、property_array_t、protocol_array_t是可读写的二维数组，包含了类的初始内容、分类内容。</p><p>如：method_array_t包含多个一位数组method_list_t，method_list_t里面存放多个method_t，method_t存放在方法imp指针、名称、类型等信息。</p><h3 id="method_t">method_t</h3><p>方法、函数的封装。</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">method_t</span> &#123;</span></span><br><span class="line">    SEL name; <span class="comment">// 函数名</span></span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">char</span> *types; <span class="comment">// Type Encoding 编码(返回值类型，参数类型)</span></span><br><span class="line">    MethodListIMP imp; <span class="comment">// 指向函数的指针(函数地址)</span></span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">SortBySELAddress</span> :</span></span><br><span class="line">        <span class="keyword">public</span> <span class="built_in">std</span>::binary_function&lt;<span class="keyword">const</span> <span class="keyword">method_t</span>&amp;,</span><br><span class="line">                                    <span class="keyword">const</span> <span class="keyword">method_t</span>&amp;, <span class="keyword">bool</span>&gt;</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">bool</span> <span class="title">operator</span><span class="params">()</span> <span class="params">(<span class="keyword">const</span> <span class="keyword">method_t</span>&amp; lhs,</span></span></span><br><span class="line"><span class="params"><span class="function">                         <span class="keyword">const</span> <span class="keyword">method_t</span>&amp; rhs)</span></span></span><br><span class="line"><span class="function">        </span>&#123; <span class="keyword">return</span> lhs.name &lt; rhs.name; &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><p>IMP：函数的具体实现。</p><p>SEL：方法、函数名，底层结构与<code>char *</code>类似。可以通过<code>@selector()</code>和<code>sel_registerName()</code>获得。可以通过<code>sel_getName()</code>和<code>NSStringFromSelector()</code>转成字符串。名字相同的方法，SEL也是相同的。</p><h3 id="class_ro_t">class_ro_t</h3><p>描述的是类的初始内容，其中的<code>baseMethodList</code>、<code>baseProtocols</code>、<code>ivars</code>、<code>baseProperties</code>是只读的一维数组。</p><h3 id="cache_t">cache_t</h3><p>方法缓存。用哈希表缓存调用过的方法，可以提高方法查找速度。</p><p>当方法缓存太多的时候，超过了表容量的3/4的时候，就要扩容为原来的2倍。</p><h2 id="类的本质">类的本质</h2><p>一个NSObject的本质是包含一个isa指针的结构体：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">struct NSObject_IMPL &#123;</span><br><span class="line">Class isa;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><p>而其子类是在isa指针的基础上再加上自身的成员变量：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">struct Student_IMPL &#123;</span><br><span class="line">    struct NSObject_IMPL NSObject_IVARS;</span><br><span class="line">    int _age;</span><br><span class="line">    int _no;  </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><p>所以一个子类的底层结构体是其父类结构体里的所有成员变量 + 子类自身定义的成员变量所组成的结构体。</p><p><code>class_getInstanceSize</code>：获取OC类实例对象的实际大小。这个大小可以理解为该实例对象至少需要的空间大小，实际分配大小需要使用<code>malloc_size</code>。</p><p><code>malloc_size</code>：得到一个指针指向的内存空间大小，这是系统为这个对象最终分配的内存大小。</p><p>所以回到问题：一个NSObject对象占用多少内存？</p><ul><li>系统分配了16字节（通过<code>malloc_size</code>获取）；</li><li>NSObject内部只使用了8个字节来存放isa指针变量。</li></ul><h2 id="对象的种类">对象的种类</h2><p>OC对象主要分为3类：</p><ul><li>实例对象（instance）</li><li>类对象（class）</li><li>元类对象（meta-class）</li></ul><p>实例对象通过类<code>alloc</code>方法创建出来。存放的信息：</p><ul><li><code>isa</code>指针（指向类）。</li><li>成员变量。</li></ul><p>类对象在内存中是唯一。的类对象用来描述一个实例对象，存放信息：</p><ul><li><code>isa</code>指针（指向元类）和<code>superclass</code>指针</li><li>属性</li><li>对象方法</li><li>协议</li><li>成员变量</li></ul><p>元类对象在内存中也是唯一的。元类对象用来描述一个类对象，存放信息：</p><ul><li><code>isa</code>指针和<code>superclass</code>指针（指向该类父类的元类）</li><li>类方法</li></ul><p>类和元类都是objc_class（继承自objc_object），也有isa指针，也是对象。</p><p>元类的<code>superclass</code>指向基类的类对象，者决定了：</p><p>当我们调用一个类方法时，会通过类的isa指针找到元类，在元类中查找有无该类方法，如果没有则通过<code>superclass</code>逐级查询父元类，一直找到基类的元类，如果还没有，则去找基类中的同名的实例方法实现。</p><h2 id="super">super</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span>: <span class="title">NSObject</span> </span>&#123;&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span>: <span class="title">Person</span> </span>&#123;</span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">init</span>()</span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.<span class="keyword">init</span>()</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;className: <span class="subst">\(<span class="keyword">self</span>.className)</span>, super.className: <span class="subst">\(<span class="keyword">super</span>.className)</span>&quot;</span>)</span><br><span class="line">        <span class="comment">// FoundationSwift.Student, FoundationSwift.Student</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;superclass: <span class="subst">\(<span class="keyword">self</span>.super<span class="keyword">class</span><span class="operator">!</span>)</span>, super.superclass: <span class="subst">\(<span class="keyword">super</span>.super<span class="keyword">class</span><span class="operator">!</span>)</span>&quot;</span>)</span><br><span class="line">        <span class="comment">// superclass: Person, super.superclass: Person</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>从上面发现， super和self调用的结构都是相同的。</p><p>super调用方法实际上是调用了<code>objc_msgSendSuper(arg, SEL)</code>函数。重点是第一个参数，其类型是<code>__rw_objc_super</code>：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">//♥️♥️♥️C++中间代码里的定义</span><br><span class="line">struct __rw_objc_super &#123; </span><br><span class="line">struct objc_object *object; </span><br><span class="line">struct objc_object *superClass; </span><br><span class="line">__rw_objc_super(struct objc_object *o, struct objc_object *s) : object(o), superClass(s) &#123;&#125; </span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">//⚠️⚠️⚠️objc源码中的定义</span><br><span class="line">/// Specifies the superclass of an instance. </span><br><span class="line">struct objc_super &#123;</span><br><span class="line">    /// Specifies an instance of a class.</span><br><span class="line">    __unsafe_unretained _Nonnull id receiver;</span><br><span class="line"></span><br><span class="line">    /// Specifies the particular superclass of the instance to message. </span><br><span class="line">#if !defined(__cplusplus)  &amp;&amp;  !__OBJC2__</span><br><span class="line">    /* For compatibility with old objc-runtime.h header */</span><br><span class="line">    __unsafe_unretained _Nonnull Class class;</span><br><span class="line">#else</span><br><span class="line">    __unsafe_unretained _Nonnull Class super_class;</span><br><span class="line">#endif</span><br><span class="line">    /* super_class is the first class to search */</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><p>objc_super结构体成员：</p><ul><li><code>id receiver</code>：消息接收者，实参传递的就是self，即Student对象。</li><li><code>Class super_class</code>：父类。</li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">id objc_msgSendSuper(struct objc_super *super, SEL op, ...)</span><br></pre></td></tr></table></figure><ul><li><code>struct objc_super *super</code>：结构体指针，内容是<code>&#123;消息接收者（recv）， 消息接收者的父类类对象（[[recv superclass] class]）&#125;</code>。<code>objc_msgSendSuper</code>会将消息接收者的父类对象作为消息查找的起点。</li><li><code>SEL op</code>：要查找的方法。</li></ul><p>所以说，调用super与调用self的不同只是super把查找方法的起点改为从父类开始而已，所以像一些父类没有实现，而NSObject基类实现的方法，两者调用结果无异，因为最终的消息接收者还是self，即当前对象。</p><p>若要想super和self调用方法结果不一致，必须是当前类和父类都实现了相同的方法，若只有父类实现了，就都是父类的结果。这与一般方法查找父类实现的逻辑一致。</p><h2 id="参考">参考</h2><ul><li><a href="https://juejin.cn/post/6844903793138597896">OC对象的本质（上）：OC对象的底层实现原理 - 掘金</a></li><li><a href="https://juejin.cn/post/6963522983105134629">OC对象的本质（中）：OC对象的种类 - 掘金</a></li><li><a href="https://juejin.cn/post/6963524896672464903">OC对象的本质（下）—— 详解isa&amp;superclass指针 - 掘金</a></li><li><a href="https://juejin.cn/post/6844903474908364808">深入理解 Objective-C Runtime 机制 - 掘金</a></li></ul>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;方法调用的流程：&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;objc_msgSend&lt;/code&gt;调用方法的本质是通过isa指针找到该类，然后寻找方法，找到后调用。如果没有找到则通过&lt;code&gt;superClass&lt;/code&gt;找到父类，继续查找方法。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="iOS" scheme="https://bqlin.gitee.io/categories/iOS/"/>
-    
-    
-    <category term="Apple" scheme="https://bqlin.gitee.io/tags/Apple/"/>
-    
-    <category term="Objective-C" scheme="https://bqlin.gitee.io/tags/Objective-C/"/>
-    
-    <category term="Runtime" scheme="https://bqlin.gitee.io/tags/Runtime/"/>
+    <category term="Runtime" scheme="https://bqlin.github.io/tags/Runtime/"/>
     
   </entry>
   
   <entry>
     <title>Runtime：综合面试题</title>
-    <link href="https://bqlin.gitee.io/posts/runtime_interview_question/"/>
-    <id>https://bqlin.gitee.io/posts/runtime_interview_question/</id>
+    <link href="https://bqlin.github.io/posts/runtime_interview_question/"/>
+    <id>https://bqlin.github.io/posts/runtime_interview_question/</id>
     <published>2021-11-11T09:43:11.000Z</published>
     <updated>2021-11-11T09:43:11.000Z</updated>
     
@@ -269,21 +243,47 @@
     
     
     
-    <category term="iOS" scheme="https://bqlin.gitee.io/categories/iOS/"/>
+    <category term="iOS" scheme="https://bqlin.github.io/categories/iOS/"/>
     
     
-    <category term="Apple" scheme="https://bqlin.gitee.io/tags/Apple/"/>
+    <category term="Apple" scheme="https://bqlin.github.io/tags/Apple/"/>
     
-    <category term="Objective-C" scheme="https://bqlin.gitee.io/tags/Objective-C/"/>
+    <category term="Objective-C" scheme="https://bqlin.github.io/tags/Objective-C/"/>
     
-    <category term="Runtime" scheme="https://bqlin.gitee.io/tags/Runtime/"/>
+    <category term="Runtime" scheme="https://bqlin.github.io/tags/Runtime/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Runtime：方法调用与对象本质</title>
+    <link href="https://bqlin.github.io/posts/runtime_method_call_and_object_essence/"/>
+    <id>https://bqlin.github.io/posts/runtime_method_call_and_object_essence/</id>
+    <published>2021-11-11T09:43:11.000Z</published>
+    <updated>2021-11-11T09:43:11.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>方法调用的流程：</p><p><code>objc_msgSend</code>调用方法的本质是通过isa指针找到该类，然后寻找方法，找到后调用。如果没有找到则通过<code>superClass</code>找到父类，继续查找方法。</p><p>对象结构体中的isa指向类对象。类对象的isa指向元类。元类的isa指向NSObject的元类。</p><p>对象方法是保存在类对象的结构体中，所以调用实例方法时，要去类对象中查找。以此类推，类方法也是如此。</p><p>实例对象存放isa指针以及示例变量，通过isa指针可以找到实例对象所属的类对象。类中存放着方法列表。方法列表中SEL作为key，IMP作为value。在编译期间，根据方法名字会生成唯一的标识SEL。IMP是指向最终函数实现的函数指针。整个Runtime的核心是<code>objc_msgSend</code>函数，通过给类发送SEL传递消息，找到匹配的IMP再获得最终的实现，并执行方法。</p><p><strong>消息发送阶段</strong>：</p><ol type="1"><li>判断receiver是否为空，是则直接返回，否则继续。</li><li>从receiverClass的缓存中，查找方法找到则调用方法，否则继续。</li><li>从receiverClass的<code>class_rw_t</code>中查找方法，如果找到了则缓存下来，调用方法，否则继续。</li><li>去父类的缓存和<code>class_rw_t</code>中查找，步骤同上，找到了则缓存下来，没有则继续往上找父类，都没有则消息发送阶段结束，进入第二阶段：动态方法解析。</li></ol><p><strong>动态方法解析阶段</strong>：</p><p>调用<code>-/+resolveClassMethod:</code>，在方法中调用<code>class_addMethod</code>函数添加SEL对应的方法实现IMP。以上方法中没有处理，则进入第三阶段：消息转发。</p><p><strong>消息转发阶段</strong>：</p><ol type="1"><li>判断<code>-/+forwardingTargetForSelector:</code>的返回值，非空则调用<code>objc_msgSend(返回值, SEL)</code>，向返回值发送消息。返回空则继续。</li><li>调用<code>-/+methodSignatureForSelector:</code>方法，如果返回不为空，则调用<code>-/+forwardInvocation:</code>方法中处理。若本类无法处理则继续往父类查询。如果返回空，则继续。</li><li>调用<code>-doesNotRecognizeSelector:</code>方法。</li></ol><p>注意：只能对运行时动态创建的类添加成员变量（ivars），不能向已存在的类添加成员变量。因为在编译时只读的class_ro_t结构体就被确定下来，其包含了分配对象的空间大小，在运行时不可改变。</p><h3 id="nsproxy">NSProxy</h3><p>NSProxy和NSObject是同一层级的，可以理解为NSProxy是一个基类，都遵循了NSObject协议。NSProxy就是专门用来解决重点对象转发的问题。</p><p>与NSObject接收消息流程不一样，NSProxy简化了其中的流程：</p><ol type="1"><li><code>[proxyObj message]</code></li><li>到proxyObj类对象寻找对应的方法，找到调用。否则继续。</li><li>尝试调用<code>resolveClassMethod</code>进行动态方法解析</li><li><del>尝试进入父类对象递归查找方法，找到调用。否则继续。</del></li><li><del>尝试调用<code>forwardingTargetForSelector</code>进行消息转发。返回空则继续。</del></li><li>尝试调用<code>methodSignatureForSelector</code>+<code>forwardInvocation</code>进行消息转发。</li></ol><p>所以对于处理消息转发，它比NSObject更高效。也阐明了该类的使用方式就是实现消息转发的两个方法即可。</p><p>注意，无需调用init方法。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">#import &quot;CLProxy2.h&quot;</span><br><span class="line"></span><br><span class="line">@implementation CLProxy2</span><br><span class="line"></span><br><span class="line">+(instancetype)proxyWithTarget: (id)target &#123;</span><br><span class="line">// NSProxy对象不需要调用init，因为它本来就没有init方法，直接alloc之后就可以使用</span><br><span class="line">    CLProxy2 *proxy = [CLProxy2 alloc];</span><br><span class="line">    proxy.target = target;</span><br><span class="line">    return proxy;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">-(NSMethodSignature *)methodSignatureForSelector:(SEL)sel &#123;</span><br><span class="line">    return [self.target methodSignatureForSelector:sel];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">-(void)forwardInvocation:(NSInvocation *)invocation &#123;</span><br><span class="line">    invocation.target = self.target;</span><br><span class="line">    [invocation invoke];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@end</span><br></pre></td></tr></table></figure><h2 id="isa">isa</h2><p>从arm64架构开始，isa变成了一个共用体（union）结果，使用位域来存储更多信息。</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">union</span> <span class="title">isa_t</span> &#123;</span></span><br><span class="line">    <span class="keyword">isa_t</span>() &#123; &#125;</span><br><span class="line">    <span class="keyword">isa_t</span>(<span class="keyword">uintptr_t</span> value) : bits(value) &#123; &#125;</span><br><span class="line"></span><br><span class="line">    Class cls;</span><br><span class="line">    <span class="keyword">uintptr_t</span> bits;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">        ISA_BITFIELD;  <span class="comment">// defined in isa.h</span></span><br><span class="line">    &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">define ISA_BITFIELD                                                      \</span><br><span class="line">      <span class="keyword">uintptr_t</span> nonpointer        : <span class="number">1</span>;   <span class="comment">//指针是否优化过                                   \</span></span><br><span class="line"><span class="comment">      uintptr_t has_assoc         : 1;   //是否有设置过关联对象，如果没有，释放时会更快                                   \</span></span><br><span class="line"><span class="comment">      uintptr_t has_cxx_dtor      : 1;  //是否有C++的析构函数（.cxx_destruct），如果没有，释放时会更快                                     \</span></span><br><span class="line"><span class="comment">      uintptr_t shiftcls          : 33; //存储着Class、Meta-Class对象的内存地址信息 \</span></span><br><span class="line"><span class="comment">      uintptr_t magic             : 6;  //用于在调试时分辨对象是否未完成初始化                                     \</span></span><br><span class="line"><span class="comment">      uintptr_t weakly_referenced : 1;  //是否有被弱引用指向过，如果没有，释放时会更快                                     \</span></span><br><span class="line"><span class="comment">      uintptr_t deallocating      : 1;  //对象是否正在释放                                     \</span></span><br><span class="line"><span class="comment">      uintptr_t has_sidetable_rc  : 1;  //引用计数器是否过大无法存储在isa中                                     \</span></span><br><span class="line"><span class="comment">      uintptr_t extra_rc          : 19 //里面存储的值是引用计数器减1</span></span><br><span class="line"><span class="meta">#   <span class="meta-keyword">define</span> RC_ONE   (1ULL&lt;&lt;45)</span></span><br><span class="line"><span class="meta">#   <span class="meta-keyword">define</span> RC_HALF  (1ULL&lt;&lt;18)</span></span><br></pre></td></tr></table></figure><ul><li><code>nonpointer</code>：0：普通指针，存储着Class、Meta-Class对象的内存地址；1：优化过，使用位域存储更多的信息。</li><li><code>has_assoc</code>：是否有关联过对象。否：释放更快。</li><li><code>has_cxx_dtor</code>：是否有C++析构函数（.cxx_destruct）。否：释放更快。</li><li><code>shiftcls</code>：存储着Class、Meta-Class对象的内存地址信息。</li><li><code>magic</code>：调试时分辨是否完成初始化。</li><li><code>weakly_referenced</code>：是否被弱引用指向过。否：释放更快。</li><li><code>deallocating</code>：对象是否正在释放。</li><li><code>extra_rc</code>：引用计数器-1。</li><li><code>has_sidetable_rc</code>：引用计数器是否过大无法存储在isa中。1：引用计数器会存储在SideTable类的属性中。</li></ul><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> *<span class="title">objc_destructInstance</span><span class="params">(id obj)</span> </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (obj) &#123;</span><br><span class="line">        <span class="comment">//是否有C++的析构函数</span></span><br><span class="line">        <span class="keyword">bool</span> cxx = obj-&gt;hasCxxDtor();</span><br><span class="line">        <span class="comment">//是否有设置过关联对象</span></span><br><span class="line">        <span class="keyword">bool</span> assoc = obj-&gt;hasAssociatedObjects();</span><br><span class="line">        <span class="comment">//有C++的析构函数，就去销毁</span></span><br><span class="line">        <span class="keyword">if</span> (cxx) object_cxxDestruct(obj);</span><br><span class="line">         <span class="comment">//有设置过关联对象，就去移除管理对象</span></span><br><span class="line">        <span class="keyword">if</span> (assoc) _object_remove_assocations(obj);</span><br><span class="line">        </span><br><span class="line">        obj-&gt;clearDeallocating();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> obj;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="class">class</h2><figure><img src="https://gitee.com/bqlin/image-land/raw/master/image-20211111175507815.png" alt="image-20211111175507815" /><figcaption aria-hidden="true">image-20211111175507815</figcaption></figure><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">objc_object</span> &#123;</span></span><br><span class="line">    Class _Nonnull isa  OBJC_ISA_AVAILABILITY;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">objc_class</span> :</span> objc_object &#123;</span><br><span class="line">    <span class="comment">// Class ISA;</span></span><br><span class="line">    Class superclass;</span><br><span class="line">    <span class="keyword">cache_t</span> cache;    <span class="comment">//方法缓存</span></span><br><span class="line">    <span class="keyword">class_data_bits_t</span> bits;    <span class="comment">// 用于获取具体的类的信息</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>method_array_t、property_array_t、protocol_array_t是可读写的二维数组，包含了类的初始内容、分类内容。</p><p>如：method_array_t包含多个一位数组method_list_t，method_list_t里面存放多个method_t，method_t存放在方法imp指针、名称、类型等信息。</p><h3 id="method_t">method_t</h3><p>方法、函数的封装。</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">method_t</span> &#123;</span></span><br><span class="line">    SEL name; <span class="comment">// 函数名</span></span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">char</span> *types; <span class="comment">// Type Encoding 编码(返回值类型，参数类型)</span></span><br><span class="line">    MethodListIMP imp; <span class="comment">// 指向函数的指针(函数地址)</span></span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">SortBySELAddress</span> :</span></span><br><span class="line">        <span class="keyword">public</span> <span class="built_in">std</span>::binary_function&lt;<span class="keyword">const</span> <span class="keyword">method_t</span>&amp;,</span><br><span class="line">                                    <span class="keyword">const</span> <span class="keyword">method_t</span>&amp;, <span class="keyword">bool</span>&gt;</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">bool</span> <span class="title">operator</span><span class="params">()</span> <span class="params">(<span class="keyword">const</span> <span class="keyword">method_t</span>&amp; lhs,</span></span></span><br><span class="line"><span class="params"><span class="function">                         <span class="keyword">const</span> <span class="keyword">method_t</span>&amp; rhs)</span></span></span><br><span class="line"><span class="function">        </span>&#123; <span class="keyword">return</span> lhs.name &lt; rhs.name; &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><p>IMP：函数的具体实现。</p><p>SEL：方法、函数名，底层结构与<code>char *</code>类似。可以通过<code>@selector()</code>和<code>sel_registerName()</code>获得。可以通过<code>sel_getName()</code>和<code>NSStringFromSelector()</code>转成字符串。名字相同的方法，SEL也是相同的。</p><h3 id="class_ro_t">class_ro_t</h3><p>描述的是类的初始内容，其中的<code>baseMethodList</code>、<code>baseProtocols</code>、<code>ivars</code>、<code>baseProperties</code>是只读的一维数组。</p><h3 id="cache_t">cache_t</h3><p>方法缓存。用哈希表缓存调用过的方法，可以提高方法查找速度。</p><p>当方法缓存太多的时候，超过了表容量的3/4的时候，就要扩容为原来的2倍。</p><h2 id="类的本质">类的本质</h2><p>一个NSObject的本质是包含一个isa指针的结构体：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">struct NSObject_IMPL &#123;</span><br><span class="line">Class isa;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><p>而其子类是在isa指针的基础上再加上自身的成员变量：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">struct Student_IMPL &#123;</span><br><span class="line">    struct NSObject_IMPL NSObject_IVARS;</span><br><span class="line">    int _age;</span><br><span class="line">    int _no;  </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><p>所以一个子类的底层结构体是其父类结构体里的所有成员变量 + 子类自身定义的成员变量所组成的结构体。</p><p><code>class_getInstanceSize</code>：获取OC类实例对象的实际大小。这个大小可以理解为该实例对象至少需要的空间大小，实际分配大小需要使用<code>malloc_size</code>。</p><p><code>malloc_size</code>：得到一个指针指向的内存空间大小，这是系统为这个对象最终分配的内存大小。</p><p>所以回到问题：一个NSObject对象占用多少内存？</p><ul><li>系统分配了16字节（通过<code>malloc_size</code>获取）；</li><li>NSObject内部只使用了8个字节来存放isa指针变量。</li></ul><h2 id="对象的种类">对象的种类</h2><p>OC对象主要分为3类：</p><ul><li>实例对象（instance）</li><li>类对象（class）</li><li>元类对象（meta-class）</li></ul><p>实例对象通过类<code>alloc</code>方法创建出来。存放的信息：</p><ul><li><code>isa</code>指针（指向类）。</li><li>成员变量。</li></ul><p>类对象在内存中是唯一。的类对象用来描述一个实例对象，存放信息：</p><ul><li><code>isa</code>指针（指向元类）和<code>superclass</code>指针</li><li>属性</li><li>对象方法</li><li>协议</li><li>成员变量</li></ul><p>元类对象在内存中也是唯一的。元类对象用来描述一个类对象，存放信息：</p><ul><li><code>isa</code>指针和<code>superclass</code>指针（指向该类父类的元类）</li><li>类方法</li></ul><p>类和元类都是objc_class（继承自objc_object），也有isa指针，也是对象。</p><p>元类的<code>superclass</code>指向基类的类对象，者决定了：</p><p>当我们调用一个类方法时，会通过类的isa指针找到元类，在元类中查找有无该类方法，如果没有则通过<code>superclass</code>逐级查询父元类，一直找到基类的元类，如果还没有，则去找基类中的同名的实例方法实现。</p><h2 id="super">super</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span>: <span class="title">NSObject</span> </span>&#123;&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span>: <span class="title">Person</span> </span>&#123;</span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">init</span>()</span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.<span class="keyword">init</span>()</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;className: <span class="subst">\(<span class="keyword">self</span>.className)</span>, super.className: <span class="subst">\(<span class="keyword">super</span>.className)</span>&quot;</span>)</span><br><span class="line">        <span class="comment">// FoundationSwift.Student, FoundationSwift.Student</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;superclass: <span class="subst">\(<span class="keyword">self</span>.super<span class="keyword">class</span><span class="operator">!</span>)</span>, super.superclass: <span class="subst">\(<span class="keyword">super</span>.super<span class="keyword">class</span><span class="operator">!</span>)</span>&quot;</span>)</span><br><span class="line">        <span class="comment">// superclass: Person, super.superclass: Person</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>从上面发现， super和self调用的结构都是相同的。</p><p>super调用方法实际上是调用了<code>objc_msgSendSuper(arg, SEL)</code>函数。重点是第一个参数，其类型是<code>__rw_objc_super</code>：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">//♥️♥️♥️C++中间代码里的定义</span><br><span class="line">struct __rw_objc_super &#123; </span><br><span class="line">struct objc_object *object; </span><br><span class="line">struct objc_object *superClass; </span><br><span class="line">__rw_objc_super(struct objc_object *o, struct objc_object *s) : object(o), superClass(s) &#123;&#125; </span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">//⚠️⚠️⚠️objc源码中的定义</span><br><span class="line">/// Specifies the superclass of an instance. </span><br><span class="line">struct objc_super &#123;</span><br><span class="line">    /// Specifies an instance of a class.</span><br><span class="line">    __unsafe_unretained _Nonnull id receiver;</span><br><span class="line"></span><br><span class="line">    /// Specifies the particular superclass of the instance to message. </span><br><span class="line">#if !defined(__cplusplus)  &amp;&amp;  !__OBJC2__</span><br><span class="line">    /* For compatibility with old objc-runtime.h header */</span><br><span class="line">    __unsafe_unretained _Nonnull Class class;</span><br><span class="line">#else</span><br><span class="line">    __unsafe_unretained _Nonnull Class super_class;</span><br><span class="line">#endif</span><br><span class="line">    /* super_class is the first class to search */</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><p>objc_super结构体成员：</p><ul><li><code>id receiver</code>：消息接收者，实参传递的就是self，即Student对象。</li><li><code>Class super_class</code>：父类。</li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">id objc_msgSendSuper(struct objc_super *super, SEL op, ...)</span><br></pre></td></tr></table></figure><ul><li><code>struct objc_super *super</code>：结构体指针，内容是<code>&#123;消息接收者（recv）， 消息接收者的父类类对象（[[recv superclass] class]）&#125;</code>。<code>objc_msgSendSuper</code>会将消息接收者的父类对象作为消息查找的起点。</li><li><code>SEL op</code>：要查找的方法。</li></ul><p>所以说，调用super与调用self的不同只是super把查找方法的起点改为从父类开始而已，所以像一些父类没有实现，而NSObject基类实现的方法，两者调用结果无异，因为最终的消息接收者还是self，即当前对象。</p><p>若要想super和self调用方法结果不一致，必须是当前类和父类都实现了相同的方法，若只有父类实现了，就都是父类的结果。这与一般方法查找父类实现的逻辑一致。</p><h2 id="参考">参考</h2><ul><li><a href="https://juejin.cn/post/6844903793138597896">OC对象的本质（上）：OC对象的底层实现原理 - 掘金</a></li><li><a href="https://juejin.cn/post/6963522983105134629">OC对象的本质（中）：OC对象的种类 - 掘金</a></li><li><a href="https://juejin.cn/post/6963524896672464903">OC对象的本质（下）—— 详解isa&amp;superclass指针 - 掘金</a></li><li><a href="https://juejin.cn/post/6844903474908364808">深入理解 Objective-C Runtime 机制 - 掘金</a></li></ul>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;方法调用的流程：&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;objc_msgSend&lt;/code&gt;调用方法的本质是通过isa指针找到该类，然后寻找方法，找到后调用。如果没有找到则通过&lt;code&gt;superClass&lt;/code&gt;找到父类，继续查找方法。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="iOS" scheme="https://bqlin.github.io/categories/iOS/"/>
+    
+    
+    <category term="Apple" scheme="https://bqlin.github.io/tags/Apple/"/>
+    
+    <category term="Objective-C" scheme="https://bqlin.github.io/tags/Objective-C/"/>
+    
+    <category term="Runtime" scheme="https://bqlin.github.io/tags/Runtime/"/>
     
   </entry>
   
   <entry>
     <title>Objective-C：Tagged Pointer</title>
-    <link href="https://bqlin.gitee.io/posts/tagged_pointer/"/>
-    <id>https://bqlin.gitee.io/posts/tagged_pointer/</id>
+    <link href="https://bqlin.github.io/posts/tagged_pointer/"/>
+    <id>https://bqlin.github.io/posts/tagged_pointer/</id>
     <published>2021-11-10T10:32:32.000Z</published>
     <updated>2021-11-10T10:32:32.000Z</updated>
     
@@ -295,19 +295,19 @@
     
     
     
-    <category term="iOS" scheme="https://bqlin.gitee.io/categories/iOS/"/>
+    <category term="iOS" scheme="https://bqlin.github.io/categories/iOS/"/>
     
     
-    <category term="Apple" scheme="https://bqlin.gitee.io/tags/Apple/"/>
+    <category term="Apple" scheme="https://bqlin.github.io/tags/Apple/"/>
     
-    <category term="Objective-C" scheme="https://bqlin.gitee.io/tags/Objective-C/"/>
+    <category term="Objective-C" scheme="https://bqlin.github.io/tags/Objective-C/"/>
     
   </entry>
   
   <entry>
     <title>AVFoundation导出API</title>
-    <link href="https://bqlin.gitee.io/posts/avfoundation_export_api/"/>
-    <id>https://bqlin.gitee.io/posts/avfoundation_export_api/</id>
+    <link href="https://bqlin.github.io/posts/avfoundation_export_api/"/>
+    <id>https://bqlin.github.io/posts/avfoundation_export_api/</id>
     <published>2021-11-08T08:47:22.000Z</published>
     <updated>2021-11-08T08:47:22.000Z</updated>
     
@@ -319,19 +319,19 @@
     
     
     
-    <category term="AVFoundation" scheme="https://bqlin.gitee.io/categories/AVFoundation/"/>
+    <category term="AVFoundation" scheme="https://bqlin.github.io/categories/AVFoundation/"/>
     
     
-    <category term="Apple" scheme="https://bqlin.gitee.io/tags/Apple/"/>
+    <category term="Apple" scheme="https://bqlin.github.io/tags/Apple/"/>
     
-    <category term="音视频" scheme="https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title>AVFoundation影片编辑API</title>
-    <link href="https://bqlin.gitee.io/posts/avfoundation_movie_edit_api/"/>
-    <id>https://bqlin.gitee.io/posts/avfoundation_movie_edit_api/</id>
+    <link href="https://bqlin.github.io/posts/avfoundation_movie_edit_api/"/>
+    <id>https://bqlin.github.io/posts/avfoundation_movie_edit_api/</id>
     <published>2021-11-08T02:11:40.000Z</published>
     <updated>2021-11-08T02:11:40.000Z</updated>
     
@@ -343,19 +343,19 @@
     
     
     
-    <category term="AVFoundation" scheme="https://bqlin.gitee.io/categories/AVFoundation/"/>
+    <category term="AVFoundation" scheme="https://bqlin.github.io/categories/AVFoundation/"/>
     
     
-    <category term="Apple" scheme="https://bqlin.gitee.io/tags/Apple/"/>
+    <category term="Apple" scheme="https://bqlin.github.io/tags/Apple/"/>
     
-    <category term="音视频" scheme="https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title>x264编码器参数设置</title>
-    <link href="https://bqlin.gitee.io/posts/x264_encoder_parameter_setting/"/>
-    <id>https://bqlin.gitee.io/posts/x264_encoder_parameter_setting/</id>
+    <link href="https://bqlin.github.io/posts/x264_encoder_parameter_setting/"/>
+    <id>https://bqlin.github.io/posts/x264_encoder_parameter_setting/</id>
     <published>2021-11-07T15:45:52.000Z</published>
     <updated>2021-11-07T15:45:52.000Z</updated>
     
@@ -373,17 +373,17 @@
     
     
     
-    <category term="音视频概念" scheme="https://bqlin.gitee.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/"/>
+    <category term="音视频概念" scheme="https://bqlin.github.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/"/>
     
     
-    <category term="音视频" scheme="https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title>AVFoundation视频解码API</title>
-    <link href="https://bqlin.gitee.io/posts/avfoundation_video_decode_api/"/>
-    <id>https://bqlin.gitee.io/posts/avfoundation_video_decode_api/</id>
+    <link href="https://bqlin.github.io/posts/avfoundation_video_decode_api/"/>
+    <id>https://bqlin.github.io/posts/avfoundation_video_decode_api/</id>
     <published>2021-11-07T08:17:43.000Z</published>
     <updated>2021-11-07T08:17:43.000Z</updated>
     
@@ -395,19 +395,19 @@
     
     
     
-    <category term="AVFoundation" scheme="https://bqlin.gitee.io/categories/AVFoundation/"/>
+    <category term="AVFoundation" scheme="https://bqlin.github.io/categories/AVFoundation/"/>
     
     
-    <category term="Apple" scheme="https://bqlin.gitee.io/tags/Apple/"/>
+    <category term="Apple" scheme="https://bqlin.github.io/tags/Apple/"/>
     
-    <category term="音视频" scheme="https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title>Video Toolbox压缩配置</title>
-    <link href="https://bqlin.gitee.io/posts/video_toolbox_compression_configuration/"/>
-    <id>https://bqlin.gitee.io/posts/video_toolbox_compression_configuration/</id>
+    <link href="https://bqlin.github.io/posts/video_toolbox_compression_configuration/"/>
+    <id>https://bqlin.github.io/posts/video_toolbox_compression_configuration/</id>
     <published>2021-10-12T03:20:38.000Z</published>
     <updated>2021-10-12T03:20:38.000Z</updated>
     
@@ -419,19 +419,19 @@
     
     
     
-    <category term="AVFoundation" scheme="https://bqlin.gitee.io/categories/AVFoundation/"/>
+    <category term="AVFoundation" scheme="https://bqlin.github.io/categories/AVFoundation/"/>
     
     
-    <category term="Apple" scheme="https://bqlin.gitee.io/tags/Apple/"/>
+    <category term="Apple" scheme="https://bqlin.github.io/tags/Apple/"/>
     
-    <category term="音视频" scheme="https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title>Audio Queue Services Programming Guide：播放音频</title>
-    <link href="https://bqlin.gitee.io/posts/audio_queue_services_pg_playing_audio/"/>
-    <id>https://bqlin.gitee.io/posts/audio_queue_services_pg_playing_audio/</id>
+    <link href="https://bqlin.github.io/posts/audio_queue_services_pg_playing_audio/"/>
+    <id>https://bqlin.github.io/posts/audio_queue_services_pg_playing_audio/</id>
     <published>2021-09-27T04:18:11.000Z</published>
     <updated>2021-09-27T04:18:11.000Z</updated>
     
@@ -442,21 +442,21 @@
     
     
     
-    <category term="翻译" scheme="https://bqlin.gitee.io/categories/%E7%BF%BB%E8%AF%91/"/>
+    <category term="翻译" scheme="https://bqlin.github.io/categories/%E7%BF%BB%E8%AF%91/"/>
     
     
-    <category term="Apple" scheme="https://bqlin.gitee.io/tags/Apple/"/>
+    <category term="Apple" scheme="https://bqlin.github.io/tags/Apple/"/>
     
-    <category term="Audio Queue Services Programming Guide" scheme="https://bqlin.gitee.io/tags/Audio-Queue-Services-Programming-Guide/"/>
+    <category term="Audio Queue Services Programming Guide" scheme="https://bqlin.github.io/tags/Audio-Queue-Services-Programming-Guide/"/>
     
-    <category term="音视频" scheme="https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title>Audio Queue Services Programming Guide：录制音频</title>
-    <link href="https://bqlin.gitee.io/posts/audio_queue_services_pg_recording_audio/"/>
-    <id>https://bqlin.gitee.io/posts/audio_queue_services_pg_recording_audio/</id>
+    <link href="https://bqlin.github.io/posts/audio_queue_services_pg_recording_audio/"/>
+    <id>https://bqlin.github.io/posts/audio_queue_services_pg_recording_audio/</id>
     <published>2021-09-27T04:17:11.000Z</published>
     <updated>2021-09-27T04:17:11.000Z</updated>
     
@@ -467,21 +467,21 @@
     
     
     
-    <category term="翻译" scheme="https://bqlin.gitee.io/categories/%E7%BF%BB%E8%AF%91/"/>
+    <category term="翻译" scheme="https://bqlin.github.io/categories/%E7%BF%BB%E8%AF%91/"/>
     
     
-    <category term="Apple" scheme="https://bqlin.gitee.io/tags/Apple/"/>
+    <category term="Apple" scheme="https://bqlin.github.io/tags/Apple/"/>
     
-    <category term="Audio Queue Services Programming Guide" scheme="https://bqlin.gitee.io/tags/Audio-Queue-Services-Programming-Guide/"/>
+    <category term="Audio Queue Services Programming Guide" scheme="https://bqlin.github.io/tags/Audio-Queue-Services-Programming-Guide/"/>
     
-    <category term="音视频" scheme="https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title>Audio Queue Services Programming Guide：关于音频队列</title>
-    <link href="https://bqlin.gitee.io/posts/audio_queue_services_pg_about_audio_queues/"/>
-    <id>https://bqlin.gitee.io/posts/audio_queue_services_pg_about_audio_queues/</id>
+    <link href="https://bqlin.github.io/posts/audio_queue_services_pg_about_audio_queues/"/>
+    <id>https://bqlin.github.io/posts/audio_queue_services_pg_about_audio_queues/</id>
     <published>2021-09-27T04:16:11.000Z</published>
     <updated>2021-09-27T04:16:11.000Z</updated>
     
@@ -492,21 +492,21 @@
     
     
     
-    <category term="翻译" scheme="https://bqlin.gitee.io/categories/%E7%BF%BB%E8%AF%91/"/>
+    <category term="翻译" scheme="https://bqlin.github.io/categories/%E7%BF%BB%E8%AF%91/"/>
     
     
-    <category term="Apple" scheme="https://bqlin.gitee.io/tags/Apple/"/>
+    <category term="Apple" scheme="https://bqlin.github.io/tags/Apple/"/>
     
-    <category term="Audio Queue Services Programming Guide" scheme="https://bqlin.gitee.io/tags/Audio-Queue-Services-Programming-Guide/"/>
+    <category term="Audio Queue Services Programming Guide" scheme="https://bqlin.github.io/tags/Audio-Queue-Services-Programming-Guide/"/>
     
-    <category term="音视频" scheme="https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title>Audio Queue Services Programming Guide</title>
-    <link href="https://bqlin.gitee.io/posts/audio_queue_services_pg_introduction/"/>
-    <id>https://bqlin.gitee.io/posts/audio_queue_services_pg_introduction/</id>
+    <link href="https://bqlin.github.io/posts/audio_queue_services_pg_introduction/"/>
+    <id>https://bqlin.github.io/posts/audio_queue_services_pg_introduction/</id>
     <published>2021-09-27T04:15:11.000Z</published>
     <updated>2021-09-27T04:15:11.000Z</updated>
     
@@ -518,21 +518,21 @@
     
     
     
-    <category term="翻译" scheme="https://bqlin.gitee.io/categories/%E7%BF%BB%E8%AF%91/"/>
+    <category term="翻译" scheme="https://bqlin.github.io/categories/%E7%BF%BB%E8%AF%91/"/>
     
     
-    <category term="Apple" scheme="https://bqlin.gitee.io/tags/Apple/"/>
+    <category term="Apple" scheme="https://bqlin.github.io/tags/Apple/"/>
     
-    <category term="Audio Queue Services Programming Guide" scheme="https://bqlin.gitee.io/tags/Audio-Queue-Services-Programming-Guide/"/>
+    <category term="Audio Queue Services Programming Guide" scheme="https://bqlin.github.io/tags/Audio-Queue-Services-Programming-Guide/"/>
     
-    <category term="音视频" scheme="https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title>Concurrency Programming Guide：术语表</title>
-    <link href="https://bqlin.gitee.io/posts/concurrency_pg_glossary/"/>
-    <id>https://bqlin.gitee.io/posts/concurrency_pg_glossary/</id>
+    <link href="https://bqlin.github.io/posts/concurrency_pg_glossary/"/>
+    <id>https://bqlin.github.io/posts/concurrency_pg_glossary/</id>
     <published>2021-09-08T09:45:58.000Z</published>
     <updated>2021-10-24T04:12:53.000Z</updated>
     
@@ -545,21 +545,21 @@
     
     
     
-    <category term="翻译" scheme="https://bqlin.gitee.io/categories/%E7%BF%BB%E8%AF%91/"/>
+    <category term="翻译" scheme="https://bqlin.github.io/categories/%E7%BF%BB%E8%AF%91/"/>
     
     
-    <category term="Apple" scheme="https://bqlin.gitee.io/tags/Apple/"/>
+    <category term="Apple" scheme="https://bqlin.github.io/tags/Apple/"/>
     
-    <category term="Concurrency Programming Guide" scheme="https://bqlin.gitee.io/tags/Concurrency-Programming-Guide/"/>
+    <category term="Concurrency Programming Guide" scheme="https://bqlin.github.io/tags/Concurrency-Programming-Guide/"/>
     
-    <category term="多线程" scheme="https://bqlin.gitee.io/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
+    <category term="多线程" scheme="https://bqlin.github.io/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
     
   </entry>
   
   <entry>
     <title>Concurrency Programming Guide：迁移线程代码</title>
-    <link href="https://bqlin.gitee.io/posts/concurrency_pg_migrating_away_from_threads/"/>
-    <id>https://bqlin.gitee.io/posts/concurrency_pg_migrating_away_from_threads/</id>
+    <link href="https://bqlin.github.io/posts/concurrency_pg_migrating_away_from_threads/"/>
+    <id>https://bqlin.github.io/posts/concurrency_pg_migrating_away_from_threads/</id>
     <published>2021-09-08T09:44:58.000Z</published>
     <updated>2021-10-24T04:12:53.000Z</updated>
     
@@ -570,21 +570,21 @@
     
     
     
-    <category term="翻译" scheme="https://bqlin.gitee.io/categories/%E7%BF%BB%E8%AF%91/"/>
+    <category term="翻译" scheme="https://bqlin.github.io/categories/%E7%BF%BB%E8%AF%91/"/>
     
     
-    <category term="Apple" scheme="https://bqlin.gitee.io/tags/Apple/"/>
+    <category term="Apple" scheme="https://bqlin.github.io/tags/Apple/"/>
     
-    <category term="Concurrency Programming Guide" scheme="https://bqlin.gitee.io/tags/Concurrency-Programming-Guide/"/>
+    <category term="Concurrency Programming Guide" scheme="https://bqlin.github.io/tags/Concurrency-Programming-Guide/"/>
     
-    <category term="多线程" scheme="https://bqlin.gitee.io/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
+    <category term="多线程" scheme="https://bqlin.github.io/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
     
   </entry>
   
   <entry>
     <title>Concurrency Programming Guide：调度源</title>
-    <link href="https://bqlin.gitee.io/posts/concurrency_pg_dispatch_sources/"/>
-    <id>https://bqlin.gitee.io/posts/concurrency_pg_dispatch_sources/</id>
+    <link href="https://bqlin.github.io/posts/concurrency_pg_dispatch_sources/"/>
+    <id>https://bqlin.github.io/posts/concurrency_pg_dispatch_sources/</id>
     <published>2021-09-08T09:43:58.000Z</published>
     <updated>2021-10-24T04:12:53.000Z</updated>
     
@@ -595,21 +595,21 @@
     
     
     
-    <category term="翻译" scheme="https://bqlin.gitee.io/categories/%E7%BF%BB%E8%AF%91/"/>
+    <category term="翻译" scheme="https://bqlin.github.io/categories/%E7%BF%BB%E8%AF%91/"/>
     
     
-    <category term="Apple" scheme="https://bqlin.gitee.io/tags/Apple/"/>
+    <category term="Apple" scheme="https://bqlin.github.io/tags/Apple/"/>
     
-    <category term="Concurrency Programming Guide" scheme="https://bqlin.gitee.io/tags/Concurrency-Programming-Guide/"/>
+    <category term="Concurrency Programming Guide" scheme="https://bqlin.github.io/tags/Concurrency-Programming-Guide/"/>
     
-    <category term="多线程" scheme="https://bqlin.gitee.io/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
+    <category term="多线程" scheme="https://bqlin.github.io/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
     
   </entry>
   
   <entry>
     <title>Concurrency Programming Guide：调度队列</title>
-    <link href="https://bqlin.gitee.io/posts/concurrency_pg_dispatch_queues/"/>
-    <id>https://bqlin.gitee.io/posts/concurrency_pg_dispatch_queues/</id>
+    <link href="https://bqlin.github.io/posts/concurrency_pg_dispatch_queues/"/>
+    <id>https://bqlin.github.io/posts/concurrency_pg_dispatch_queues/</id>
     <published>2021-09-08T09:42:58.000Z</published>
     <updated>2021-11-13T09:49:10.000Z</updated>
     
@@ -621,21 +621,21 @@
     
     
     
-    <category term="翻译" scheme="https://bqlin.gitee.io/categories/%E7%BF%BB%E8%AF%91/"/>
+    <category term="翻译" scheme="https://bqlin.github.io/categories/%E7%BF%BB%E8%AF%91/"/>
     
     
-    <category term="Apple" scheme="https://bqlin.gitee.io/tags/Apple/"/>
+    <category term="Apple" scheme="https://bqlin.github.io/tags/Apple/"/>
     
-    <category term="Concurrency Programming Guide" scheme="https://bqlin.gitee.io/tags/Concurrency-Programming-Guide/"/>
+    <category term="Concurrency Programming Guide" scheme="https://bqlin.github.io/tags/Concurrency-Programming-Guide/"/>
     
-    <category term="多线程" scheme="https://bqlin.gitee.io/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
+    <category term="多线程" scheme="https://bqlin.github.io/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
     
   </entry>
   
   <entry>
     <title>Concurrency Programming Guide：操作队列</title>
-    <link href="https://bqlin.gitee.io/posts/concurrency_pg_operation_queues/"/>
-    <id>https://bqlin.gitee.io/posts/concurrency_pg_operation_queues/</id>
+    <link href="https://bqlin.github.io/posts/concurrency_pg_operation_queues/"/>
+    <id>https://bqlin.github.io/posts/concurrency_pg_operation_queues/</id>
     <published>2021-09-08T09:41:58.000Z</published>
     <updated>2021-10-24T04:12:53.000Z</updated>
     
@@ -646,21 +646,21 @@
     
     
     
-    <category term="翻译" scheme="https://bqlin.gitee.io/categories/%E7%BF%BB%E8%AF%91/"/>
+    <category term="翻译" scheme="https://bqlin.github.io/categories/%E7%BF%BB%E8%AF%91/"/>
     
     
-    <category term="Apple" scheme="https://bqlin.gitee.io/tags/Apple/"/>
+    <category term="Apple" scheme="https://bqlin.github.io/tags/Apple/"/>
     
-    <category term="Concurrency Programming Guide" scheme="https://bqlin.gitee.io/tags/Concurrency-Programming-Guide/"/>
+    <category term="Concurrency Programming Guide" scheme="https://bqlin.github.io/tags/Concurrency-Programming-Guide/"/>
     
-    <category term="多线程" scheme="https://bqlin.gitee.io/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
+    <category term="多线程" scheme="https://bqlin.github.io/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
     
   </entry>
   
   <entry>
     <title>Concurrency Programming Guide：并发与程序设计</title>
-    <link href="https://bqlin.gitee.io/posts/concurrency_pg_concurrency_and_application_design/"/>
-    <id>https://bqlin.gitee.io/posts/concurrency_pg_concurrency_and_application_design/</id>
+    <link href="https://bqlin.github.io/posts/concurrency_pg_concurrency_and_application_design/"/>
+    <id>https://bqlin.github.io/posts/concurrency_pg_concurrency_and_application_design/</id>
     <published>2021-09-08T09:40:58.000Z</published>
     <updated>2021-10-24T04:12:53.000Z</updated>
     
@@ -671,21 +671,21 @@
     
     
     
-    <category term="翻译" scheme="https://bqlin.gitee.io/categories/%E7%BF%BB%E8%AF%91/"/>
+    <category term="翻译" scheme="https://bqlin.github.io/categories/%E7%BF%BB%E8%AF%91/"/>
     
     
-    <category term="Apple" scheme="https://bqlin.gitee.io/tags/Apple/"/>
+    <category term="Apple" scheme="https://bqlin.github.io/tags/Apple/"/>
     
-    <category term="Concurrency Programming Guide" scheme="https://bqlin.gitee.io/tags/Concurrency-Programming-Guide/"/>
+    <category term="Concurrency Programming Guide" scheme="https://bqlin.github.io/tags/Concurrency-Programming-Guide/"/>
     
-    <category term="多线程" scheme="https://bqlin.gitee.io/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
+    <category term="多线程" scheme="https://bqlin.github.io/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
     
   </entry>
   
   <entry>
     <title>Concurrency Programming Guide</title>
-    <link href="https://bqlin.gitee.io/posts/concurrency_pg_introduction/"/>
-    <id>https://bqlin.gitee.io/posts/concurrency_pg_introduction/</id>
+    <link href="https://bqlin.github.io/posts/concurrency_pg_introduction/"/>
+    <id>https://bqlin.github.io/posts/concurrency_pg_introduction/</id>
     <published>2021-09-08T09:39:58.000Z</published>
     <updated>2021-10-24T04:12:53.000Z</updated>
     
@@ -698,21 +698,21 @@
     
     
     
-    <category term="翻译" scheme="https://bqlin.gitee.io/categories/%E7%BF%BB%E8%AF%91/"/>
+    <category term="翻译" scheme="https://bqlin.github.io/categories/%E7%BF%BB%E8%AF%91/"/>
     
     
-    <category term="Apple" scheme="https://bqlin.gitee.io/tags/Apple/"/>
+    <category term="Apple" scheme="https://bqlin.github.io/tags/Apple/"/>
     
-    <category term="Concurrency Programming Guide" scheme="https://bqlin.gitee.io/tags/Concurrency-Programming-Guide/"/>
+    <category term="Concurrency Programming Guide" scheme="https://bqlin.github.io/tags/Concurrency-Programming-Guide/"/>
     
-    <category term="多线程" scheme="https://bqlin.gitee.io/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
+    <category term="多线程" scheme="https://bqlin.github.io/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
     
   </entry>
   
   <entry>
     <title>FFmpeg基本API：源码分析</title>
-    <link href="https://bqlin.gitee.io/posts/ffmpeg_api_source_code_analysis/"/>
-    <id>https://bqlin.gitee.io/posts/ffmpeg_api_source_code_analysis/</id>
+    <link href="https://bqlin.github.io/posts/ffmpeg_api_source_code_analysis/"/>
+    <id>https://bqlin.github.io/posts/ffmpeg_api_source_code_analysis/</id>
     <published>2021-09-08T08:02:57.000Z</published>
     <updated>2021-09-08T08:02:57.000Z</updated>
     
@@ -724,17 +724,17 @@
     
     
     
-    <category term="FFmpeg" scheme="https://bqlin.gitee.io/categories/FFmpeg/"/>
+    <category term="FFmpeg" scheme="https://bqlin.github.io/categories/FFmpeg/"/>
     
     
-    <category term="音视频" scheme="https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title>FFmpeg基本API：常用操作</title>
-    <link href="https://bqlin.gitee.io/posts/ffmpeg_api/"/>
-    <id>https://bqlin.gitee.io/posts/ffmpeg_api/</id>
+    <link href="https://bqlin.github.io/posts/ffmpeg_api/"/>
+    <id>https://bqlin.github.io/posts/ffmpeg_api/</id>
     <published>2021-09-08T00:26:29.000Z</published>
     <updated>2021-09-08T00:26:29.000Z</updated>
     
@@ -755,17 +755,17 @@
     
     
     
-    <category term="FFmpeg" scheme="https://bqlin.gitee.io/categories/FFmpeg/"/>
+    <category term="FFmpeg" scheme="https://bqlin.github.io/categories/FFmpeg/"/>
     
     
-    <category term="音视频" scheme="https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title>KVO</title>
-    <link href="https://bqlin.gitee.io/posts/kvo/"/>
-    <id>https://bqlin.gitee.io/posts/kvo/</id>
+    <link href="https://bqlin.github.io/posts/kvo/"/>
+    <id>https://bqlin.github.io/posts/kvo/</id>
     <published>2021-07-27T04:21:29.000Z</published>
     <updated>2021-07-27T04:21:29.000Z</updated>
     
@@ -777,17 +777,17 @@
     
     
     
-    <category term="iOS" scheme="https://bqlin.gitee.io/categories/iOS/"/>
+    <category term="iOS" scheme="https://bqlin.github.io/categories/iOS/"/>
     
     
-    <category term="Apple" scheme="https://bqlin.gitee.io/tags/Apple/"/>
+    <category term="Apple" scheme="https://bqlin.github.io/tags/Apple/"/>
     
   </entry>
   
   <entry>
     <title>编译基础概念</title>
-    <link href="https://bqlin.gitee.io/posts/compilation_basic_concepts/"/>
-    <id>https://bqlin.gitee.io/posts/compilation_basic_concepts/</id>
+    <link href="https://bqlin.github.io/posts/compilation_basic_concepts/"/>
+    <id>https://bqlin.github.io/posts/compilation_basic_concepts/</id>
     <published>2021-07-10T03:03:33.000Z</published>
     <updated>2021-07-10T03:03:33.000Z</updated>
     
@@ -799,17 +799,17 @@
     
     
     
-    <category term="FFmpeg" scheme="https://bqlin.gitee.io/categories/FFmpeg/"/>
+    <category term="FFmpeg" scheme="https://bqlin.github.io/categories/FFmpeg/"/>
     
     
-    <category term="音视频" scheme="https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title>FFmpeg音视频同步</title>
-    <link href="https://bqlin.gitee.io/posts/ffmpeg_audio_and_video_synchronization/"/>
-    <id>https://bqlin.gitee.io/posts/ffmpeg_audio_and_video_synchronization/</id>
+    <link href="https://bqlin.github.io/posts/ffmpeg_audio_and_video_synchronization/"/>
+    <id>https://bqlin.github.io/posts/ffmpeg_audio_and_video_synchronization/</id>
     <published>2021-07-08T13:05:20.000Z</published>
     <updated>2021-07-08T13:05:20.000Z</updated>
     
@@ -821,17 +821,17 @@
     
     
     
-    <category term="FFmpeg" scheme="https://bqlin.gitee.io/categories/FFmpeg/"/>
+    <category term="FFmpeg" scheme="https://bqlin.github.io/categories/FFmpeg/"/>
     
     
-    <category term="音视频" scheme="https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title>FFmpeg新老API</title>
-    <link href="https://bqlin.gitee.io/posts/ffmpeg_api_new_deprecated/"/>
-    <id>https://bqlin.gitee.io/posts/ffmpeg_api_new_deprecated/</id>
+    <link href="https://bqlin.github.io/posts/ffmpeg_api_new_deprecated/"/>
+    <id>https://bqlin.github.io/posts/ffmpeg_api_new_deprecated/</id>
     <published>2021-07-06T08:00:03.000Z</published>
     <updated>2021-11-28T14:04:04.000Z</updated>
     
@@ -847,17 +847,17 @@
     
     
     
-    <category term="FFmpeg" scheme="https://bqlin.gitee.io/categories/FFmpeg/"/>
+    <category term="FFmpeg" scheme="https://bqlin.github.io/categories/FFmpeg/"/>
     
     
-    <category term="音视频" scheme="https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title>FFmpeg基本API：重要结构体</title>
-    <link href="https://bqlin.gitee.io/posts/ffmpeg_api_struct/"/>
-    <id>https://bqlin.gitee.io/posts/ffmpeg_api_struct/</id>
+    <link href="https://bqlin.github.io/posts/ffmpeg_api_struct/"/>
+    <id>https://bqlin.github.io/posts/ffmpeg_api_struct/</id>
     <published>2021-06-28T11:27:54.000Z</published>
     <updated>2021-06-28T11:27:54.000Z</updated>
     
@@ -869,17 +869,17 @@
     
     
     
-    <category term="FFmpeg" scheme="https://bqlin.gitee.io/categories/FFmpeg/"/>
+    <category term="FFmpeg" scheme="https://bqlin.github.io/categories/FFmpeg/"/>
     
     
-    <category term="音视频" scheme="https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title>FFmpeg常用命令</title>
-    <link href="https://bqlin.gitee.io/posts/ffmpeg_command/"/>
-    <id>https://bqlin.gitee.io/posts/ffmpeg_command/</id>
+    <link href="https://bqlin.github.io/posts/ffmpeg_command/"/>
+    <id>https://bqlin.github.io/posts/ffmpeg_command/</id>
     <published>2021-06-10T01:36:18.000Z</published>
     <updated>2021-10-02T04:20:44.000Z</updated>
     
@@ -891,17 +891,17 @@
     
     
     
-    <category term="FFmpeg" scheme="https://bqlin.gitee.io/categories/FFmpeg/"/>
+    <category term="FFmpeg" scheme="https://bqlin.github.io/categories/FFmpeg/"/>
     
     
-    <category term="音视频" scheme="https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title>FFmpeg基本概念</title>
-    <link href="https://bqlin.gitee.io/posts/ffmpeg_basic/"/>
-    <id>https://bqlin.gitee.io/posts/ffmpeg_basic/</id>
+    <link href="https://bqlin.github.io/posts/ffmpeg_basic/"/>
+    <id>https://bqlin.github.io/posts/ffmpeg_basic/</id>
     <published>2021-06-10T01:21:24.000Z</published>
     <updated>2021-10-25T16:02:45.000Z</updated>
     
@@ -921,17 +921,17 @@
     
     
     
-    <category term="FFmpeg" scheme="https://bqlin.gitee.io/categories/FFmpeg/"/>
+    <category term="FFmpeg" scheme="https://bqlin.github.io/categories/FFmpeg/"/>
     
     
-    <category term="音视频" scheme="https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title>FFmpeg实战 H264</title>
-    <link href="https://bqlin.gitee.io/posts/ffmpeg_coding_h264/"/>
-    <id>https://bqlin.gitee.io/posts/ffmpeg_coding_h264/</id>
+    <link href="https://bqlin.github.io/posts/ffmpeg_coding_h264/"/>
+    <id>https://bqlin.github.io/posts/ffmpeg_coding_h264/</id>
     <published>2021-06-02T02:46:17.000Z</published>
     <updated>2021-06-02T02:46:17.000Z</updated>
     
@@ -948,17 +948,17 @@
     
     
     
-    <category term="FFmpeg" scheme="https://bqlin.gitee.io/categories/FFmpeg/"/>
+    <category term="FFmpeg" scheme="https://bqlin.github.io/categories/FFmpeg/"/>
     
     
-    <category term="音视频" scheme="https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title>FFmpeg实战 YUV</title>
-    <link href="https://bqlin.gitee.io/posts/ffmpeg_coding_yuv/"/>
-    <id>https://bqlin.gitee.io/posts/ffmpeg_coding_yuv/</id>
+    <link href="https://bqlin.github.io/posts/ffmpeg_coding_yuv/"/>
+    <id>https://bqlin.github.io/posts/ffmpeg_coding_yuv/</id>
     <published>2021-06-02T02:46:17.000Z</published>
     <updated>2021-06-02T02:46:17.000Z</updated>
     
@@ -970,17 +970,17 @@
     
     
     
-    <category term="FFmpeg" scheme="https://bqlin.gitee.io/categories/FFmpeg/"/>
+    <category term="FFmpeg" scheme="https://bqlin.github.io/categories/FFmpeg/"/>
     
     
-    <category term="音视频" scheme="https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title>FFmpeg实战 音频录制、编码、重采样</title>
-    <link href="https://bqlin.gitee.io/posts/ffmpeg_coding_audio_recording_encoding_resampling/"/>
-    <id>https://bqlin.gitee.io/posts/ffmpeg_coding_audio_recording_encoding_resampling/</id>
+    <link href="https://bqlin.github.io/posts/ffmpeg_coding_audio_recording_encoding_resampling/"/>
+    <id>https://bqlin.github.io/posts/ffmpeg_coding_audio_recording_encoding_resampling/</id>
     <published>2021-05-26T17:56:00.000Z</published>
     <updated>2021-05-26T17:56:00.000Z</updated>
     
@@ -992,17 +992,17 @@
     
     
     
-    <category term="FFmpeg" scheme="https://bqlin.gitee.io/categories/FFmpeg/"/>
+    <category term="FFmpeg" scheme="https://bqlin.github.io/categories/FFmpeg/"/>
     
     
-    <category term="音视频" scheme="https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title>FFmpeg编译</title>
-    <link href="https://bqlin.gitee.io/posts/ffmpeg_compilation/"/>
-    <id>https://bqlin.gitee.io/posts/ffmpeg_compilation/</id>
+    <link href="https://bqlin.github.io/posts/ffmpeg_compilation/"/>
+    <id>https://bqlin.github.io/posts/ffmpeg_compilation/</id>
     <published>2021-05-26T01:55:03.000Z</published>
     <updated>2021-05-26T01:55:03.000Z</updated>
     
@@ -1014,17 +1014,17 @@
     
     
     
-    <category term="FFmpeg" scheme="https://bqlin.gitee.io/categories/FFmpeg/"/>
+    <category term="FFmpeg" scheme="https://bqlin.github.io/categories/FFmpeg/"/>
     
     
-    <category term="音视频" scheme="https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title>CMSampleBuffer专题</title>
-    <link href="https://bqlin.gitee.io/posts/cmsamplebuffer/"/>
-    <id>https://bqlin.gitee.io/posts/cmsamplebuffer/</id>
+    <link href="https://bqlin.github.io/posts/cmsamplebuffer/"/>
+    <id>https://bqlin.github.io/posts/cmsamplebuffer/</id>
     <published>2021-03-29T10:08:47.000Z</published>
     <updated>2021-03-29T10:08:47.000Z</updated>
     
@@ -1036,19 +1036,19 @@
     
     
     
-    <category term="AVFoundation" scheme="https://bqlin.gitee.io/categories/AVFoundation/"/>
+    <category term="AVFoundation" scheme="https://bqlin.github.io/categories/AVFoundation/"/>
     
     
-    <category term="Apple" scheme="https://bqlin.gitee.io/tags/Apple/"/>
+    <category term="Apple" scheme="https://bqlin.github.io/tags/Apple/"/>
     
-    <category term="音视频" scheme="https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title>直播优化</title>
-    <link href="https://bqlin.gitee.io/posts/live_optimization/"/>
-    <id>https://bqlin.gitee.io/posts/live_optimization/</id>
+    <link href="https://bqlin.github.io/posts/live_optimization/"/>
+    <id>https://bqlin.github.io/posts/live_optimization/</id>
     <published>2021-03-15T12:34:44.000Z</published>
     <updated>2021-10-28T04:26:38.000Z</updated>
     
@@ -1060,17 +1060,17 @@
     
     
     
-    <category term="音视频概念" scheme="https://bqlin.gitee.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/"/>
+    <category term="音视频概念" scheme="https://bqlin.github.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/"/>
     
     
-    <category term="音视频" scheme="https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title>压缩率和压缩比</title>
-    <link href="https://bqlin.gitee.io/posts/compression_rate_and_compression_ratio/"/>
-    <id>https://bqlin.gitee.io/posts/compression_rate_and_compression_ratio/</id>
+    <link href="https://bqlin.github.io/posts/compression_rate_and_compression_ratio/"/>
+    <id>https://bqlin.github.io/posts/compression_rate_and_compression_ratio/</id>
     <published>2021-03-15T11:34:44.000Z</published>
     <updated>2021-10-28T04:26:38.000Z</updated>
     
@@ -1084,17 +1084,17 @@
     
     
     
-    <category term="音视频概念" scheme="https://bqlin.gitee.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/"/>
+    <category term="音视频概念" scheme="https://bqlin.github.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/"/>
     
     
-    <category term="音视频" scheme="https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title>CDN网络</title>
-    <link href="https://bqlin.gitee.io/posts/cnd/"/>
-    <id>https://bqlin.gitee.io/posts/cnd/</id>
+    <link href="https://bqlin.github.io/posts/cnd/"/>
+    <id>https://bqlin.github.io/posts/cnd/</id>
     <published>2021-03-15T10:34:44.000Z</published>
     <updated>2021-10-28T04:26:38.000Z</updated>
     
@@ -1106,17 +1106,17 @@
     
     
     
-    <category term="音视频概念" scheme="https://bqlin.gitee.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/"/>
+    <category term="音视频概念" scheme="https://bqlin.github.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/"/>
     
     
-    <category term="音视频" scheme="https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title>CVPixelBuffer专题</title>
-    <link href="https://bqlin.gitee.io/posts/cvpixelbuffer/"/>
-    <id>https://bqlin.gitee.io/posts/cvpixelbuffer/</id>
+    <link href="https://bqlin.github.io/posts/cvpixelbuffer/"/>
+    <id>https://bqlin.github.io/posts/cvpixelbuffer/</id>
     <published>2021-03-15T10:08:47.000Z</published>
     <updated>2021-03-15T10:08:47.000Z</updated>
     
@@ -1128,19 +1128,19 @@
     
     
     
-    <category term="AVFoundation" scheme="https://bqlin.gitee.io/categories/AVFoundation/"/>
+    <category term="AVFoundation" scheme="https://bqlin.github.io/categories/AVFoundation/"/>
     
     
-    <category term="Apple" scheme="https://bqlin.gitee.io/tags/Apple/"/>
+    <category term="Apple" scheme="https://bqlin.github.io/tags/Apple/"/>
     
-    <category term="音视频" scheme="https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title>音视频同步</title>
-    <link href="https://bqlin.gitee.io/posts/audio_and_video_synchronization/"/>
-    <id>https://bqlin.gitee.io/posts/audio_and_video_synchronization/</id>
+    <link href="https://bqlin.github.io/posts/audio_and_video_synchronization/"/>
+    <id>https://bqlin.github.io/posts/audio_and_video_synchronization/</id>
     <published>2021-03-15T09:34:44.000Z</published>
     <updated>2021-10-28T04:26:38.000Z</updated>
     
@@ -1152,17 +1152,17 @@
     
     
     
-    <category term="音视频概念" scheme="https://bqlin.gitee.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/"/>
+    <category term="音视频概念" scheme="https://bqlin.github.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/"/>
     
     
-    <category term="音视频" scheme="https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title>视频码率控制</title>
-    <link href="https://bqlin.gitee.io/posts/video_bit_rate_control/"/>
-    <id>https://bqlin.gitee.io/posts/video_bit_rate_control/</id>
+    <link href="https://bqlin.github.io/posts/video_bit_rate_control/"/>
+    <id>https://bqlin.github.io/posts/video_bit_rate_control/</id>
     <published>2021-03-15T08:34:44.000Z</published>
     <updated>2021-11-22T02:42:40.000Z</updated>
     
@@ -1174,17 +1174,17 @@
     
     
     
-    <category term="音视频概念" scheme="https://bqlin.gitee.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/"/>
+    <category term="音视频概念" scheme="https://bqlin.github.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/"/>
     
     
-    <category term="音视频" scheme="https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title>常用视频参数设置（经验值）</title>
-    <link href="https://bqlin.gitee.io/posts/common_video_parameter_settings/"/>
-    <id>https://bqlin.gitee.io/posts/common_video_parameter_settings/</id>
+    <link href="https://bqlin.github.io/posts/common_video_parameter_settings/"/>
+    <id>https://bqlin.github.io/posts/common_video_parameter_settings/</id>
     <published>2021-03-15T07:34:44.000Z</published>
     <updated>2021-10-28T04:26:38.000Z</updated>
     
@@ -1196,17 +1196,17 @@
     
     
     
-    <category term="音视频概念" scheme="https://bqlin.gitee.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/"/>
+    <category term="音视频概念" scheme="https://bqlin.github.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/"/>
     
     
-    <category term="音视频" scheme="https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title>AVC Profile &amp; Level</title>
-    <link href="https://bqlin.gitee.io/posts/avc_profile_and_level/"/>
-    <id>https://bqlin.gitee.io/posts/avc_profile_and_level/</id>
+    <link href="https://bqlin.github.io/posts/avc_profile_and_level/"/>
+    <id>https://bqlin.github.io/posts/avc_profile_and_level/</id>
     <published>2021-03-15T06:34:44.000Z</published>
     <updated>2021-10-28T04:26:38.000Z</updated>
     
@@ -1218,17 +1218,17 @@
     
     
     
-    <category term="音视频概念" scheme="https://bqlin.gitee.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/"/>
+    <category term="音视频概念" scheme="https://bqlin.github.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/"/>
     
     
-    <category term="音视频" scheme="https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title>H.264/MPEG-4 AVC</title>
-    <link href="https://bqlin.gitee.io/posts/h264/"/>
-    <id>https://bqlin.gitee.io/posts/h264/</id>
+    <link href="https://bqlin.github.io/posts/h264/"/>
+    <id>https://bqlin.github.io/posts/h264/</id>
     <published>2021-03-15T05:34:44.000Z</published>
     <updated>2021-11-21T08:47:03.000Z</updated>
     
@@ -1240,17 +1240,17 @@
     
     
     
-    <category term="音视频概念" scheme="https://bqlin.gitee.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/"/>
+    <category term="音视频概念" scheme="https://bqlin.github.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/"/>
     
     
-    <category term="音视频" scheme="https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title>视频压缩技术</title>
-    <link href="https://bqlin.gitee.io/posts/video_compression_technology/"/>
-    <id>https://bqlin.gitee.io/posts/video_compression_technology/</id>
+    <link href="https://bqlin.github.io/posts/video_compression_technology/"/>
+    <id>https://bqlin.github.io/posts/video_compression_technology/</id>
     <published>2021-03-15T04:34:44.000Z</published>
     <updated>2021-10-28T04:26:38.000Z</updated>
     
@@ -1262,17 +1262,17 @@
     
     
     
-    <category term="音视频概念" scheme="https://bqlin.gitee.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/"/>
+    <category term="音视频概念" scheme="https://bqlin.github.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/"/>
     
     
-    <category term="音视频" scheme="https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title>YUV</title>
-    <link href="https://bqlin.gitee.io/posts/yuv/"/>
-    <id>https://bqlin.gitee.io/posts/yuv/</id>
+    <link href="https://bqlin.github.io/posts/yuv/"/>
+    <id>https://bqlin.github.io/posts/yuv/</id>
     <published>2021-03-15T03:34:44.000Z</published>
     <updated>2021-10-28T04:26:38.000Z</updated>
     
@@ -1284,17 +1284,17 @@
     
     
     
-    <category term="音视频概念" scheme="https://bqlin.gitee.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/"/>
+    <category term="音视频概念" scheme="https://bqlin.github.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/"/>
     
     
-    <category term="音视频" scheme="https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title>图像基础技术</title>
-    <link href="https://bqlin.gitee.io/posts/image_basic_technology/"/>
-    <id>https://bqlin.gitee.io/posts/image_basic_technology/</id>
+    <link href="https://bqlin.github.io/posts/image_basic_technology/"/>
+    <id>https://bqlin.github.io/posts/image_basic_technology/</id>
     <published>2021-03-15T02:34:44.000Z</published>
     <updated>2021-10-28T04:26:38.000Z</updated>
     
@@ -1306,15 +1306,15 @@
     
     
     
-    <category term="音视频概念" scheme="https://bqlin.gitee.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/"/>
+    <category term="音视频概念" scheme="https://bqlin.github.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/"/>
     
     
   </entry>
   
   <entry>
     <title>视频基础技术</title>
-    <link href="https://bqlin.gitee.io/posts/basic_video_technology/"/>
-    <id>https://bqlin.gitee.io/posts/basic_video_technology/</id>
+    <link href="https://bqlin.github.io/posts/basic_video_technology/"/>
+    <id>https://bqlin.github.io/posts/basic_video_technology/</id>
     <published>2021-03-15T01:34:44.000Z</published>
     <updated>2021-10-28T04:26:38.000Z</updated>
     
@@ -1333,17 +1333,17 @@
     
     
     
-    <category term="音视频概念" scheme="https://bqlin.gitee.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/"/>
+    <category term="音视频概念" scheme="https://bqlin.github.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/"/>
     
     
-    <category term="音视频" scheme="https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title>AAC 编解码器</title>
-    <link href="https://bqlin.gitee.io/posts/aac/"/>
-    <id>https://bqlin.gitee.io/posts/aac/</id>
+    <link href="https://bqlin.github.io/posts/aac/"/>
+    <id>https://bqlin.github.io/posts/aac/</id>
     <published>2021-03-15T00:34:44.000Z</published>
     <updated>2021-10-28T04:26:38.000Z</updated>
     
@@ -1355,17 +1355,17 @@
     
     
     
-    <category term="音视频概念" scheme="https://bqlin.gitee.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/"/>
+    <category term="音视频概念" scheme="https://bqlin.github.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/"/>
     
     
-    <category term="音视频" scheme="https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title>常见音频格式</title>
-    <link href="https://bqlin.gitee.io/posts/common_audio_formats/"/>
-    <id>https://bqlin.gitee.io/posts/common_audio_formats/</id>
+    <link href="https://bqlin.github.io/posts/common_audio_formats/"/>
+    <id>https://bqlin.github.io/posts/common_audio_formats/</id>
     <published>2021-03-14T23:34:44.000Z</published>
     <updated>2021-10-28T04:26:38.000Z</updated>
     
@@ -1377,17 +1377,17 @@
     
     
     
-    <category term="音视频概念" scheme="https://bqlin.gitee.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/"/>
+    <category term="音视频概念" scheme="https://bqlin.github.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/"/>
     
     
-    <category term="音视频" scheme="https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title>音频基础技术</title>
-    <link href="https://bqlin.gitee.io/posts/audio_basic_technology/"/>
-    <id>https://bqlin.gitee.io/posts/audio_basic_technology/</id>
+    <link href="https://bqlin.github.io/posts/audio_basic_technology/"/>
+    <id>https://bqlin.github.io/posts/audio_basic_technology/</id>
     <published>2021-03-14T22:34:44.000Z</published>
     <updated>2021-10-28T04:26:38.000Z</updated>
     
@@ -1399,17 +1399,17 @@
     
     
     
-    <category term="音视频概念" scheme="https://bqlin.gitee.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/"/>
+    <category term="音视频概念" scheme="https://bqlin.github.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/"/>
     
     
-    <category term="音视频" scheme="https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title>FLV格式</title>
-    <link href="https://bqlin.gitee.io/posts/flv/"/>
-    <id>https://bqlin.gitee.io/posts/flv/</id>
+    <link href="https://bqlin.github.io/posts/flv/"/>
+    <id>https://bqlin.github.io/posts/flv/</id>
     <published>2021-03-14T21:34:44.000Z</published>
     <updated>2021-10-28T04:26:38.000Z</updated>
     
@@ -1421,17 +1421,17 @@
     
     
     
-    <category term="音视频概念" scheme="https://bqlin.gitee.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/"/>
+    <category term="音视频概念" scheme="https://bqlin.github.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/"/>
     
     
-    <category term="音视频" scheme="https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title>多媒体容器</title>
-    <link href="https://bqlin.gitee.io/posts/multimedia_container/"/>
-    <id>https://bqlin.gitee.io/posts/multimedia_container/</id>
+    <link href="https://bqlin.github.io/posts/multimedia_container/"/>
+    <id>https://bqlin.github.io/posts/multimedia_container/</id>
     <published>2021-03-14T20:34:44.000Z</published>
     <updated>2021-10-28T04:26:38.000Z</updated>
     
@@ -1443,17 +1443,17 @@
     
     
     
-    <category term="音视频概念" scheme="https://bqlin.gitee.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/"/>
+    <category term="音视频概念" scheme="https://bqlin.github.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/"/>
     
     
-    <category term="音视频" scheme="https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title>RTMP</title>
-    <link href="https://bqlin.gitee.io/posts/rtmp/"/>
-    <id>https://bqlin.gitee.io/posts/rtmp/</id>
+    <link href="https://bqlin.github.io/posts/rtmp/"/>
+    <id>https://bqlin.github.io/posts/rtmp/</id>
     <published>2021-03-14T19:34:44.000Z</published>
     <updated>2021-10-28T04:26:38.000Z</updated>
     
@@ -1465,17 +1465,17 @@
     
     
     
-    <category term="音视频概念" scheme="https://bqlin.gitee.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/"/>
+    <category term="音视频概念" scheme="https://bqlin.github.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/"/>
     
     
-    <category term="音视频" scheme="https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title>流媒体传输协议</title>
-    <link href="https://bqlin.gitee.io/posts/streaming_transfer_protocol/"/>
-    <id>https://bqlin.gitee.io/posts/streaming_transfer_protocol/</id>
+    <link href="https://bqlin.github.io/posts/streaming_transfer_protocol/"/>
+    <id>https://bqlin.github.io/posts/streaming_transfer_protocol/</id>
     <published>2021-03-14T18:34:44.000Z</published>
     <updated>2021-10-28T04:26:38.000Z</updated>
     
@@ -1487,17 +1487,17 @@
     
     
     
-    <category term="音视频概念" scheme="https://bqlin.gitee.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/"/>
+    <category term="音视频概念" scheme="https://bqlin.github.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/"/>
     
     
-    <category term="音视频" scheme="https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title>音视频通用技术</title>
-    <link href="https://bqlin.gitee.io/posts/audio_and_video_general_technology/"/>
-    <id>https://bqlin.gitee.io/posts/audio_and_video_general_technology/</id>
+    <link href="https://bqlin.github.io/posts/audio_and_video_general_technology/"/>
+    <id>https://bqlin.github.io/posts/audio_and_video_general_technology/</id>
     <published>2021-03-14T17:34:44.000Z</published>
     <updated>2021-10-28T04:26:38.000Z</updated>
     
@@ -1509,17 +1509,17 @@
     
     
     
-    <category term="音视频概念" scheme="https://bqlin.gitee.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/"/>
+    <category term="音视频概念" scheme="https://bqlin.github.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/"/>
     
     
-    <category term="音视频" scheme="https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title>AVFoundation采集API</title>
-    <link href="https://bqlin.gitee.io/posts/avfoundation_capture_api/"/>
-    <id>https://bqlin.gitee.io/posts/avfoundation_capture_api/</id>
+    <link href="https://bqlin.github.io/posts/avfoundation_capture_api/"/>
+    <id>https://bqlin.github.io/posts/avfoundation_capture_api/</id>
     <published>2020-10-23T10:08:47.000Z</published>
     <updated>2020-10-23T10:08:47.000Z</updated>
     
@@ -1531,19 +1531,19 @@
     
     
     
-    <category term="AVFoundation" scheme="https://bqlin.gitee.io/categories/AVFoundation/"/>
+    <category term="AVFoundation" scheme="https://bqlin.github.io/categories/AVFoundation/"/>
     
     
-    <category term="Apple" scheme="https://bqlin.gitee.io/tags/Apple/"/>
+    <category term="Apple" scheme="https://bqlin.github.io/tags/Apple/"/>
     
-    <category term="音视频" scheme="https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title>iOS 配置认证证书</title>
-    <link href="https://bqlin.gitee.io/posts/ios_configuring_the_authentication_certificate/"/>
-    <id>https://bqlin.gitee.io/posts/ios_configuring_the_authentication_certificate/</id>
+    <link href="https://bqlin.github.io/posts/ios_configuring_the_authentication_certificate/"/>
+    <id>https://bqlin.github.io/posts/ios_configuring_the_authentication_certificate/</id>
     <published>2020-10-19T04:15:11.000Z</published>
     <updated>2020-10-19T04:15:11.000Z</updated>
     
@@ -1557,17 +1557,17 @@
     
     
     
-    <category term="iOS" scheme="https://bqlin.gitee.io/categories/iOS/"/>
+    <category term="iOS" scheme="https://bqlin.github.io/categories/iOS/"/>
     
     
-    <category term="Apple" scheme="https://bqlin.gitee.io/tags/Apple/"/>
+    <category term="Apple" scheme="https://bqlin.github.io/tags/Apple/"/>
     
   </entry>
   
   <entry>
     <title>获取时间接口对比</title>
-    <link href="https://bqlin.gitee.io/posts/get_the_time_api/"/>
-    <id>https://bqlin.gitee.io/posts/get_the_time_api/</id>
+    <link href="https://bqlin.github.io/posts/get_the_time_api/"/>
+    <id>https://bqlin.github.io/posts/get_the_time_api/</id>
     <published>2020-10-19T04:15:11.000Z</published>
     <updated>2020-10-19T04:15:11.000Z</updated>
     
@@ -1579,17 +1579,17 @@
     
     
     
-    <category term="iOS" scheme="https://bqlin.gitee.io/categories/iOS/"/>
+    <category term="iOS" scheme="https://bqlin.github.io/categories/iOS/"/>
     
     
-    <category term="Apple" scheme="https://bqlin.gitee.io/tags/Apple/"/>
+    <category term="Apple" scheme="https://bqlin.github.io/tags/Apple/"/>
     
   </entry>
   
   <entry>
     <title>AVFoundation支持格式</title>
-    <link href="https://bqlin.gitee.io/posts/avfoundation_movie_format/"/>
-    <id>https://bqlin.gitee.io/posts/avfoundation_movie_format/</id>
+    <link href="https://bqlin.github.io/posts/avfoundation_movie_format/"/>
+    <id>https://bqlin.github.io/posts/avfoundation_movie_format/</id>
     <published>2020-03-15T10:08:47.000Z</published>
     <updated>2020-03-15T10:08:47.000Z</updated>
     
@@ -1613,19 +1613,19 @@
     
     
     
-    <category term="AVFoundation" scheme="https://bqlin.gitee.io/categories/AVFoundation/"/>
+    <category term="AVFoundation" scheme="https://bqlin.github.io/categories/AVFoundation/"/>
     
     
-    <category term="Apple" scheme="https://bqlin.gitee.io/tags/Apple/"/>
+    <category term="Apple" scheme="https://bqlin.github.io/tags/Apple/"/>
     
-    <category term="音视频" scheme="https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title>使用对象包装实现多代理</title>
-    <link href="https://bqlin.gitee.io/posts/implement_multiple_proxies_using_object_wrappers/"/>
-    <id>https://bqlin.gitee.io/posts/implement_multiple_proxies_using_object_wrappers/</id>
+    <link href="https://bqlin.github.io/posts/implement_multiple_proxies_using_object_wrappers/"/>
+    <id>https://bqlin.github.io/posts/implement_multiple_proxies_using_object_wrappers/</id>
     <published>2020-03-03T02:29:58.000Z</published>
     <updated>2020-03-03T02:29:58.000Z</updated>
     
@@ -1642,17 +1642,17 @@
     
     
     
-    <category term="iOS" scheme="https://bqlin.gitee.io/categories/iOS/"/>
+    <category term="iOS" scheme="https://bqlin.github.io/categories/iOS/"/>
     
     
-    <category term="Apple" scheme="https://bqlin.gitee.io/tags/Apple/"/>
+    <category term="Apple" scheme="https://bqlin.github.io/tags/Apple/"/>
     
   </entry>
   
   <entry>
     <title>静态库与动态库</title>
-    <link href="https://bqlin.gitee.io/posts/static_lib_vs_and_dynamic_lib/"/>
-    <id>https://bqlin.gitee.io/posts/static_lib_vs_and_dynamic_lib/</id>
+    <link href="https://bqlin.github.io/posts/static_lib_vs_and_dynamic_lib/"/>
+    <id>https://bqlin.github.io/posts/static_lib_vs_and_dynamic_lib/</id>
     <published>2019-09-09T06:20:52.000Z</published>
     <updated>2019-09-09T06:20:52.000Z</updated>
     
@@ -1664,17 +1664,17 @@
     
     
     
-    <category term="iOS" scheme="https://bqlin.gitee.io/categories/iOS/"/>
+    <category term="iOS" scheme="https://bqlin.github.io/categories/iOS/"/>
     
     
-    <category term="Apple" scheme="https://bqlin.gitee.io/tags/Apple/"/>
+    <category term="Apple" scheme="https://bqlin.github.io/tags/Apple/"/>
     
   </entry>
   
   <entry>
     <title>扩展名类型判断</title>
-    <link href="https://bqlin.gitee.io/posts/extension_type_determination/"/>
-    <id>https://bqlin.gitee.io/posts/extension_type_determination/</id>
+    <link href="https://bqlin.github.io/posts/extension_type_determination/"/>
+    <id>https://bqlin.github.io/posts/extension_type_determination/</id>
     <published>2017-08-24T14:08:56.000Z</published>
     <updated>2017-08-24T14:08:56.000Z</updated>
     
@@ -1685,10 +1685,10 @@
     
     
     
-    <category term="iOS" scheme="https://bqlin.gitee.io/categories/iOS/"/>
+    <category term="iOS" scheme="https://bqlin.github.io/categories/iOS/"/>
     
     
-    <category term="Apple" scheme="https://bqlin.gitee.io/tags/Apple/"/>
+    <category term="Apple" scheme="https://bqlin.github.io/tags/Apple/"/>
     
   </entry>
   
