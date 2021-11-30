@@ -263,7 +263,7 @@
   </url>
   
   <url>
-    <loc>https://bqlin.github.io/posts/common_audio_formats/</loc>
+    <loc>https://bqlin.github.io/posts/audio_basic_technology/</loc>
     
     <lastmod>2021-10-28</lastmod>
     
@@ -272,7 +272,7 @@
   </url>
   
   <url>
-    <loc>https://bqlin.github.io/posts/audio_basic_technology/</loc>
+    <loc>https://bqlin.github.io/posts/common_audio_formats/</loc>
     
     <lastmod>2021-10-28</lastmod>
     
@@ -326,15 +326,6 @@
   </url>
   
   <url>
-    <loc>https://bqlin.github.io/posts/common_video_parameter_settings/</loc>
-    
-    <lastmod>2021-10-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://bqlin.github.io/posts/avc_profile_and_level/</loc>
     
     <lastmod>2021-10-28</lastmod>
@@ -344,7 +335,7 @@
   </url>
   
   <url>
-    <loc>https://bqlin.github.io/posts/audio_and_video_synchronization/</loc>
+    <loc>https://bqlin.github.io/posts/common_video_parameter_settings/</loc>
     
     <lastmod>2021-10-28</lastmod>
     
@@ -354,6 +345,15 @@
   
   <url>
     <loc>https://bqlin.github.io/posts/cnd/</loc>
+    
+    <lastmod>2021-10-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://bqlin.github.io/posts/audio_and_video_synchronization/</loc>
     
     <lastmod>2021-10-28</lastmod>
     
@@ -425,7 +425,7 @@
   </url>
   
   <url>
-    <loc>https://bqlin.github.io/posts/concurrency_pg_glossary/</loc>
+    <loc>https://bqlin.github.io/posts/concurrency_pg_dispatch_sources/</loc>
     
     <lastmod>2021-10-24</lastmod>
     
@@ -434,7 +434,7 @@
   </url>
   
   <url>
-    <loc>https://bqlin.github.io/posts/concurrency_pg_dispatch_sources/</loc>
+    <loc>https://bqlin.github.io/posts/concurrency_pg_glossary/</loc>
     
     <lastmod>2021-10-24</lastmod>
     
@@ -742,14 +742,14 @@
   </url>
   
   <url>
-    <loc>https://bqlin.github.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/</loc>
+    <loc>https://bqlin.github.io/categories/AVFoundation/</loc>
     <lastmod>2021-11-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://bqlin.github.io/categories/AVFoundation/</loc>
+    <loc>https://bqlin.github.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/</loc>
     <lastmod>2021-11-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
