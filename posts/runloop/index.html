@@ -1,1 +1,677 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=2"><meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.0"><link rel="apple-touch-icon" sizes="180x180" href="/images/icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/images/ficon.png"><link rel="icon" type="image/png" sizes="16x16" href="/images/icon.png"><link rel="mask-icon" href="/images/icon.png" color="#222"><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"><link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css"><script src="/lib/pace/pace.min.js"></script><script id="hexo-configurations">var NexT=window.NexT||{},CONFIG={hostname:"bqlin.github.io",root:"/",scheme:"Gemini",version:"7.8.0",exturl:!1,sidebar:{position:"left",display:"post",padding:18,offset:12,onmobile:!1},copycode:{enable:!1,show_result:!1,style:null},back2top:{enable:!0,sidebar:!1,scrollpercent:!1},bookmark:{enable:!1,color:"#222",save:"auto"},fancybox:!1,mediumzoom:!1,lazyload:!1,pangu:!0,comments:{style:"tabs",active:null,storage:!0,lazyload:!1,nav:null},algolia:{hits:{per_page:10},labels:{input_placeholder:"Search for Posts",hits_empty:"We didn't find any results for the search: ${query}",hits_stats:"${hits} results found in ${time} ms"}},localsearch:{enable:!0,trigger:"auto",top_n_per_article:-1,unescape:!1,preload:!1},motion:{enable:!1,async:!0,transition:{post_block:"fadeIn",post_header:"slideDownIn",post_body:"slideDownIn",coll_header:"slideLeftIn",sidebar:"slideUpIn"}},path:"search.xml"}</script><meta name="description" content="一般来说，一个线程只能执行一个任务，执行完成后线程就会退出。而事件循环（即一个while循环）能让线程能随时处理事件但不退出。 12345while (alive) &amp;#123;  performTask() &#x2F;&#x2F;执行任务  callout_to_observer() &#x2F;&#x2F;通知外部  sleep() &#x2F;&#x2F;休眠&amp;#125;"><meta property="og:type" content="article"><meta property="og:title" content="RunLoop"><meta property="og:url" content="https://bqlin.github.io/posts/runloop/index.html"><meta property="og:site_name" content="權咚领域"><meta property="og:description" content="一般来说，一个线程只能执行一个任务，执行完成后线程就会退出。而事件循环（即一个while循环）能让线程能随时处理事件但不退出。 12345while (alive) &amp;#123;  performTask() &#x2F;&#x2F;执行任务  callout_to_observer() &#x2F;&#x2F;通知外部  sleep() &#x2F;&#x2F;休眠&amp;#125;"><meta property="og:locale" content="zh_CN"><meta property="article:published_time" content="2021-11-09T04:28:51.000Z"><meta property="article:modified_time" content="2021-11-09T04:28:51.000Z"><meta property="article:author" content="權咚"><meta property="article:tag" content="Apple"><meta property="article:tag" content="多线程"><meta name="twitter:card" content="summary"><link rel="canonical" href="https://bqlin.github.io/posts/runloop/"><script id="page-configurations">CONFIG.page={sidebar:"",isHome:!1,isPost:!0,lang:"zh-CN"}</script><title>RunLoop | 權咚领域</title><script async src="https://www.googletagmanager.com/gtag/js?id=UA-105338942-1"></script><script>function gtag(){dataLayer.push(arguments)}CONFIG.hostname===location.hostname&&(window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","UA-105338942-1"))</script><script>var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="https://hm.baidu.com/hm.js?98fcf61fd269408d07dcbc1e49311f9a";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script><noscript><style>.sidebar-inner,.use-motion .brand,.use-motion .collection-header,.use-motion .comments,.use-motion .menu-item,.use-motion .pagination,.use-motion .post-block,.use-motion .post-body,.use-motion .post-header{opacity:initial}.use-motion .site-subtitle,.use-motion .site-title{opacity:initial;top:initial}.use-motion .logo-line-before i{left:initial}.use-motion .logo-line-after i{right:initial}</style></noscript><link rel="alternate" href="/atom.xml" title="權咚领域" type="application/atom+xml"></head><body itemscope itemtype="http://schema.org/WebPage"><div class="container"><div class="headband"></div><header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="header-inner"><div class="site-brand-container"><div class="site-nav-toggle"><div class="toggle" aria-label="切换导航栏"><span class="toggle-line toggle-line-first"></span> <span class="toggle-line toggle-line-middle"></span> <span class="toggle-line toggle-line-last"></span></div></div><div class="site-meta"><a href="/" class="brand" rel="start"><span class="logo-line-before"><i></i></span><h1 class="site-title">權咚领域</h1><span class="logo-line-after"><i></i></span></a><p class="site-subtitle" itemprop="description">Making app a work of art.</p></div><div class="site-nav-right"><div class="toggle popup-trigger"><i class="fa fa-search fa-fw fa-lg"></i></div></div></div><nav class="site-nav"><ul id="menu" class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-search"><a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索</a></li></ul></nav><div class="search-pop-overlay"><div class="popup search-popup"><div class="search-header"><span class="search-icon"><i class="fa fa-search"></i></span><div class="search-input-container"><input autocomplete="off" autocapitalize="off" placeholder="搜索..." spellcheck="false" type="search" class="search-input"></div><span class="popup-btn-close"><i class="fa fa-times-circle"></i></span></div><div id="search-result"><div id="no-result"><i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i></div></div></div></div></div></header><div class="back-to-top"><i class="fa fa-arrow-up"></i> <span>0%</span></div><main class="main"><div class="main-inner"><div class="content-wrap"><div class="content post posts-expand"><article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN"><link itemprop="mainEntityOfPage" href="https://bqlin.github.io/posts/runloop/"><span hidden itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="image" content="/images/icon.png"><meta itemprop="name" content="權咚"><meta itemprop="description" content="🤘🤯👾"></span><span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization"><meta itemprop="name" content="權咚领域"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">RunLoop</h1><div class="post-meta"><span class="post-meta-item"><span class="post-meta-item-icon"><i class="far fa-calendar"></i> </span><span class="post-meta-item-text">发表于</span> <time title="创建时间：2021-11-09 12:28:51" itemprop="dateCreated datePublished" datetime="2021-11-09T12:28:51+08:00">2021-11-09</time> </span><span class="post-meta-item"><span class="post-meta-item-icon"><i class="far fa-folder"></i> </span><span class="post-meta-item-text">分类于</span> <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a> </span></span><span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display:none"><span class="post-meta-item-icon"><i class="fa fa-eye"></i> </span><span class="post-meta-item-text">阅读次数：</span> <span id="busuanzi_value_page_pv"></span></span><br><span class="post-meta-item" title="本文字数"><span class="post-meta-item-icon"><i class="far fa-file-word"></i> </span><span class="post-meta-item-text">本文字数：</span> <span>3.7k</span> </span><span class="post-meta-item" title="阅读时长"><span class="post-meta-item-icon"><i class="far fa-clock"></i> </span><span class="post-meta-item-text">阅读时长 &asymp;</span> <span>3 分钟</span></span></div></header><div class="post-body" itemprop="articleBody"><p>一般来说，一个线程只能执行一个任务，执行完成后线程就会退出。而事件循环（即一个while循环）能让线程能随时处理事件但不退出。</p><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (alive) &#123;</span><br><span class="line">  performTask() <span class="comment">//执行任务</span></span><br><span class="line">  callout_to_observer() <span class="comment">//通知外部</span></span><br><span class="line">  sleep() <span class="comment">//休眠</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>RunLoop是一种事件循环。它可以让线程有任务时忙碌，没有任务时睡眠。RunLoop提供一个入口函数执行事件循环，执行后，就一直处于“接受消息-&gt;等待-&gt;处理” 的循环中，直到这个循环结束，该函数返回。</p><p>RunLoop作用：</p><ul><li><strong>保持程序持续运行，而不是执行完任务退出；</strong></li><li>处理事件，这是保持运行的目的；</li><li>节省CPU资源。当RunLoop休眠的时候，CPU可以吧时间片分配给其他事务。如果RunLoop在某次循环之后，发现程序突然没有收集到更多事件供它处理，它就会休眠，停在RunLoop循环里面的某段代码上。过一会程序为RunLoop接收到了新来的事件，其循环就被系统重新激活以继续运行。</li></ul><p>CFRunLoopRef是在CoreFoundation框架中，提供了C函数API，都是线程安全的。</p><p>NSRunLoop是CFRunLoopRef的封装，但不是线程安全的。</p><p>RunLoop的线程休眠是通过<code>__CFRunLoopServiceMachPort</code>函数实现的，内部使用了<code>mach_msg</code>函数，这是内核提供的API，实现内核层面的线程休眠。而一般while循环，CPU还是会一直执行指令，占用CPU资源。</p><h2 id="与线程的关系">与线程的关系</h2><ul><li>RunLoop就是用来管理线程的，当线程RunLoop开启后，线程在执行完任务后不会退出，而是处于休眠状态，随时等待接受新的任务。没有RunLoop，就不可能执行多任务，延时任务也不会执行。</li><li>线程和RunLoop一一对应，其关系存在一个全局字典中。</li><li>只能在当前线程中操作当前线程的RunLoop，而不能去操作其他线程的。</li><li>RunLoop在首次获取时创建（通过<code>current</code>和<code>main</code>获取），在线程结束时销毁。</li><li>主线程的RunLoop时系统已经创建好了；但子线程的则要自己主动创建，并启动。</li></ul><h2 id="api使用">API使用</h2><h4 id="cfrunloopsourceref">CFRunLoopSourceRef</h4><p>事件产生的地方。包含两个版本：</p><ul><li>Source0：只包含一个回调函数指针，不能主动触发事件。使用时需先调用<code>CFRunLoopSourceSignal(source)</code>标记Source为待处理，然后手动调用<code>CFRunLoopWakeUp(runloop)</code>来唤醒RunLoop处理这个事件。<ul><li>包含触摸事件处理、<code>performSelector</code>。</li></ul></li><li>Source1：包含一个mach_port和回调函数指针，被用于通过内核和其他线程相互发送消息。这种Source能主动唤醒RunLoop线程。<ul><li>包含给予port的线程间通信、系统事件捕捉。</li></ul></li></ul><p>如触摸事件，手指点击屏幕，首先产生一个系统事件，通过Source1来接受捕捉，然后由Springboard程序包装成Source0分发到App处理，因此在App内接收到的触摸事件就是Source0的。</p><h4 id="cfrunlooptimerref">CFRunLoopTimerRef</h4><p>基于时间的触发器。包含一个时长和回调函数指针。</p><h4 id="cfrunloopobserverref">CFRunLoopObserverRef</h4><p>观察者，每个Observer包含一个回调函数指针，当RunLoop状态发生变化时，观察者能通过回调接收到这个变化。可以监听：</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">typedef</span> <span class="title">CF_OPTIONS</span><span class="params">(CFOptionFlags, CFRunLoopActivity)</span> </span>&#123;</span><br><span class="line">    kCFRunLoopEntry         = (<span class="number">1UL</span> &lt;&lt; <span class="number">0</span>), <span class="comment">// 即将进入Loop</span></span><br><span class="line">    kCFRunLoopBeforeTimers  = (<span class="number">1UL</span> &lt;&lt; <span class="number">1</span>), <span class="comment">// 即将处理 Timer</span></span><br><span class="line">    kCFRunLoopBeforeSources = (<span class="number">1UL</span> &lt;&lt; <span class="number">2</span>), <span class="comment">// 即将处理 Source</span></span><br><span class="line">    kCFRunLoopBeforeWaiting = (<span class="number">1UL</span> &lt;&lt; <span class="number">5</span>), <span class="comment">// 即将进入休眠</span></span><br><span class="line">    kCFRunLoopAfterWaiting  = (<span class="number">1UL</span> &lt;&lt; <span class="number">6</span>), <span class="comment">// 刚从休眠中唤醒</span></span><br><span class="line">    kCFRunLoopExit          = (<span class="number">1UL</span> &lt;&lt; <span class="number">7</span>), <span class="comment">// 即将退出Loop</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><h3 id="mode">Mode</h3><p>一个RunLoop包含若干个Mode，每个Mode又包含若干个Source/Timer/Observer。每次调用RunLoop的主函数时，只能指定其中一个Mode，这个Mode被称作CurrentMode。如果需要切换Mode，只能退出Loop，再重新指定一个Mode进入。这样做主要是为了分隔开不同组的Source/Timer/Observer，让其互不影响。Source/Timer/Observer称为mode item，一个item可以被同时加入多个mode。如果一个mode中没有item，则RunLoop会直接退出，不进入循环。</p><p>CommonModes：一个Mode把自己标记为“Common”属性（通过将其ModeName添加到RunLoop的<code>commonModes</code>中）。每当RunLoop内容发生变化时，RunLoop都会自动将<code>_commonModeItems</code>里的Source/Observer/Timer同步到具有“Common”标记的所有mode里。</p><p>主线程的RunLoop有两个预设的mode：<code>kCFRunLoopDefaultMode</code>、<code>UITrackingRunLoopMode</code>。这两个Mode都被标记为“Common”属性。defaultMode是App平时所处的状态，trackingRunLoopMode是追踪ScrollView滚动时的状态。所以把Timer添加到defaultMode时，在滚动列表时，RunLoop会将mode切换为trackingRunLoopMode，使得Timer不会回调。</p><p>要让Timer在滚动时也能回调，可以把Timer分别添加到defaultMode和trackingRunLoopMode中，或者加入到顶层的commonModeItems中。</p><h2 id="具体应用">具体应用</h2><h3 id="dispatch_get_main_queue">dispatch_get_main_queue</h3><p>在主线程中转交给RunLoop调起该方法。注意，只是回到主线程这一步是交给RunLoop处理。</p><h3 id="autoreleasepool">AutoreleasePool</h3><p>NSAutoreleasePool是对象引用计数自动处理器。当对象加入到NSAutoreleasePool时，会对其<code>retain</code>，当NSAutoreleasePool结束时，会对其所有对象发送一次<code>release</code>消息。NSAutoreleasePool可以以栈的方式组织。</p><p>使用容器的block版本的枚举器时会自动添加AutoreleasePool。for循环则没有。</p><p>iOS在主线程的RunLoop中注册了2个Observer：</p><ul><li>第1个Observer监听<code>kCFRunLoopEntry</code>（即将进入RunLoop）事件，会调用<code>objc_autoreleasePoolPush()</code>创建自动释放池，使用最高优先级保证创建在其他回调之前进行。</li><li>第2个Observer<ul><li>监听<code>kCFRunLoopBeforeWaiting</code>（即将进入休眠）事件，会调用<code>objc_autoreleasePoolPop()</code>、<code>objc_autoreleasePoolPush()</code>释放旧的池并创建新的池。</li><li>监听<code>kCFRunLoopExit</code>（即将退出Runloop）事件，会调用<code>objc_autoreleasePoolPop()</code>释放自动释放池，使用最低优先级保证释放池在其他所有回调之后进行。</li></ul></li></ul><h4 id="autoreleasepool的释放时机">AutoreleasePool的释放时机</h4><p>系统在每个runloop中都创建一个Autorelease Pool，并在runloop的末尾进行释放，所以，一般情况下，每个接受autorelease消息的对象，都会在下个runloop开始前被释放。也就是说，在一段同步的代码中执行过程中，生成的对象接受autorelease消息后，一般是不会在作用域结束前释放的。Autorelease对象出了作用域之后，会被添加到最近一次创建的自动释放池中，并会在当前的 runloop 迭代结束时释放。</p><p>所以在AutoreleasePool声明的局部变量，在外面就释放了。</p><p>子线程会默认包裹一个AutoreleasePool，当线程退出时才释放其中的变量。</p><h3 id="事件响应">事件响应</h3><p>苹果注册了一个 Source1 (基于 mach port 的) 用来接收系统事件，其回调函数为 __IOHIDEventSystemClientQueueCallback()。</p><h3 id="手势识别">手势识别</h3><h3 id="界面更新">界面更新</h3><h3 id="定时器">定时器</h3><p>CFRunLoopTimerRef。CADisplayLink。</p><h3 id="performselecterafterdelay">performSelecter:afterDelay:</h3><p>内部会创建定时器添加到当前的RunLoop中。</p><h2 id="参考">参考</h2><ul><li><a target="_blank" rel="noopener" href="https://blog.ibireme.com/2015/05/18/runloop/">深入理解RunLoop | Garan no dou</a></li><li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/d3d3196f5edb">AutoreleasePool详解和runloop的关系 - 简书</a></li><li><a target="_blank" rel="noopener" href="http://blog.sunnyxx.com/2014/10/15/behind-autorelease/">黑幕背后的Autorelease · sunnyxx的技术博客</a></li><li><a target="_blank" rel="noopener" href="https://juejin.cn/post/6965790003951566861">Runloop的内部结构与运行原理 - 掘金</a></li></ul></div><div class="followme"><p>欢迎关注我的其它发布渠道</p><div class="social-list"><div class="social-item"><a target="_blank" class="social-link" href="/atom.xml"><span class="icon"><i class="fa fa-rss"></i> </span><span class="label">RSS</span></a></div></div></div><footer class="post-footer"><div class="post-tags"><a href="/tags/Apple/" rel="tag"># Apple</a> <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" rel="tag"># 多线程</a></div><div class="post-nav"><div class="post-nav-item"><a href="/posts/avfoundation_export_api/" rel="prev" title="AVFoundation导出API"><i class="fa fa-chevron-left"></i> AVFoundation导出API</a></div><div class="post-nav-item"><a href="/posts/tagged_pointer/" rel="next" title="Objective-C：Tagged Pointer">Objective-C：Tagged Pointer <i class="fa fa-chevron-right"></i></a></div></div></footer></article></div><script>window.addEventListener("tabs:register",()=>{let e=CONFIG.comments["activeClass"];if(CONFIG.comments.storage&&(e=localStorage.getItem("comments_active")||e),e){let t=document.querySelector(`a[href="#comment-${e}"]`);t&&t.click()}}),CONFIG.comments.storage&&window.addEventListener("tabs:click",t=>{t.target.matches(".tabs-comment .tab-content .tab-pane")&&(t=t.target.classList[1],localStorage.setItem("comments_active",t))})</script></div><div class="toggle sidebar-toggle"><span class="toggle-line toggle-line-first"></span> <span class="toggle-line toggle-line-middle"></span> <span class="toggle-line toggle-line-last"></span></div><aside class="sidebar"><div class="sidebar-inner"><ul class="sidebar-nav motion-element"><li class="sidebar-nav-toc">文章目录</li><li class="sidebar-nav-overview">站点概览</li></ul><div class="post-toc-wrap sidebar-panel"><div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8E%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-text">与线程的关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#api%E4%BD%BF%E7%94%A8"><span class="nav-text">API使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#cfrunloopsourceref"><span class="nav-text">CFRunLoopSourceRef</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#cfrunlooptimerref"><span class="nav-text">CFRunLoopTimerRef</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#cfrunloopobserverref"><span class="nav-text">CFRunLoopObserverRef</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mode"><span class="nav-text">Mode</span></a></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B7%E4%BD%93%E5%BA%94%E7%94%A8"><span class="nav-text">具体应用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#dispatch_get_main_queue"><span class="nav-text">dispatch_get_main_queue</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#autoreleasepool"><span class="nav-text">AutoreleasePool</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#autoreleasepool%E7%9A%84%E9%87%8A%E6%94%BE%E6%97%B6%E6%9C%BA"><span class="nav-text">AutoreleasePool的释放时机</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8B%E4%BB%B6%E5%93%8D%E5%BA%94"><span class="nav-text">事件响应</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%8B%E5%8A%BF%E8%AF%86%E5%88%AB"><span class="nav-text">手势识别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%95%8C%E9%9D%A2%E6%9B%B4%E6%96%B0"><span class="nav-text">界面更新</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E6%97%B6%E5%99%A8"><span class="nav-text">定时器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#performselecterafterdelay"><span class="nav-text">performSelecter:afterDelay:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-text">参考</span></a></li></div></div><div class="site-overview-wrap sidebar-panel"><div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person"><img class="site-author-image" itemprop="image" alt="權咚" src="/images/icon.png"><p class="site-author-name" itemprop="name">權咚</p><div class="site-description" itemprop="description">🤘🤯👾</div></div><div class="site-state-wrap motion-element"><nav class="site-state"><div class="site-state-item site-state-posts"><a href="/archives/"><span class="site-state-item-count">75</span> <span class="site-state-item-name">文章</span></a></div><div class="site-state-item site-state-categories"><a href="/categories/"><span class="site-state-item-count">5</span> <span class="site-state-item-name">分类</span></a></div><div class="site-state-item site-state-tags"><a href="/tags/"><span class="site-state-item-count">8</span> <span class="site-state-item-name">标签</span></a></div></nav></div><div class="links-of-author motion-element"><span class="links-of-author-item"><a href="https://github.com/bqlin" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;bqlin" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a> </span><span class="links-of-author-item"><a href="https://weibo.com/hearingdog" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;hearingdog" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a></span></div><div class="links-of-blogroll motion-element"><div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i> Links</div><ul class="links-of-blogroll-list"><li class="links-of-blogroll-item"><a href="https://xiaozhuanlan.com/metal-reference-translation" title="https:&#x2F;&#x2F;xiaozhuanlan.com&#x2F;metal-reference-translation" rel="noopener" target="_blank">Metal内参</a></li><li class="links-of-blogroll-item"><a href="https://xiaozhuanlan.com/wwdc21" title="https:&#x2F;&#x2F;xiaozhuanlan.com&#x2F;wwdc21" rel="noopener" target="_blank">WWDC21 内参</a></li></ul></div></div></div></aside><div id="sidebar-dimmer"></div></div></main><footer class="footer"><div class="footer-inner"><div class="copyright">&copy; 2016 – <span itemprop="copyrightYear">2021</span> <span class="with-love"><i class="fa fa-heart"></i> </span><span class="author" itemprop="copyrightHolder">權咚</span> <span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-chart-area"></i> </span><span title="站点总字数">269k</span> <span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-coffee"></i> </span><span title="站点阅读时长">4:05</span></div><div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动</div><div class="busuanzi-count"><script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span class="post-meta-item" id="busuanzi_container_site_uv" style="display:none"><span class="post-meta-item-icon"><i class="fa fa-user"></i> </span><span class="site-uv" title="总访客量"><span id="busuanzi_value_site_uv"></span> </span></span><span class="post-meta-divider">|</span> <span class="post-meta-item" id="busuanzi_container_site_pv" style="display:none"><span class="post-meta-item-icon"><i class="fa fa-eye"></i> </span><span class="site-pv" title="总访问量"><span id="busuanzi_value_site_pv"></span></span></span></div></div></footer></div><script src="/lib/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js"></script><script src="/js/utils.js"></script><script src="/js/schemes/pisces.js"></script><script src="/js/next-boot.js"></script><script>!function(){var e,t,o,n,r=document.getElementsByTagName("link");if(0<r.length)for(i=0;i<r.length;i++)"canonical"==r[i].rel.toLowerCase()&&r[i].href&&(e=r[i].href);t=(e||window.location.protocol).split(":")[0],e=e||window.location.href,window,o=e,n=document.referrer,/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi.test(o)||(t="https"===String(t).toLowerCase()?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif",n?(t+="?r="+encodeURIComponent(document.referrer),o&&(t+="&l="+o)):o&&(t+="?l="+o),(new Image).src=t)}()</script><script src="/js/local-search.js"></script><script>document.querySelectorAll("pre.mermaid").length&&NexT.utils.getScript("//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js",()=>{mermaid.initialize({theme:"default",logLevel:3,flowchart:{curve:"linear"},gantt:{axisFormat:"%m/%d/%Y"},sequence:{actorMargin:50}})},window.mermaid)</script><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","vOffset":-100},"mobile":{"show":false,"scale":0.5},"log":false});</script></body></html>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/ficon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/icon.png">
+  <link rel="mask-icon" href="/images/icon.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"bqlin.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":false,"preload":false},"motion":{"enable":false,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="一般来说，一个线程只能执行一个任务，执行完成后线程就会退出。而事件循环（即一个while循环）能让线程能随时处理事件但不退出。 12345while (alive) &amp;#123;  performTask() &#x2F;&#x2F;执行任务  callout_to_observer() &#x2F;&#x2F;通知外部  sleep() &#x2F;&#x2F;休眠&amp;#125;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RunLoop">
+<meta property="og:url" content="https://bqlin.github.io/posts/runloop/index.html">
+<meta property="og:site_name" content="權咚领域">
+<meta property="og:description" content="一般来说，一个线程只能执行一个任务，执行完成后线程就会退出。而事件循环（即一个while循环）能让线程能随时处理事件但不退出。 12345while (alive) &amp;#123;  performTask() &#x2F;&#x2F;执行任务  callout_to_observer() &#x2F;&#x2F;通知外部  sleep() &#x2F;&#x2F;休眠&amp;#125;">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-11-09T04:28:51.000Z">
+<meta property="article:modified_time" content="2021-11-09T04:28:51.000Z">
+<meta property="article:author" content="權咚">
+<meta property="article:tag" content="Apple">
+<meta property="article:tag" content="多线程">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://bqlin.github.io/posts/runloop/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>RunLoop | 權咚领域</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-105338942-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-105338942-1');
+      }
+    </script>
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?98fcf61fd269408d07dcbc1e49311f9a";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="權咚领域" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">權咚领域</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Making app a work of art.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://bqlin.github.io/posts/runloop/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/icon.png">
+      <meta itemprop="name" content="權咚">
+      <meta itemprop="description" content="🤘🤯👾">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="權咚领域">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          RunLoop
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-11-09 12:28:51" itemprop="dateCreated datePublished" datetime="2021-11-09T12:28:51+08:00">2021-11-09</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.7k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>一般来说，一个线程只能执行一个任务，执行完成后线程就会退出。而事件循环（即一个while循环）能让线程能随时处理事件但不退出。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (alive) &#123;</span><br><span class="line">  performTask() <span class="comment">//执行任务</span></span><br><span class="line">  callout_to_observer() <span class="comment">//通知外部</span></span><br><span class="line">  sleep() <span class="comment">//休眠</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>RunLoop是一种事件循环。它可以让线程有任务时忙碌，没有任务时睡眠。RunLoop提供一个入口函数执行事件循环，执行后，就一直处于“接受消息-&gt;等待-&gt;处理” 的循环中，直到这个循环结束，该函数返回。</p>
+<p>RunLoop作用：</p>
+<ul>
+<li><strong>保持程序持续运行，而不是执行完任务退出；</strong></li>
+<li>处理事件，这是保持运行的目的；</li>
+<li>节省CPU资源。当RunLoop休眠的时候，CPU可以吧时间片分配给其他事务。如果RunLoop在某次循环之后，发现程序突然没有收集到更多事件供它处理，它就会休眠，停在RunLoop循环里面的某段代码上。过一会程序为RunLoop接收到了新来的事件，其循环就被系统重新激活以继续运行。</li>
+</ul>
+<p>CFRunLoopRef是在CoreFoundation框架中，提供了C函数API，都是线程安全的。</p>
+<p>NSRunLoop是CFRunLoopRef的封装，但不是线程安全的。</p>
+<p>RunLoop的线程休眠是通过<code>__CFRunLoopServiceMachPort</code>函数实现的，内部使用了<code>mach_msg</code>函数，这是内核提供的API，实现内核层面的线程休眠。而一般while循环，CPU还是会一直执行指令，占用CPU资源。</p>
+<h2 id="与线程的关系">与线程的关系</h2>
+<ul>
+<li>RunLoop就是用来管理线程的，当线程RunLoop开启后，线程在执行完任务后不会退出，而是处于休眠状态，随时等待接受新的任务。没有RunLoop，就不可能执行多任务，延时任务也不会执行。</li>
+<li>线程和RunLoop一一对应，其关系存在一个全局字典中。</li>
+<li>只能在当前线程中操作当前线程的RunLoop，而不能去操作其他线程的。</li>
+<li>RunLoop在首次获取时创建（通过<code>current</code>和<code>main</code>获取），在线程结束时销毁。</li>
+<li>主线程的RunLoop时系统已经创建好了；但子线程的则要自己主动创建，并启动。</li>
+</ul>
+<h2 id="api使用">API使用</h2>
+<h4 id="cfrunloopsourceref">CFRunLoopSourceRef</h4>
+<p>事件产生的地方。包含两个版本：</p>
+<ul>
+<li>Source0：只包含一个回调函数指针，不能主动触发事件。使用时需先调用<code>CFRunLoopSourceSignal(source)</code>标记Source为待处理，然后手动调用<code>CFRunLoopWakeUp(runloop)</code>来唤醒RunLoop处理这个事件。
+<ul>
+<li>包含触摸事件处理、<code>performSelector</code>。</li>
+</ul></li>
+<li>Source1：包含一个mach_port和回调函数指针，被用于通过内核和其他线程相互发送消息。这种Source能主动唤醒RunLoop线程。
+<ul>
+<li>包含给予port的线程间通信、系统事件捕捉。</li>
+</ul></li>
+</ul>
+<p>如触摸事件，手指点击屏幕，首先产生一个系统事件，通过Source1来接受捕捉，然后由Springboard程序包装成Source0分发到App处理，因此在App内接收到的触摸事件就是Source0的。</p>
+<h4 id="cfrunlooptimerref">CFRunLoopTimerRef</h4>
+<p>基于时间的触发器。包含一个时长和回调函数指针。</p>
+<h4 id="cfrunloopobserverref">CFRunLoopObserverRef</h4>
+<p>观察者，每个Observer包含一个回调函数指针，当RunLoop状态发生变化时，观察者能通过回调接收到这个变化。可以监听：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">typedef</span> <span class="title">CF_OPTIONS</span><span class="params">(CFOptionFlags, CFRunLoopActivity)</span> </span>&#123;</span><br><span class="line">    kCFRunLoopEntry         = (<span class="number">1UL</span> &lt;&lt; <span class="number">0</span>), <span class="comment">// 即将进入Loop</span></span><br><span class="line">    kCFRunLoopBeforeTimers  = (<span class="number">1UL</span> &lt;&lt; <span class="number">1</span>), <span class="comment">// 即将处理 Timer</span></span><br><span class="line">    kCFRunLoopBeforeSources = (<span class="number">1UL</span> &lt;&lt; <span class="number">2</span>), <span class="comment">// 即将处理 Source</span></span><br><span class="line">    kCFRunLoopBeforeWaiting = (<span class="number">1UL</span> &lt;&lt; <span class="number">5</span>), <span class="comment">// 即将进入休眠</span></span><br><span class="line">    kCFRunLoopAfterWaiting  = (<span class="number">1UL</span> &lt;&lt; <span class="number">6</span>), <span class="comment">// 刚从休眠中唤醒</span></span><br><span class="line">    kCFRunLoopExit          = (<span class="number">1UL</span> &lt;&lt; <span class="number">7</span>), <span class="comment">// 即将退出Loop</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="mode">Mode</h3>
+<p>一个RunLoop包含若干个Mode，每个Mode又包含若干个Source/Timer/Observer。每次调用RunLoop的主函数时，只能指定其中一个Mode，这个Mode被称作CurrentMode。如果需要切换Mode，只能退出Loop，再重新指定一个Mode进入。这样做主要是为了分隔开不同组的Source/Timer/Observer，让其互不影响。Source/Timer/Observer称为mode item，一个item可以被同时加入多个mode。如果一个mode中没有item，则RunLoop会直接退出，不进入循环。</p>
+<p>CommonModes：一个Mode把自己标记为“Common”属性（通过将其ModeName添加到RunLoop的<code>commonModes</code>中）。每当RunLoop内容发生变化时，RunLoop都会自动将<code>_commonModeItems</code>里的Source/Observer/Timer同步到具有“Common”标记的所有mode里。</p>
+<p>主线程的RunLoop有两个预设的mode：<code>kCFRunLoopDefaultMode</code>、<code>UITrackingRunLoopMode</code>。这两个Mode都被标记为“Common”属性。defaultMode是App平时所处的状态，trackingRunLoopMode是追踪ScrollView滚动时的状态。所以把Timer添加到defaultMode时，在滚动列表时，RunLoop会将mode切换为trackingRunLoopMode，使得Timer不会回调。</p>
+<p>要让Timer在滚动时也能回调，可以把Timer分别添加到defaultMode和trackingRunLoopMode中，或者加入到顶层的commonModeItems中。</p>
+<h2 id="具体应用">具体应用</h2>
+<h3 id="dispatch_get_main_queue">dispatch_get_main_queue</h3>
+<p>在主线程中转交给RunLoop调起该方法。注意，只是回到主线程这一步是交给RunLoop处理。</p>
+<h3 id="autoreleasepool">AutoreleasePool</h3>
+<p>NSAutoreleasePool是对象引用计数自动处理器。当对象加入到NSAutoreleasePool时，会对其<code>retain</code>，当NSAutoreleasePool结束时，会对其所有对象发送一次<code>release</code>消息。NSAutoreleasePool可以以栈的方式组织。</p>
+<p>使用容器的block版本的枚举器时会自动添加AutoreleasePool。for循环则没有。</p>
+<p>iOS在主线程的RunLoop中注册了2个Observer：</p>
+<ul>
+<li>第1个Observer监听<code>kCFRunLoopEntry</code>（即将进入RunLoop）事件，会调用<code>objc_autoreleasePoolPush()</code>创建自动释放池，使用最高优先级保证创建在其他回调之前进行。</li>
+<li>第2个Observer
+<ul>
+<li>监听<code>kCFRunLoopBeforeWaiting</code>（即将进入休眠）事件，会调用<code>objc_autoreleasePoolPop()</code>、<code>objc_autoreleasePoolPush()</code>释放旧的池并创建新的池。</li>
+<li>监听<code>kCFRunLoopExit</code>（即将退出Runloop）事件，会调用<code>objc_autoreleasePoolPop()</code>释放自动释放池，使用最低优先级保证释放池在其他所有回调之后进行。</li>
+</ul></li>
+</ul>
+<h4 id="autoreleasepool的释放时机">AutoreleasePool的释放时机</h4>
+<p>系统在每个runloop中都创建一个Autorelease Pool，并在runloop的末尾进行释放，所以，一般情况下，每个接受autorelease消息的对象，都会在下个runloop开始前被释放。也就是说，在一段同步的代码中执行过程中，生成的对象接受autorelease消息后，一般是不会在作用域结束前释放的。Autorelease对象出了作用域之后，会被添加到最近一次创建的自动释放池中，并会在当前的 runloop 迭代结束时释放。</p>
+<p>所以在AutoreleasePool声明的局部变量，在外面就释放了。</p>
+<p>子线程会默认包裹一个AutoreleasePool，当线程退出时才释放其中的变量。</p>
+<h3 id="事件响应">事件响应</h3>
+<p>苹果注册了一个 Source1 (基于 mach port 的) 用来接收系统事件，其回调函数为 __IOHIDEventSystemClientQueueCallback()。</p>
+<h3 id="手势识别">手势识别</h3>
+<h3 id="界面更新">界面更新</h3>
+<h3 id="定时器">定时器</h3>
+<p>CFRunLoopTimerRef。CADisplayLink。</p>
+<h3 id="performselecterafterdelay">performSelecter:afterDelay:</h3>
+<p>内部会创建定时器添加到当前的RunLoop中。</p>
+<h2 id="参考">参考</h2>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://blog.ibireme.com/2015/05/18/runloop/">深入理解RunLoop | Garan no dou</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/d3d3196f5edb">AutoreleasePool详解和runloop的关系 - 简书</a></li>
+<li><a target="_blank" rel="noopener" href="http://blog.sunnyxx.com/2014/10/15/behind-autorelease/">黑幕背后的Autorelease · sunnyxx的技术博客</a></li>
+<li><a target="_blank" rel="noopener" href="https://juejin.cn/post/6965790003951566861">Runloop的内部结构与运行原理 - 掘金</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Apple/" rel="tag"># Apple</a>
+              <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" rel="tag"># 多线程</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/posts/avfoundation_export_api/" rel="prev" title="AVFoundation导出API">
+      <i class="fa fa-chevron-left"></i> AVFoundation导出API
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/posts/tagged_pointer/" rel="next" title="Objective-C：Tagged Pointer">
+      Objective-C：Tagged Pointer <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8E%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-text">与线程的关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#api%E4%BD%BF%E7%94%A8"><span class="nav-text">API使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#cfrunloopsourceref"><span class="nav-text">CFRunLoopSourceRef</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#cfrunlooptimerref"><span class="nav-text">CFRunLoopTimerRef</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#cfrunloopobserverref"><span class="nav-text">CFRunLoopObserverRef</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mode"><span class="nav-text">Mode</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B7%E4%BD%93%E5%BA%94%E7%94%A8"><span class="nav-text">具体应用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#dispatch_get_main_queue"><span class="nav-text">dispatch_get_main_queue</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#autoreleasepool"><span class="nav-text">AutoreleasePool</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#autoreleasepool%E7%9A%84%E9%87%8A%E6%94%BE%E6%97%B6%E6%9C%BA"><span class="nav-text">AutoreleasePool的释放时机</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8B%E4%BB%B6%E5%93%8D%E5%BA%94"><span class="nav-text">事件响应</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%8B%E5%8A%BF%E8%AF%86%E5%88%AB"><span class="nav-text">手势识别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%95%8C%E9%9D%A2%E6%9B%B4%E6%96%B0"><span class="nav-text">界面更新</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E6%97%B6%E5%99%A8"><span class="nav-text">定时器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#performselecterafterdelay"><span class="nav-text">performSelecter:afterDelay:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-text">参考</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="權咚"
+      src="/images/icon.png">
+  <p class="site-author-name" itemprop="name">權咚</p>
+  <div class="site-description" itemprop="description">🤘🤯👾</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">75</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/bqlin" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;bqlin" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/hearingdog" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;hearingdog" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://xiaozhuanlan.com/metal-reference-translation" title="https:&#x2F;&#x2F;xiaozhuanlan.com&#x2F;metal-reference-translation" rel="noopener" target="_blank">Metal内参</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://xiaozhuanlan.com/wwdc21" title="https:&#x2F;&#x2F;xiaozhuanlan.com&#x2F;wwdc21" rel="noopener" target="_blank">WWDC21 内参</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2016 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">權咚</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">269k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">4:05</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'default',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","vOffset":-100},"mobile":{"show":false,"scale":0.5},"log":false});</script></body>
+</html>

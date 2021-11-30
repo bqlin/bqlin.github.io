@@ -1,1 +1,724 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=2"><meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.0"><link rel="apple-touch-icon" sizes="180x180" href="/images/icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/images/ficon.png"><link rel="icon" type="image/png" sizes="16x16" href="/images/icon.png"><link rel="mask-icon" href="/images/icon.png" color="#222"><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"><link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css"><script src="/lib/pace/pace.min.js"></script><script id="hexo-configurations">var NexT=window.NexT||{},CONFIG={hostname:"bqlin.github.io",root:"/",scheme:"Gemini",version:"7.8.0",exturl:!1,sidebar:{position:"left",display:"post",padding:18,offset:12,onmobile:!1},copycode:{enable:!1,show_result:!1,style:null},back2top:{enable:!0,sidebar:!1,scrollpercent:!1},bookmark:{enable:!1,color:"#222",save:"auto"},fancybox:!1,mediumzoom:!1,lazyload:!1,pangu:!0,comments:{style:"tabs",active:null,storage:!0,lazyload:!1,nav:null},algolia:{hits:{per_page:10},labels:{input_placeholder:"Search for Posts",hits_empty:"We didn't find any results for the search: ${query}",hits_stats:"${hits} results found in ${time} ms"}},localsearch:{enable:!0,trigger:"auto",top_n_per_article:-1,unescape:!1,preload:!1},motion:{enable:!1,async:!0,transition:{post_block:"fadeIn",post_header:"slideDownIn",post_body:"slideDownIn",coll_header:"slideLeftIn",sidebar:"slideUpIn"}},path:"search.xml"}</script><meta name="description" content="计算机的早期，单位时间内它可以做的工作是由 CPU 的时钟速度决定的。但随着技术的进步，处理器的设计变得更加紧凑，热量和其他物理限制开始限制处理器的最大时钟速度。于是，芯片制造商寻找其他方法来提高其芯片的总性能。他们最终选择的解决方案是增加每个芯片上的处理器内核数量。通过增加内核数量，单个芯片可以在不增加CPU速度或改变芯片尺寸或热特性的情况下每秒执行更多指令。唯一的问题是如何利用这些额外的内核。"><meta property="og:type" content="article"><meta property="og:title" content="Concurrency Programming Guide：并发与程序设计"><meta property="og:url" content="https://bqlin.github.io/posts/concurrency_pg_concurrency_and_application_design/index.html"><meta property="og:site_name" content="權咚领域"><meta property="og:description" content="计算机的早期，单位时间内它可以做的工作是由 CPU 的时钟速度决定的。但随着技术的进步，处理器的设计变得更加紧凑，热量和其他物理限制开始限制处理器的最大时钟速度。于是，芯片制造商寻找其他方法来提高其芯片的总性能。他们最终选择的解决方案是增加每个芯片上的处理器内核数量。通过增加内核数量，单个芯片可以在不增加CPU速度或改变芯片尺寸或热特性的情况下每秒执行更多指令。唯一的问题是如何利用这些额外的内核。"><meta property="og:locale" content="zh_CN"><meta property="article:published_time" content="2021-09-08T09:40:58.000Z"><meta property="article:modified_time" content="2021-10-24T04:12:53.000Z"><meta property="article:author" content="權咚"><meta property="article:tag" content="Apple"><meta property="article:tag" content="多线程"><meta property="article:tag" content="Concurrency Programming Guide"><meta name="twitter:card" content="summary"><link rel="canonical" href="https://bqlin.github.io/posts/concurrency_pg_concurrency_and_application_design/"><script id="page-configurations">CONFIG.page={sidebar:"",isHome:!1,isPost:!0,lang:"zh-CN"}</script><title>Concurrency Programming Guide：并发与程序设计 | 權咚领域</title><script async src="https://www.googletagmanager.com/gtag/js?id=UA-105338942-1"></script><script>function gtag(){dataLayer.push(arguments)}CONFIG.hostname===location.hostname&&(window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","UA-105338942-1"))</script><script>var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="https://hm.baidu.com/hm.js?98fcf61fd269408d07dcbc1e49311f9a";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script><noscript><style>.sidebar-inner,.use-motion .brand,.use-motion .collection-header,.use-motion .comments,.use-motion .menu-item,.use-motion .pagination,.use-motion .post-block,.use-motion .post-body,.use-motion .post-header{opacity:initial}.use-motion .site-subtitle,.use-motion .site-title{opacity:initial;top:initial}.use-motion .logo-line-before i{left:initial}.use-motion .logo-line-after i{right:initial}</style></noscript><link rel="alternate" href="/atom.xml" title="權咚领域" type="application/atom+xml"></head><body itemscope itemtype="http://schema.org/WebPage"><div class="container"><div class="headband"></div><header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="header-inner"><div class="site-brand-container"><div class="site-nav-toggle"><div class="toggle" aria-label="切换导航栏"><span class="toggle-line toggle-line-first"></span> <span class="toggle-line toggle-line-middle"></span> <span class="toggle-line toggle-line-last"></span></div></div><div class="site-meta"><a href="/" class="brand" rel="start"><span class="logo-line-before"><i></i></span><h1 class="site-title">權咚领域</h1><span class="logo-line-after"><i></i></span></a><p class="site-subtitle" itemprop="description">Making app a work of art.</p></div><div class="site-nav-right"><div class="toggle popup-trigger"><i class="fa fa-search fa-fw fa-lg"></i></div></div></div><nav class="site-nav"><ul id="menu" class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-search"><a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索</a></li></ul></nav><div class="search-pop-overlay"><div class="popup search-popup"><div class="search-header"><span class="search-icon"><i class="fa fa-search"></i></span><div class="search-input-container"><input autocomplete="off" autocapitalize="off" placeholder="搜索..." spellcheck="false" type="search" class="search-input"></div><span class="popup-btn-close"><i class="fa fa-times-circle"></i></span></div><div id="search-result"><div id="no-result"><i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i></div></div></div></div></div></header><div class="back-to-top"><i class="fa fa-arrow-up"></i> <span>0%</span></div><main class="main"><div class="main-inner"><div class="content-wrap"><div class="content post posts-expand"><article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN"><link itemprop="mainEntityOfPage" href="https://bqlin.github.io/posts/concurrency_pg_concurrency_and_application_design/"><span hidden itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="image" content="/images/icon.png"><meta itemprop="name" content="權咚"><meta itemprop="description" content="🤘🤯👾"></span><span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization"><meta itemprop="name" content="權咚领域"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">Concurrency Programming Guide：并发与程序设计</h1><div class="post-meta"><span class="post-meta-item"><span class="post-meta-item-icon"><i class="far fa-calendar"></i> </span><span class="post-meta-item-text">发表于</span> <time title="创建时间：2021-09-08 17:40:58" itemprop="dateCreated datePublished" datetime="2021-09-08T17:40:58+08:00">2021-09-08</time> </span><span class="post-meta-item"><span class="post-meta-item-icon"><i class="far fa-calendar-check"></i> </span><span class="post-meta-item-text">更新于</span> <time title="修改时间：2021-10-24 12:12:53" itemprop="dateModified" datetime="2021-10-24T12:12:53+08:00">2021-10-24</time> </span><span class="post-meta-item"><span class="post-meta-item-icon"><i class="far fa-folder"></i> </span><span class="post-meta-item-text">分类于</span> <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/%E7%BF%BB%E8%AF%91/" itemprop="url" rel="index"><span itemprop="name">翻译</span></a> </span></span><span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display:none"><span class="post-meta-item-icon"><i class="fa fa-eye"></i> </span><span class="post-meta-item-text">阅读次数：</span> <span id="busuanzi_value_page_pv"></span></span><br><span class="post-meta-item" title="本文字数"><span class="post-meta-item-icon"><i class="far fa-file-word"></i> </span><span class="post-meta-item-text">本文字数：</span> <span>6.1k</span> </span><span class="post-meta-item" title="阅读时长"><span class="post-meta-item-icon"><i class="far fa-clock"></i> </span><span class="post-meta-item-text">阅读时长 &asymp;</span> <span>6 分钟</span></span></div></header><div class="post-body" itemprop="articleBody"><p>计算机的早期，单位时间内它可以做的工作是由 CPU 的时钟速度决定的。但随着技术的进步，处理器的设计变得更加紧凑，热量和其他物理限制开始限制处理器的最大时钟速度。于是，芯片制造商寻找其他方法来提高其芯片的总性能。他们最终选择的解决方案是增加每个芯片上的处理器内核数量。通过增加内核数量，单个芯片可以在不增加CPU速度或改变芯片尺寸或热特性的情况下每秒执行更多指令。唯一的问题是如何利用这些额外的内核。</p><span id="more"></span><p>为了利用多核，计算机需要软件能够同时做多件事。对于像 OS X 或 iOS 这样的现代操作系统，同时能有上百个程序在跑，在不同的核调度是可能的。但是了，大部分程序是系统守护程序（system daemons）或后台程序，这些程序消耗很少的资源。然而对于每个程序来说，真正需要的是如何更有效的使用多余的核。</p><p>传统的使用多核的方式是创建多个线程。然而随着核数目的提高，线程方案有其自身的问题。最大的问题是，线程代码不能很好地扩展到任意数量的内核。你不能创建与核心等量的线程，然后期望程序跑得很好。程序自身去计算使用多少核心是很高效的本身是一件很有挑战的事。即使知道了数目，给这么多线程编写代码也是很有挑战的。</p><p>总的来说，程序需要一种方式来利用可变的核心。一个程序进行的工作也需要根据变化的系统情况来自动伸缩。方便必须足够简单，不增加利用这些核心做工作的总量。Apple 的操作系统提供了这样的解决方案，这章将会讲讲构成该方案的技术，以及一些你可以使用的设计调整。</p><h2 id="远离线程">远离线程</h2><p>尽管线程已经存在多年，也还有人在用，但是它们没有解决可伸缩执行多个任务的普遍问题。使用线程的话，实现可伸缩方案的负担落在了开发者自身上。你必须决定使用多少个线程，并根据系统条件的变化动态调节。另一个问题是你的程序承担着创建和维护线程的大部分成本。</p><p>OS X 和 iOS 采用了 <em>asynchronous design approach</em> 来解决并发的问题，而不是依赖于线程。异步函数在操作系统中已经存在多年，并被使用来启动需要长时间的任务，如从硬盘中读取数据。当被调用时，一个异步函数在幕后会做些工作来启动一个任务，并在任务真正启动前返回。往往，这些工作设计到获得一个后台线程，在这个线程上执行上述任务，当任务完成的时候发送一个通知给调用者（通常通过回调函数）。在过去，如果某个你想用的异步函数不存在的话，你就需要编写你自己的异步函数和创建你自己的线程。但是现在，OS X 和 iOS 提供了允许你执行异步任务，但不需要你管理任何线程的技术。</p><p>其中的一个启动异步任务的技术叫做 <em>Grand Central Dispatch （GCD）</em>。这项技术将你经常在自己程序中写的管理线程的代码提出来，移到系统的层级里。你所需要做的是定义你的任务，将这些任务添加到相应的调度队列中 (dispatch queue)。GCD 负责创建需要的线程，并在这些线程上规划这些任务。由于线程管理现在是系统的一部分，GCD提供了一个整体的任务管理和执行方案，提供了比传统线程更好的效率。</p><p><em>操作队列</em>是行为跟调度队列 (dispatch queues) 非常像的 Objective-C 对象。你定义自己想要执行的任务，并把它们添加到操作队列中，操作队列会替你负责线程管理，保证任务在系统上的执行尽可能地迅速和高效。</p><h3 id="调度队列">调度队列</h3><p>调度队列是基于 C 的一个执行自定义任务的机制。一个<em>调度队列</em>要么串行 (serially) 要么并行 (concurrently) 地执行任务，但始终是先入先出的顺序（换句话说，一个调度队列总是按照进入队列的顺序从队列中取出执行任务）。串行调度队列一次只运行一个任务，等到该任务完成后再去排队并启动新的任务。相比之下，并发调度队列会尽可能多地启动任务，而不等待已经启动的任务完成。</p><p>调度队列有些其他好处：</p><ul><li>它们提供了直接并简单的编程接口。</li><li>它们提供了自动全面的线程池管理。</li><li>它们提供了汇编性能优化。</li><li>内存使用更高效（因为线程栈不会在程序内存中停留）。</li><li>在负载下不会损害内核。</li><li>异步地调度任务到调度队列不会导致死锁。</li><li>在资源 contention 的时候可以自由伸缩。</li><li>比锁和其他同步原语更高效。</li></ul><p>提交给调度队列的任务必须封装在一个函数或 block 对象中。 block对象是 OS X v10.6 和 iOS 4.0 引入的一个跟函数指针概念相似的 C 语言特性，但相对于函数指针，它有其他优点。除了在 block 自身的词法域定义 block 外，你通常可以在另一个函数或方法中定义 block，这样 block 就可以访问函数或方法内的变量了。当把 block 提交到调度队列时，block 同样可以从原有的作用域中移出，并拷贝到堆中。所有这些语义使得使用较少代码实现非常动态的任务变得可能。</p><p>调度队列是Grand Central Dispatch技术的一部分，是C语言运行时的一部分。关于在程序中使用调度队列的更多信息，可参阅<a href=".%2F03%20Dispatch%20Queues.md">调度队列</a>。关于block的更多信息和它们的优势，可参阅<a target="_blank" rel="noopener" href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Blocks/Articles/00_Introduction.html#//apple_ref/doc/uid/TP40007502">Blocks Programming Topics</a>。</p><h3 id="调度源">调度源</h3><p>调度源是一种基于 C 的异步处理特定系统事件的机制。一个调度源封装了一个特定系统事件类型的信息，并在该事件发生时将特定的block对象或函数提交给调度队列。你可以使用调度源来监听以下系统事件：</p><ul><li>Timers</li><li>Signal handlers</li><li>Descriptor-related events</li><li>Process-related events</li><li>Mach port events</li><li>Custom events that you trigger</li></ul><p>调度源是Grand Central Dispatch技术的一部分。关于使用调度源在程序中接收事件的信息，可参阅<a href=".%2F04%20Dispatch%20Sources.md">调度源</a>。</p><h3 id="操作队列">操作队列</h3><p>操作队列相当于一个并发的调度队列，由<code>NSOperationQueue</code>类实现。尽管调度队列总是以先进先出的顺序执行任务，而操作队列在确定任务的执行顺序时会考虑到其他因素。主要因素是任务之间配置的依赖。配置依赖关系可以用其构建复杂的执行顺序。</p><p>提交给操作队列的任务必须是 <code>NSOperation</code> 类的实例。一个<em>操作对象</em>是一个你需要执行的任务和任务所需数据 Objective-C 封装的对象。因为 <code>NSOperation</code> 类本质上是一个抽象基类，你通常需要自定义子类来执行你的任务。但Foundation框架也提供了一些具体子类可直接使用。</p><p>操作对象会产生 KVO 通知，你可以用它来监听你的任务的进度。尽管操作队列总是并发地执行操作对象，但你可以使用依赖关系来确保它们在需要时被串行执行。</p><p>关于如何使用操作队列，以及如何定义自定义操作对象的更多信息，可参阅<a href=".%2F02%20Operation%20Queues.md">操作队列</a>。</p><h2 id="异步设计技术">异步设计技术</h2><p>在你考虑重新设计你的代码来支持并发的时候，你应该问下你自己这样做是否值得。并发可以通过让你的主线程专门响应用户事件来保证程序的响应性；通过使用多个核心可以让你的代码给定时间内做更多的工作。然而，并发也会增加开销，增加代码的整体复杂性，使得代码难以编写和调试。</p><p>除了增加复杂性外，并发并不是一个你在程序的产品周期最后可以移接的特性。正确的使用它需要仔细的考虑你的程序所做的任务和这些任务需要的数据结构。做的不对的时候，反而会降低你代码的效率和响应性。因此，在设计开始的时候很有必要花些时间来设定你的目标，设计执行的方案。</p><p>每一个程序有不同的要求和不同的任务需要。几乎不可能有一个文档来告诉你怎么设计你的程序和相关的任务。不过，下面的章节试图提供一些指南，帮助你在设计过程中做出正确的选择。</p><h3 id="定义程序的预期行为">定义程序的预期行为</h3><p>在你开始考虑给你的应用添加并发之前，你应首先定义正确的程序行为。理解你应用的期望行为给你稍后验证你的设计可能，同样给你关于引入并发可能带来的性能提升的想法。</p><p>你应该做的第一件事是遍历程序要做的任务和每个任务所需要的对象或数据结构。这些任务可能包含用户行为引起的，也可能是定时器引起的。</p><p>之后列出优先级高的任务，细分认为到小的步骤。在这个层级，你应该主要关注你对数据结构的修改和这些对象的修改怎么影响全局状态。你应该注意到不同的对象、数据结构间的依赖。一个对象的修改是否会影响其他对象。如果这些对象可以相互独立地进行修改，这可能是一个可以同时进行修改的地方。</p><h3 id="分解出可执行的工作单元">分解出可执行的工作单元</h3><p>从你对程序任务的理解，你应该已经可以确定哪些地方你可以使用并发来优化你的代码。如果改变任务执行的步骤会影响最终的结果的话，可需要继续维持这些步骤的顺序；否则如果改变步骤不影响最终的结果的话，你可以考虑并发执行这些步骤。这两种情况下，都要定义可执行的工作单元来代替你任务中需要执行的步骤。然后使用block或操作对象封装工作单元内容，并分发到合适的队列中。</p><p>对于每个确定的可执行工作单元，一开始不必太担心工作量的大小。尽管启动线程总有一定的开销，但使用调度队列和操作队列在大多情况下，其开销会比传统的线程要小很多。因此，使用队列比使用线程可以更高效的执行这些比较小的工作单元。当然你应常测量实际性能，并根据需要调整任务的大小。但是还是那句话，开始的时候，没有任务应该被视为太小。</p><h3 id="确定需要的队列">确定需要的队列</h3><p>现在你的任务已经被分解为不同的工作单元，使用block或操作对象进行封装，你需要定义执行任务的队列。对于一个给定的任务，你需要检查创建的block或操作对象和它们的执行顺序，以正确完成任务。</p><p>如果你使用block来完成任务，你可以添加block到串行或并行调度队列。如果需要特定的顺序，则将block添加到串行调度队列。如果顺序不重要，则可以将block添加到并行调度队列，或根据你的需要，把它们添加到多个不同的调度队列中。</p><p>如果你通过操作对象来实现你的任务，队列的选择往往没配置这些对象有趣。要串行的执行这些任务，你必须配置这些对象间的依赖。依赖可以确保在依赖的操作对象完成任务时才执行后续的操作。</p><h2 id="提高效率的技巧">提高效率的技巧</h2><p>除了重构你的代码成较小的任务，将任务加到队列，还有其他的方式使用队列来提高代码的整体效率：</p><ul><li><strong>如果内存使用是关键因素，考虑直接在任务中计算值。</strong>直接计算数值会使用给定处理器内核的寄存器和缓存，这比主内存快得多。当然要经过测试确定这一优化是否能提高性能。</li><li><strong>尽早找出出串行的任务，尽可能使它们更并发。</strong>如果任务因为资源共享而必须串行，则可以考虑移除共享资源，或为每个任务分配资源的副本以消除共享。</li><li><strong>避免使用锁。</strong>有了调度队列和操作队列，锁在大多数情况下是不需要的。与其使用锁来保护一些共享资源，不如指定一个串行队列（或使用操作对象依赖）来以正确的顺序执行任务。</li><li><strong>尽可能的依赖系统框架。</strong>使用系统提供的API可以节省精力，并能最大限度地提高并发性。</li></ul><h2 id="性能影响">性能影响</h2><p>操作队列、调度队列和调度源是为了让开发者更容易地并发执行更多的代码。然而，这些技术并不保证能给提高程序的执行和响应效率。以技能有效满足需求，又不会对程序的其他资源造成过度负担的方式来使用队列，仍是开发者的任务。例如，尽管你可以创建 10,000 个操作对象，并将它们提交给操作队列，但是这么做会让程序分配大量的内存，最终降低程序的性能和体验。</p><p>在引入任何并发到你的代码之前，不论是通过队列还是线程，你都应该收集衡量影响应用当前性能的基本标准。在引入了这些机制后，你需要重新收集这些信息，然后对比以确定程序的整体效率是否得到了提高。如果引入并发导致了程序的执行和响应效率降低，则应使用性能工具来检查潜在的原因。</p><p>关于性能和可用的性能工具的介绍，以及更高级的性能相关主题的链接，可参阅<a target="_blank" rel="noopener" href="https://developer.apple.com/library/archive/documentation/Performance/Conceptual/PerformanceOverview/Introduction/Introduction.html#//apple_ref/doc/uid/TP40001410">Performance Overview</a>。</p><h2 id="并发和其他技术">并发和其他技术</h2><p>把代码分解成模块化的任务，是试图该缠程序并发性的最好方法。然而这种设计方法并不能满足所有的场景。根据你的任务，可能还有其他选择为程序的整体并发性提供额外的改进。</p><h3 id="opencl和并发性">OpenCL和并发性</h3><p>OS X 中 <code>Open Computing Language (OpenCL)</code> 是一个基于标准的技术，用来在 GPU 上进行通用计算。如果你有定义好的计算需要应用在大型数据上，OpenCL 是不错的技术。例如，你也许用 OpenCL 在图像的像素上进行滤镜操作，或者在多个值上进行复杂的数学计算。换句话说，OpenCL 更多是用于处理数据可被并行操作的问题。</p><p>尽管 OpenCL 很适合执行大规模的并行数据操作，除此之外可能并不适合其他场景的计算。需要大量的精力来准备和转移数据和 the required work kernel (不知道咋翻译) 到显卡上，以便显卡可以计算。同样需要大量的精力才能从 OpenCL 获取操作结果。因此，任何与系统交互的任务一般都不建议使用OpenCL。例如，你不会使用OpenCL来处理文件或网络流的数据。相反，使用OpenCL执行的工作必须足够的独立，以便它可以被传输到GPU并独立计算。</p><p>关于OpenCL和如何使用它的更多信息，可参阅<a target="_blank" rel="noopener" href="https://developer.apple.com/library/archive/documentation/Performance/Conceptual/OpenCL_MacProgGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40008312">OpenCL Programming Guide for Mac</a>。</p><h3 id="何时使用线程">何时使用线程</h3><p>尽管操作队列和调度队列是并发执行任务的首选方式，但它们并不是万金油。根据你的程序，有时仍可能需要创建自定义线程。当你确实需要创建线程的时候，你应该尽量创建少的线程。同时你只应用线程解决那些用其他方式解决不了的问题。</p><p>线程仍是实现实时运行代码的方案。调度队列会尽可能以最快速度执行它们的任务，但它仍没有解决实时的问题。如果你需要在后台执行的代码要求更多可预测的行为，线程可能仍是更好的选择。</p><p>与任何线程编程一样，你应总是理智地使用线程，只有在绝对必要时才使用。关于线程包以及如何使用它们的更多信息，可参阅<a target="_blank" rel="noopener" href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Multithreading/Introduction/Introduction.html#//apple_ref/doc/uid/10000057i">Threading Programming Guide</a>.。</p><h2 id="总结">总结</h2><ul><li><p>单位时间内的工作量是由CPU时钟速度决定的。</p></li><li><p>随着技术的进步，制造商通过提高CPU核数来提高性能。</p></li><li><p>使用线程最大的问题是，线程代码如何充分利用内核。</p></li><li><p>对于开发者而言，使用线程的挑战：</p><ul><li>可伸缩执行多个任务的问题要开发者自行解决。</li><li>程序承担着创建和维护线程的大部分成本。</li></ul></li><li><p>GCD是通过由系统管理的线程池，可以替代直接使用线程实现的绝大部分功能，并提供更高的效率。开发者的任务次需要定义任务，并添加到相应的调度队列中。</p></li><li><p>调度队列的调度单元是函数或block；操作队列的调度单元是操作对象。工作单元的代码都是顺序执行的。</p></li><li><p>调度队列有些其他好处：</p><ul><li>它们提供了直接并简单的编程接口。</li><li>它们提供了自动全面的线程池管理。</li><li>它们提供了汇编性能优化。</li><li>内存使用更高效（因为线程栈不会在程序内存中停留）。</li><li>在负载下不会损害内核。</li><li>异步地调度任务到调度队列不会导致死锁。</li><li>在资源 contention 的时候可以自由伸缩。</li><li>比锁和其他同步原语更高效。</li></ul></li><li><p>操作队列相当于一个并发的调度队列。其执行顺序除了队列的先进先出外，主要还考虑操作对象之间的依赖。</p></li><li><p>经测试，对于异步队列，无论是使用调度队列还是操作队列，执行任务的顺序都不能依赖于任务入队的顺序。</p></li><li><p>OpenCL只适合并行处理大规模数据，不适合一般多线程场景。</p></li><li><p>使用队列相比直接使用线程，最大的优势是可预测性。二使用线程则是为了追求实时执行。</p></li></ul><p>使用技巧：</p><ul><li>提高效率的技巧（以下技巧都要经过性能测试）：<ul><li>想要最快，就直接计算值，这会直接使用处理器内涵额的寄存器和缓存。</li><li>尽可能地并发。</li><li>避免使用锁。</li><li>尽量用系统API。</li></ul></li></ul></div><div class="followme"><p>欢迎关注我的其它发布渠道</p><div class="social-list"><div class="social-item"><a target="_blank" class="social-link" href="/atom.xml"><span class="icon"><i class="fa fa-rss"></i> </span><span class="label">RSS</span></a></div></div></div><footer class="post-footer"><div class="post-tags"><a href="/tags/Apple/" rel="tag"># Apple</a> <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" rel="tag"># 多线程</a> <a href="/tags/Concurrency-Programming-Guide/" rel="tag"># Concurrency Programming Guide</a></div><div class="post-nav"><div class="post-nav-item"><a href="/posts/concurrency_pg_introduction/" rel="prev" title="Concurrency Programming Guide"><i class="fa fa-chevron-left"></i> Concurrency Programming Guide</a></div><div class="post-nav-item"><a href="/posts/concurrency_pg_operation_queues/" rel="next" title="Concurrency Programming Guide：操作队列">Concurrency Programming Guide：操作队列 <i class="fa fa-chevron-right"></i></a></div></div></footer></article></div><script>window.addEventListener("tabs:register",()=>{let e=CONFIG.comments["activeClass"];if(CONFIG.comments.storage&&(e=localStorage.getItem("comments_active")||e),e){let t=document.querySelector(`a[href="#comment-${e}"]`);t&&t.click()}}),CONFIG.comments.storage&&window.addEventListener("tabs:click",t=>{t.target.matches(".tabs-comment .tab-content .tab-pane")&&(t=t.target.classList[1],localStorage.setItem("comments_active",t))})</script></div><div class="toggle sidebar-toggle"><span class="toggle-line toggle-line-first"></span> <span class="toggle-line toggle-line-middle"></span> <span class="toggle-line toggle-line-last"></span></div><aside class="sidebar"><div class="sidebar-inner"><ul class="sidebar-nav motion-element"><li class="sidebar-nav-toc">文章目录</li><li class="sidebar-nav-overview">站点概览</li></ul><div class="post-toc-wrap sidebar-panel"><div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9C%E7%A6%BB%E7%BA%BF%E7%A8%8B"><span class="nav-text">远离线程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B0%83%E5%BA%A6%E9%98%9F%E5%88%97"><span class="nav-text">调度队列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B0%83%E5%BA%A6%E6%BA%90"><span class="nav-text">调度源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E9%98%9F%E5%88%97"><span class="nav-text">操作队列</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%82%E6%AD%A5%E8%AE%BE%E8%AE%A1%E6%8A%80%E6%9C%AF"><span class="nav-text">异步设计技术</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89%E7%A8%8B%E5%BA%8F%E7%9A%84%E9%A2%84%E6%9C%9F%E8%A1%8C%E4%B8%BA"><span class="nav-text">定义程序的预期行为</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E8%A7%A3%E5%87%BA%E5%8F%AF%E6%89%A7%E8%A1%8C%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8D%95%E5%85%83"><span class="nav-text">分解出可执行的工作单元</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A1%AE%E5%AE%9A%E9%9C%80%E8%A6%81%E7%9A%84%E9%98%9F%E5%88%97"><span class="nav-text">确定需要的队列</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8F%90%E9%AB%98%E6%95%88%E7%8E%87%E7%9A%84%E6%8A%80%E5%B7%A7"><span class="nav-text">提高效率的技巧</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%A7%E8%83%BD%E5%BD%B1%E5%93%8D"><span class="nav-text">性能影响</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B9%B6%E5%8F%91%E5%92%8C%E5%85%B6%E4%BB%96%E6%8A%80%E6%9C%AF"><span class="nav-text">并发和其他技术</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#opencl%E5%92%8C%E5%B9%B6%E5%8F%91%E6%80%A7"><span class="nav-text">OpenCL和并发性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%95%E6%97%B6%E4%BD%BF%E7%94%A8%E7%BA%BF%E7%A8%8B"><span class="nav-text">何时使用线程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-text">总结</span></a></li></ol></div></div><div class="site-overview-wrap sidebar-panel"><div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person"><img class="site-author-image" itemprop="image" alt="權咚" src="/images/icon.png"><p class="site-author-name" itemprop="name">權咚</p><div class="site-description" itemprop="description">🤘🤯👾</div></div><div class="site-state-wrap motion-element"><nav class="site-state"><div class="site-state-item site-state-posts"><a href="/archives/"><span class="site-state-item-count">75</span> <span class="site-state-item-name">文章</span></a></div><div class="site-state-item site-state-categories"><a href="/categories/"><span class="site-state-item-count">5</span> <span class="site-state-item-name">分类</span></a></div><div class="site-state-item site-state-tags"><a href="/tags/"><span class="site-state-item-count">8</span> <span class="site-state-item-name">标签</span></a></div></nav></div><div class="links-of-author motion-element"><span class="links-of-author-item"><a href="https://github.com/bqlin" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;bqlin" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a> </span><span class="links-of-author-item"><a href="https://weibo.com/hearingdog" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;hearingdog" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a></span></div><div class="links-of-blogroll motion-element"><div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i> Links</div><ul class="links-of-blogroll-list"><li class="links-of-blogroll-item"><a href="https://xiaozhuanlan.com/metal-reference-translation" title="https:&#x2F;&#x2F;xiaozhuanlan.com&#x2F;metal-reference-translation" rel="noopener" target="_blank">Metal内参</a></li><li class="links-of-blogroll-item"><a href="https://xiaozhuanlan.com/wwdc21" title="https:&#x2F;&#x2F;xiaozhuanlan.com&#x2F;wwdc21" rel="noopener" target="_blank">WWDC21 内参</a></li></ul></div></div></div></aside><div id="sidebar-dimmer"></div></div></main><footer class="footer"><div class="footer-inner"><div class="copyright">&copy; 2016 – <span itemprop="copyrightYear">2021</span> <span class="with-love"><i class="fa fa-heart"></i> </span><span class="author" itemprop="copyrightHolder">權咚</span> <span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-chart-area"></i> </span><span title="站点总字数">269k</span> <span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-coffee"></i> </span><span title="站点阅读时长">4:05</span></div><div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动</div><div class="busuanzi-count"><script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span class="post-meta-item" id="busuanzi_container_site_uv" style="display:none"><span class="post-meta-item-icon"><i class="fa fa-user"></i> </span><span class="site-uv" title="总访客量"><span id="busuanzi_value_site_uv"></span> </span></span><span class="post-meta-divider">|</span> <span class="post-meta-item" id="busuanzi_container_site_pv" style="display:none"><span class="post-meta-item-icon"><i class="fa fa-eye"></i> </span><span class="site-pv" title="总访问量"><span id="busuanzi_value_site_pv"></span></span></span></div></div></footer></div><script src="/lib/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js"></script><script src="/js/utils.js"></script><script src="/js/schemes/pisces.js"></script><script src="/js/next-boot.js"></script><script>!function(){var e,t,o,n,r=document.getElementsByTagName("link");if(0<r.length)for(i=0;i<r.length;i++)"canonical"==r[i].rel.toLowerCase()&&r[i].href&&(e=r[i].href);t=(e||window.location.protocol).split(":")[0],e=e||window.location.href,window,o=e,n=document.referrer,/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi.test(o)||(t="https"===String(t).toLowerCase()?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif",n?(t+="?r="+encodeURIComponent(document.referrer),o&&(t+="&l="+o)):o&&(t+="?l="+o),(new Image).src=t)}()</script><script src="/js/local-search.js"></script><script>document.querySelectorAll("pre.mermaid").length&&NexT.utils.getScript("//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js",()=>{mermaid.initialize({theme:"default",logLevel:3,flowchart:{curve:"linear"},gantt:{axisFormat:"%m/%d/%Y"},sequence:{actorMargin:50}})},window.mermaid)</script><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","vOffset":-100},"mobile":{"show":false,"scale":0.5},"log":false});</script></body></html>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/ficon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/icon.png">
+  <link rel="mask-icon" href="/images/icon.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"bqlin.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":false,"preload":false},"motion":{"enable":false,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="计算机的早期，单位时间内它可以做的工作是由 CPU 的时钟速度决定的。但随着技术的进步，处理器的设计变得更加紧凑，热量和其他物理限制开始限制处理器的最大时钟速度。于是，芯片制造商寻找其他方法来提高其芯片的总性能。他们最终选择的解决方案是增加每个芯片上的处理器内核数量。通过增加内核数量，单个芯片可以在不增加CPU速度或改变芯片尺寸或热特性的情况下每秒执行更多指令。唯一的问题是如何利用这些额外的内核。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Concurrency Programming Guide：并发与程序设计">
+<meta property="og:url" content="https://bqlin.github.io/posts/concurrency_pg_concurrency_and_application_design/index.html">
+<meta property="og:site_name" content="權咚领域">
+<meta property="og:description" content="计算机的早期，单位时间内它可以做的工作是由 CPU 的时钟速度决定的。但随着技术的进步，处理器的设计变得更加紧凑，热量和其他物理限制开始限制处理器的最大时钟速度。于是，芯片制造商寻找其他方法来提高其芯片的总性能。他们最终选择的解决方案是增加每个芯片上的处理器内核数量。通过增加内核数量，单个芯片可以在不增加CPU速度或改变芯片尺寸或热特性的情况下每秒执行更多指令。唯一的问题是如何利用这些额外的内核。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-09-08T09:40:58.000Z">
+<meta property="article:modified_time" content="2021-10-24T04:12:53.000Z">
+<meta property="article:author" content="權咚">
+<meta property="article:tag" content="Apple">
+<meta property="article:tag" content="多线程">
+<meta property="article:tag" content="Concurrency Programming Guide">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://bqlin.github.io/posts/concurrency_pg_concurrency_and_application_design/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Concurrency Programming Guide：并发与程序设计 | 權咚领域</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-105338942-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-105338942-1');
+      }
+    </script>
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?98fcf61fd269408d07dcbc1e49311f9a";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="權咚领域" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">權咚领域</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Making app a work of art.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://bqlin.github.io/posts/concurrency_pg_concurrency_and_application_design/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/icon.png">
+      <meta itemprop="name" content="權咚">
+      <meta itemprop="description" content="🤘🤯👾">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="權咚领域">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Concurrency Programming Guide：并发与程序设计
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-09-08 17:40:58" itemprop="dateCreated datePublished" datetime="2021-09-08T17:40:58+08:00">2021-09-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-10-24 12:12:53" itemprop="dateModified" datetime="2021-10-24T12:12:53+08:00">2021-10-24</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BF%BB%E8%AF%91/" itemprop="url" rel="index"><span itemprop="name">翻译</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>6.1k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>6 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>计算机的早期，单位时间内它可以做的工作是由 CPU 的时钟速度决定的。但随着技术的进步，处理器的设计变得更加紧凑，热量和其他物理限制开始限制处理器的最大时钟速度。于是，芯片制造商寻找其他方法来提高其芯片的总性能。他们最终选择的解决方案是增加每个芯片上的处理器内核数量。通过增加内核数量，单个芯片可以在不增加CPU速度或改变芯片尺寸或热特性的情况下每秒执行更多指令。唯一的问题是如何利用这些额外的内核。</p>
+<span id="more"></span>
+<p>为了利用多核，计算机需要软件能够同时做多件事。对于像 OS X 或 iOS 这样的现代操作系统，同时能有上百个程序在跑，在不同的核调度是可能的。但是了，大部分程序是系统守护程序（system daemons）或后台程序，这些程序消耗很少的资源。然而对于每个程序来说，真正需要的是如何更有效的使用多余的核。</p>
+<p>传统的使用多核的方式是创建多个线程。然而随着核数目的提高，线程方案有其自身的问题。最大的问题是，线程代码不能很好地扩展到任意数量的内核。你不能创建与核心等量的线程，然后期望程序跑得很好。程序自身去计算使用多少核心是很高效的本身是一件很有挑战的事。即使知道了数目，给这么多线程编写代码也是很有挑战的。</p>
+<p>总的来说，程序需要一种方式来利用可变的核心。一个程序进行的工作也需要根据变化的系统情况来自动伸缩。方便必须足够简单，不增加利用这些核心做工作的总量。Apple 的操作系统提供了这样的解决方案，这章将会讲讲构成该方案的技术，以及一些你可以使用的设计调整。</p>
+<h2 id="远离线程">远离线程</h2>
+<p>尽管线程已经存在多年，也还有人在用，但是它们没有解决可伸缩执行多个任务的普遍问题。使用线程的话，实现可伸缩方案的负担落在了开发者自身上。你必须决定使用多少个线程，并根据系统条件的变化动态调节。另一个问题是你的程序承担着创建和维护线程的大部分成本。</p>
+<p>OS X 和 iOS 采用了 <em>asynchronous design approach</em> 来解决并发的问题，而不是依赖于线程。异步函数在操作系统中已经存在多年，并被使用来启动需要长时间的任务，如从硬盘中读取数据。当被调用时，一个异步函数在幕后会做些工作来启动一个任务，并在任务真正启动前返回。往往，这些工作设计到获得一个后台线程，在这个线程上执行上述任务，当任务完成的时候发送一个通知给调用者（通常通过回调函数）。在过去，如果某个你想用的异步函数不存在的话，你就需要编写你自己的异步函数和创建你自己的线程。但是现在，OS X 和 iOS 提供了允许你执行异步任务，但不需要你管理任何线程的技术。</p>
+<p>其中的一个启动异步任务的技术叫做 <em>Grand Central Dispatch （GCD）</em>。这项技术将你经常在自己程序中写的管理线程的代码提出来，移到系统的层级里。你所需要做的是定义你的任务，将这些任务添加到相应的调度队列中 (dispatch queue)。GCD 负责创建需要的线程，并在这些线程上规划这些任务。由于线程管理现在是系统的一部分，GCD提供了一个整体的任务管理和执行方案，提供了比传统线程更好的效率。</p>
+<p><em>操作队列</em>是行为跟调度队列 (dispatch queues) 非常像的 Objective-C 对象。你定义自己想要执行的任务，并把它们添加到操作队列中，操作队列会替你负责线程管理，保证任务在系统上的执行尽可能地迅速和高效。</p>
+<h3 id="调度队列">调度队列</h3>
+<p>调度队列是基于 C 的一个执行自定义任务的机制。一个<em>调度队列</em>要么串行 (serially) 要么并行 (concurrently) 地执行任务，但始终是先入先出的顺序（换句话说，一个调度队列总是按照进入队列的顺序从队列中取出执行任务）。串行调度队列一次只运行一个任务，等到该任务完成后再去排队并启动新的任务。相比之下，并发调度队列会尽可能多地启动任务，而不等待已经启动的任务完成。</p>
+<p>调度队列有些其他好处：</p>
+<ul>
+<li>它们提供了直接并简单的编程接口。</li>
+<li>它们提供了自动全面的线程池管理。</li>
+<li>它们提供了汇编性能优化。</li>
+<li>内存使用更高效（因为线程栈不会在程序内存中停留）。</li>
+<li>在负载下不会损害内核。</li>
+<li>异步地调度任务到调度队列不会导致死锁。</li>
+<li>在资源 contention 的时候可以自由伸缩。</li>
+<li>比锁和其他同步原语更高效。</li>
+</ul>
+<p>提交给调度队列的任务必须封装在一个函数或 block 对象中。 block对象是 OS X v10.6 和 iOS 4.0 引入的一个跟函数指针概念相似的 C 语言特性，但相对于函数指针，它有其他优点。除了在 block 自身的词法域定义 block 外，你通常可以在另一个函数或方法中定义 block，这样 block 就可以访问函数或方法内的变量了。当把 block 提交到调度队列时，block 同样可以从原有的作用域中移出，并拷贝到堆中。所有这些语义使得使用较少代码实现非常动态的任务变得可能。</p>
+<p>调度队列是Grand Central Dispatch技术的一部分，是C语言运行时的一部分。关于在程序中使用调度队列的更多信息，可参阅<a href=".%2F03%20Dispatch%20Queues.md">调度队列</a>。关于block的更多信息和它们的优势，可参阅<a target="_blank" rel="noopener" href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Blocks/Articles/00_Introduction.html#//apple_ref/doc/uid/TP40007502">Blocks Programming Topics</a>。</p>
+<h3 id="调度源">调度源</h3>
+<p>调度源是一种基于 C 的异步处理特定系统事件的机制。一个调度源封装了一个特定系统事件类型的信息，并在该事件发生时将特定的block对象或函数提交给调度队列。你可以使用调度源来监听以下系统事件：</p>
+<ul>
+<li>Timers</li>
+<li>Signal handlers</li>
+<li>Descriptor-related events</li>
+<li>Process-related events</li>
+<li>Mach port events</li>
+<li>Custom events that you trigger</li>
+</ul>
+<p>调度源是Grand Central Dispatch技术的一部分。关于使用调度源在程序中接收事件的信息，可参阅<a href=".%2F04%20Dispatch%20Sources.md">调度源</a>。</p>
+<h3 id="操作队列">操作队列</h3>
+<p>操作队列相当于一个并发的调度队列，由<code>NSOperationQueue</code>类实现。尽管调度队列总是以先进先出的顺序执行任务，而操作队列在确定任务的执行顺序时会考虑到其他因素。主要因素是任务之间配置的依赖。配置依赖关系可以用其构建复杂的执行顺序。</p>
+<p>提交给操作队列的任务必须是 <code>NSOperation</code> 类的实例。一个<em>操作对象</em>是一个你需要执行的任务和任务所需数据 Objective-C 封装的对象。因为 <code>NSOperation</code> 类本质上是一个抽象基类，你通常需要自定义子类来执行你的任务。但Foundation框架也提供了一些具体子类可直接使用。</p>
+<p>操作对象会产生 KVO 通知，你可以用它来监听你的任务的进度。尽管操作队列总是并发地执行操作对象，但你可以使用依赖关系来确保它们在需要时被串行执行。</p>
+<p>关于如何使用操作队列，以及如何定义自定义操作对象的更多信息，可参阅<a href=".%2F02%20Operation%20Queues.md">操作队列</a>。</p>
+<h2 id="异步设计技术">异步设计技术</h2>
+<p>在你考虑重新设计你的代码来支持并发的时候，你应该问下你自己这样做是否值得。并发可以通过让你的主线程专门响应用户事件来保证程序的响应性；通过使用多个核心可以让你的代码给定时间内做更多的工作。然而，并发也会增加开销，增加代码的整体复杂性，使得代码难以编写和调试。</p>
+<p>除了增加复杂性外，并发并不是一个你在程序的产品周期最后可以移接的特性。正确的使用它需要仔细的考虑你的程序所做的任务和这些任务需要的数据结构。做的不对的时候，反而会降低你代码的效率和响应性。因此，在设计开始的时候很有必要花些时间来设定你的目标，设计执行的方案。</p>
+<p>每一个程序有不同的要求和不同的任务需要。几乎不可能有一个文档来告诉你怎么设计你的程序和相关的任务。不过，下面的章节试图提供一些指南，帮助你在设计过程中做出正确的选择。</p>
+<h3 id="定义程序的预期行为">定义程序的预期行为</h3>
+<p>在你开始考虑给你的应用添加并发之前，你应首先定义正确的程序行为。理解你应用的期望行为给你稍后验证你的设计可能，同样给你关于引入并发可能带来的性能提升的想法。</p>
+<p>你应该做的第一件事是遍历程序要做的任务和每个任务所需要的对象或数据结构。这些任务可能包含用户行为引起的，也可能是定时器引起的。</p>
+<p>之后列出优先级高的任务，细分认为到小的步骤。在这个层级，你应该主要关注你对数据结构的修改和这些对象的修改怎么影响全局状态。你应该注意到不同的对象、数据结构间的依赖。一个对象的修改是否会影响其他对象。如果这些对象可以相互独立地进行修改，这可能是一个可以同时进行修改的地方。</p>
+<h3 id="分解出可执行的工作单元">分解出可执行的工作单元</h3>
+<p>从你对程序任务的理解，你应该已经可以确定哪些地方你可以使用并发来优化你的代码。如果改变任务执行的步骤会影响最终的结果的话，可需要继续维持这些步骤的顺序；否则如果改变步骤不影响最终的结果的话，你可以考虑并发执行这些步骤。这两种情况下，都要定义可执行的工作单元来代替你任务中需要执行的步骤。然后使用block或操作对象封装工作单元内容，并分发到合适的队列中。</p>
+<p>对于每个确定的可执行工作单元，一开始不必太担心工作量的大小。尽管启动线程总有一定的开销，但使用调度队列和操作队列在大多情况下，其开销会比传统的线程要小很多。因此，使用队列比使用线程可以更高效的执行这些比较小的工作单元。当然你应常测量实际性能，并根据需要调整任务的大小。但是还是那句话，开始的时候，没有任务应该被视为太小。</p>
+<h3 id="确定需要的队列">确定需要的队列</h3>
+<p>现在你的任务已经被分解为不同的工作单元，使用block或操作对象进行封装，你需要定义执行任务的队列。对于一个给定的任务，你需要检查创建的block或操作对象和它们的执行顺序，以正确完成任务。</p>
+<p>如果你使用block来完成任务，你可以添加block到串行或并行调度队列。如果需要特定的顺序，则将block添加到串行调度队列。如果顺序不重要，则可以将block添加到并行调度队列，或根据你的需要，把它们添加到多个不同的调度队列中。</p>
+<p>如果你通过操作对象来实现你的任务，队列的选择往往没配置这些对象有趣。要串行的执行这些任务，你必须配置这些对象间的依赖。依赖可以确保在依赖的操作对象完成任务时才执行后续的操作。</p>
+<h2 id="提高效率的技巧">提高效率的技巧</h2>
+<p>除了重构你的代码成较小的任务，将任务加到队列，还有其他的方式使用队列来提高代码的整体效率：</p>
+<ul>
+<li><strong>如果内存使用是关键因素，考虑直接在任务中计算值。</strong>直接计算数值会使用给定处理器内核的寄存器和缓存，这比主内存快得多。当然要经过测试确定这一优化是否能提高性能。</li>
+<li><strong>尽早找出出串行的任务，尽可能使它们更并发。</strong>如果任务因为资源共享而必须串行，则可以考虑移除共享资源，或为每个任务分配资源的副本以消除共享。</li>
+<li><strong>避免使用锁。</strong>有了调度队列和操作队列，锁在大多数情况下是不需要的。与其使用锁来保护一些共享资源，不如指定一个串行队列（或使用操作对象依赖）来以正确的顺序执行任务。</li>
+<li><strong>尽可能的依赖系统框架。</strong>使用系统提供的API可以节省精力，并能最大限度地提高并发性。</li>
+</ul>
+<h2 id="性能影响">性能影响</h2>
+<p>操作队列、调度队列和调度源是为了让开发者更容易地并发执行更多的代码。然而，这些技术并不保证能给提高程序的执行和响应效率。以技能有效满足需求，又不会对程序的其他资源造成过度负担的方式来使用队列，仍是开发者的任务。例如，尽管你可以创建 10,000 个操作对象，并将它们提交给操作队列，但是这么做会让程序分配大量的内存，最终降低程序的性能和体验。</p>
+<p>在引入任何并发到你的代码之前，不论是通过队列还是线程，你都应该收集衡量影响应用当前性能的基本标准。在引入了这些机制后，你需要重新收集这些信息，然后对比以确定程序的整体效率是否得到了提高。如果引入并发导致了程序的执行和响应效率降低，则应使用性能工具来检查潜在的原因。</p>
+<p>关于性能和可用的性能工具的介绍，以及更高级的性能相关主题的链接，可参阅<a target="_blank" rel="noopener" href="https://developer.apple.com/library/archive/documentation/Performance/Conceptual/PerformanceOverview/Introduction/Introduction.html#//apple_ref/doc/uid/TP40001410">Performance Overview</a>。</p>
+<h2 id="并发和其他技术">并发和其他技术</h2>
+<p>把代码分解成模块化的任务，是试图该缠程序并发性的最好方法。然而这种设计方法并不能满足所有的场景。根据你的任务，可能还有其他选择为程序的整体并发性提供额外的改进。</p>
+<h3 id="opencl和并发性">OpenCL和并发性</h3>
+<p>OS X 中 <code>Open Computing Language (OpenCL)</code> 是一个基于标准的技术，用来在 GPU 上进行通用计算。如果你有定义好的计算需要应用在大型数据上，OpenCL 是不错的技术。例如，你也许用 OpenCL 在图像的像素上进行滤镜操作，或者在多个值上进行复杂的数学计算。换句话说，OpenCL 更多是用于处理数据可被并行操作的问题。</p>
+<p>尽管 OpenCL 很适合执行大规模的并行数据操作，除此之外可能并不适合其他场景的计算。需要大量的精力来准备和转移数据和 the required work kernel (不知道咋翻译) 到显卡上，以便显卡可以计算。同样需要大量的精力才能从 OpenCL 获取操作结果。因此，任何与系统交互的任务一般都不建议使用OpenCL。例如，你不会使用OpenCL来处理文件或网络流的数据。相反，使用OpenCL执行的工作必须足够的独立，以便它可以被传输到GPU并独立计算。</p>
+<p>关于OpenCL和如何使用它的更多信息，可参阅<a target="_blank" rel="noopener" href="https://developer.apple.com/library/archive/documentation/Performance/Conceptual/OpenCL_MacProgGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40008312">OpenCL Programming Guide for Mac</a>。</p>
+<h3 id="何时使用线程">何时使用线程</h3>
+<p>尽管操作队列和调度队列是并发执行任务的首选方式，但它们并不是万金油。根据你的程序，有时仍可能需要创建自定义线程。当你确实需要创建线程的时候，你应该尽量创建少的线程。同时你只应用线程解决那些用其他方式解决不了的问题。</p>
+<p>线程仍是实现实时运行代码的方案。调度队列会尽可能以最快速度执行它们的任务，但它仍没有解决实时的问题。如果你需要在后台执行的代码要求更多可预测的行为，线程可能仍是更好的选择。</p>
+<p>与任何线程编程一样，你应总是理智地使用线程，只有在绝对必要时才使用。关于线程包以及如何使用它们的更多信息，可参阅<a target="_blank" rel="noopener" href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Multithreading/Introduction/Introduction.html#//apple_ref/doc/uid/10000057i">Threading Programming Guide</a>.。</p>
+<h2 id="总结">总结</h2>
+<ul>
+<li><p>单位时间内的工作量是由CPU时钟速度决定的。</p></li>
+<li><p>随着技术的进步，制造商通过提高CPU核数来提高性能。</p></li>
+<li><p>使用线程最大的问题是，线程代码如何充分利用内核。</p></li>
+<li><p>对于开发者而言，使用线程的挑战：</p>
+<ul>
+<li>可伸缩执行多个任务的问题要开发者自行解决。</li>
+<li>程序承担着创建和维护线程的大部分成本。</li>
+</ul></li>
+<li><p>GCD是通过由系统管理的线程池，可以替代直接使用线程实现的绝大部分功能，并提供更高的效率。开发者的任务次需要定义任务，并添加到相应的调度队列中。</p></li>
+<li><p>调度队列的调度单元是函数或block；操作队列的调度单元是操作对象。工作单元的代码都是顺序执行的。</p></li>
+<li><p>调度队列有些其他好处：</p>
+<ul>
+<li>它们提供了直接并简单的编程接口。</li>
+<li>它们提供了自动全面的线程池管理。</li>
+<li>它们提供了汇编性能优化。</li>
+<li>内存使用更高效（因为线程栈不会在程序内存中停留）。</li>
+<li>在负载下不会损害内核。</li>
+<li>异步地调度任务到调度队列不会导致死锁。</li>
+<li>在资源 contention 的时候可以自由伸缩。</li>
+<li>比锁和其他同步原语更高效。</li>
+</ul></li>
+<li><p>操作队列相当于一个并发的调度队列。其执行顺序除了队列的先进先出外，主要还考虑操作对象之间的依赖。</p></li>
+<li><p>经测试，对于异步队列，无论是使用调度队列还是操作队列，执行任务的顺序都不能依赖于任务入队的顺序。</p></li>
+<li><p>OpenCL只适合并行处理大规模数据，不适合一般多线程场景。</p></li>
+<li><p>使用队列相比直接使用线程，最大的优势是可预测性。二使用线程则是为了追求实时执行。</p></li>
+</ul>
+<p>使用技巧：</p>
+<ul>
+<li>提高效率的技巧（以下技巧都要经过性能测试）：
+<ul>
+<li>想要最快，就直接计算值，这会直接使用处理器内涵额的寄存器和缓存。</li>
+<li>尽可能地并发。</li>
+<li>避免使用锁。</li>
+<li>尽量用系统API。</li>
+</ul></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Apple/" rel="tag"># Apple</a>
+              <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" rel="tag"># 多线程</a>
+              <a href="/tags/Concurrency-Programming-Guide/" rel="tag"># Concurrency Programming Guide</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/posts/concurrency_pg_introduction/" rel="prev" title="Concurrency Programming Guide">
+      <i class="fa fa-chevron-left"></i> Concurrency Programming Guide
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/posts/concurrency_pg_operation_queues/" rel="next" title="Concurrency Programming Guide：操作队列">
+      Concurrency Programming Guide：操作队列 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9C%E7%A6%BB%E7%BA%BF%E7%A8%8B"><span class="nav-text">远离线程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B0%83%E5%BA%A6%E9%98%9F%E5%88%97"><span class="nav-text">调度队列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B0%83%E5%BA%A6%E6%BA%90"><span class="nav-text">调度源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E9%98%9F%E5%88%97"><span class="nav-text">操作队列</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%82%E6%AD%A5%E8%AE%BE%E8%AE%A1%E6%8A%80%E6%9C%AF"><span class="nav-text">异步设计技术</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89%E7%A8%8B%E5%BA%8F%E7%9A%84%E9%A2%84%E6%9C%9F%E8%A1%8C%E4%B8%BA"><span class="nav-text">定义程序的预期行为</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E8%A7%A3%E5%87%BA%E5%8F%AF%E6%89%A7%E8%A1%8C%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8D%95%E5%85%83"><span class="nav-text">分解出可执行的工作单元</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A1%AE%E5%AE%9A%E9%9C%80%E8%A6%81%E7%9A%84%E9%98%9F%E5%88%97"><span class="nav-text">确定需要的队列</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8F%90%E9%AB%98%E6%95%88%E7%8E%87%E7%9A%84%E6%8A%80%E5%B7%A7"><span class="nav-text">提高效率的技巧</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%A7%E8%83%BD%E5%BD%B1%E5%93%8D"><span class="nav-text">性能影响</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B9%B6%E5%8F%91%E5%92%8C%E5%85%B6%E4%BB%96%E6%8A%80%E6%9C%AF"><span class="nav-text">并发和其他技术</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#opencl%E5%92%8C%E5%B9%B6%E5%8F%91%E6%80%A7"><span class="nav-text">OpenCL和并发性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%95%E6%97%B6%E4%BD%BF%E7%94%A8%E7%BA%BF%E7%A8%8B"><span class="nav-text">何时使用线程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-text">总结</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="權咚"
+      src="/images/icon.png">
+  <p class="site-author-name" itemprop="name">權咚</p>
+  <div class="site-description" itemprop="description">🤘🤯👾</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">75</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/bqlin" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;bqlin" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/hearingdog" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;hearingdog" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://xiaozhuanlan.com/metal-reference-translation" title="https:&#x2F;&#x2F;xiaozhuanlan.com&#x2F;metal-reference-translation" rel="noopener" target="_blank">Metal内参</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://xiaozhuanlan.com/wwdc21" title="https:&#x2F;&#x2F;xiaozhuanlan.com&#x2F;wwdc21" rel="noopener" target="_blank">WWDC21 内参</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2016 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">權咚</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">269k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">4:05</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'default',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","vOffset":-100},"mobile":{"show":false,"scale":0.5},"log":false});</script></body>
+</html>

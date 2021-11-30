@@ -1,1 +1,915 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=2"><meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.0"><link rel="apple-touch-icon" sizes="180x180" href="/images/icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/images/ficon.png"><link rel="icon" type="image/png" sizes="16x16" href="/images/icon.png"><link rel="mask-icon" href="/images/icon.png" color="#222"><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"><link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css"><script src="/lib/pace/pace.min.js"></script><script id="hexo-configurations">var NexT=window.NexT||{},CONFIG={hostname:"bqlin.github.io",root:"/",scheme:"Gemini",version:"7.8.0",exturl:!1,sidebar:{position:"left",display:"post",padding:18,offset:12,onmobile:!1},copycode:{enable:!1,show_result:!1,style:null},back2top:{enable:!0,sidebar:!1,scrollpercent:!1},bookmark:{enable:!1,color:"#222",save:"auto"},fancybox:!1,mediumzoom:!1,lazyload:!1,pangu:!0,comments:{style:"tabs",active:null,storage:!0,lazyload:!1,nav:null},algolia:{hits:{per_page:10},labels:{input_placeholder:"Search for Posts",hits_empty:"We didn't find any results for the search: ${query}",hits_stats:"${hits} results found in ${time} ms"}},localsearch:{enable:!0,trigger:"auto",top_n_per_article:-1,unescape:!1,preload:!1},motion:{enable:!1,async:!0,transition:{post_block:"fadeIn",post_header:"slideDownIn",post_body:"slideDownIn",coll_header:"slideLeftIn",sidebar:"slideUpIn"}},path:"search.xml"}</script><meta name="description" content="H.264（MPEG-4 Part 10， Advanced Video Coding），缩写为 MPEG-4 AVC。是一种面向块，基于运动补偿的视频编码标准。 压缩比：对于YUV420的裸流，压缩比约为1&#x2F;100。"><meta property="og:type" content="article"><meta property="og:title" content="H.264&#x2F;MPEG-4 AVC"><meta property="og:url" content="https://bqlin.github.io/posts/h264/index.html"><meta property="og:site_name" content="權咚领域"><meta property="og:description" content="H.264（MPEG-4 Part 10， Advanced Video Coding），缩写为 MPEG-4 AVC。是一种面向块，基于运动补偿的视频编码标准。 压缩比：对于YUV420的裸流，压缩比约为1&#x2F;100。"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://gitee.com/bqlin/image-land/raw/master/1615772065108-8aeea8d4-e483-4f35-90c9-27b9fc8816eb.jpeg"><meta property="og:image" content="https://gitee.com/bqlin/image-land/raw/master/1615772065852-0b6f6459-35d3-4cd8-9b81-597632f1a3d8.png"><meta property="og:image" content="https://gitee.com/bqlin/image-land/raw/master/1615772065292-fa686316-81fa-4e5d-bd6b-4f6ade8241e3.png"><meta property="og:image" content="https://gitee.com/bqlin/image-land/raw/master/1615772065501-b33be986-f0aa-4e30-9b01-dce4e0faf2a9.png"><meta property="og:image" content="https://gitee.com/bqlin/image-land/raw/master/1615772065708-481862b1-d535-4e12-b98c-6897a4e51d5f.png"><meta property="og:image" content="https://gitee.com/bqlin/image-land/raw/master/1615772065948-58a4d622-11bb-4fa8-8421-258c29beb872.jpeg"><meta property="og:image" content="https://gitee.com/bqlin/image-land/raw/master/wmxrDf.jpg"><meta property="og:image" content="https://gitee.com/bqlin/image-land/raw/master/471463-20171214170746310-1770557571.png"><meta property="og:image" content="https://gitee.com/bqlin/image-land/raw/master/1615772066961-b44bfe42-118c-4865-8053-7ad490bde618.png"><meta property="og:image" content="https://gitee.com/bqlin/image-land/raw/master/1615772066806-5f003f52-a8ae-452d-bc4a-ecce266ff637.png"><meta property="og:image" content="https://gitee.com/bqlin/image-land/raw/master/1615772066728-9a1d776d-e9b2-4d8e-a190-e883685645bf.png"><meta property="article:published_time" content="2021-03-15T05:34:44.000Z"><meta property="article:modified_time" content="2021-11-21T08:47:03.000Z"><meta property="article:author" content="權咚"><meta property="article:tag" content="音视频"><meta name="twitter:card" content="summary"><meta name="twitter:image" content="https://gitee.com/bqlin/image-land/raw/master/1615772065108-8aeea8d4-e483-4f35-90c9-27b9fc8816eb.jpeg"><link rel="canonical" href="https://bqlin.github.io/posts/h264/"><script id="page-configurations">CONFIG.page={sidebar:"",isHome:!1,isPost:!0,lang:"zh-CN"}</script><title>H.264/MPEG-4 AVC | 權咚领域</title><script async src="https://www.googletagmanager.com/gtag/js?id=UA-105338942-1"></script><script>function gtag(){dataLayer.push(arguments)}CONFIG.hostname===location.hostname&&(window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","UA-105338942-1"))</script><script>var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="https://hm.baidu.com/hm.js?98fcf61fd269408d07dcbc1e49311f9a";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script><noscript><style>.sidebar-inner,.use-motion .brand,.use-motion .collection-header,.use-motion .comments,.use-motion .menu-item,.use-motion .pagination,.use-motion .post-block,.use-motion .post-body,.use-motion .post-header{opacity:initial}.use-motion .site-subtitle,.use-motion .site-title{opacity:initial;top:initial}.use-motion .logo-line-before i{left:initial}.use-motion .logo-line-after i{right:initial}</style></noscript><link rel="alternate" href="/atom.xml" title="權咚领域" type="application/atom+xml"></head><body itemscope itemtype="http://schema.org/WebPage"><div class="container"><div class="headband"></div><header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="header-inner"><div class="site-brand-container"><div class="site-nav-toggle"><div class="toggle" aria-label="切换导航栏"><span class="toggle-line toggle-line-first"></span> <span class="toggle-line toggle-line-middle"></span> <span class="toggle-line toggle-line-last"></span></div></div><div class="site-meta"><a href="/" class="brand" rel="start"><span class="logo-line-before"><i></i></span><h1 class="site-title">權咚领域</h1><span class="logo-line-after"><i></i></span></a><p class="site-subtitle" itemprop="description">Making app a work of art.</p></div><div class="site-nav-right"><div class="toggle popup-trigger"><i class="fa fa-search fa-fw fa-lg"></i></div></div></div><nav class="site-nav"><ul id="menu" class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-search"><a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索</a></li></ul></nav><div class="search-pop-overlay"><div class="popup search-popup"><div class="search-header"><span class="search-icon"><i class="fa fa-search"></i></span><div class="search-input-container"><input autocomplete="off" autocapitalize="off" placeholder="搜索..." spellcheck="false" type="search" class="search-input"></div><span class="popup-btn-close"><i class="fa fa-times-circle"></i></span></div><div id="search-result"><div id="no-result"><i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i></div></div></div></div></div></header><div class="back-to-top"><i class="fa fa-arrow-up"></i> <span>0%</span></div><main class="main"><div class="main-inner"><div class="content-wrap"><div class="content post posts-expand"><article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN"><link itemprop="mainEntityOfPage" href="https://bqlin.github.io/posts/h264/"><span hidden itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="image" content="/images/icon.png"><meta itemprop="name" content="權咚"><meta itemprop="description" content="🤘🤯👾"></span><span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization"><meta itemprop="name" content="權咚领域"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">H.264/MPEG-4 AVC</h1><div class="post-meta"><span class="post-meta-item"><span class="post-meta-item-icon"><i class="far fa-calendar"></i> </span><span class="post-meta-item-text">发表于</span> <time title="创建时间：2021-03-15 13:34:44" itemprop="dateCreated datePublished" datetime="2021-03-15T13:34:44+08:00">2021-03-15</time> </span><span class="post-meta-item"><span class="post-meta-item-icon"><i class="far fa-calendar-check"></i> </span><span class="post-meta-item-text">更新于</span> <time title="修改时间：2021-11-21 16:47:03" itemprop="dateModified" datetime="2021-11-21T16:47:03+08:00">2021-11-21</time> </span><span class="post-meta-item"><span class="post-meta-item-icon"><i class="far fa-folder"></i> </span><span class="post-meta-item-text">分类于</span> <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/" itemprop="url" rel="index"><span itemprop="name">音视频概念</span></a> </span></span><span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display:none"><span class="post-meta-item-icon"><i class="fa fa-eye"></i> </span><span class="post-meta-item-text">阅读次数：</span> <span id="busuanzi_value_page_pv"></span></span><br><span class="post-meta-item" title="本文字数"><span class="post-meta-item-icon"><i class="far fa-file-word"></i> </span><span class="post-meta-item-text">本文字数：</span> <span>6.6k</span> </span><span class="post-meta-item" title="阅读时长"><span class="post-meta-item-icon"><i class="far fa-clock"></i> </span><span class="post-meta-item-text">阅读时长 &asymp;</span> <span>6 分钟</span></span></div></header><div class="post-body" itemprop="articleBody"><p>H.264（MPEG-4 Part 10， Advanced Video Coding），缩写为 MPEG-4 AVC。是一种<strong>面向块</strong>，<strong>基于运动补偿</strong>的视频编码标准。</p><p>压缩比：对于YUV420的裸流，压缩比约为1/100。</p><p>新特性：</p><ul><li>多参考帧的运动补偿。可以带来一定的码率降低或者质量提高。</li><li>变块尺寸运动补偿。可使用最大 16x16 到最小 4x4 的块来进行运动估计与运动补偿，能够对运动区域进行更精确的分割。</li><li>使用六阶数字滤波器来产生二分之一像素的亮度分量预测值，可以较少混叠（Aliasing）并得到更锐化的图像。</li><li>灵活的隔行扫描视频编码。</li><li>1/4 像素精度的运动补偿，能够提供更高精度的运动块预测。</li><li>加权的运动预测。在一些特殊场合，如淡出、淡入等情况提供相当大的编码增益。</li><li>等等。。。https://zh.wikipedia.org/wiki/H.264/MPEG-4_AVC</li></ul><h2 id="编码原理">编码原理</h2><p>对一段变化不大的图像画面，先编码出一个完整的图像帧A，随后的B帧就不编码全部图像，只写入与A帧的差别，然后继续以B的方式编码C帧，这样循环下去得到一段序列。当某幅图像与之前的图像变化很大时，无法参考前面的帧来生成，就结束上一个序列，开始下一段序列的生成。</p><p>H.264 协议里定义了三种帧：</p><ul><li><p>完整编码的 I 帧；</p></li><li><p>参考之前的 I 帧只生成的包含差异部分编码的 P 帧；</p></li><li><p>参考前后的帧编码的 B 帧；</p></li></ul><p>H.264 采用的核心算法是帧内压缩和帧间压缩，帧内压缩是生成 I 帧的算法，帧间压缩是生成 B 帧和 P 帧的算法。</p><h2 id="gop序列">GOP序列</h2><p>提出的意义：按照相关性进行分组便于进行帧间压缩。这样分组的一组图像差别较少，去除的冗余/重复数据就多，压缩比就高。</p><p>H.264 中以图像序列为单位进行组织，一个序列是一段图像编码后的数据流，从 I 帧开始，到下一个 I 帧结束。</p><p>序列的第一个图像叫 IDR 图像（立即刷新图像），IDR 图像都是 I 帧图像。当遇到 IDR 图像时，立即将参考帧队列清空，将已解码的数据全部输出或抛弃，重新查找参数集，开始一个新的序列。这样在前一个序列出现重大错误时，可以获得重新同步的机会。</p><p>一个序列就是一段内容差异不太大的图像编码后生成的一串数据流。当运动变化较少时，一个序列可以很长，所以就可以编一个 I 帧，让后一直 P 帧、B 帧了。当运动变化较多时，一个序列就可能比较短了。</p><p>GOP（Group Of Pictures，图像组）是一组连续的图像，由一个I帧和多个B/P帧组成，是编解码器存取的基本单位。GOP 中帧与帧之间的差别较小。</p><p>GOP结构常用的两个参数M和N，M指定GOP中首个P帧和I帧之间的距离，N指定一个GOP的大小。例如M=1，N=15，GOP结构为：</p><p><span class="math display">\[ IPBBPBBPBBPBBPB \]</span></p><p>GOP分两种：闭合式GOP和开放式GOP：</p><ul><li>闭合式 GOP：闭合式GOP只需要参考本GOP内的图像即可，不需参考前后GOP的数据。这种模式决定了，闭合式GOP的显示顺序总是以I帧开始以P帧结束。</li><li>开发式 GOP：开放式GOP中的B帧解码时可能要用到其前一个GOP或后一个GOP的某些帧。码流里面包含B帧的时候才会出现开放式GOP。</li></ul><p>如图特征，开发式GOP末尾是B帧，闭合式GOP末尾是P帧。但不管如果要称为GOP，首帧必须是I帧。</p><p>开放式GOP和闭合式GOP中I帧、P帧、B帧的依赖关系如下图所示：</p><p><img src="https://gitee.com/bqlin/image-land/raw/master/1615772065108-8aeea8d4-e483-4f35-90c9-27b9fc8816eb.jpeg"></p><p>GOP 指两个 I 帧之间的距离。参考周期（Reference）指两个 P 帧之间中距离。I、B、P 帧所占字节数大小：I &gt; P &gt; B。</p><p>所以在码率不变的前提下，GOP 值越大，P、B 帧的数量会越多，平均每个 I、P、B 帧所占的字节数就越多，也就容易获得较好的图像质量。通过提高 GOP 值来提高图像质量是有限度的，在遇到场景切换的情况下，编码器会自动强制插入一个 I 帧，此时实际的 GOP 值被缩短。另一方面，在一个 GOP 中，P 帧由 I 帧预测得到的，当 I 帧的图像质量比较差时，会影响一个 GOP 中后续 P、B 帧的图像质量。直到下一个 GOP 开始才有可能得到恢复，所以 GOP 值也不宜设置过大。</p><p>同时，由于 P、B 帧的复杂度大于 I 帧，所以过多的 P、B 帧会影响编码效率，使得编码效率降低。另外，过长的 GOP 还会影响 seek 操作的响应速度，因为 P、B 帧是由前面的 I 或 P 帧预测得到的，所以 seek 操作需要直接定位、解码某一个 P 或 B 帧时，需要先解码得到本 GOP 内的 I 帧及之前的 N 个预测帧才可以，GOP 值越长，需要解码的预测帧就越多，seek 响应的时间也就越长。</p><h2 id="帧">帧</h2><h3 id="i-帧">I 帧</h3><p>Intra-coded picture，帧内编码图像帧，常称为关键帧。</p><p>不参考其他图像帧，只利用本帧信息进行编码。包含一幅完整的图像信息，属于帧内编码图像，不含运动矢量，在解码时不需要参考其他帧图像。因此在I帧图像处可以切换频道，而不会导致图像丢失或无法解码。I帧图像用于阻止误差的累积和扩散。在闭合式GOP中，每个GOP的第一个帧一定是I帧（IDR帧），且当前GOP的数据不会参考前后GOP的数据。</p><h4 id="idr-帧">IDR 帧</h4><p>Instantaneous Decoding Refresh picture，即时解码刷新帧，是一种特殊的I帧。当解码器解码到IDR帧时，会将DPB（Decoded Picture Buffer，指前后向参考帧列表）清空，将已解码的数据全部输出或抛弃，然后开始一次全新的解码序列。IDR帧之后的图像不会参考IDR帧<strong>之前</strong>的图像。</p><p>在编码解码中为了方便，将GOP中首个I帧要和其他I帧区别开，把第一个I帧叫IDR，这样方便控制编码和解码流程，所以IDR帧一定是I帧，但I帧不一定是IDR帧；IDR帧的作用是立刻刷新，<strong>使错误不致传播</strong>，从IDR帧开始算新的序列开始编码。I帧有被跨帧参考的可能，IDR不会。</p><p>I帧不用参考任何帧，但是之后的P帧和B帧是有可能参考这个I帧之前的帧的。IDR就不允许这样，例如：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">IDR1 P4 B2 B3 P7 B5 B6 I10 B8 B9 P13 B11 B12 P16 B14 B15</span><br><span class="line">这里的B8可以跨过I10去参考P7</span><br><span class="line">IDR1 P4 B2 B3 P7 B5 B6 IDR8 P11 B9 B10 P14 B11 B12</span><br><span class="line">这里的B9就只能参照IDR8和P11，不可以参考IDR8前面的帧</span><br></pre></td></tr></table></figure><p>总结：</p><ul><li>解码器立即刷新，清空参考帧缓冲区（DPB），防止错误传播。</li><li>GOP第一帧是IDR帧，是特殊的I帧。</li><li>GOP只有一个IDR帧，但可能还有多个I帧。</li><li>IDR帧之后的图像不会参考其之前的帧，但普通I帧就没有这个限制。</li></ul><h3 id="p-帧">P 帧</h3><p>Predictive-coded picture，预测编码图像帧，帧间编码帧。</p><p>利用之前的 I 帧或 P 帧，采用运动预测的方式进行预测编码。<strong>不会参考B帧。</strong></p><ul><li>P 帧属于前向预测的帧间编码，只参考最靠近它的 I 帧或 P 帧。它只占 I 帧大小的一半。</li><li>P 帧可以作为后面 P 帧的参考帧，也可以作为其前后的 B 帧的参考帧。</li></ul><h3 id="b-帧">B 帧</h3><p>Bidirectionally predicted picture，双向预测编码图像帧，帧间编码帧。</p><p>提供最高的压缩比，她既需要之前的图像帧（I 帧或 P 帧），也需要后来的图像帧（P 帧），采用运动预测的方式进行帧间双向预测编码。<strong>不会参考附近的 B 帧。</strong></p><p>占 I 帧的 1/4 大小，压缩比最大，但解码的时候占用资源和耗时也是最大的。在实时通信中较少使用 B 帧，点播、存储的视频则可以较多地使用 B 帧。</p><ul><li>B 帧值反映两参考帧间运动主体的变化情况，预测比较准确。</li><li>B 帧会比附近的 P 帧后解码，即先解码附近的帧才能解码当前B帧。</li></ul><h3 id="帧与分组的关系">帧与分组的关系</h3><p><img src="https://gitee.com/bqlin/image-land/raw/master/1615772065852-0b6f6459-35d3-4cd8-9b81-597632f1a3d8.png"></p><p>箭头指向的帧参考箭头起点的帧。解码 B 帧需要解码参考的前后帧。解码的顺序与播放的顺序是不一致的，因此就有了下面的话题。</p><h3 id="spspps">SPS、PPS</h3><p>SPS、PPS 不称为帧，只是在 IDR 帧前的参数数据，这两个信息一般同时出现。</p><ul><li>SPS，Sequence Parameter Set，序列参数集<ul><li>作用于一串连续的视频图像，对帧组 GOP 的参数设置。</li><li>如：seq_parameter_set_id、帧数、POC（picture order count）的约束、参考帧数量、解码图像尺寸、场编码模式选择标志等。</li></ul></li><li>PPS，Picture Parameter Set，图像参数集<ul><li>作用于视频序列中的图像，GOP 中每一幅图像等参数设置。</li><li>如：pic_parameter_set_id、熵编码模式选择标志、片组数目、初始量化参数、去方块滤波系数调整标志等。</li></ul></li></ul><h4 id="sps">SPS</h4><ul><li>H264 Profile：对视频压缩特性的描述，profile 越高，说明采用了越高级的压缩特性，对应的压缩比也越高。</li><li>H264 Level：对视频规格的描述，level 越高，视频的码率、分辨率、帧率越高。</li></ul><p>H264 Profile：</p><p><img src="https://gitee.com/bqlin/image-land/raw/master/1615772065292-fa686316-81fa-4e5d-bd6b-4f6ade8241e3.png"></p><p>如上图，从Constrained Baseline Profile为核心发展出两个方向的分支，一个是Main Profile；另一个是Baseline Profile和Extended Profile。Main比Constrained Baseline压缩比高（有B帧和更高压缩比的CABAC无损压缩算法）。我们用得更多的是Main Profile方向的分支，下面是该分支的发展的具体Profile。</p><p><img src="https://gitee.com/bqlin/image-land/raw/master/1615772065501-b33be986-f0aa-4e30-9b01-dce4e0faf2a9.png"></p><p>High应该是压缩比最高的profile，后面不断增加的是质量方面的特性。</p><p>H264 Level：</p><p><img src="https://gitee.com/bqlin/image-land/raw/master/1615772065708-481862b1-d535-4e12-b98c-6897a4e51d5f.png"></p><p>其他重要参数：</p><p><strong>分辨率</strong>相关参数：</p><ul><li>pic_width_in_mbs_minus1：图像宽度包含的宏块个数-1（这里好获取具体宽度还要获取宏块宽度，默认是16）</li><li>pic_height_in_mbs_minus1：图像高度包含的宏块个数-1</li><li>frame_mbs_only_flag：帧编码还是场编码（场是隔行扫描，产生两张图，该参数会影响分辨率的计算）</li><li>frame_cropping_flag：图像是否需要裁剪（有裁剪的，还要减去裁剪的尺寸）<ul><li>frame_crop_left_offset：减去左侧的偏移量</li><li>frame_crop_right_offset：减去右侧的偏移量</li><li>frame_crop_top_offset：减去顶部的偏移量</li><li>frame_crop_bottom_offset：减去底部的偏移量</li></ul></li></ul><p>通过 pic_width_in_mbs_minus1、pic_height_in_mbs_minus1、宏块宽高（默认 16x16）以及考虑 frame_mbs_only_flag、frame_cropping_flag，可以得出分辨率。</p><p><strong>GOP帧信息</strong>参数：</p><ul><li>log2_max_frame_num_minus4：可得出GOP的最大帧数：2的该值次方+4。<ul><li>可通过该值与 slice header 的 frame_num，得出被解码的帧的序号。</li></ul></li><li>max_num_ref_frames：参考帧的数量。<ul><li>用于设置解码时候的缓冲队列大小。</li></ul></li><li>pic_order_cnt_type：显示帧的序号类型。<ul><li>通过计算可得出显示的顺序。</li></ul></li></ul><p>帧率计算：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">framerate = (float)(sps-&gt;vui.vui_time_scale) /</span><br><span class="line">            (float)(sps-&gt;vui.vui_num_units_in_tick) /</span><br><span class="line">            2.0</span><br></pre></td></tr></table></figure><h4 id="pps">PPS</h4><ul><li>entropy_coding_mode_flag：熵编码类型，1表示使用 CABAC，0则为CAVLC。</li><li>num_slice_groups_minus1：分片数量。</li><li>weighted_pred_flag：在 P/SP Slice 中是否开启权重预测。</li><li>weighted_bipred_idc：在 B Slice 中加权预测的方法类型。</li><li>pic_init_qp_minus26/pic_init_qs_minus26：初始化量化参数，实际参数在 Slice Header 中。</li><li>chroma_qp_index_offset：用于计算色度的量化参数。</li><li>deblocking_filter_control_present_flag：表示 Slice Header 中是否存在去块滤波器控制的信息。</li><li>constrained_intra_pred_flag：若为1，表示 I 宏块在进行帧内预测时只能使用来自 I 和 SI 类型的宏块的信息。</li><li>redundant_pic_cnt_present_flag：用于表示 Slice Header 中是否存在 redundant_pic_cnt 语法元素。</li></ul><h3 id="slice-header">Slice Header</h3><ul><li>帧类型</li><li>GOP中解码帧序号（当有 B 帧的时候，并不是顺序解码的）</li><li>预测权重</li><li>滤波</li></ul><h2 id="dtspts">DTS、PTS</h2><ul><li>DTS（Decode Time Stamp，解码时间戳）：表示packet的解码时间，主要用于视频的编码，在编码阶段使用。主要标识内存的包什么时候送入解码器中解码。解码阶段使用。</li><li>PTS（Presentation Time Stamp，显示时间戳）：表示packet解码后数据的显示时间，主要用于视频的同步和输出。显示阶段使用。</li></ul><p>音频中DTS和PTS是相同的。视频中由于B帧需要双向预测，B帧依赖于其前和其后的帧，因此含B帧的视频解码顺序与显示顺序不同，即DTS与PTS不同。当然，不含B帧的视频，其DTS和PTS是相同的。下图以一个开放式GOP示意图为例，说明视频流的解码顺序和显示顺序。</p><p><img src="https://gitee.com/bqlin/image-land/raw/master/1615772065948-58a4d622-11bb-4fa8-8421-258c29beb872.jpeg"></p><ul><li><code>采集顺序</code>：指图像传感器采集原始信号得到图像帧的顺序。</li><li><code>编码顺序</code>：指编码器编码后图像帧的顺序。存储到磁盘的本地视频文件中图像帧的顺序与编码顺序相同。</li><li><code>传输顺序</code>：指编码后的流在网络中传输过程中图像帧的顺序。</li><li><code>解码顺序</code>：指解码器解码图像帧的顺序。</li><li><code>显示顺序</code>：指图像帧在显示器上显示的顺序。</li></ul><p><strong><em>采集顺序与显示顺序相同。编码顺序、传输顺序和解码顺序相同。</em></strong></p><p>图中“B[1]”帧依赖于“I[0]”帧和“P[3]”帧，因此“P[3]”帧必须比“B[1]”帧先解码。这就导致了解码顺序和显示顺序的不一致，后显示的帧需要先解码。</p><p>可见，在没有B帧的时候，DTS和PTS是是一致的。</p><h2 id="码流">码流</h2><p>H.264原始码流（裸流）是由一个接一个NALU组成。</p><p>按其功能可能将其分层：</p><ul><li>VCL层，Video Coding Layer，视频数据编码层。<ul><li>保存视频压缩后的数据。</li></ul></li><li>NAL层，Network Abstraction Layer，视频数据网络抽象层，最外层。<ul><li>对VCL视频编码层数据拆成多个包传输，并提供header等信息。</li><li>为解决网络传输中丢包、乱序、重传问题提供标记。</li></ul></li></ul><p><img src="https://gitee.com/bqlin/image-land/raw/master/wmxrDf.jpg"></p><p><img src="https://gitee.com/bqlin/image-land/raw/master/471463-20171214170746310-1770557571.png"></p><p>相关术语：</p><ul><li>SODB，String Of Data Bits：位串。<ul><li>原始数据比特流/二进制数据串，以位编码在一起，长度不一定是8的倍数，故需要补齐。</li><li>由 VCL 层产生。</li></ul></li><li>RBSP，Raw Byte Sequence Payload：字节序列负载数据。<ul><li>SODB + trailing bits，如果SODB最后一个字节不对齐，则补1和多个0。</li></ul></li><li>EBSP，Encapsulated Byte Sequence Payload：扩展字节序列负载数据。<ul><li>在每一帧开头添加起始位。</li></ul></li><li>NALU，NAL 单元：多个NAL单元组成H264码流。</li></ul><p>关系：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">RBSP = SODB + RBSP Stop bit + 0 bits</span><br><span class="line">EBSP = RBSP part1 + 0x03 + RBSP part2 + 0x03 + ... + RBSP partN</span><br><span class="line">NALU = NALU Header(1 byte) + EBSP</span><br></pre></td></tr></table></figure><h3 id="nal-unit">NAL Unit</h3><p>码流的总体结构：</p><p><img src="https://gitee.com/bqlin/image-land/raw/master/1615772066961-b44bfe42-118c-4865-8053-7ad490bde618.png"></p><ul><li>Annexb 格式用于文件存储、本地播放，是在NALU前面增加了StartCode。</li><li>RTP 格式用于网络传播，直接就是传输NALU。</li></ul><p>NALU有两种格式：</p><ul><li>Annex B/Elementary Stream：以<code>0x00_00_01</code>或<code>0x00_00_00_01</code>开头。</li><li>AVCC/MPEG-4：以所在NALU长度开头。</li></ul><p>宏块存储数据：</p><ul><li>mb_type：宏块类型</li><li>mb_pred：预测类型值</li><li>coded residual，残差值</li></ul><p>宏块与帧的关系：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1片 = N宏块</span><br><span class="line">1帧 = N片</span><br><span class="line">常常一个NALU只包含1个片</span><br></pre></td></tr></table></figure><p>片的出现：设置片的目的是为了限制误码的扩散和传输，让编码片之间相互独立，如某片的预测不能以其他片中的宏块为参考图像，以防止某片中的预测错误传播到其他片中。</p><p>层级划分：</p><p><img src="https://gitee.com/bqlin/image-land/raw/master/1615772066806-5f003f52-a8ae-452d-bc4a-ecce266ff637.png"></p><p>VCL结构关系：</p><p><img src="https://gitee.com/bqlin/image-land/raw/master/1615772066728-9a1d776d-e9b2-4d8e-a190-e883685645bf.png"></p><p>其中，SPS、PPS不是VCL产生的，但以NALU传输，对于正确解码非常重要。可以通过独立的服务来发送参数集。</p><h2 id="分析工具">分析工具</h2><ul><li>Elecard Stream Eye<ul><li>https://www.elecard.com/products/video-analysis</li></ul></li><li>CodecVisa</li><li>雷神开发的工具<ul><li>https://jaist.dl.sourceforge/project/h254streamanalysis/binary/SpecialVH264.exe</li><li>https://sourceforge.net/projects/videoeye/files/</li></ul></li></ul></div><div class="followme"><p>欢迎关注我的其它发布渠道</p><div class="social-list"><div class="social-item"><a target="_blank" class="social-link" href="/atom.xml"><span class="icon"><i class="fa fa-rss"></i> </span><span class="label">RSS</span></a></div></div></div><footer class="post-footer"><div class="post-tags"><a href="/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/" rel="tag"># 音视频</a></div><div class="post-nav"><div class="post-nav-item"><a href="/posts/video_compression_technology/" rel="prev" title="视频压缩技术"><i class="fa fa-chevron-left"></i> 视频压缩技术</a></div><div class="post-nav-item"><a href="/posts/avc_profile_and_level/" rel="next" title="AVC Profile & Level">AVC Profile & Level <i class="fa fa-chevron-right"></i></a></div></div></footer></article></div><script>window.addEventListener("tabs:register",()=>{let e=CONFIG.comments["activeClass"];if(CONFIG.comments.storage&&(e=localStorage.getItem("comments_active")||e),e){let t=document.querySelector(`a[href="#comment-${e}"]`);t&&t.click()}}),CONFIG.comments.storage&&window.addEventListener("tabs:click",t=>{t.target.matches(".tabs-comment .tab-content .tab-pane")&&(t=t.target.classList[1],localStorage.setItem("comments_active",t))})</script></div><div class="toggle sidebar-toggle"><span class="toggle-line toggle-line-first"></span> <span class="toggle-line toggle-line-middle"></span> <span class="toggle-line toggle-line-last"></span></div><aside class="sidebar"><div class="sidebar-inner"><ul class="sidebar-nav motion-element"><li class="sidebar-nav-toc">文章目录</li><li class="sidebar-nav-overview">站点概览</li></ul><div class="post-toc-wrap sidebar-panel"><div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%96%E7%A0%81%E5%8E%9F%E7%90%86"><span class="nav-text">编码原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gop%E5%BA%8F%E5%88%97"><span class="nav-text">GOP序列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%A7"><span class="nav-text">帧</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#i-%E5%B8%A7"><span class="nav-text">I 帧</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#idr-%E5%B8%A7"><span class="nav-text">IDR 帧</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#p-%E5%B8%A7"><span class="nav-text">P 帧</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#b-%E5%B8%A7"><span class="nav-text">B 帧</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%A7%E4%B8%8E%E5%88%86%E7%BB%84%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-text">帧与分组的关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#spspps"><span class="nav-text">SPS、PPS</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#sps"><span class="nav-text">SPS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#pps"><span class="nav-text">PPS</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#slice-header"><span class="nav-text">Slice Header</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dtspts"><span class="nav-text">DTS、PTS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A0%81%E6%B5%81"><span class="nav-text">码流</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#nal-unit"><span class="nav-text">NAL Unit</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7"><span class="nav-text">分析工具</span></a></li></ol></div></div><div class="site-overview-wrap sidebar-panel"><div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person"><img class="site-author-image" itemprop="image" alt="權咚" src="/images/icon.png"><p class="site-author-name" itemprop="name">權咚</p><div class="site-description" itemprop="description">🤘🤯👾</div></div><div class="site-state-wrap motion-element"><nav class="site-state"><div class="site-state-item site-state-posts"><a href="/archives/"><span class="site-state-item-count">75</span> <span class="site-state-item-name">文章</span></a></div><div class="site-state-item site-state-categories"><a href="/categories/"><span class="site-state-item-count">5</span> <span class="site-state-item-name">分类</span></a></div><div class="site-state-item site-state-tags"><a href="/tags/"><span class="site-state-item-count">8</span> <span class="site-state-item-name">标签</span></a></div></nav></div><div class="links-of-author motion-element"><span class="links-of-author-item"><a href="https://github.com/bqlin" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;bqlin" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a> </span><span class="links-of-author-item"><a href="https://weibo.com/hearingdog" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;hearingdog" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a></span></div><div class="links-of-blogroll motion-element"><div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i> Links</div><ul class="links-of-blogroll-list"><li class="links-of-blogroll-item"><a href="https://xiaozhuanlan.com/metal-reference-translation" title="https:&#x2F;&#x2F;xiaozhuanlan.com&#x2F;metal-reference-translation" rel="noopener" target="_blank">Metal内参</a></li><li class="links-of-blogroll-item"><a href="https://xiaozhuanlan.com/wwdc21" title="https:&#x2F;&#x2F;xiaozhuanlan.com&#x2F;wwdc21" rel="noopener" target="_blank">WWDC21 内参</a></li></ul></div></div></div></aside><div id="sidebar-dimmer"></div></div></main><footer class="footer"><div class="footer-inner"><div class="copyright">&copy; 2016 – <span itemprop="copyrightYear">2021</span> <span class="with-love"><i class="fa fa-heart"></i> </span><span class="author" itemprop="copyrightHolder">權咚</span> <span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-chart-area"></i> </span><span title="站点总字数">269k</span> <span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-coffee"></i> </span><span title="站点阅读时长">4:05</span></div><div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动</div><div class="busuanzi-count"><script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span class="post-meta-item" id="busuanzi_container_site_uv" style="display:none"><span class="post-meta-item-icon"><i class="fa fa-user"></i> </span><span class="site-uv" title="总访客量"><span id="busuanzi_value_site_uv"></span> </span></span><span class="post-meta-divider">|</span> <span class="post-meta-item" id="busuanzi_container_site_pv" style="display:none"><span class="post-meta-item-icon"><i class="fa fa-eye"></i> </span><span class="site-pv" title="总访问量"><span id="busuanzi_value_site_pv"></span></span></span></div></div></footer></div><script src="/lib/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js"></script><script src="/js/utils.js"></script><script src="/js/schemes/pisces.js"></script><script src="/js/next-boot.js"></script><script>!function(){var e,t,o,n,r=document.getElementsByTagName("link");if(0<r.length)for(i=0;i<r.length;i++)"canonical"==r[i].rel.toLowerCase()&&r[i].href&&(e=r[i].href);t=(e||window.location.protocol).split(":")[0],e=e||window.location.href,window,o=e,n=document.referrer,/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi.test(o)||(t="https"===String(t).toLowerCase()?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif",n?(t+="?r="+encodeURIComponent(document.referrer),o&&(t+="&l="+o)):o&&(t+="?l="+o),(new Image).src=t)}()</script><script src="/js/local-search.js"></script><script>document.querySelectorAll("pre.mermaid").length&&NexT.utils.getScript("//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js",()=>{mermaid.initialize({theme:"default",logLevel:3,flowchart:{curve:"linear"},gantt:{axisFormat:"%m/%d/%Y"},sequence:{actorMargin:50}})},window.mermaid)</script><script>"undefined"==typeof MathJax?(window.MathJax={loader:{load:["[tex]/mhchem"],source:{"[tex]/amsCd":"[tex]/amscd","[tex]/AMScd":"[tex]/amscd"}},tex:{inlineMath:{"[+]":[["$","$"]]},packages:{"[+]":["mhchem"]},tags:"ams"},options:{renderActions:{findScript:[10,n=>{document.querySelectorAll('script[type^="math/tex"]').forEach(e=>{var t=!!e.type.match(/; *mode=display/);const a=new n.options.MathItem(e.textContent,n.inputJax[0],t);t=document.createTextNode("");e.parentNode.replaceChild(t,e),a.start={node:t,delim:"",n:0},a.end={node:t,delim:"",n:0},n.math.push(a)})},"",!1],insertedScript:[200,()=>{document.querySelectorAll("mjx-container").forEach(e=>{let t=e.parentNode;"li"===t.nodeName.toLowerCase()&&t.parentNode.classList.add("has-jax")})},"",!1]}}},function(){var e=document.createElement("script");e.src="//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js",e.defer=!0,document.head.appendChild(e)}()):(MathJax.startup.document.state(0),MathJax.texReset(),MathJax.typeset())</script><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","vOffset":-100},"mobile":{"show":false,"scale":0.5},"log":false});</script></body></html>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/ficon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/icon.png">
+  <link rel="mask-icon" href="/images/icon.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"bqlin.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":false,"preload":false},"motion":{"enable":false,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="H.264（MPEG-4 Part 10， Advanced Video Coding），缩写为 MPEG-4 AVC。是一种面向块，基于运动补偿的视频编码标准。 压缩比：对于YUV420的裸流，压缩比约为1&#x2F;100。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="H.264&#x2F;MPEG-4 AVC">
+<meta property="og:url" content="https://bqlin.github.io/posts/h264/index.html">
+<meta property="og:site_name" content="權咚领域">
+<meta property="og:description" content="H.264（MPEG-4 Part 10， Advanced Video Coding），缩写为 MPEG-4 AVC。是一种面向块，基于运动补偿的视频编码标准。 压缩比：对于YUV420的裸流，压缩比约为1&#x2F;100。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/bqlin/image-land/raw/master/1615772065108-8aeea8d4-e483-4f35-90c9-27b9fc8816eb.jpeg">
+<meta property="og:image" content="https://gitee.com/bqlin/image-land/raw/master/1615772065852-0b6f6459-35d3-4cd8-9b81-597632f1a3d8.png">
+<meta property="og:image" content="https://gitee.com/bqlin/image-land/raw/master/1615772065292-fa686316-81fa-4e5d-bd6b-4f6ade8241e3.png">
+<meta property="og:image" content="https://gitee.com/bqlin/image-land/raw/master/1615772065501-b33be986-f0aa-4e30-9b01-dce4e0faf2a9.png">
+<meta property="og:image" content="https://gitee.com/bqlin/image-land/raw/master/1615772065708-481862b1-d535-4e12-b98c-6897a4e51d5f.png">
+<meta property="og:image" content="https://gitee.com/bqlin/image-land/raw/master/1615772065948-58a4d622-11bb-4fa8-8421-258c29beb872.jpeg">
+<meta property="og:image" content="https://gitee.com/bqlin/image-land/raw/master/wmxrDf.jpg">
+<meta property="og:image" content="https://gitee.com/bqlin/image-land/raw/master/471463-20171214170746310-1770557571.png">
+<meta property="og:image" content="https://gitee.com/bqlin/image-land/raw/master/1615772066961-b44bfe42-118c-4865-8053-7ad490bde618.png">
+<meta property="og:image" content="https://gitee.com/bqlin/image-land/raw/master/1615772066806-5f003f52-a8ae-452d-bc4a-ecce266ff637.png">
+<meta property="og:image" content="https://gitee.com/bqlin/image-land/raw/master/1615772066728-9a1d776d-e9b2-4d8e-a190-e883685645bf.png">
+<meta property="article:published_time" content="2021-03-15T05:34:44.000Z">
+<meta property="article:modified_time" content="2021-11-21T08:47:03.000Z">
+<meta property="article:author" content="權咚">
+<meta property="article:tag" content="音视频">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/bqlin/image-land/raw/master/1615772065108-8aeea8d4-e483-4f35-90c9-27b9fc8816eb.jpeg">
+
+<link rel="canonical" href="https://bqlin.github.io/posts/h264/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>H.264/MPEG-4 AVC | 權咚领域</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-105338942-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-105338942-1');
+      }
+    </script>
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?98fcf61fd269408d07dcbc1e49311f9a";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="權咚领域" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">權咚领域</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Making app a work of art.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://bqlin.github.io/posts/h264/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/icon.png">
+      <meta itemprop="name" content="權咚">
+      <meta itemprop="description" content="🤘🤯👾">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="權咚领域">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          H.264/MPEG-4 AVC
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-03-15 13:34:44" itemprop="dateCreated datePublished" datetime="2021-03-15T13:34:44+08:00">2021-03-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-11-21 16:47:03" itemprop="dateModified" datetime="2021-11-21T16:47:03+08:00">2021-11-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/" itemprop="url" rel="index"><span itemprop="name">音视频概念</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>6.6k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>6 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>H.264（MPEG-4 Part 10， Advanced Video Coding），缩写为 MPEG-4 AVC。是一种<strong>面向块</strong>，<strong>基于运动补偿</strong>的视频编码标准。</p>
+<p>压缩比：对于YUV420的裸流，压缩比约为1/100。</p>
+<p>新特性：</p>
+<ul>
+<li>多参考帧的运动补偿。可以带来一定的码率降低或者质量提高。</li>
+<li>变块尺寸运动补偿。可使用最大 16x16 到最小 4x4 的块来进行运动估计与运动补偿，能够对运动区域进行更精确的分割。</li>
+<li>使用六阶数字滤波器来产生二分之一像素的亮度分量预测值，可以较少混叠（Aliasing）并得到更锐化的图像。</li>
+<li>灵活的隔行扫描视频编码。</li>
+<li>1/4 像素精度的运动补偿，能够提供更高精度的运动块预测。</li>
+<li>加权的运动预测。在一些特殊场合，如淡出、淡入等情况提供相当大的编码增益。</li>
+<li>等等。。。https://zh.wikipedia.org/wiki/H.264/MPEG-4_AVC</li>
+</ul>
+<h2 id="编码原理">编码原理</h2>
+<p>对一段变化不大的图像画面，先编码出一个完整的图像帧A，随后的B帧就不编码全部图像，只写入与A帧的差别，然后继续以B的方式编码C帧，这样循环下去得到一段序列。当某幅图像与之前的图像变化很大时，无法参考前面的帧来生成，就结束上一个序列，开始下一段序列的生成。</p>
+<p>H.264 协议里定义了三种帧：</p>
+<ul>
+<li><p>完整编码的 I 帧；</p></li>
+<li><p>参考之前的 I 帧只生成的包含差异部分编码的 P 帧；</p></li>
+<li><p>参考前后的帧编码的 B 帧；</p></li>
+</ul>
+<p>H.264 采用的核心算法是帧内压缩和帧间压缩，帧内压缩是生成 I 帧的算法，帧间压缩是生成 B 帧和 P 帧的算法。</p>
+<h2 id="gop序列">GOP序列</h2>
+<p>提出的意义：按照相关性进行分组便于进行帧间压缩。这样分组的一组图像差别较少，去除的冗余/重复数据就多，压缩比就高。</p>
+<p>H.264 中以图像序列为单位进行组织，一个序列是一段图像编码后的数据流，从 I 帧开始，到下一个 I 帧结束。</p>
+<p>序列的第一个图像叫 IDR 图像（立即刷新图像），IDR 图像都是 I 帧图像。当遇到 IDR 图像时，立即将参考帧队列清空，将已解码的数据全部输出或抛弃，重新查找参数集，开始一个新的序列。这样在前一个序列出现重大错误时，可以获得重新同步的机会。</p>
+<p>一个序列就是一段内容差异不太大的图像编码后生成的一串数据流。当运动变化较少时，一个序列可以很长，所以就可以编一个 I 帧，让后一直 P 帧、B 帧了。当运动变化较多时，一个序列就可能比较短了。</p>
+<p>GOP（Group Of Pictures，图像组）是一组连续的图像，由一个I帧和多个B/P帧组成，是编解码器存取的基本单位。GOP 中帧与帧之间的差别较小。</p>
+<p>GOP结构常用的两个参数M和N，M指定GOP中首个P帧和I帧之间的距离，N指定一个GOP的大小。例如M=1，N=15，GOP结构为：</p>
+<p><span class="math display">\[
+IPBBPBBPBBPBBPB
+\]</span></p>
+<p>GOP分两种：闭合式GOP和开放式GOP：</p>
+<ul>
+<li>闭合式 GOP：闭合式GOP只需要参考本GOP内的图像即可，不需参考前后GOP的数据。这种模式决定了，闭合式GOP的显示顺序总是以I帧开始以P帧结束。</li>
+<li>开发式 GOP：开放式GOP中的B帧解码时可能要用到其前一个GOP或后一个GOP的某些帧。码流里面包含B帧的时候才会出现开放式GOP。</li>
+</ul>
+<p>如图特征，开发式GOP末尾是B帧，闭合式GOP末尾是P帧。但不管如果要称为GOP，首帧必须是I帧。</p>
+<p>开放式GOP和闭合式GOP中I帧、P帧、B帧的依赖关系如下图所示：</p>
+<p><img src="https://gitee.com/bqlin/image-land/raw/master/1615772065108-8aeea8d4-e483-4f35-90c9-27b9fc8816eb.jpeg" /></p>
+<p>GOP 指两个 I 帧之间的距离。参考周期（Reference）指两个 P 帧之间中距离。I、B、P 帧所占字节数大小：I &gt; P &gt; B。</p>
+<p>所以在码率不变的前提下，GOP 值越大，P、B 帧的数量会越多，平均每个 I、P、B 帧所占的字节数就越多，也就容易获得较好的图像质量。通过提高 GOP 值来提高图像质量是有限度的，在遇到场景切换的情况下，编码器会自动强制插入一个 I 帧，此时实际的 GOP 值被缩短。另一方面，在一个 GOP 中，P 帧由 I 帧预测得到的，当 I 帧的图像质量比较差时，会影响一个 GOP 中后续 P、B 帧的图像质量。直到下一个 GOP 开始才有可能得到恢复，所以 GOP 值也不宜设置过大。</p>
+<p>同时，由于 P、B 帧的复杂度大于 I 帧，所以过多的 P、B 帧会影响编码效率，使得编码效率降低。另外，过长的 GOP 还会影响 seek 操作的响应速度，因为 P、B 帧是由前面的 I 或 P 帧预测得到的，所以 seek 操作需要直接定位、解码某一个 P 或 B 帧时，需要先解码得到本 GOP 内的 I 帧及之前的 N 个预测帧才可以，GOP 值越长，需要解码的预测帧就越多，seek 响应的时间也就越长。</p>
+<h2 id="帧">帧</h2>
+<h3 id="i-帧">I 帧</h3>
+<p>Intra-coded picture，帧内编码图像帧，常称为关键帧。</p>
+<p>不参考其他图像帧，只利用本帧信息进行编码。包含一幅完整的图像信息，属于帧内编码图像，不含运动矢量，在解码时不需要参考其他帧图像。因此在I帧图像处可以切换频道，而不会导致图像丢失或无法解码。I帧图像用于阻止误差的累积和扩散。在闭合式GOP中，每个GOP的第一个帧一定是I帧（IDR帧），且当前GOP的数据不会参考前后GOP的数据。</p>
+<h4 id="idr-帧">IDR 帧</h4>
+<p>Instantaneous Decoding Refresh picture，即时解码刷新帧，是一种特殊的I帧。当解码器解码到IDR帧时，会将DPB（Decoded Picture Buffer，指前后向参考帧列表）清空，将已解码的数据全部输出或抛弃，然后开始一次全新的解码序列。IDR帧之后的图像不会参考IDR帧<strong>之前</strong>的图像。</p>
+<p>在编码解码中为了方便，将GOP中首个I帧要和其他I帧区别开，把第一个I帧叫IDR，这样方便控制编码和解码流程，所以IDR帧一定是I帧，但I帧不一定是IDR帧；IDR帧的作用是立刻刷新，<strong>使错误不致传播</strong>，从IDR帧开始算新的序列开始编码。I帧有被跨帧参考的可能，IDR不会。</p>
+<p>I帧不用参考任何帧，但是之后的P帧和B帧是有可能参考这个I帧之前的帧的。IDR就不允许这样，例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">IDR1 P4 B2 B3 P7 B5 B6 I10 B8 B9 P13 B11 B12 P16 B14 B15</span><br><span class="line">这里的B8可以跨过I10去参考P7</span><br><span class="line">IDR1 P4 B2 B3 P7 B5 B6 IDR8 P11 B9 B10 P14 B11 B12</span><br><span class="line">这里的B9就只能参照IDR8和P11，不可以参考IDR8前面的帧</span><br></pre></td></tr></table></figure>
+<p>总结：</p>
+<ul>
+<li>解码器立即刷新，清空参考帧缓冲区（DPB），防止错误传播。</li>
+<li>GOP第一帧是IDR帧，是特殊的I帧。</li>
+<li>GOP只有一个IDR帧，但可能还有多个I帧。</li>
+<li>IDR帧之后的图像不会参考其之前的帧，但普通I帧就没有这个限制。</li>
+</ul>
+<h3 id="p-帧">P 帧</h3>
+<p>Predictive-coded picture，预测编码图像帧，帧间编码帧。</p>
+<p>利用之前的 I 帧或 P 帧，采用运动预测的方式进行预测编码。<strong>不会参考B帧。</strong></p>
+<ul>
+<li>P 帧属于前向预测的帧间编码，只参考最靠近它的 I 帧或 P 帧。它只占 I 帧大小的一半。</li>
+<li>P 帧可以作为后面 P 帧的参考帧，也可以作为其前后的 B 帧的参考帧。</li>
+</ul>
+<h3 id="b-帧">B 帧</h3>
+<p>Bidirectionally predicted picture，双向预测编码图像帧，帧间编码帧。</p>
+<p>提供最高的压缩比，她既需要之前的图像帧（I 帧或 P 帧），也需要后来的图像帧（P 帧），采用运动预测的方式进行帧间双向预测编码。<strong>不会参考附近的 B 帧。</strong></p>
+<p>占 I 帧的 1/4 大小，压缩比最大，但解码的时候占用资源和耗时也是最大的。在实时通信中较少使用 B 帧，点播、存储的视频则可以较多地使用 B 帧。</p>
+<ul>
+<li>B 帧值反映两参考帧间运动主体的变化情况，预测比较准确。</li>
+<li>B 帧会比附近的 P 帧后解码，即先解码附近的帧才能解码当前B帧。</li>
+</ul>
+<h3 id="帧与分组的关系">帧与分组的关系</h3>
+<p><img src="https://gitee.com/bqlin/image-land/raw/master/1615772065852-0b6f6459-35d3-4cd8-9b81-597632f1a3d8.png" /></p>
+<p>箭头指向的帧参考箭头起点的帧。解码 B 帧需要解码参考的前后帧。解码的顺序与播放的顺序是不一致的，因此就有了下面的话题。</p>
+<h3 id="spspps">SPS、PPS</h3>
+<p>SPS、PPS 不称为帧，只是在 IDR 帧前的参数数据，这两个信息一般同时出现。</p>
+<ul>
+<li>SPS，Sequence Parameter Set，序列参数集
+<ul>
+<li>作用于一串连续的视频图像，对帧组 GOP 的参数设置。</li>
+<li>如：seq_parameter_set_id、帧数、POC（picture order count）的约束、参考帧数量、解码图像尺寸、场编码模式选择标志等。</li>
+</ul></li>
+<li>PPS，Picture Parameter Set，图像参数集
+<ul>
+<li>作用于视频序列中的图像，GOP 中每一幅图像等参数设置。</li>
+<li>如：pic_parameter_set_id、熵编码模式选择标志、片组数目、初始量化参数、去方块滤波系数调整标志等。</li>
+</ul></li>
+</ul>
+<h4 id="sps">SPS</h4>
+<ul>
+<li>H264 Profile：对视频压缩特性的描述，profile 越高，说明采用了越高级的压缩特性，对应的压缩比也越高。</li>
+<li>H264 Level：对视频规格的描述，level 越高，视频的码率、分辨率、帧率越高。</li>
+</ul>
+<p>H264 Profile：</p>
+<p><img src="https://gitee.com/bqlin/image-land/raw/master/1615772065292-fa686316-81fa-4e5d-bd6b-4f6ade8241e3.png" /></p>
+<p>如上图，从Constrained Baseline Profile为核心发展出两个方向的分支，一个是Main Profile；另一个是Baseline Profile和Extended Profile。Main比Constrained Baseline压缩比高（有B帧和更高压缩比的CABAC无损压缩算法）。我们用得更多的是Main Profile方向的分支，下面是该分支的发展的具体Profile。</p>
+<p><img src="https://gitee.com/bqlin/image-land/raw/master/1615772065501-b33be986-f0aa-4e30-9b01-dce4e0faf2a9.png" /></p>
+<p>High应该是压缩比最高的profile，后面不断增加的是质量方面的特性。</p>
+<p>H264 Level：</p>
+<p><img src="https://gitee.com/bqlin/image-land/raw/master/1615772065708-481862b1-d535-4e12-b98c-6897a4e51d5f.png" /></p>
+<p>其他重要参数：</p>
+<p><strong>分辨率</strong>相关参数：</p>
+<ul>
+<li>pic_width_in_mbs_minus1：图像宽度包含的宏块个数-1（这里好获取具体宽度还要获取宏块宽度，默认是16）</li>
+<li>pic_height_in_mbs_minus1：图像高度包含的宏块个数-1</li>
+<li>frame_mbs_only_flag：帧编码还是场编码（场是隔行扫描，产生两张图，该参数会影响分辨率的计算）</li>
+<li>frame_cropping_flag：图像是否需要裁剪（有裁剪的，还要减去裁剪的尺寸）
+<ul>
+<li>frame_crop_left_offset：减去左侧的偏移量</li>
+<li>frame_crop_right_offset：减去右侧的偏移量</li>
+<li>frame_crop_top_offset：减去顶部的偏移量</li>
+<li>frame_crop_bottom_offset：减去底部的偏移量</li>
+</ul></li>
+</ul>
+<p>通过 pic_width_in_mbs_minus1、pic_height_in_mbs_minus1、宏块宽高（默认 16x16）以及考虑 frame_mbs_only_flag、frame_cropping_flag，可以得出分辨率。</p>
+<p><strong>GOP帧信息</strong>参数：</p>
+<ul>
+<li>log2_max_frame_num_minus4：可得出GOP的最大帧数：2的该值次方+4。
+<ul>
+<li>可通过该值与 slice header 的 frame_num，得出被解码的帧的序号。</li>
+</ul></li>
+<li>max_num_ref_frames：参考帧的数量。
+<ul>
+<li>用于设置解码时候的缓冲队列大小。</li>
+</ul></li>
+<li>pic_order_cnt_type：显示帧的序号类型。
+<ul>
+<li>通过计算可得出显示的顺序。</li>
+</ul></li>
+</ul>
+<p>帧率计算：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">framerate = (float)(sps-&gt;vui.vui_time_scale) /</span><br><span class="line">            (float)(sps-&gt;vui.vui_num_units_in_tick) /</span><br><span class="line">            2.0</span><br></pre></td></tr></table></figure>
+<h4 id="pps">PPS</h4>
+<ul>
+<li>entropy_coding_mode_flag：熵编码类型，1表示使用 CABAC，0则为CAVLC。</li>
+<li>num_slice_groups_minus1：分片数量。</li>
+<li>weighted_pred_flag：在 P/SP Slice 中是否开启权重预测。</li>
+<li>weighted_bipred_idc：在 B Slice 中加权预测的方法类型。</li>
+<li>pic_init_qp_minus26/pic_init_qs_minus26：初始化量化参数，实际参数在 Slice Header 中。</li>
+<li>chroma_qp_index_offset：用于计算色度的量化参数。</li>
+<li>deblocking_filter_control_present_flag：表示 Slice Header 中是否存在去块滤波器控制的信息。</li>
+<li>constrained_intra_pred_flag：若为1，表示 I 宏块在进行帧内预测时只能使用来自 I 和 SI 类型的宏块的信息。</li>
+<li>redundant_pic_cnt_present_flag：用于表示 Slice Header 中是否存在 redundant_pic_cnt 语法元素。</li>
+</ul>
+<h3 id="slice-header">Slice Header</h3>
+<ul>
+<li>帧类型</li>
+<li>GOP中解码帧序号（当有 B 帧的时候，并不是顺序解码的）</li>
+<li>预测权重</li>
+<li>滤波</li>
+</ul>
+<h2 id="dtspts">DTS、PTS</h2>
+<ul>
+<li>DTS（Decode Time Stamp，解码时间戳）：表示packet的解码时间，主要用于视频的编码，在编码阶段使用。主要标识内存的包什么时候送入解码器中解码。解码阶段使用。</li>
+<li>PTS（Presentation Time Stamp，显示时间戳）：表示packet解码后数据的显示时间，主要用于视频的同步和输出。显示阶段使用。</li>
+</ul>
+<p>音频中DTS和PTS是相同的。视频中由于B帧需要双向预测，B帧依赖于其前和其后的帧，因此含B帧的视频解码顺序与显示顺序不同，即DTS与PTS不同。当然，不含B帧的视频，其DTS和PTS是相同的。下图以一个开放式GOP示意图为例，说明视频流的解码顺序和显示顺序。</p>
+<p><img src="https://gitee.com/bqlin/image-land/raw/master/1615772065948-58a4d622-11bb-4fa8-8421-258c29beb872.jpeg" /></p>
+<ul>
+<li><code>采集顺序</code>：指图像传感器采集原始信号得到图像帧的顺序。</li>
+<li><code>编码顺序</code>：指编码器编码后图像帧的顺序。存储到磁盘的本地视频文件中图像帧的顺序与编码顺序相同。</li>
+<li><code>传输顺序</code>：指编码后的流在网络中传输过程中图像帧的顺序。</li>
+<li><code>解码顺序</code>：指解码器解码图像帧的顺序。</li>
+<li><code>显示顺序</code>：指图像帧在显示器上显示的顺序。</li>
+</ul>
+<p><strong><em>采集顺序与显示顺序相同。编码顺序、传输顺序和解码顺序相同。</em></strong></p>
+<p>图中“B[1]”帧依赖于“I[0]”帧和“P[3]”帧，因此“P[3]”帧必须比“B[1]”帧先解码。这就导致了解码顺序和显示顺序的不一致，后显示的帧需要先解码。</p>
+<p>可见，在没有B帧的时候，DTS和PTS是是一致的。</p>
+<h2 id="码流">码流</h2>
+<p>H.264原始码流（裸流）是由一个接一个NALU组成。</p>
+<p>按其功能可能将其分层：</p>
+<ul>
+<li>VCL层，Video Coding Layer，视频数据编码层。
+<ul>
+<li>保存视频压缩后的数据。</li>
+</ul></li>
+<li>NAL层，Network Abstraction Layer，视频数据网络抽象层，最外层。
+<ul>
+<li>对VCL视频编码层数据拆成多个包传输，并提供header等信息。</li>
+<li>为解决网络传输中丢包、乱序、重传问题提供标记。</li>
+</ul></li>
+</ul>
+<p><img src="https://gitee.com/bqlin/image-land/raw/master/wmxrDf.jpg" /></p>
+<p><img src="https://gitee.com/bqlin/image-land/raw/master/471463-20171214170746310-1770557571.png" /></p>
+<p>相关术语：</p>
+<ul>
+<li>SODB，String Of Data Bits：位串。
+<ul>
+<li>原始数据比特流/二进制数据串，以位编码在一起，长度不一定是8的倍数，故需要补齐。</li>
+<li>由 VCL 层产生。</li>
+</ul></li>
+<li>RBSP，Raw Byte Sequence Payload：字节序列负载数据。
+<ul>
+<li>SODB + trailing bits，如果SODB最后一个字节不对齐，则补1和多个0。</li>
+</ul></li>
+<li>EBSP，Encapsulated Byte Sequence Payload：扩展字节序列负载数据。
+<ul>
+<li>在每一帧开头添加起始位。</li>
+</ul></li>
+<li>NALU，NAL 单元：多个NAL单元组成H264码流。</li>
+</ul>
+<p>关系：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">RBSP = SODB + RBSP Stop bit + 0 bits</span><br><span class="line">EBSP = RBSP part1 + 0x03 + RBSP part2 + 0x03 + ... + RBSP partN</span><br><span class="line">NALU = NALU Header(1 byte) + EBSP</span><br></pre></td></tr></table></figure>
+<h3 id="nal-unit">NAL Unit</h3>
+<p>码流的总体结构：</p>
+<p><img src="https://gitee.com/bqlin/image-land/raw/master/1615772066961-b44bfe42-118c-4865-8053-7ad490bde618.png" /></p>
+<ul>
+<li>Annexb 格式用于文件存储、本地播放，是在NALU前面增加了StartCode。</li>
+<li>RTP 格式用于网络传播，直接就是传输NALU。</li>
+</ul>
+<p>NALU有两种格式：</p>
+<ul>
+<li>Annex B/Elementary Stream：以<code>0x00_00_01</code>或<code>0x00_00_00_01</code>开头。</li>
+<li>AVCC/MPEG-4：以所在NALU长度开头。</li>
+</ul>
+<p>宏块存储数据：</p>
+<ul>
+<li>mb_type：宏块类型</li>
+<li>mb_pred：预测类型值</li>
+<li>coded residual，残差值</li>
+</ul>
+<p>宏块与帧的关系：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1片 = N宏块</span><br><span class="line">1帧 = N片</span><br><span class="line">常常一个NALU只包含1个片</span><br></pre></td></tr></table></figure>
+<p>片的出现：设置片的目的是为了限制误码的扩散和传输，让编码片之间相互独立，如某片的预测不能以其他片中的宏块为参考图像，以防止某片中的预测错误传播到其他片中。</p>
+<p>层级划分：</p>
+<p><img src="https://gitee.com/bqlin/image-land/raw/master/1615772066806-5f003f52-a8ae-452d-bc4a-ecce266ff637.png" /></p>
+<p>VCL结构关系：</p>
+<p><img src="https://gitee.com/bqlin/image-land/raw/master/1615772066728-9a1d776d-e9b2-4d8e-a190-e883685645bf.png" /></p>
+<p>其中，SPS、PPS不是VCL产生的，但以NALU传输，对于正确解码非常重要。可以通过独立的服务来发送参数集。</p>
+<h2 id="分析工具">分析工具</h2>
+<ul>
+<li>Elecard Stream Eye
+<ul>
+<li>https://www.elecard.com/products/video-analysis</li>
+</ul></li>
+<li>CodecVisa</li>
+<li>雷神开发的工具
+<ul>
+<li>https://jaist.dl.sourceforge/project/h254streamanalysis/binary/SpecialVH264.exe</li>
+<li>https://sourceforge.net/projects/videoeye/files/</li>
+</ul></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/" rel="tag"># 音视频</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/posts/video_compression_technology/" rel="prev" title="视频压缩技术">
+      <i class="fa fa-chevron-left"></i> 视频压缩技术
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/posts/avc_profile_and_level/" rel="next" title="AVC Profile & Level">
+      AVC Profile & Level <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%96%E7%A0%81%E5%8E%9F%E7%90%86"><span class="nav-text">编码原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gop%E5%BA%8F%E5%88%97"><span class="nav-text">GOP序列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%A7"><span class="nav-text">帧</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#i-%E5%B8%A7"><span class="nav-text">I 帧</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#idr-%E5%B8%A7"><span class="nav-text">IDR 帧</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#p-%E5%B8%A7"><span class="nav-text">P 帧</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#b-%E5%B8%A7"><span class="nav-text">B 帧</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%A7%E4%B8%8E%E5%88%86%E7%BB%84%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-text">帧与分组的关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#spspps"><span class="nav-text">SPS、PPS</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#sps"><span class="nav-text">SPS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#pps"><span class="nav-text">PPS</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#slice-header"><span class="nav-text">Slice Header</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dtspts"><span class="nav-text">DTS、PTS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A0%81%E6%B5%81"><span class="nav-text">码流</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#nal-unit"><span class="nav-text">NAL Unit</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7"><span class="nav-text">分析工具</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="權咚"
+      src="/images/icon.png">
+  <p class="site-author-name" itemprop="name">權咚</p>
+  <div class="site-description" itemprop="description">🤘🤯👾</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">75</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/bqlin" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;bqlin" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/hearingdog" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;hearingdog" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://xiaozhuanlan.com/metal-reference-translation" title="https:&#x2F;&#x2F;xiaozhuanlan.com&#x2F;metal-reference-translation" rel="noopener" target="_blank">Metal内参</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://xiaozhuanlan.com/wwdc21" title="https:&#x2F;&#x2F;xiaozhuanlan.com&#x2F;wwdc21" rel="noopener" target="_blank">WWDC21 内参</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2016 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">權咚</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">269k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">4:05</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'default',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","vOffset":-100},"mobile":{"show":false,"scale":0.5},"log":false});</script></body>
+</html>

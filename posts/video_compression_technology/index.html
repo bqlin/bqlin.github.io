@@ -1,1 +1,766 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=2"><meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.0"><link rel="apple-touch-icon" sizes="180x180" href="/images/icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/images/ficon.png"><link rel="icon" type="image/png" sizes="16x16" href="/images/icon.png"><link rel="mask-icon" href="/images/icon.png" color="#222"><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"><link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css"><script src="/lib/pace/pace.min.js"></script><script id="hexo-configurations">var NexT=window.NexT||{},CONFIG={hostname:"bqlin.github.io",root:"/",scheme:"Gemini",version:"7.8.0",exturl:!1,sidebar:{position:"left",display:"post",padding:18,offset:12,onmobile:!1},copycode:{enable:!1,show_result:!1,style:null},back2top:{enable:!0,sidebar:!1,scrollpercent:!1},bookmark:{enable:!1,color:"#222",save:"auto"},fancybox:!1,mediumzoom:!1,lazyload:!1,pangu:!0,comments:{style:"tabs",active:null,storage:!0,lazyload:!1,nav:null},algolia:{hits:{per_page:10},labels:{input_placeholder:"Search for Posts",hits_empty:"We didn't find any results for the search: ${query}",hits_stats:"${hits} results found in ${time} ms"}},localsearch:{enable:!0,trigger:"auto",top_n_per_article:-1,unescape:!1,preload:!1},motion:{enable:!1,async:!0,transition:{post_block:"fadeIn",post_header:"slideDownIn",post_body:"slideDownIn",coll_header:"slideLeftIn",sidebar:"slideUpIn"}},path:"search.xml"}</script><meta name="description" content="与音频压缩编码不同，视频的压缩编码基本都是有损压缩。H.264是多种视频压缩技术的集大成者，其使用技术的还要追溯到H.261。 宏块"><meta property="og:type" content="article"><meta property="og:title" content="视频压缩技术"><meta property="og:url" content="https://bqlin.github.io/posts/video_compression_technology/index.html"><meta property="og:site_name" content="權咚领域"><meta property="og:description" content="与音频压缩编码不同，视频的压缩编码基本都是有损压缩。H.264是多种视频压缩技术的集大成者，其使用技术的还要追溯到H.261。 宏块"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://gitee.com/bqlin/image-land/raw/master/1615772066040-cda01df7-9404-4968-a184-51c3b57d18a4.png"><meta property="og:image" content="https://gitee.com/bqlin/image-land/raw/master/1615772066130-90d3dc38-05c1-4288-affd-bc149ce06f3b.png"><meta property="og:image" content="https://gitee.com/bqlin/image-land/raw/master/1615772066253-12d77bff-0f01-4394-b508-18ef64f42acc.png"><meta property="og:image" content="https://gitee.com/bqlin/image-land/raw/master/1615772066362-562246ee-ae43-4ba4-bfde-8e1093499588.png"><meta property="og:image" content="https://blog.xinoassassin.me/images/mc-vector.jpg"><meta property="og:image" content="https://blog.xinoassassin.me/images/CABAC.jpg"><meta property="og:image" content="https://gitee.com/bqlin/image-land/raw/master/1615772066655-5b9dfeca-bd92-4022-9ef7-fef968120e26.png"><meta property="og:image" content="https://pic3.zhimg.com/80/v2-6ab263372cec8b4a544d858d3a7fdc32_1440w.jpg"><meta property="og:image" content="https://pic3.zhimg.com/80/v2-048c202f6368d7f2cc5d3d2a59f7fd2a_1440w.jpg"><meta property="article:published_time" content="2021-03-15T04:34:44.000Z"><meta property="article:modified_time" content="2021-10-28T04:26:38.000Z"><meta property="article:author" content="權咚"><meta property="article:tag" content="音视频"><meta name="twitter:card" content="summary"><meta name="twitter:image" content="https://gitee.com/bqlin/image-land/raw/master/1615772066040-cda01df7-9404-4968-a184-51c3b57d18a4.png"><link rel="canonical" href="https://bqlin.github.io/posts/video_compression_technology/"><script id="page-configurations">CONFIG.page={sidebar:"",isHome:!1,isPost:!0,lang:"zh-CN"}</script><title>视频压缩技术 | 權咚领域</title><script async src="https://www.googletagmanager.com/gtag/js?id=UA-105338942-1"></script><script>function gtag(){dataLayer.push(arguments)}CONFIG.hostname===location.hostname&&(window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","UA-105338942-1"))</script><script>var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="https://hm.baidu.com/hm.js?98fcf61fd269408d07dcbc1e49311f9a";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script><noscript><style>.sidebar-inner,.use-motion .brand,.use-motion .collection-header,.use-motion .comments,.use-motion .menu-item,.use-motion .pagination,.use-motion .post-block,.use-motion .post-body,.use-motion .post-header{opacity:initial}.use-motion .site-subtitle,.use-motion .site-title{opacity:initial;top:initial}.use-motion .logo-line-before i{left:initial}.use-motion .logo-line-after i{right:initial}</style></noscript><link rel="alternate" href="/atom.xml" title="權咚领域" type="application/atom+xml"></head><body itemscope itemtype="http://schema.org/WebPage"><div class="container"><div class="headband"></div><header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="header-inner"><div class="site-brand-container"><div class="site-nav-toggle"><div class="toggle" aria-label="切换导航栏"><span class="toggle-line toggle-line-first"></span> <span class="toggle-line toggle-line-middle"></span> <span class="toggle-line toggle-line-last"></span></div></div><div class="site-meta"><a href="/" class="brand" rel="start"><span class="logo-line-before"><i></i></span><h1 class="site-title">權咚领域</h1><span class="logo-line-after"><i></i></span></a><p class="site-subtitle" itemprop="description">Making app a work of art.</p></div><div class="site-nav-right"><div class="toggle popup-trigger"><i class="fa fa-search fa-fw fa-lg"></i></div></div></div><nav class="site-nav"><ul id="menu" class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-search"><a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索</a></li></ul></nav><div class="search-pop-overlay"><div class="popup search-popup"><div class="search-header"><span class="search-icon"><i class="fa fa-search"></i></span><div class="search-input-container"><input autocomplete="off" autocapitalize="off" placeholder="搜索..." spellcheck="false" type="search" class="search-input"></div><span class="popup-btn-close"><i class="fa fa-times-circle"></i></span></div><div id="search-result"><div id="no-result"><i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i></div></div></div></div></div></header><div class="back-to-top"><i class="fa fa-arrow-up"></i> <span>0%</span></div><main class="main"><div class="main-inner"><div class="content-wrap"><div class="content post posts-expand"><article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN"><link itemprop="mainEntityOfPage" href="https://bqlin.github.io/posts/video_compression_technology/"><span hidden itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="image" content="/images/icon.png"><meta itemprop="name" content="權咚"><meta itemprop="description" content="🤘🤯👾"></span><span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization"><meta itemprop="name" content="權咚领域"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">视频压缩技术</h1><div class="post-meta"><span class="post-meta-item"><span class="post-meta-item-icon"><i class="far fa-calendar"></i> </span><span class="post-meta-item-text">发表于</span> <time title="创建时间：2021-03-15 12:34:44" itemprop="dateCreated datePublished" datetime="2021-03-15T12:34:44+08:00">2021-03-15</time> </span><span class="post-meta-item"><span class="post-meta-item-icon"><i class="far fa-calendar-check"></i> </span><span class="post-meta-item-text">更新于</span> <time title="修改时间：2021-10-28 12:26:38" itemprop="dateModified" datetime="2021-10-28T12:26:38+08:00">2021-10-28</time> </span><span class="post-meta-item"><span class="post-meta-item-icon"><i class="far fa-folder"></i> </span><span class="post-meta-item-text">分类于</span> <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/" itemprop="url" rel="index"><span itemprop="name">音视频概念</span></a> </span></span><span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display:none"><span class="post-meta-item-icon"><i class="fa fa-eye"></i> </span><span class="post-meta-item-text">阅读次数：</span> <span id="busuanzi_value_page_pv"></span></span><br><span class="post-meta-item" title="本文字数"><span class="post-meta-item-icon"><i class="far fa-file-word"></i> </span><span class="post-meta-item-text">本文字数：</span> <span>2.4k</span> </span><span class="post-meta-item" title="阅读时长"><span class="post-meta-item-icon"><i class="far fa-clock"></i> </span><span class="post-meta-item-text">阅读时长 &asymp;</span> <span>2 分钟</span></span></div></header><div class="post-body" itemprop="articleBody"><p>与音频压缩编码不同，视频的压缩编码基本都是有损压缩。H.264是多种视频压缩技术的集大成者，其使用技术的还要追溯到H.261。</p><h3 id="宏块">宏块</h3><p>宏块是视频压缩操作的基本单元。无论是帧内压缩还是帧间压缩，它们都是以宏块为单位。</p><p>宏块是按像素进行划分的。宏块划分得小，压缩的控制力就大一些，处理速度也会降下来。</p><p>宏块还可以划分为子块。</p><p>宏块划分尺寸：</p><p><img src="https://gitee.com/bqlin/image-land/raw/master/1615772066040-cda01df7-9404-4968-a184-51c3b57d18a4.png"></p><h3 id="帧内预测">帧内预测</h3><p>理论基础：</p><ul><li>相邻像素差别不大，可以进行<strong>宏块</strong>预测。宏块与宏块之间进行比较，而不是像素对比。</li><li>人对亮度的敏感度超过色度。YUV 很容易将亮度与色度分离。组合上面的点，可以将亮度与色度区分处理。以下的帧内预测，亮度与色度是区分处理的。</li></ul><p>H.264将单个宏块内的像素颜色变化规律规范成了公式，编码时只要写此处应用哪个公式就行了。</p><h5 id="选择帧内预测模式">1. 选择帧内预测模式</h5><p>帧内预测模式有9种，通过与目标宏块对比选择最适合的模式，将预测的宏块变成预测模式编号。</p><p><img src="https://gitee.com/bqlin/image-land/raw/master/1615772066130-90d3dc38-05c1-4288-affd-bc149ce06f3b.png"></p><p><img src="https://gitee.com/bqlin/image-land/raw/master/1615772066253-12d77bff-0f01-4394-b508-18ef64f42acc.png"></p><h5 id="叠加残差">2. 叠加残差</h5><p>帧内预测残差值，通过预测出来的与原始图像进行对比得出。</p><p><img src="https://gitee.com/bqlin/image-land/raw/master/1615772066362-562246ee-ae43-4ba4-bfde-8e1093499588.png"></p><p>预测模式信息+残差值。预测得出的图像颜色是基于宏块的，平滑度有限，叠加残差值来磨平这些色差。</p><h3 id="帧间预测">帧间预测</h3><p>对每帧图像压缩，压缩比始终有限，因此提出了对一组图片做消除冗余。</p><figure><img src="https://blog.xinoassassin.me/images/mc-vector.jpg" alt="img"><figcaption aria-hidden="true">img</figcaption></figure><ol type="1"><li>把强相关的帧进行分组，形成GOP（<strong>G</strong>roup <strong>o</strong>f <strong>P</strong>ictures）。</li><li>进行运动估计（宏块查找/匹配 -&gt; 运动矢量）。这是一个过程，通过宏块匹配，得出运动矢量，最终存储的是初始状态和运动矢量。</li><li>进行运动补偿（解码），补偿的是残差值。</li></ol><p>引入基于运动补偿帧间预测算法后，视频中的帧就分为两类：</p><ul><li>关键帧：完整的静态图像，可以被直接解码。</li><li>预测帧/参考帧：通过运动补偿算法在关键帧之上计算得到。根据帧的依赖方向还可以分为：<ul><li>预测编码图像帧，P帧（Predictive-coded picture）：只能参考前面的关键帧和P帧。</li><li>双向预测编码图像帧，B帧（Bidirectionally predicted picture）：能参考前后的关键帧和P帧，但不能参考前后的B帧。</li></ul></li></ul><p>进入帧间预测编码的常见问题：</p><ul><li>花屏。GOP分组有帧（P、B）丢失，会造成解码端端图像发生错误，出现马赛克。</li><li>卡顿。其实是为了避免花屏问题的发生而导致的新的问题，当发现有帧丢失的时候，就丢弃GOP内所有的帧，直到下一个IDR帧重新刷新图像。I帧是按照周期来的，需要一个较长的时间周期才到达下一个I帧。如果在下一个I帧之前不显示后面的图像，视频久静止不动了，出现卡顿。</li></ul><h3 id="dct">DCT</h3><p>DCT，Discrete Cosine Transform，离散余弦变换。帧内编码算法。在图像压缩算法上，H.261使用了DCT算法，把图像从空间域转换到频率域，然后做量化，减少人眼不敏感的高频信息，保留绝大部分低频信息，从而减少图像体积。然后再用高效的数据编码方式把处理后的数据进一步压缩。</p><p>DCT将图像分成由不同频率组成的小块，然后进行量化。在量化过程中，舍弃高频分量，剩下的低频分量被保存下来用于后面的图像重建。</p><p>DCT具备<strong>去相关性</strong>和<strong>能量集中</strong>的特性。DCT本身并不会压缩数据，它为随后的量化之类的操作，提供了一个良好的基础。</p><p>DCT在后来的JPEG编码中起主要作用。</p><h3 id="cabac">CABAC</h3><p>在编码的最后阶段，即可以去除的冗余信息都去除后，对数据进行无损压缩。H.264除了支持在H.261中就存在的VLC编码外，新增加了两种无损数据压缩编码，一种是VLC的升级版——CAVLC，另一种是复杂程度更高的CABAC（前文参考之适应性二元算术编码，<strong>C</strong>ontext-based <strong>A</strong>daptive <strong>B</strong>inary <strong>A</strong>rithmetic <strong>C</strong>oding）。</p><figure><img src="https://blog.xinoassassin.me/images/CABAC.jpg" alt="img"><figcaption aria-hidden="true">img</figcaption></figure><p>CABAC也是一种熵编码，主要原理也是用长编码替换掉出现频率少的数据，而用短编码替换出现频率高的数据，但它引入了更多统计学优化，并且具有动态适应能力。虽然在解码时需要更多计算，但它能够比CAVLC节省更多的数据量，通常能有10%。</p><h3 id="编码树单元">编码树单元</h3><p>HEVC引入了新的编码树单元（<strong>C</strong>oding <strong>T</strong>ree <strong>U</strong>nits）概念，取代掉了存在于视频编码中多年的宏块概念，它的单块面积大了许多，达到了64x64，但仍然保留了可变大小和可分割特性，最小单元为16x16。单个编码树中包含了小的编码单元，它们可以由四分树形式呈现，并很快地可以确定下其中的单元是否可被再分割，内部编码单元最小可以被分割为8x8大小，精细程度仍然是非常高的。</p><p>单个编码单元也可以继续被切割、分类，可以成为预测单元（Prediction Units），后者可以指示该单元的预测形式，是画面内预测还是画面间预测或者甚至是根本没有变化、可以被跳过的单元；也可以成为转换单元（Transform Units），它可以做DCT转换或是量化。</p><p>编码树单元的引入让HEVC既可以用大面积单元来提高编码效率，也可在需要的时候细化，保留更精细的细节。所谓该粗略的地方就粗略，该精细的地方就精细，HEVC在它的帮助下让码流的效率更高。</p><h2 id="趋势">趋势</h2><p>H.261奠定宏块和帧间预测的基础，H.264/AVC是多种压缩技术的集大成者。HEVC主要是针对高清及超清分辨率视频而开发的，相比起前代AVC，它在低码率时拥有更好的画质表现，同时在面对高分辨率视频时，也能提供超高的压缩比，帮助4K视频塞入蓝光光盘。</p><h2 id="h.264编码流程">H.264编码流程</h2><p><img src="https://gitee.com/bqlin/image-land/raw/master/1615772066655-5b9dfeca-bd92-4022-9ef7-fef968120e26.png"></p><figure><img src="https://pic3.zhimg.com/80/v2-6ab263372cec8b4a544d858d3a7fdc32_1440w.jpg" alt="img"><figcaption aria-hidden="true">img</figcaption></figure><figure><img src="https://pic3.zhimg.com/80/v2-048c202f6368d7f2cc5d3d2a59f7fd2a_1440w.jpg" alt="img"><figcaption aria-hidden="true">img</figcaption></figure><ol type="1"><li>帧类型分析 -&gt; I帧、P帧、B帧、GOP</li><li>划分宏块及其子块</li><li>I帧进行帧内预测，最终存储预测模式、残差（去除空间冗余）<ol type="1"><li>选择帧内预测模式</li><li>叠加残差</li></ol></li><li>P/B帧进行帧间预测，最终存储帧间预测模式标志位、运动矢量、残差（去除时间冗余）<ol type="1"><li>运动估计：宏块查找、匹配 -&gt; 运动矢量</li><li>运动补偿：叠加残差</li></ol></li><li>DCT变换、量化，丢弃高频信息（去除空间冗余）</li><li>滤波，通过滤波修正并提升主观质量</li><li>熵编码（如：CAVLC、CABAC）压缩最终数据（去除编码冗余）</li></ol><h2 id="参考">参考</h2><ul><li><a href="b8de6d0c93705a606b91010096b22446">视频编解码基础概念 - 叶余 - 博客园</a></li><li><a target="_blank" rel="noopener" href="https://blog.xinoassassin.me/2020/03/Video-Codecs/">数字视频编码的发展历程</a></li><li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzU1NTEzOTM5Mw==&amp;mid=2247512538&amp;idx=1&amp;sn=57f46386002cf5554681f8ef9f61a3e0&amp;chksm=fbda19f4ccad90e219bf224db522e9999086dff886bae09562e1aeba4450d4ba0247a73c3138&amp;scene=21#wechat_redirect">视频压缩标准简史：从1929到2020</a></li><li><a target="_blank" rel="noopener" href="http://zhaoxuhui.top/blog/2018/05/26/DCTforImageDenoising.html">DCT变换与图像压缩、去燥</a></li><li><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Advanced_Video_Coding">Advanced Video Coding - Wikipedia</a></li><li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/158392753">H.264编解码原理浅析 - 知乎</a></li></ul></div><div class="followme"><p>欢迎关注我的其它发布渠道</p><div class="social-list"><div class="social-item"><a target="_blank" class="social-link" href="/atom.xml"><span class="icon"><i class="fa fa-rss"></i> </span><span class="label">RSS</span></a></div></div></div><footer class="post-footer"><div class="post-tags"><a href="/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/" rel="tag"># 音视频</a></div><div class="post-nav"><div class="post-nav-item"><a href="/posts/yuv/" rel="prev" title="YUV"><i class="fa fa-chevron-left"></i> YUV</a></div><div class="post-nav-item"><a href="/posts/h264/" rel="next" title="H.264/MPEG-4 AVC">H.264/MPEG-4 AVC <i class="fa fa-chevron-right"></i></a></div></div></footer></article></div><script>window.addEventListener("tabs:register",()=>{let e=CONFIG.comments["activeClass"];if(CONFIG.comments.storage&&(e=localStorage.getItem("comments_active")||e),e){let t=document.querySelector(`a[href="#comment-${e}"]`);t&&t.click()}}),CONFIG.comments.storage&&window.addEventListener("tabs:click",t=>{t.target.matches(".tabs-comment .tab-content .tab-pane")&&(t=t.target.classList[1],localStorage.setItem("comments_active",t))})</script></div><div class="toggle sidebar-toggle"><span class="toggle-line toggle-line-first"></span> <span class="toggle-line toggle-line-middle"></span> <span class="toggle-line toggle-line-last"></span></div><aside class="sidebar"><div class="sidebar-inner"><ul class="sidebar-nav motion-element"><li class="sidebar-nav-toc">文章目录</li><li class="sidebar-nav-overview">站点概览</li></ul><div class="post-toc-wrap sidebar-panel"><div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%8F%E5%9D%97"><span class="nav-text">宏块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%A7%E5%86%85%E9%A2%84%E6%B5%8B"><span class="nav-text">帧内预测</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%80%89%E6%8B%A9%E5%B8%A7%E5%86%85%E9%A2%84%E6%B5%8B%E6%A8%A1%E5%BC%8F"><span class="nav-text">1. 选择帧内预测模式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%8F%A0%E5%8A%A0%E6%AE%8B%E5%B7%AE"><span class="nav-text">2. 叠加残差</span></a></li></ol></li></ol><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%A7%E9%97%B4%E9%A2%84%E6%B5%8B"><span class="nav-text">帧间预测</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dct"><span class="nav-text">DCT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cabac"><span class="nav-text">CABAC</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%96%E7%A0%81%E6%A0%91%E5%8D%95%E5%85%83"><span class="nav-text">编码树单元</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B6%8B%E5%8A%BF"><span class="nav-text">趋势</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#h.264%E7%BC%96%E7%A0%81%E6%B5%81%E7%A8%8B"><span class="nav-text">H.264编码流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-text">参考</span></a></li></div></div><div class="site-overview-wrap sidebar-panel"><div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person"><img class="site-author-image" itemprop="image" alt="權咚" src="/images/icon.png"><p class="site-author-name" itemprop="name">權咚</p><div class="site-description" itemprop="description">🤘🤯👾</div></div><div class="site-state-wrap motion-element"><nav class="site-state"><div class="site-state-item site-state-posts"><a href="/archives/"><span class="site-state-item-count">75</span> <span class="site-state-item-name">文章</span></a></div><div class="site-state-item site-state-categories"><a href="/categories/"><span class="site-state-item-count">5</span> <span class="site-state-item-name">分类</span></a></div><div class="site-state-item site-state-tags"><a href="/tags/"><span class="site-state-item-count">8</span> <span class="site-state-item-name">标签</span></a></div></nav></div><div class="links-of-author motion-element"><span class="links-of-author-item"><a href="https://github.com/bqlin" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;bqlin" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a> </span><span class="links-of-author-item"><a href="https://weibo.com/hearingdog" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;hearingdog" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a></span></div><div class="links-of-blogroll motion-element"><div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i> Links</div><ul class="links-of-blogroll-list"><li class="links-of-blogroll-item"><a href="https://xiaozhuanlan.com/metal-reference-translation" title="https:&#x2F;&#x2F;xiaozhuanlan.com&#x2F;metal-reference-translation" rel="noopener" target="_blank">Metal内参</a></li><li class="links-of-blogroll-item"><a href="https://xiaozhuanlan.com/wwdc21" title="https:&#x2F;&#x2F;xiaozhuanlan.com&#x2F;wwdc21" rel="noopener" target="_blank">WWDC21 内参</a></li></ul></div></div></div></aside><div id="sidebar-dimmer"></div></div></main><footer class="footer"><div class="footer-inner"><div class="copyright">&copy; 2016 – <span itemprop="copyrightYear">2021</span> <span class="with-love"><i class="fa fa-heart"></i> </span><span class="author" itemprop="copyrightHolder">權咚</span> <span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-chart-area"></i> </span><span title="站点总字数">269k</span> <span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-coffee"></i> </span><span title="站点阅读时长">4:05</span></div><div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动</div><div class="busuanzi-count"><script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span class="post-meta-item" id="busuanzi_container_site_uv" style="display:none"><span class="post-meta-item-icon"><i class="fa fa-user"></i> </span><span class="site-uv" title="总访客量"><span id="busuanzi_value_site_uv"></span> </span></span><span class="post-meta-divider">|</span> <span class="post-meta-item" id="busuanzi_container_site_pv" style="display:none"><span class="post-meta-item-icon"><i class="fa fa-eye"></i> </span><span class="site-pv" title="总访问量"><span id="busuanzi_value_site_pv"></span></span></span></div></div></footer></div><script src="/lib/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js"></script><script src="/js/utils.js"></script><script src="/js/schemes/pisces.js"></script><script src="/js/next-boot.js"></script><script>!function(){var e,t,o,n,r=document.getElementsByTagName("link");if(0<r.length)for(i=0;i<r.length;i++)"canonical"==r[i].rel.toLowerCase()&&r[i].href&&(e=r[i].href);t=(e||window.location.protocol).split(":")[0],e=e||window.location.href,window,o=e,n=document.referrer,/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi.test(o)||(t="https"===String(t).toLowerCase()?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif",n?(t+="?r="+encodeURIComponent(document.referrer),o&&(t+="&l="+o)):o&&(t+="?l="+o),(new Image).src=t)}()</script><script src="/js/local-search.js"></script><script>document.querySelectorAll("pre.mermaid").length&&NexT.utils.getScript("//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js",()=>{mermaid.initialize({theme:"default",logLevel:3,flowchart:{curve:"linear"},gantt:{axisFormat:"%m/%d/%Y"},sequence:{actorMargin:50}})},window.mermaid)</script><script>"undefined"==typeof MathJax?(window.MathJax={loader:{load:["[tex]/mhchem"],source:{"[tex]/amsCd":"[tex]/amscd","[tex]/AMScd":"[tex]/amscd"}},tex:{inlineMath:{"[+]":[["$","$"]]},packages:{"[+]":["mhchem"]},tags:"ams"},options:{renderActions:{findScript:[10,n=>{document.querySelectorAll('script[type^="math/tex"]').forEach(e=>{var t=!!e.type.match(/; *mode=display/);const a=new n.options.MathItem(e.textContent,n.inputJax[0],t);t=document.createTextNode("");e.parentNode.replaceChild(t,e),a.start={node:t,delim:"",n:0},a.end={node:t,delim:"",n:0},n.math.push(a)})},"",!1],insertedScript:[200,()=>{document.querySelectorAll("mjx-container").forEach(e=>{let t=e.parentNode;"li"===t.nodeName.toLowerCase()&&t.parentNode.classList.add("has-jax")})},"",!1]}}},function(){var e=document.createElement("script");e.src="//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js",e.defer=!0,document.head.appendChild(e)}()):(MathJax.startup.document.state(0),MathJax.texReset(),MathJax.typeset())</script><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","vOffset":-100},"mobile":{"show":false,"scale":0.5},"log":false});</script></body></html>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/ficon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/icon.png">
+  <link rel="mask-icon" href="/images/icon.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"bqlin.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":false,"preload":false},"motion":{"enable":false,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="与音频压缩编码不同，视频的压缩编码基本都是有损压缩。H.264是多种视频压缩技术的集大成者，其使用技术的还要追溯到H.261。 宏块">
+<meta property="og:type" content="article">
+<meta property="og:title" content="视频压缩技术">
+<meta property="og:url" content="https://bqlin.github.io/posts/video_compression_technology/index.html">
+<meta property="og:site_name" content="權咚领域">
+<meta property="og:description" content="与音频压缩编码不同，视频的压缩编码基本都是有损压缩。H.264是多种视频压缩技术的集大成者，其使用技术的还要追溯到H.261。 宏块">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/bqlin/image-land/raw/master/1615772066040-cda01df7-9404-4968-a184-51c3b57d18a4.png">
+<meta property="og:image" content="https://gitee.com/bqlin/image-land/raw/master/1615772066130-90d3dc38-05c1-4288-affd-bc149ce06f3b.png">
+<meta property="og:image" content="https://gitee.com/bqlin/image-land/raw/master/1615772066253-12d77bff-0f01-4394-b508-18ef64f42acc.png">
+<meta property="og:image" content="https://gitee.com/bqlin/image-land/raw/master/1615772066362-562246ee-ae43-4ba4-bfde-8e1093499588.png">
+<meta property="og:image" content="https://blog.xinoassassin.me/images/mc-vector.jpg">
+<meta property="og:image" content="https://blog.xinoassassin.me/images/CABAC.jpg">
+<meta property="og:image" content="https://gitee.com/bqlin/image-land/raw/master/1615772066655-5b9dfeca-bd92-4022-9ef7-fef968120e26.png">
+<meta property="og:image" content="https://pic3.zhimg.com/80/v2-6ab263372cec8b4a544d858d3a7fdc32_1440w.jpg">
+<meta property="og:image" content="https://pic3.zhimg.com/80/v2-048c202f6368d7f2cc5d3d2a59f7fd2a_1440w.jpg">
+<meta property="article:published_time" content="2021-03-15T04:34:44.000Z">
+<meta property="article:modified_time" content="2021-10-28T04:26:38.000Z">
+<meta property="article:author" content="權咚">
+<meta property="article:tag" content="音视频">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/bqlin/image-land/raw/master/1615772066040-cda01df7-9404-4968-a184-51c3b57d18a4.png">
+
+<link rel="canonical" href="https://bqlin.github.io/posts/video_compression_technology/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>视频压缩技术 | 權咚领域</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-105338942-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-105338942-1');
+      }
+    </script>
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?98fcf61fd269408d07dcbc1e49311f9a";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="權咚领域" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">權咚领域</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Making app a work of art.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://bqlin.github.io/posts/video_compression_technology/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/icon.png">
+      <meta itemprop="name" content="權咚">
+      <meta itemprop="description" content="🤘🤯👾">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="權咚领域">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          视频压缩技术
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-03-15 12:34:44" itemprop="dateCreated datePublished" datetime="2021-03-15T12:34:44+08:00">2021-03-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-10-28 12:26:38" itemprop="dateModified" datetime="2021-10-28T12:26:38+08:00">2021-10-28</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/" itemprop="url" rel="index"><span itemprop="name">音视频概念</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.4k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>与音频压缩编码不同，视频的压缩编码基本都是有损压缩。H.264是多种视频压缩技术的集大成者，其使用技术的还要追溯到H.261。</p>
+<h3 id="宏块">宏块</h3>
+<p>宏块是视频压缩操作的基本单元。无论是帧内压缩还是帧间压缩，它们都是以宏块为单位。</p>
+<p>宏块是按像素进行划分的。宏块划分得小，压缩的控制力就大一些，处理速度也会降下来。</p>
+<p>宏块还可以划分为子块。</p>
+<p>宏块划分尺寸：</p>
+<p><img src="https://gitee.com/bqlin/image-land/raw/master/1615772066040-cda01df7-9404-4968-a184-51c3b57d18a4.png" /></p>
+<h3 id="帧内预测">帧内预测</h3>
+<p>理论基础：</p>
+<ul>
+<li>相邻像素差别不大，可以进行<strong>宏块</strong>预测。宏块与宏块之间进行比较，而不是像素对比。</li>
+<li>人对亮度的敏感度超过色度。YUV 很容易将亮度与色度分离。组合上面的点，可以将亮度与色度区分处理。以下的帧内预测，亮度与色度是区分处理的。</li>
+</ul>
+<p>H.264将单个宏块内的像素颜色变化规律规范成了公式，编码时只要写此处应用哪个公式就行了。</p>
+<h5 id="选择帧内预测模式">1. 选择帧内预测模式</h5>
+<p>帧内预测模式有9种，通过与目标宏块对比选择最适合的模式，将预测的宏块变成预测模式编号。</p>
+<p><img src="https://gitee.com/bqlin/image-land/raw/master/1615772066130-90d3dc38-05c1-4288-affd-bc149ce06f3b.png" /></p>
+<p><img src="https://gitee.com/bqlin/image-land/raw/master/1615772066253-12d77bff-0f01-4394-b508-18ef64f42acc.png" /></p>
+<h5 id="叠加残差">2. 叠加残差</h5>
+<p>帧内预测残差值，通过预测出来的与原始图像进行对比得出。</p>
+<p><img src="https://gitee.com/bqlin/image-land/raw/master/1615772066362-562246ee-ae43-4ba4-bfde-8e1093499588.png" /></p>
+<p>预测模式信息+残差值。预测得出的图像颜色是基于宏块的，平滑度有限，叠加残差值来磨平这些色差。</p>
+<h3 id="帧间预测">帧间预测</h3>
+<p>对每帧图像压缩，压缩比始终有限，因此提出了对一组图片做消除冗余。</p>
+<figure>
+<img src="https://blog.xinoassassin.me/images/mc-vector.jpg" alt="img" /><figcaption aria-hidden="true">img</figcaption>
+</figure>
+<ol type="1">
+<li>把强相关的帧进行分组，形成GOP（<strong>G</strong>roup <strong>o</strong>f <strong>P</strong>ictures）。</li>
+<li>进行运动估计（宏块查找/匹配 -&gt; 运动矢量）。这是一个过程，通过宏块匹配，得出运动矢量，最终存储的是初始状态和运动矢量。</li>
+<li>进行运动补偿（解码），补偿的是残差值。</li>
+</ol>
+<p>引入基于运动补偿帧间预测算法后，视频中的帧就分为两类：</p>
+<ul>
+<li>关键帧：完整的静态图像，可以被直接解码。</li>
+<li>预测帧/参考帧：通过运动补偿算法在关键帧之上计算得到。根据帧的依赖方向还可以分为：
+<ul>
+<li>预测编码图像帧，P帧（Predictive-coded picture）：只能参考前面的关键帧和P帧。</li>
+<li>双向预测编码图像帧，B帧（Bidirectionally predicted picture）：能参考前后的关键帧和P帧，但不能参考前后的B帧。</li>
+</ul></li>
+</ul>
+<p>进入帧间预测编码的常见问题：</p>
+<ul>
+<li>花屏。GOP分组有帧（P、B）丢失，会造成解码端端图像发生错误，出现马赛克。</li>
+<li>卡顿。其实是为了避免花屏问题的发生而导致的新的问题，当发现有帧丢失的时候，就丢弃GOP内所有的帧，直到下一个IDR帧重新刷新图像。I帧是按照周期来的，需要一个较长的时间周期才到达下一个I帧。如果在下一个I帧之前不显示后面的图像，视频久静止不动了，出现卡顿。</li>
+</ul>
+<h3 id="dct">DCT</h3>
+<p>DCT，Discrete Cosine Transform，离散余弦变换。帧内编码算法。在图像压缩算法上，H.261使用了DCT算法，把图像从空间域转换到频率域，然后做量化，减少人眼不敏感的高频信息，保留绝大部分低频信息，从而减少图像体积。然后再用高效的数据编码方式把处理后的数据进一步压缩。</p>
+<p>DCT将图像分成由不同频率组成的小块，然后进行量化。在量化过程中，舍弃高频分量，剩下的低频分量被保存下来用于后面的图像重建。</p>
+<p>DCT具备<strong>去相关性</strong>和<strong>能量集中</strong>的特性。DCT本身并不会压缩数据，它为随后的量化之类的操作，提供了一个良好的基础。</p>
+<p>DCT在后来的JPEG编码中起主要作用。</p>
+<h3 id="cabac">CABAC</h3>
+<p>在编码的最后阶段，即可以去除的冗余信息都去除后，对数据进行无损压缩。H.264除了支持在H.261中就存在的VLC编码外，新增加了两种无损数据压缩编码，一种是VLC的升级版——CAVLC，另一种是复杂程度更高的CABAC（前文参考之适应性二元算术编码，<strong>C</strong>ontext-based <strong>A</strong>daptive <strong>B</strong>inary <strong>A</strong>rithmetic <strong>C</strong>oding）。</p>
+<figure>
+<img src="https://blog.xinoassassin.me/images/CABAC.jpg" alt="img" /><figcaption aria-hidden="true">img</figcaption>
+</figure>
+<p>CABAC也是一种熵编码，主要原理也是用长编码替换掉出现频率少的数据，而用短编码替换出现频率高的数据，但它引入了更多统计学优化，并且具有动态适应能力。虽然在解码时需要更多计算，但它能够比CAVLC节省更多的数据量，通常能有10%。</p>
+<h3 id="编码树单元">编码树单元</h3>
+<p>HEVC引入了新的编码树单元（<strong>C</strong>oding <strong>T</strong>ree <strong>U</strong>nits）概念，取代掉了存在于视频编码中多年的宏块概念，它的单块面积大了许多，达到了64x64，但仍然保留了可变大小和可分割特性，最小单元为16x16。单个编码树中包含了小的编码单元，它们可以由四分树形式呈现，并很快地可以确定下其中的单元是否可被再分割，内部编码单元最小可以被分割为8x8大小，精细程度仍然是非常高的。</p>
+<p>单个编码单元也可以继续被切割、分类，可以成为预测单元（Prediction Units），后者可以指示该单元的预测形式，是画面内预测还是画面间预测或者甚至是根本没有变化、可以被跳过的单元；也可以成为转换单元（Transform Units），它可以做DCT转换或是量化。</p>
+<p>编码树单元的引入让HEVC既可以用大面积单元来提高编码效率，也可在需要的时候细化，保留更精细的细节。所谓该粗略的地方就粗略，该精细的地方就精细，HEVC在它的帮助下让码流的效率更高。</p>
+<h2 id="趋势">趋势</h2>
+<p>H.261奠定宏块和帧间预测的基础，H.264/AVC是多种压缩技术的集大成者。HEVC主要是针对高清及超清分辨率视频而开发的，相比起前代AVC，它在低码率时拥有更好的画质表现，同时在面对高分辨率视频时，也能提供超高的压缩比，帮助4K视频塞入蓝光光盘。</p>
+<h2 id="h.264编码流程">H.264编码流程</h2>
+<p><img src="https://gitee.com/bqlin/image-land/raw/master/1615772066655-5b9dfeca-bd92-4022-9ef7-fef968120e26.png" /></p>
+<figure>
+<img src="https://pic3.zhimg.com/80/v2-6ab263372cec8b4a544d858d3a7fdc32_1440w.jpg" alt="img" /><figcaption aria-hidden="true">img</figcaption>
+</figure>
+<figure>
+<img src="https://pic3.zhimg.com/80/v2-048c202f6368d7f2cc5d3d2a59f7fd2a_1440w.jpg" alt="img" /><figcaption aria-hidden="true">img</figcaption>
+</figure>
+<ol type="1">
+<li>帧类型分析 -&gt; I帧、P帧、B帧、GOP</li>
+<li>划分宏块及其子块</li>
+<li>I帧进行帧内预测，最终存储预测模式、残差（去除空间冗余）
+<ol type="1">
+<li>选择帧内预测模式</li>
+<li>叠加残差</li>
+</ol></li>
+<li>P/B帧进行帧间预测，最终存储帧间预测模式标志位、运动矢量、残差（去除时间冗余）
+<ol type="1">
+<li>运动估计：宏块查找、匹配 -&gt; 运动矢量</li>
+<li>运动补偿：叠加残差</li>
+</ol></li>
+<li>DCT变换、量化，丢弃高频信息（去除空间冗余）</li>
+<li>滤波，通过滤波修正并提升主观质量</li>
+<li>熵编码（如：CAVLC、CABAC）压缩最终数据（去除编码冗余）</li>
+</ol>
+<h2 id="参考">参考</h2>
+<ul>
+<li><a href="b8de6d0c93705a606b91010096b22446">视频编解码基础概念 - 叶余 - 博客园</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.xinoassassin.me/2020/03/Video-Codecs/">数字视频编码的发展历程</a></li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzU1NTEzOTM5Mw==&amp;mid=2247512538&amp;idx=1&amp;sn=57f46386002cf5554681f8ef9f61a3e0&amp;chksm=fbda19f4ccad90e219bf224db522e9999086dff886bae09562e1aeba4450d4ba0247a73c3138&amp;scene=21#wechat_redirect">视频压缩标准简史：从1929到2020</a></li>
+<li><a target="_blank" rel="noopener" href="http://zhaoxuhui.top/blog/2018/05/26/DCTforImageDenoising.html">DCT变换与图像压缩、去燥</a></li>
+<li><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Advanced_Video_Coding">Advanced Video Coding - Wikipedia</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/158392753">H.264编解码原理浅析 - 知乎</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/" rel="tag"># 音视频</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/posts/yuv/" rel="prev" title="YUV">
+      <i class="fa fa-chevron-left"></i> YUV
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/posts/h264/" rel="next" title="H.264/MPEG-4 AVC">
+      H.264/MPEG-4 AVC <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%8F%E5%9D%97"><span class="nav-text">宏块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%A7%E5%86%85%E9%A2%84%E6%B5%8B"><span class="nav-text">帧内预测</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%80%89%E6%8B%A9%E5%B8%A7%E5%86%85%E9%A2%84%E6%B5%8B%E6%A8%A1%E5%BC%8F"><span class="nav-text">1. 选择帧内预测模式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%8F%A0%E5%8A%A0%E6%AE%8B%E5%B7%AE"><span class="nav-text">2. 叠加残差</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%A7%E9%97%B4%E9%A2%84%E6%B5%8B"><span class="nav-text">帧间预测</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dct"><span class="nav-text">DCT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cabac"><span class="nav-text">CABAC</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%96%E7%A0%81%E6%A0%91%E5%8D%95%E5%85%83"><span class="nav-text">编码树单元</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B6%8B%E5%8A%BF"><span class="nav-text">趋势</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#h.264%E7%BC%96%E7%A0%81%E6%B5%81%E7%A8%8B"><span class="nav-text">H.264编码流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-text">参考</span></a></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="權咚"
+      src="/images/icon.png">
+  <p class="site-author-name" itemprop="name">權咚</p>
+  <div class="site-description" itemprop="description">🤘🤯👾</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">75</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/bqlin" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;bqlin" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/hearingdog" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;hearingdog" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://xiaozhuanlan.com/metal-reference-translation" title="https:&#x2F;&#x2F;xiaozhuanlan.com&#x2F;metal-reference-translation" rel="noopener" target="_blank">Metal内参</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://xiaozhuanlan.com/wwdc21" title="https:&#x2F;&#x2F;xiaozhuanlan.com&#x2F;wwdc21" rel="noopener" target="_blank">WWDC21 内参</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2016 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">權咚</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">269k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">4:05</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'default',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","vOffset":-100},"mobile":{"show":false,"scale":0.5},"log":false});</script></body>
+</html>

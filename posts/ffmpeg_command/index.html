@@ -1,1 +1,768 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=2"><meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.0"><link rel="apple-touch-icon" sizes="180x180" href="/images/icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/images/ficon.png"><link rel="icon" type="image/png" sizes="16x16" href="/images/icon.png"><link rel="mask-icon" href="/images/icon.png" color="#222"><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"><link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css"><script src="/lib/pace/pace.min.js"></script><script id="hexo-configurations">var NexT=window.NexT||{},CONFIG={hostname:"bqlin.github.io",root:"/",scheme:"Gemini",version:"7.8.0",exturl:!1,sidebar:{position:"left",display:"post",padding:18,offset:12,onmobile:!1},copycode:{enable:!1,show_result:!1,style:null},back2top:{enable:!0,sidebar:!1,scrollpercent:!1},bookmark:{enable:!1,color:"#222",save:"auto"},fancybox:!1,mediumzoom:!1,lazyload:!1,pangu:!0,comments:{style:"tabs",active:null,storage:!0,lazyload:!1,nav:null},algolia:{hits:{per_page:10},labels:{input_placeholder:"Search for Posts",hits_empty:"We didn't find any results for the search: ${query}",hits_stats:"${hits} results found in ${time} ms"}},localsearch:{enable:!0,trigger:"auto",top_n_per_article:-1,unescape:!1,preload:!1},motion:{enable:!1,async:!0,transition:{post_block:"fadeIn",post_header:"slideDownIn",post_body:"slideDownIn",coll_header:"slideLeftIn",sidebar:"slideUpIn"}},path:"search.xml"}</script><meta name="description" content="下载已编译的静态库：https:&#x2F;&#x2F;evermeet.cx&#x2F;ffmpeg&#x2F; 命令分类"><meta property="og:type" content="article"><meta property="og:title" content="FFmpeg常用命令"><meta property="og:url" content="https://bqlin.github.io/posts/ffmpeg_command/index.html"><meta property="og:site_name" content="權咚领域"><meta property="og:description" content="下载已编译的静态库：https:&#x2F;&#x2F;evermeet.cx&#x2F;ffmpeg&#x2F; 命令分类"><meta property="og:locale" content="zh_CN"><meta property="article:published_time" content="2021-06-10T01:36:18.000Z"><meta property="article:modified_time" content="2021-10-02T04:20:44.000Z"><meta property="article:author" content="權咚"><meta property="article:tag" content="音视频"><meta name="twitter:card" content="summary"><link rel="canonical" href="https://bqlin.github.io/posts/ffmpeg_command/"><script id="page-configurations">CONFIG.page={sidebar:"",isHome:!1,isPost:!0,lang:"zh-CN"}</script><title>FFmpeg常用命令 | 權咚领域</title><script async src="https://www.googletagmanager.com/gtag/js?id=UA-105338942-1"></script><script>function gtag(){dataLayer.push(arguments)}CONFIG.hostname===location.hostname&&(window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","UA-105338942-1"))</script><script>var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="https://hm.baidu.com/hm.js?98fcf61fd269408d07dcbc1e49311f9a";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script><noscript><style>.sidebar-inner,.use-motion .brand,.use-motion .collection-header,.use-motion .comments,.use-motion .menu-item,.use-motion .pagination,.use-motion .post-block,.use-motion .post-body,.use-motion .post-header{opacity:initial}.use-motion .site-subtitle,.use-motion .site-title{opacity:initial;top:initial}.use-motion .logo-line-before i{left:initial}.use-motion .logo-line-after i{right:initial}</style></noscript><link rel="alternate" href="/atom.xml" title="權咚领域" type="application/atom+xml"></head><body itemscope itemtype="http://schema.org/WebPage"><div class="container"><div class="headband"></div><header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="header-inner"><div class="site-brand-container"><div class="site-nav-toggle"><div class="toggle" aria-label="切换导航栏"><span class="toggle-line toggle-line-first"></span> <span class="toggle-line toggle-line-middle"></span> <span class="toggle-line toggle-line-last"></span></div></div><div class="site-meta"><a href="/" class="brand" rel="start"><span class="logo-line-before"><i></i></span><h1 class="site-title">權咚领域</h1><span class="logo-line-after"><i></i></span></a><p class="site-subtitle" itemprop="description">Making app a work of art.</p></div><div class="site-nav-right"><div class="toggle popup-trigger"><i class="fa fa-search fa-fw fa-lg"></i></div></div></div><nav class="site-nav"><ul id="menu" class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-search"><a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索</a></li></ul></nav><div class="search-pop-overlay"><div class="popup search-popup"><div class="search-header"><span class="search-icon"><i class="fa fa-search"></i></span><div class="search-input-container"><input autocomplete="off" autocapitalize="off" placeholder="搜索..." spellcheck="false" type="search" class="search-input"></div><span class="popup-btn-close"><i class="fa fa-times-circle"></i></span></div><div id="search-result"><div id="no-result"><i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i></div></div></div></div></div></header><div class="back-to-top"><i class="fa fa-arrow-up"></i> <span>0%</span></div><main class="main"><div class="main-inner"><div class="content-wrap"><div class="content post posts-expand"><article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN"><link itemprop="mainEntityOfPage" href="https://bqlin.github.io/posts/ffmpeg_command/"><span hidden itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="image" content="/images/icon.png"><meta itemprop="name" content="權咚"><meta itemprop="description" content="🤘🤯👾"></span><span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization"><meta itemprop="name" content="權咚领域"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">FFmpeg常用命令</h1><div class="post-meta"><span class="post-meta-item"><span class="post-meta-item-icon"><i class="far fa-calendar"></i> </span><span class="post-meta-item-text">发表于</span> <time title="创建时间：2021-06-10 09:36:18" itemprop="dateCreated datePublished" datetime="2021-06-10T09:36:18+08:00">2021-06-10</time> </span><span class="post-meta-item"><span class="post-meta-item-icon"><i class="far fa-calendar-check"></i> </span><span class="post-meta-item-text">更新于</span> <time title="修改时间：2021-10-02 12:20:44" itemprop="dateModified" datetime="2021-10-02T12:20:44+08:00">2021-10-02</time> </span><span class="post-meta-item"><span class="post-meta-item-icon"><i class="far fa-folder"></i> </span><span class="post-meta-item-text">分类于</span> <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/FFmpeg/" itemprop="url" rel="index"><span itemprop="name">FFmpeg</span></a> </span></span><span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display:none"><span class="post-meta-item-icon"><i class="fa fa-eye"></i> </span><span class="post-meta-item-text">阅读次数：</span> <span id="busuanzi_value_page_pv"></span></span><br><span class="post-meta-item" title="本文字数"><span class="post-meta-item-icon"><i class="far fa-file-word"></i> </span><span class="post-meta-item-text">本文字数：</span> <span>4.7k</span> </span><span class="post-meta-item" title="阅读时长"><span class="post-meta-item-icon"><i class="far fa-clock"></i> </span><span class="post-meta-item-text">阅读时长 &asymp;</span> <span>4 分钟</span></span></div></header><div class="post-body" itemprop="articleBody"><p>下载已编译的静态库：https://evermeet.cx/ffmpeg/</p><h2 id="命令分类">命令分类</h2><ul><li>基本信息查询</li><li>录制</li><li>分解、复用</li><li>处理原始数据</li><li>裁剪与合并</li><li>图片/视频互转</li><li>直播</li><li>滤镜</li></ul><h2 id="基本信息查询">基本信息查询</h2><p>版本信息：</p><ul><li><code>-version</code></li></ul><p>支持的分解、复用：</p><ul><li><code>-demuxers</code></li><li><code>-muxers</code></li></ul><p>支持的设备：</p><ul><li><code>-devices</code></li></ul><p>支持的（libavcodec已知的）编解码器：</p><ul><li><code>-codecs</code></li><li><code>-decoders</code></li><li><code>-encoders</code></li></ul><p>libavfilter支持的码流滤镜：</p><ul><li><code>-bsfs</code></li></ul><p>支持的格式：</p><ul><li><code>-formats</code>，支持的文件格式</li><li><code>-protocols</code>，网络协议</li><li><code>-pix_fmts</code>，像素格式</li><li><code>-sample_fmts</code>，采样格式</li><li><code>-layouts</code>，声道布局</li></ul><p>支持的滤镜：</p><ul><li><code>-filters</code></li></ul><p>支持的颜色名称：</p><ul><li><code>-colors</code></li></ul><h2 id="命令基本格式与参数">命令基本格式与参数</h2><p>ffmpeg命令基本格式：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg [全局参数] &#123;[输入文件参数] -i 输入文件URL&#125; ...\</span><br><span class="line">       &#123;[输出文件参数] 输出文件URL&#125; ...</span><br></pre></td></tr></table></figure><p>默认情况下，FFmpeg只包含输入文件中每种媒体类型（音频、视频、字幕）的一个流，并将其添加到每个输出文件中。它根据一下规则选择每种媒体类型中的流：</p><ul><li>视频，选择最高分辨率的流。</li><li>音频，选择声道最多的流。</li><li>字幕，选择第一个流。</li></ul><p>当然上述规则相等，则优先选取最低索引值的流。</p><p>可以通过<code>-vn</code>、<code>-an</code>、<code>-sn</code>、<code>-dn</code>来禁用某些媒体类型。要进行全面的手动控制，则使用<code>-map</code>选项。</p><p>ffmpeg通过<code>-i</code>选项读取任意数量的输入（可以是文件、管道、网络流、抓取设备等），并写入任意数量的输出。原则上，每个输入/输出都可以包含任意数量的不同类型的媒体流（视频、音频、字幕、附件/数据）。流的数量和/或类型是由容器格式来限制，选择从哪个输入进来到哪个输出将自动完成，如需控制则使用<code>-map</code>选项。</p><p>要引用选项中的输入，必须使用索引（从0开始）。例如，第一个输入是0。文件中的媒体流也可以通过索引引用，如<code>2:3</code>是指第三个输入中的第四个流。</p><h3 id="主要参数">主要参数</h3><ul><li><code>-f fmt</code>，输入/输出强制的文件格式。格式通常可以通过扩展名中猜测出来，因此不常使用。</li><li><code>-i url</code>，输入URL。</li><li><code>-y</code>，全局参数，覆盖输出文件而不询问。</li><li><code>-n</code>，全局参数，不覆盖输出文件，如果存在指定文件则退出。</li><li><code>-c [:stream_specifier] codec</code>、<code>-codec [:stream_specifier] codec</code>，输入、输出、单个流，选择一个解码器（在输入文件之前使用）或编码器（在输出文件前使用），可用于一个或多个流。传递编码器名称或<code>copy</code>（仅输出）表示不重新编码。</li><li><code>-t duration</code>，输入、输出，当用作输入选项（在<code>-i</code>之前），表示限制从输入文件读取的数据的时长；当用作输出选项时（在输出url之前），表示在到达时长之后停止输出。</li><li><code>-ss position</code>，输入、输出，当用作输入选项（在<code>-i</code>之前），表示在输入文件中寻找位置。注意，在大多数格式中，不可能精确搜索，因此ffmpeg将在位置之前寻找最近的点。当转码和<code>-accureate_seek</code>被启用时（默认），搜索点和指定的位置之间的额外分段将被解码和丢弃。当进行流式复制或使用<code>-noaccureate_seek</code>时，它将被保留。当用作输出选项（在输出url之前），解码但丢弃输入，知道时间戳到达指定的位置。</li><li><code>frames [:stream_specifier] framecount</code>，输出、单个流，停止在给定帧数量后写入流。</li><li><code>filter [:stream_specifier] filtergraph</code>，输出、单个流，创建由filtergraph指定的滤镜链图，并将其进行处理流。filtergraph的流必须具有相同类型的单个输入和单个输出。在filtergraph中，输入与标签相关联，标签与输出相关联。</li></ul><h3 id="视频参数">视频参数</h3><ul><li><code>-vframes num</code>，输出，设置要输出的视频帧数量。</li><li><code>-r [:stream_specifier] fps</code>，输入、输出、单个流，设置帧率（单位Hz）。<ul><li>作为输入选项，忽略存储文件中的让和时间戳，根据速率生成新的时间戳。这与用于<code>-framerate</code>选项不同（旧版是相同的）。</li><li>作为输出选项，复制或丢弃输入帧以实现很定输出帧率。</li></ul></li><li><code>-s [:stream_specifier] size</code>，输入、输出、单个流，设置窗口大小。<ul><li>作为输入选项，与<code>video_size</code>相同，由某些分帧器识别，其帧尺寸未存储在文件中。</li><li>作为输出选项，这将会把缩放视频滤镜传输到相应的滤镜链图末尾。请直接使用比例滤镜插入滤镜链图开头或其他地方。格式是<code>宽x高</code>。</li></ul></li><li><code>-aspect [:stream_specifier] ratio</code>，输出、单个流，指定视频的宽高比。值可以是浮点数字也可以是<code>w:h</code>字符串，如<code>4:3</code>、<code>16:9</code>。如果与<code>-vcodec</code>副本一起使用，会影响存储在容器级别的宽高比，但不会影响存储在编码帧中的宽高比（如果存在的话）。</li><li><code>-vn</code>，输出，禁用视频轨道。</li><li><code>-vf filtergraph</code>，输出，创建由filtergraph指定的滤镜链图，并使用它来处理流。</li></ul><h3 id="音频参数">音频参数</h3><ul><li><code>-aframes num</code>，输出，设置输出音频的帧数。</li><li><code>-ar [:stream_specifier] freq</code>，输入、输出、单个流，设置音频采样率。对于输入流，默认设置为输入流的采样率。对于输出流，该选项仅适用于音频设备采集和原始分路器，并映射到相应的分路器选件。</li><li><code>-an</code>，输出，禁用音频轨道。</li><li>-acodec name，输入、输出，设置音频编解码器。</li><li><code>-sample_fmt [:stream_specifier] fmt</code>，输出、单个流，设置音频采样格式。使用<code>-sample_fmts</code>可以获得支持的采样格式列表。</li><li><code>-af filtergraph</code>，输出，创建由filtergraph指定的滤镜链图，并用它来处理音频。</li></ul><h2 id="录制">录制</h2><p>录制屏幕：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 录制纯视频</span></span><br><span class="line">ffmpeg -f avfoundation -i 1 -r 30 out.yuv</span><br><span class="line"><span class="comment"># 播放纯视频</span></span><br><span class="line">ffplay -s 3360x2100 -pix_fmt uyvy422 out.yuv</span><br><span class="line"></span><br><span class="line"><span class="comment"># 录制音视频</span></span><br><span class="line">ffmpeg -f avfoundation -i 1:0 -r 29.97 </span><br><span class="line">       -c:v libx264 -crf 0</span><br><span class="line">       -c:a libfdk_aac -profile:a aac_he_v2 -b:a 32k</span><br><span class="line">       out.flv</span><br></pre></td></tr></table></figure><ul><li><code>-f</code>，指定使用avfoundation进行采集。</li><li><code>-i</code>，指定输入索引。</li><li><code>-r</code>，指定帧率。</li><li><code>-crf</code>，x264参数，0表示无损压缩。</li><li><code>-b:a</code>，指定音频码率。</li></ul><p>录制后，会输出录制的格式，后面进行播放要传入这些信息才能正确播放。</p><p>列出支持的设备：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -f avfoundation -list_devices <span class="literal">true</span> -i <span class="string">&quot;&quot;</span></span><br><span class="line">[AVFoundation indev @ 0x7fa856d0c600] AVFoundation video devices:</span><br><span class="line">[AVFoundation indev @ 0x7fa856d0c600] [0] FaceTime高清摄像头（内建）</span><br><span class="line">[AVFoundation indev @ 0x7fa856d0c600] [1] Capture screen 0</span><br><span class="line">[AVFoundation indev @ 0x7fa856d0c600] [2] Capture screen 1</span><br><span class="line">[AVFoundation indev @ 0x7fa856d0c600] AVFoundation audio devices:</span><br><span class="line">[AVFoundation indev @ 0x7fa856d0c600] [0] Built-in Microphone</span><br></pre></td></tr></table></figure><p>摄像头录制：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -framerate 30 -f avfoundation -i 0:0 out.mp4</span><br></pre></td></tr></table></figure><p>录制音频：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 录制</span></span><br><span class="line">ffmpeg -f avfoundation -i :0 output.wav</span><br><span class="line"><span class="comment"># 播放，由于存成wav，所以已经带上了音频的格式，直接播放即可。</span></span><br><span class="line">ffplay output.wav</span><br></pre></td></tr></table></figure><h2 id="分解与复用">分解与复用</h2><p>对容器内的数据重新组装，当然这样做的前提是对容器媒体文件进行分解形成编码数据包，完成重新组装后还需要进行重新封装。整个过程不对编码数据包做修改，只是换了个马甲。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 换媒体容器</span></span><br><span class="line">ffmpeg -i local.mp4 -vcodec copy -acodec copy local_output.mov</span><br><span class="line">ffmpeg -i local.mp4 -vcodec copy -acodec copy local_output.mkv</span><br><span class="line"></span><br><span class="line"><span class="comment"># 抽取视频，当然h264包含了SPS、PPS，可以直接播放</span></span><br><span class="line">ffmpeg -i local.mp4 -vcodec copy -an local_output.h264</span><br><span class="line"></span><br><span class="line"><span class="comment"># 抽取音频</span></span><br><span class="line">ffmpeg -i input.mp4 -acodec copy -vn out.aac</span><br></pre></td></tr></table></figure><p>这里面的关键是<code>codec copy</code>，即忽略指定流的编解码步骤，但同时功能也会受限（例如不能使用滤镜，因为滤镜是作用于未压缩的数据），只能进行多路分解和多路复用。对更改容器格式或修改容器级元数据很有用。</p><p>整个过程非常快，且没有质量损失。</p><h2 id="处理原始数据">处理原始数据</h2><p>这里的原始数据是指解码后的数据。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 提取YUV数据，关键是使用 -c:v rawvideo</span></span><br><span class="line">ffmpeg -i input.mp4 -an -c:v rawvideo -pix_fmt yuv420p out.yuv</span><br><span class="line"><span class="comment"># 播放YUV</span></span><br><span class="line">ffplay -s 1280x720 -pix_fmt yuv420p out.yuv</span><br><span class="line"></span><br><span class="line"><span class="comment"># 提取PCM数据</span></span><br><span class="line">ffmpeg -i local.mp4 -vn -ar 44100 -ac 2 -f s16le out.pcm</span><br><span class="line"><span class="comment"># 播放，PCM是不带元数据的，所以播放时需要执行音频格式</span></span><br><span class="line">ffplay -ar 44100 -ac 2 -f s16le out.pcm</span><br></pre></td></tr></table></figure><ul><li><code>-c:v</code>，指定的是使用视频编码器，把它换成<code>-vcodec</code>也是同样的效果。</li><li><code>-pix_fmt</code>，指定像素格式。</li><li><code>-ar</code>，音频采样率。</li><li><code>-ac</code>，声道数。</li><li><code>-f</code>，数据存储格式。<ul><li><code>s16le</code>表示sign的16位小端模式整数。</li></ul></li></ul><p>注意这里的<code>-vcodec</code>一定要选择<code>rawvideo</code>，而不是<code>copy</code>；类似的，音频则直接不设置<code>-acodec</code>，而是直接接音频的参数。否则它们输出的结果都不是原始数据。</p><h2 id="滤镜">滤镜</h2><p>使用简单的视频画幅裁剪滤镜：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -i input.mov</span><br><span class="line">       -vf crop=in_w-200:in_h-200</span><br><span class="line">       -c:v libx264 -c:a copy out.mp4</span><br></pre></td></tr></table></figure><ul><li><code>-vf</code>，视频简单滤镜。<ul><li><code>crop</code>滤镜名称，后面等号接滤镜参数，<code>in_w</code>、<code>in_h</code>引用了原视频的宽高，并使用冒号拼接参数。</li></ul></li></ul><h2 id="裁剪与合并">裁剪与合并</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 裁剪</span></span><br><span class="line">ffmpeg -i input.mp4</span><br><span class="line">       -ss 00:00:00 -t 10</span><br><span class="line">       out.ts</span><br><span class="line"></span><br><span class="line"><span class="comment"># 合并，文本内容每一行必须为 `file &#x27;文件路径&#x27;`</span></span><br><span class="line">ffmpeg -f concat -i inputs.txt out.flv</span><br></pre></td></tr></table></figure><h2 id="图片视频互转">图片/视频互转</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 视频 -&gt; 图片</span></span><br><span class="line">ffmpeg -i input.flv -r 1 -f image2 output-%3d.jpeg</span><br><span class="line"></span><br><span class="line"><span class="comment"># 图片 -&gt; 视频</span></span><br><span class="line">ffmpeg -i input-%3d.jpg out.mp4</span><br></pre></td></tr></table></figure><ul><li><code>-r</code>，fps，每秒转一张图片。</li><li><code>-f</code>，转换的格式。</li></ul><h2 id="直播推流拉流">直播推流/拉流</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 直播推流</span></span><br><span class="line">ffmpeg -re -i input.mp4 -c copy -f flv rtmp://server/live/stream_name</span><br><span class="line"></span><br><span class="line"><span class="comment"># 拉流</span></span><br><span class="line">ffmpeg -i rtmp://server/live/stream_name -c copy dump.flv</span><br></pre></td></tr></table></figure><ul><li><code>-re</code>，减慢帧率使其与播放时的帧率保持同步。</li><li><code>-c copy</code>，音视频不转码。</li><li><code>-f</code>，指定推流的文件格式。</li></ul><p>推流的格式一定需要与拉取的格式对应上。</p></div><div class="followme"><p>欢迎关注我的其它发布渠道</p><div class="social-list"><div class="social-item"><a target="_blank" class="social-link" href="/atom.xml"><span class="icon"><i class="fa fa-rss"></i> </span><span class="label">RSS</span></a></div></div></div><footer class="post-footer"><div class="post-tags"><a href="/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/" rel="tag"># 音视频</a></div><div class="post-nav"><div class="post-nav-item"><a href="/posts/ffmpeg_basic/" rel="prev" title="FFmpeg基本概念"><i class="fa fa-chevron-left"></i> FFmpeg基本概念</a></div><div class="post-nav-item"><a href="/posts/ffmpeg_api_struct/" rel="next" title="FFmpeg基本API：重要结构体">FFmpeg基本API：重要结构体 <i class="fa fa-chevron-right"></i></a></div></div></footer></article></div><script>window.addEventListener("tabs:register",()=>{let e=CONFIG.comments["activeClass"];if(CONFIG.comments.storage&&(e=localStorage.getItem("comments_active")||e),e){let t=document.querySelector(`a[href="#comment-${e}"]`);t&&t.click()}}),CONFIG.comments.storage&&window.addEventListener("tabs:click",t=>{t.target.matches(".tabs-comment .tab-content .tab-pane")&&(t=t.target.classList[1],localStorage.setItem("comments_active",t))})</script></div><div class="toggle sidebar-toggle"><span class="toggle-line toggle-line-first"></span> <span class="toggle-line toggle-line-middle"></span> <span class="toggle-line toggle-line-last"></span></div><aside class="sidebar"><div class="sidebar-inner"><ul class="sidebar-nav motion-element"><li class="sidebar-nav-toc">文章目录</li><li class="sidebar-nav-overview">站点概览</li></ul><div class="post-toc-wrap sidebar-panel"><div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%E5%88%86%E7%B1%BB"><span class="nav-text">命令分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E4%BF%A1%E6%81%AF%E6%9F%A5%E8%AF%A2"><span class="nav-text">基本信息查询</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%E5%9F%BA%E6%9C%AC%E6%A0%BC%E5%BC%8F%E4%B8%8E%E5%8F%82%E6%95%B0"><span class="nav-text">命令基本格式与参数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BB%E8%A6%81%E5%8F%82%E6%95%B0"><span class="nav-text">主要参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%86%E9%A2%91%E5%8F%82%E6%95%B0"><span class="nav-text">视频参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9F%B3%E9%A2%91%E5%8F%82%E6%95%B0"><span class="nav-text">音频参数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BD%95%E5%88%B6"><span class="nav-text">录制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E8%A7%A3%E4%B8%8E%E5%A4%8D%E7%94%A8"><span class="nav-text">分解与复用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%84%E7%90%86%E5%8E%9F%E5%A7%8B%E6%95%B0%E6%8D%AE"><span class="nav-text">处理原始数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%BB%A4%E9%95%9C"><span class="nav-text">滤镜</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A3%81%E5%89%AA%E4%B8%8E%E5%90%88%E5%B9%B6"><span class="nav-text">裁剪与合并</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E7%89%87%E8%A7%86%E9%A2%91%E4%BA%92%E8%BD%AC"><span class="nav-text">图片&#x2F;视频互转</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B4%E6%92%AD%E6%8E%A8%E6%B5%81%E6%8B%89%E6%B5%81"><span class="nav-text">直播推流&#x2F;拉流</span></a></li></ol></div></div><div class="site-overview-wrap sidebar-panel"><div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person"><img class="site-author-image" itemprop="image" alt="權咚" src="/images/icon.png"><p class="site-author-name" itemprop="name">權咚</p><div class="site-description" itemprop="description">🤘🤯👾</div></div><div class="site-state-wrap motion-element"><nav class="site-state"><div class="site-state-item site-state-posts"><a href="/archives/"><span class="site-state-item-count">75</span> <span class="site-state-item-name">文章</span></a></div><div class="site-state-item site-state-categories"><a href="/categories/"><span class="site-state-item-count">5</span> <span class="site-state-item-name">分类</span></a></div><div class="site-state-item site-state-tags"><a href="/tags/"><span class="site-state-item-count">8</span> <span class="site-state-item-name">标签</span></a></div></nav></div><div class="links-of-author motion-element"><span class="links-of-author-item"><a href="https://github.com/bqlin" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;bqlin" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a> </span><span class="links-of-author-item"><a href="https://weibo.com/hearingdog" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;hearingdog" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a></span></div><div class="links-of-blogroll motion-element"><div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i> Links</div><ul class="links-of-blogroll-list"><li class="links-of-blogroll-item"><a href="https://xiaozhuanlan.com/metal-reference-translation" title="https:&#x2F;&#x2F;xiaozhuanlan.com&#x2F;metal-reference-translation" rel="noopener" target="_blank">Metal内参</a></li><li class="links-of-blogroll-item"><a href="https://xiaozhuanlan.com/wwdc21" title="https:&#x2F;&#x2F;xiaozhuanlan.com&#x2F;wwdc21" rel="noopener" target="_blank">WWDC21 内参</a></li></ul></div></div></div></aside><div id="sidebar-dimmer"></div></div></main><footer class="footer"><div class="footer-inner"><div class="copyright">&copy; 2016 – <span itemprop="copyrightYear">2021</span> <span class="with-love"><i class="fa fa-heart"></i> </span><span class="author" itemprop="copyrightHolder">權咚</span> <span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-chart-area"></i> </span><span title="站点总字数">269k</span> <span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-coffee"></i> </span><span title="站点阅读时长">4:05</span></div><div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动</div><div class="busuanzi-count"><script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span class="post-meta-item" id="busuanzi_container_site_uv" style="display:none"><span class="post-meta-item-icon"><i class="fa fa-user"></i> </span><span class="site-uv" title="总访客量"><span id="busuanzi_value_site_uv"></span> </span></span><span class="post-meta-divider">|</span> <span class="post-meta-item" id="busuanzi_container_site_pv" style="display:none"><span class="post-meta-item-icon"><i class="fa fa-eye"></i> </span><span class="site-pv" title="总访问量"><span id="busuanzi_value_site_pv"></span></span></span></div></div></footer></div><script src="/lib/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js"></script><script src="/js/utils.js"></script><script src="/js/schemes/pisces.js"></script><script src="/js/next-boot.js"></script><script>!function(){var e,t,o,n,r=document.getElementsByTagName("link");if(0<r.length)for(i=0;i<r.length;i++)"canonical"==r[i].rel.toLowerCase()&&r[i].href&&(e=r[i].href);t=(e||window.location.protocol).split(":")[0],e=e||window.location.href,window,o=e,n=document.referrer,/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi.test(o)||(t="https"===String(t).toLowerCase()?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif",n?(t+="?r="+encodeURIComponent(document.referrer),o&&(t+="&l="+o)):o&&(t+="?l="+o),(new Image).src=t)}()</script><script src="/js/local-search.js"></script><script>document.querySelectorAll("pre.mermaid").length&&NexT.utils.getScript("//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js",()=>{mermaid.initialize({theme:"default",logLevel:3,flowchart:{curve:"linear"},gantt:{axisFormat:"%m/%d/%Y"},sequence:{actorMargin:50}})},window.mermaid)</script><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","vOffset":-100},"mobile":{"show":false,"scale":0.5},"log":false});</script></body></html>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/ficon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/icon.png">
+  <link rel="mask-icon" href="/images/icon.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"bqlin.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":false,"preload":false},"motion":{"enable":false,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="下载已编译的静态库：https:&#x2F;&#x2F;evermeet.cx&#x2F;ffmpeg&#x2F; 命令分类">
+<meta property="og:type" content="article">
+<meta property="og:title" content="FFmpeg常用命令">
+<meta property="og:url" content="https://bqlin.github.io/posts/ffmpeg_command/index.html">
+<meta property="og:site_name" content="權咚领域">
+<meta property="og:description" content="下载已编译的静态库：https:&#x2F;&#x2F;evermeet.cx&#x2F;ffmpeg&#x2F; 命令分类">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-06-10T01:36:18.000Z">
+<meta property="article:modified_time" content="2021-10-02T04:20:44.000Z">
+<meta property="article:author" content="權咚">
+<meta property="article:tag" content="音视频">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://bqlin.github.io/posts/ffmpeg_command/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>FFmpeg常用命令 | 權咚领域</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-105338942-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-105338942-1');
+      }
+    </script>
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?98fcf61fd269408d07dcbc1e49311f9a";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="權咚领域" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">權咚领域</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Making app a work of art.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://bqlin.github.io/posts/ffmpeg_command/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/icon.png">
+      <meta itemprop="name" content="權咚">
+      <meta itemprop="description" content="🤘🤯👾">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="權咚领域">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          FFmpeg常用命令
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-06-10 09:36:18" itemprop="dateCreated datePublished" datetime="2021-06-10T09:36:18+08:00">2021-06-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-10-02 12:20:44" itemprop="dateModified" datetime="2021-10-02T12:20:44+08:00">2021-10-02</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/FFmpeg/" itemprop="url" rel="index"><span itemprop="name">FFmpeg</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.7k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>4 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>下载已编译的静态库：https://evermeet.cx/ffmpeg/</p>
+<h2 id="命令分类">命令分类</h2>
+<ul>
+<li>基本信息查询</li>
+<li>录制</li>
+<li>分解、复用</li>
+<li>处理原始数据</li>
+<li>裁剪与合并</li>
+<li>图片/视频互转</li>
+<li>直播</li>
+<li>滤镜</li>
+</ul>
+<h2 id="基本信息查询">基本信息查询</h2>
+<p>版本信息：</p>
+<ul>
+<li><code>-version</code></li>
+</ul>
+<p>支持的分解、复用：</p>
+<ul>
+<li><code>-demuxers</code></li>
+<li><code>-muxers</code></li>
+</ul>
+<p>支持的设备：</p>
+<ul>
+<li><code>-devices</code></li>
+</ul>
+<p>支持的（libavcodec已知的）编解码器：</p>
+<ul>
+<li><code>-codecs</code></li>
+<li><code>-decoders</code></li>
+<li><code>-encoders</code></li>
+</ul>
+<p>libavfilter支持的码流滤镜：</p>
+<ul>
+<li><code>-bsfs</code></li>
+</ul>
+<p>支持的格式：</p>
+<ul>
+<li><code>-formats</code>，支持的文件格式</li>
+<li><code>-protocols</code>，网络协议</li>
+<li><code>-pix_fmts</code>，像素格式</li>
+<li><code>-sample_fmts</code>，采样格式</li>
+<li><code>-layouts</code>，声道布局</li>
+</ul>
+<p>支持的滤镜：</p>
+<ul>
+<li><code>-filters</code></li>
+</ul>
+<p>支持的颜色名称：</p>
+<ul>
+<li><code>-colors</code></li>
+</ul>
+<h2 id="命令基本格式与参数">命令基本格式与参数</h2>
+<p>ffmpeg命令基本格式：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg [全局参数] &#123;[输入文件参数] -i 输入文件URL&#125; ...\</span><br><span class="line">       &#123;[输出文件参数] 输出文件URL&#125; ...</span><br></pre></td></tr></table></figure>
+<p>默认情况下，FFmpeg只包含输入文件中每种媒体类型（音频、视频、字幕）的一个流，并将其添加到每个输出文件中。它根据一下规则选择每种媒体类型中的流：</p>
+<ul>
+<li>视频，选择最高分辨率的流。</li>
+<li>音频，选择声道最多的流。</li>
+<li>字幕，选择第一个流。</li>
+</ul>
+<p>当然上述规则相等，则优先选取最低索引值的流。</p>
+<p>可以通过<code>-vn</code>、<code>-an</code>、<code>-sn</code>、<code>-dn</code>来禁用某些媒体类型。要进行全面的手动控制，则使用<code>-map</code>选项。</p>
+<p>ffmpeg通过<code>-i</code>选项读取任意数量的输入（可以是文件、管道、网络流、抓取设备等），并写入任意数量的输出。原则上，每个输入/输出都可以包含任意数量的不同类型的媒体流（视频、音频、字幕、附件/数据）。流的数量和/或类型是由容器格式来限制，选择从哪个输入进来到哪个输出将自动完成，如需控制则使用<code>-map</code>选项。</p>
+<p>要引用选项中的输入，必须使用索引（从0开始）。例如，第一个输入是0。文件中的媒体流也可以通过索引引用，如<code>2:3</code>是指第三个输入中的第四个流。</p>
+<h3 id="主要参数">主要参数</h3>
+<ul>
+<li><code>-f fmt</code>，输入/输出强制的文件格式。格式通常可以通过扩展名中猜测出来，因此不常使用。</li>
+<li><code>-i url</code>，输入URL。</li>
+<li><code>-y</code>，全局参数，覆盖输出文件而不询问。</li>
+<li><code>-n</code>，全局参数，不覆盖输出文件，如果存在指定文件则退出。</li>
+<li><code>-c [:stream_specifier] codec</code>、<code>-codec [:stream_specifier] codec</code>，输入、输出、单个流，选择一个解码器（在输入文件之前使用）或编码器（在输出文件前使用），可用于一个或多个流。传递编码器名称或<code>copy</code>（仅输出）表示不重新编码。</li>
+<li><code>-t duration</code>，输入、输出，当用作输入选项（在<code>-i</code>之前），表示限制从输入文件读取的数据的时长；当用作输出选项时（在输出url之前），表示在到达时长之后停止输出。</li>
+<li><code>-ss position</code>，输入、输出，当用作输入选项（在<code>-i</code>之前），表示在输入文件中寻找位置。注意，在大多数格式中，不可能精确搜索，因此ffmpeg将在位置之前寻找最近的点。当转码和<code>-accureate_seek</code>被启用时（默认），搜索点和指定的位置之间的额外分段将被解码和丢弃。当进行流式复制或使用<code>-noaccureate_seek</code>时，它将被保留。当用作输出选项（在输出url之前），解码但丢弃输入，知道时间戳到达指定的位置。</li>
+<li><code>frames [:stream_specifier] framecount</code>，输出、单个流，停止在给定帧数量后写入流。</li>
+<li><code>filter [:stream_specifier] filtergraph</code>，输出、单个流，创建由filtergraph指定的滤镜链图，并将其进行处理流。filtergraph的流必须具有相同类型的单个输入和单个输出。在filtergraph中，输入与标签相关联，标签与输出相关联。</li>
+</ul>
+<h3 id="视频参数">视频参数</h3>
+<ul>
+<li><code>-vframes num</code>，输出，设置要输出的视频帧数量。</li>
+<li><code>-r [:stream_specifier] fps</code>，输入、输出、单个流，设置帧率（单位Hz）。
+<ul>
+<li>作为输入选项，忽略存储文件中的让和时间戳，根据速率生成新的时间戳。这与用于<code>-framerate</code>选项不同（旧版是相同的）。</li>
+<li>作为输出选项，复制或丢弃输入帧以实现很定输出帧率。</li>
+</ul></li>
+<li><code>-s [:stream_specifier] size</code>，输入、输出、单个流，设置窗口大小。
+<ul>
+<li>作为输入选项，与<code>video_size</code>相同，由某些分帧器识别，其帧尺寸未存储在文件中。</li>
+<li>作为输出选项，这将会把缩放视频滤镜传输到相应的滤镜链图末尾。请直接使用比例滤镜插入滤镜链图开头或其他地方。格式是<code>宽x高</code>。</li>
+</ul></li>
+<li><code>-aspect [:stream_specifier] ratio</code>，输出、单个流，指定视频的宽高比。值可以是浮点数字也可以是<code>w:h</code>字符串，如<code>4:3</code>、<code>16:9</code>。如果与<code>-vcodec</code>副本一起使用，会影响存储在容器级别的宽高比，但不会影响存储在编码帧中的宽高比（如果存在的话）。</li>
+<li><code>-vn</code>，输出，禁用视频轨道。</li>
+<li><code>-vf filtergraph</code>，输出，创建由filtergraph指定的滤镜链图，并使用它来处理流。</li>
+</ul>
+<h3 id="音频参数">音频参数</h3>
+<ul>
+<li><code>-aframes num</code>，输出，设置输出音频的帧数。</li>
+<li><code>-ar [:stream_specifier] freq</code>，输入、输出、单个流，设置音频采样率。对于输入流，默认设置为输入流的采样率。对于输出流，该选项仅适用于音频设备采集和原始分路器，并映射到相应的分路器选件。</li>
+<li><code>-an</code>，输出，禁用音频轨道。</li>
+<li>-acodec name，输入、输出，设置音频编解码器。</li>
+<li><code>-sample_fmt [:stream_specifier] fmt</code>，输出、单个流，设置音频采样格式。使用<code>-sample_fmts</code>可以获得支持的采样格式列表。</li>
+<li><code>-af filtergraph</code>，输出，创建由filtergraph指定的滤镜链图，并用它来处理音频。</li>
+</ul>
+<h2 id="录制">录制</h2>
+<p>录制屏幕：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 录制纯视频</span></span><br><span class="line">ffmpeg -f avfoundation -i 1 -r 30 out.yuv</span><br><span class="line"><span class="comment"># 播放纯视频</span></span><br><span class="line">ffplay -s 3360x2100 -pix_fmt uyvy422 out.yuv</span><br><span class="line"></span><br><span class="line"><span class="comment"># 录制音视频</span></span><br><span class="line">ffmpeg -f avfoundation -i 1:0 -r 29.97 </span><br><span class="line">       -c:v libx264 -crf 0</span><br><span class="line">       -c:a libfdk_aac -profile:a aac_he_v2 -b:a 32k</span><br><span class="line">       out.flv</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>-f</code>，指定使用avfoundation进行采集。</li>
+<li><code>-i</code>，指定输入索引。</li>
+<li><code>-r</code>，指定帧率。</li>
+<li><code>-crf</code>，x264参数，0表示无损压缩。</li>
+<li><code>-b:a</code>，指定音频码率。</li>
+</ul>
+<p>录制后，会输出录制的格式，后面进行播放要传入这些信息才能正确播放。</p>
+<p>列出支持的设备：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -f avfoundation -list_devices <span class="literal">true</span> -i <span class="string">&quot;&quot;</span></span><br><span class="line">[AVFoundation indev @ 0x7fa856d0c600] AVFoundation video devices:</span><br><span class="line">[AVFoundation indev @ 0x7fa856d0c600] [0] FaceTime高清摄像头（内建）</span><br><span class="line">[AVFoundation indev @ 0x7fa856d0c600] [1] Capture screen 0</span><br><span class="line">[AVFoundation indev @ 0x7fa856d0c600] [2] Capture screen 1</span><br><span class="line">[AVFoundation indev @ 0x7fa856d0c600] AVFoundation audio devices:</span><br><span class="line">[AVFoundation indev @ 0x7fa856d0c600] [0] Built-in Microphone</span><br></pre></td></tr></table></figure>
+<p>摄像头录制：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -framerate 30 -f avfoundation -i 0:0 out.mp4</span><br></pre></td></tr></table></figure>
+<p>录制音频：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 录制</span></span><br><span class="line">ffmpeg -f avfoundation -i :0 output.wav</span><br><span class="line"><span class="comment"># 播放，由于存成wav，所以已经带上了音频的格式，直接播放即可。</span></span><br><span class="line">ffplay output.wav</span><br></pre></td></tr></table></figure>
+<h2 id="分解与复用">分解与复用</h2>
+<p>对容器内的数据重新组装，当然这样做的前提是对容器媒体文件进行分解形成编码数据包，完成重新组装后还需要进行重新封装。整个过程不对编码数据包做修改，只是换了个马甲。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 换媒体容器</span></span><br><span class="line">ffmpeg -i local.mp4 -vcodec copy -acodec copy local_output.mov</span><br><span class="line">ffmpeg -i local.mp4 -vcodec copy -acodec copy local_output.mkv</span><br><span class="line"></span><br><span class="line"><span class="comment"># 抽取视频，当然h264包含了SPS、PPS，可以直接播放</span></span><br><span class="line">ffmpeg -i local.mp4 -vcodec copy -an local_output.h264</span><br><span class="line"></span><br><span class="line"><span class="comment"># 抽取音频</span></span><br><span class="line">ffmpeg -i input.mp4 -acodec copy -vn out.aac</span><br></pre></td></tr></table></figure>
+<p>这里面的关键是<code>codec copy</code>，即忽略指定流的编解码步骤，但同时功能也会受限（例如不能使用滤镜，因为滤镜是作用于未压缩的数据），只能进行多路分解和多路复用。对更改容器格式或修改容器级元数据很有用。</p>
+<p>整个过程非常快，且没有质量损失。</p>
+<h2 id="处理原始数据">处理原始数据</h2>
+<p>这里的原始数据是指解码后的数据。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 提取YUV数据，关键是使用 -c:v rawvideo</span></span><br><span class="line">ffmpeg -i input.mp4 -an -c:v rawvideo -pix_fmt yuv420p out.yuv</span><br><span class="line"><span class="comment"># 播放YUV</span></span><br><span class="line">ffplay -s 1280x720 -pix_fmt yuv420p out.yuv</span><br><span class="line"></span><br><span class="line"><span class="comment"># 提取PCM数据</span></span><br><span class="line">ffmpeg -i local.mp4 -vn -ar 44100 -ac 2 -f s16le out.pcm</span><br><span class="line"><span class="comment"># 播放，PCM是不带元数据的，所以播放时需要执行音频格式</span></span><br><span class="line">ffplay -ar 44100 -ac 2 -f s16le out.pcm</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>-c:v</code>，指定的是使用视频编码器，把它换成<code>-vcodec</code>也是同样的效果。</li>
+<li><code>-pix_fmt</code>，指定像素格式。</li>
+<li><code>-ar</code>，音频采样率。</li>
+<li><code>-ac</code>，声道数。</li>
+<li><code>-f</code>，数据存储格式。
+<ul>
+<li><code>s16le</code>表示sign的16位小端模式整数。</li>
+</ul></li>
+</ul>
+<p>注意这里的<code>-vcodec</code>一定要选择<code>rawvideo</code>，而不是<code>copy</code>；类似的，音频则直接不设置<code>-acodec</code>，而是直接接音频的参数。否则它们输出的结果都不是原始数据。</p>
+<h2 id="滤镜">滤镜</h2>
+<p>使用简单的视频画幅裁剪滤镜：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -i input.mov</span><br><span class="line">       -vf crop=in_w-200:in_h-200</span><br><span class="line">       -c:v libx264 -c:a copy out.mp4</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>-vf</code>，视频简单滤镜。
+<ul>
+<li><code>crop</code>滤镜名称，后面等号接滤镜参数，<code>in_w</code>、<code>in_h</code>引用了原视频的宽高，并使用冒号拼接参数。</li>
+</ul></li>
+</ul>
+<h2 id="裁剪与合并">裁剪与合并</h2>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 裁剪</span></span><br><span class="line">ffmpeg -i input.mp4</span><br><span class="line">       -ss 00:00:00 -t 10</span><br><span class="line">       out.ts</span><br><span class="line"></span><br><span class="line"><span class="comment"># 合并，文本内容每一行必须为 `file &#x27;文件路径&#x27;`</span></span><br><span class="line">ffmpeg -f concat -i inputs.txt out.flv</span><br></pre></td></tr></table></figure>
+<h2 id="图片视频互转">图片/视频互转</h2>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 视频 -&gt; 图片</span></span><br><span class="line">ffmpeg -i input.flv -r 1 -f image2 output-%3d.jpeg</span><br><span class="line"></span><br><span class="line"><span class="comment"># 图片 -&gt; 视频</span></span><br><span class="line">ffmpeg -i input-%3d.jpg out.mp4</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>-r</code>，fps，每秒转一张图片。</li>
+<li><code>-f</code>，转换的格式。</li>
+</ul>
+<h2 id="直播推流拉流">直播推流/拉流</h2>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 直播推流</span></span><br><span class="line">ffmpeg -re -i input.mp4 -c copy -f flv rtmp://server/live/stream_name</span><br><span class="line"></span><br><span class="line"><span class="comment"># 拉流</span></span><br><span class="line">ffmpeg -i rtmp://server/live/stream_name -c copy dump.flv</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>-re</code>，减慢帧率使其与播放时的帧率保持同步。</li>
+<li><code>-c copy</code>，音视频不转码。</li>
+<li><code>-f</code>，指定推流的文件格式。</li>
+</ul>
+<p>推流的格式一定需要与拉取的格式对应上。</p>
+
+    </div>
+
+    
+    
+    
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/" rel="tag"># 音视频</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/posts/ffmpeg_basic/" rel="prev" title="FFmpeg基本概念">
+      <i class="fa fa-chevron-left"></i> FFmpeg基本概念
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/posts/ffmpeg_api_struct/" rel="next" title="FFmpeg基本API：重要结构体">
+      FFmpeg基本API：重要结构体 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%E5%88%86%E7%B1%BB"><span class="nav-text">命令分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E4%BF%A1%E6%81%AF%E6%9F%A5%E8%AF%A2"><span class="nav-text">基本信息查询</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%E5%9F%BA%E6%9C%AC%E6%A0%BC%E5%BC%8F%E4%B8%8E%E5%8F%82%E6%95%B0"><span class="nav-text">命令基本格式与参数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BB%E8%A6%81%E5%8F%82%E6%95%B0"><span class="nav-text">主要参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%86%E9%A2%91%E5%8F%82%E6%95%B0"><span class="nav-text">视频参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9F%B3%E9%A2%91%E5%8F%82%E6%95%B0"><span class="nav-text">音频参数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BD%95%E5%88%B6"><span class="nav-text">录制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E8%A7%A3%E4%B8%8E%E5%A4%8D%E7%94%A8"><span class="nav-text">分解与复用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%84%E7%90%86%E5%8E%9F%E5%A7%8B%E6%95%B0%E6%8D%AE"><span class="nav-text">处理原始数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%BB%A4%E9%95%9C"><span class="nav-text">滤镜</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A3%81%E5%89%AA%E4%B8%8E%E5%90%88%E5%B9%B6"><span class="nav-text">裁剪与合并</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E7%89%87%E8%A7%86%E9%A2%91%E4%BA%92%E8%BD%AC"><span class="nav-text">图片&#x2F;视频互转</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B4%E6%92%AD%E6%8E%A8%E6%B5%81%E6%8B%89%E6%B5%81"><span class="nav-text">直播推流&#x2F;拉流</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="權咚"
+      src="/images/icon.png">
+  <p class="site-author-name" itemprop="name">權咚</p>
+  <div class="site-description" itemprop="description">🤘🤯👾</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">75</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/bqlin" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;bqlin" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/hearingdog" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;hearingdog" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://xiaozhuanlan.com/metal-reference-translation" title="https:&#x2F;&#x2F;xiaozhuanlan.com&#x2F;metal-reference-translation" rel="noopener" target="_blank">Metal内参</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://xiaozhuanlan.com/wwdc21" title="https:&#x2F;&#x2F;xiaozhuanlan.com&#x2F;wwdc21" rel="noopener" target="_blank">WWDC21 内参</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2016 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">權咚</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">269k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">4:05</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'default',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","vOffset":-100},"mobile":{"show":false,"scale":0.5},"log":false});</script></body>
+</html>

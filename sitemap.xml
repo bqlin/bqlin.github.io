@@ -2,15 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://bqlin.github.io/README.html</loc>
-    
-    <lastmod>2021-11-30</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://bqlin.github.io/about/index.html</loc>
     
     <lastmod>2021-11-29</lastmod>
@@ -281,15 +272,6 @@
   </url>
   
   <url>
-    <loc>https://bqlin.github.io/posts/rtmp/</loc>
-    
-    <lastmod>2021-10-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://bqlin.github.io/posts/multimedia_container/</loc>
     
     <lastmod>2021-10-28</lastmod>
@@ -300,6 +282,15 @@
   
   <url>
     <loc>https://bqlin.github.io/posts/flv/</loc>
+    
+    <lastmod>2021-10-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://bqlin.github.io/posts/rtmp/</loc>
     
     <lastmod>2021-10-28</lastmod>
     
@@ -344,7 +335,7 @@
   </url>
   
   <url>
-    <loc>https://bqlin.github.io/posts/image_basic_technology/</loc>
+    <loc>https://bqlin.github.io/posts/yuv/</loc>
     
     <lastmod>2021-10-28</lastmod>
     
@@ -353,7 +344,7 @@
   </url>
   
   <url>
-    <loc>https://bqlin.github.io/posts/yuv/</loc>
+    <loc>https://bqlin.github.io/posts/image_basic_technology/</loc>
     
     <lastmod>2021-10-28</lastmod>
     
@@ -747,6 +738,13 @@
   </url>
   
   <url>
+    <loc>https://bqlin.github.io/tags/Swift/</loc>
+    <lastmod>2021-11-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://bqlin.github.io/tags/Objective-C/</loc>
     <lastmod>2021-11-30</lastmod>
     <changefreq>weekly</changefreq>
@@ -761,7 +759,7 @@
   </url>
   
   <url>
-    <loc>https://bqlin.github.io/tags/Audio-Queue-Services-Programming-Guide/</loc>
+    <loc>https://bqlin.github.io/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/</loc>
     <lastmod>2021-11-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -775,7 +773,7 @@
   </url>
   
   <url>
-    <loc>https://bqlin.github.io/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/</loc>
+    <loc>https://bqlin.github.io/tags/Audio-Queue-Services-Programming-Guide/</loc>
     <lastmod>2021-11-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -788,24 +786,10 @@
     <priority>0.2</priority>
   </url>
   
-  <url>
-    <loc>https://bqlin.github.io/tags/Swift/</loc>
-    <lastmod>2021-11-30</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
 
   
   <url>
     <loc>https://bqlin.github.io/categories/iOS/</loc>
-    <lastmod>2021-11-30</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://bqlin.github.io/categories/%E7%BF%BB%E8%AF%91/</loc>
     <lastmod>2021-11-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -827,6 +811,13 @@
   
   <url>
     <loc>https://bqlin.github.io/categories/FFmpeg/</loc>
+    <lastmod>2021-11-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://bqlin.github.io/categories/%E7%BF%BB%E8%AF%91/</loc>
     <lastmod>2021-11-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
