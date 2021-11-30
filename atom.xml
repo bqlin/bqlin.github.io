@@ -3,11 +3,11 @@
   <title>權咚领域</title>
   
   <subtitle>Making app a work of art.</subtitle>
-  <link href="https://bqlin.github.io/atom.xml" rel="self"/>
+  <link href="https://bqlin.gitee.io/atom.xml" rel="self"/>
   
-  <link href="https://bqlin.github.io/"/>
+  <link href="https://bqlin.gitee.io/"/>
   <updated>2021-11-21T03:18:58.000Z</updated>
-  <id>https://bqlin.github.io/</id>
+  <id>https://bqlin.gitee.io/</id>
   
   <author>
     <name>權咚</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>AVFoundation设备配置</title>
-    <link href="https://bqlin.github.io/posts/avfoundation_device_setup/"/>
-    <id>https://bqlin.github.io/posts/avfoundation_device_setup/</id>
+    <link href="https://bqlin.gitee.io/posts/avfoundation_device_setup/"/>
+    <id>https://bqlin.gitee.io/posts/avfoundation_device_setup/</id>
     <published>2021-11-21T03:18:58.000Z</published>
     <updated>2021-11-21T03:18:58.000Z</updated>
     
@@ -31,19 +31,19 @@
     
     
     
-    <category term="AVFoundation" scheme="https://bqlin.github.io/categories/AVFoundation/"/>
+    <category term="AVFoundation" scheme="https://bqlin.gitee.io/categories/AVFoundation/"/>
     
     
-    <category term="Apple" scheme="https://bqlin.github.io/tags/Apple/"/>
+    <category term="Apple" scheme="https://bqlin.gitee.io/tags/Apple/"/>
     
-    <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title>KVC</title>
-    <link href="https://bqlin.github.io/posts/kvc/"/>
-    <id>https://bqlin.github.io/posts/kvc/</id>
+    <link href="https://bqlin.gitee.io/posts/kvc/"/>
+    <id>https://bqlin.gitee.io/posts/kvc/</id>
     <published>2021-11-20T03:12:33.000Z</published>
     <updated>2021-11-20T03:12:33.000Z</updated>
     
@@ -55,17 +55,17 @@
     
     
     
-    <category term="iOS" scheme="https://bqlin.github.io/categories/iOS/"/>
+    <category term="iOS" scheme="https://bqlin.gitee.io/categories/iOS/"/>
     
     
-    <category term="Apple" scheme="https://bqlin.github.io/tags/Apple/"/>
+    <category term="Apple" scheme="https://bqlin.gitee.io/tags/Apple/"/>
     
   </entry>
   
   <entry>
     <title>Objective-C：Block</title>
-    <link href="https://bqlin.github.io/posts/block/"/>
-    <id>https://bqlin.github.io/posts/block/</id>
+    <link href="https://bqlin.gitee.io/posts/block/"/>
+    <id>https://bqlin.gitee.io/posts/block/</id>
     <published>2021-11-16T09:55:04.000Z</published>
     <updated>2021-11-16T09:55:04.000Z</updated>
     
@@ -82,19 +82,19 @@
     
     
     
-    <category term="iOS" scheme="https://bqlin.github.io/categories/iOS/"/>
+    <category term="iOS" scheme="https://bqlin.gitee.io/categories/iOS/"/>
     
     
-    <category term="Apple" scheme="https://bqlin.github.io/tags/Apple/"/>
+    <category term="Apple" scheme="https://bqlin.gitee.io/tags/Apple/"/>
     
-    <category term="Objective-C" scheme="https://bqlin.github.io/tags/Objective-C/"/>
+    <category term="Objective-C" scheme="https://bqlin.gitee.io/tags/Objective-C/"/>
     
   </entry>
   
   <entry>
     <title>Runtime：weak</title>
-    <link href="https://bqlin.github.io/posts/runtime_weak/"/>
-    <id>https://bqlin.github.io/posts/runtime_weak/</id>
+    <link href="https://bqlin.gitee.io/posts/runtime_weak/"/>
+    <id>https://bqlin.gitee.io/posts/runtime_weak/</id>
     <published>2021-11-12T10:33:52.000Z</published>
     <updated>2021-11-12T10:33:52.000Z</updated>
     
@@ -109,21 +109,21 @@
     
     
     
-    <category term="iOS" scheme="https://bqlin.github.io/categories/iOS/"/>
+    <category term="iOS" scheme="https://bqlin.gitee.io/categories/iOS/"/>
     
     
-    <category term="Apple" scheme="https://bqlin.github.io/tags/Apple/"/>
+    <category term="Apple" scheme="https://bqlin.gitee.io/tags/Apple/"/>
     
-    <category term="Objective-C" scheme="https://bqlin.github.io/tags/Objective-C/"/>
+    <category term="Objective-C" scheme="https://bqlin.gitee.io/tags/Objective-C/"/>
     
-    <category term="Runtime" scheme="https://bqlin.github.io/tags/Runtime/"/>
+    <category term="Runtime" scheme="https://bqlin.gitee.io/tags/Runtime/"/>
     
   </entry>
   
   <entry>
     <title>APNs</title>
-    <link href="https://bqlin.github.io/posts/apns/"/>
-    <id>https://bqlin.github.io/posts/apns/</id>
+    <link href="https://bqlin.gitee.io/posts/apns/"/>
+    <id>https://bqlin.gitee.io/posts/apns/</id>
     <published>2021-11-12T10:23:59.000Z</published>
     <updated>2021-11-12T10:23:59.000Z</updated>
     
@@ -139,17 +139,17 @@
     
     
     
-    <category term="iOS" scheme="https://bqlin.github.io/categories/iOS/"/>
+    <category term="iOS" scheme="https://bqlin.gitee.io/categories/iOS/"/>
     
     
-    <category term="Apple" scheme="https://bqlin.github.io/tags/Apple/"/>
+    <category term="Apple" scheme="https://bqlin.gitee.io/tags/Apple/"/>
     
   </entry>
   
   <entry>
     <title>Objective-C：内省</title>
-    <link href="https://bqlin.github.io/posts/introspection/"/>
-    <id>https://bqlin.github.io/posts/introspection/</id>
+    <link href="https://bqlin.gitee.io/posts/introspection/"/>
+    <id>https://bqlin.gitee.io/posts/introspection/</id>
     <published>2021-11-12T10:07:48.000Z</published>
     <updated>2021-11-12T10:07:48.000Z</updated>
     
@@ -167,19 +167,19 @@
     
     
     
-    <category term="iOS" scheme="https://bqlin.github.io/categories/iOS/"/>
+    <category term="iOS" scheme="https://bqlin.gitee.io/categories/iOS/"/>
     
     
-    <category term="Apple" scheme="https://bqlin.github.io/tags/Apple/"/>
+    <category term="Apple" scheme="https://bqlin.gitee.io/tags/Apple/"/>
     
-    <category term="Objective-C" scheme="https://bqlin.github.io/tags/Objective-C/"/>
+    <category term="Objective-C" scheme="https://bqlin.gitee.io/tags/Objective-C/"/>
     
   </entry>
   
   <entry>
     <title>Runtime：关联对象</title>
-    <link href="https://bqlin.github.io/posts/runtime_associative/"/>
-    <id>https://bqlin.github.io/posts/runtime_associative/</id>
+    <link href="https://bqlin.gitee.io/posts/runtime_associative/"/>
+    <id>https://bqlin.gitee.io/posts/runtime_associative/</id>
     <published>2021-11-12T08:35:38.000Z</published>
     <updated>2021-11-12T08:35:38.000Z</updated>
     
@@ -191,21 +191,21 @@
     
     
     
-    <category term="iOS" scheme="https://bqlin.github.io/categories/iOS/"/>
+    <category term="iOS" scheme="https://bqlin.gitee.io/categories/iOS/"/>
     
     
-    <category term="Apple" scheme="https://bqlin.github.io/tags/Apple/"/>
+    <category term="Apple" scheme="https://bqlin.gitee.io/tags/Apple/"/>
     
-    <category term="Objective-C" scheme="https://bqlin.github.io/tags/Objective-C/"/>
+    <category term="Objective-C" scheme="https://bqlin.gitee.io/tags/Objective-C/"/>
     
-    <category term="Runtime" scheme="https://bqlin.github.io/tags/Runtime/"/>
+    <category term="Runtime" scheme="https://bqlin.gitee.io/tags/Runtime/"/>
     
   </entry>
   
   <entry>
     <title>Runtime：Category</title>
-    <link href="https://bqlin.github.io/posts/runtime_category/"/>
-    <id>https://bqlin.github.io/posts/runtime_category/</id>
+    <link href="https://bqlin.gitee.io/posts/runtime_category/"/>
+    <id>https://bqlin.gitee.io/posts/runtime_category/</id>
     <published>2021-11-12T07:04:29.000Z</published>
     <updated>2021-11-12T07:04:29.000Z</updated>
     
@@ -217,21 +217,21 @@
     
     
     
-    <category term="iOS" scheme="https://bqlin.github.io/categories/iOS/"/>
+    <category term="iOS" scheme="https://bqlin.gitee.io/categories/iOS/"/>
     
     
-    <category term="Apple" scheme="https://bqlin.github.io/tags/Apple/"/>
+    <category term="Apple" scheme="https://bqlin.gitee.io/tags/Apple/"/>
     
-    <category term="Objective-C" scheme="https://bqlin.github.io/tags/Objective-C/"/>
+    <category term="Objective-C" scheme="https://bqlin.gitee.io/tags/Objective-C/"/>
     
-    <category term="Runtime" scheme="https://bqlin.github.io/tags/Runtime/"/>
+    <category term="Runtime" scheme="https://bqlin.gitee.io/tags/Runtime/"/>
     
   </entry>
   
   <entry>
     <title>Runtime：方法调用与对象本质</title>
-    <link href="https://bqlin.github.io/posts/runtime_method_call_and_object_essence/"/>
-    <id>https://bqlin.github.io/posts/runtime_method_call_and_object_essence/</id>
+    <link href="https://bqlin.gitee.io/posts/runtime_method_call_and_object_essence/"/>
+    <id>https://bqlin.gitee.io/posts/runtime_method_call_and_object_essence/</id>
     <published>2021-11-11T09:43:11.000Z</published>
     <updated>2021-11-11T09:43:11.000Z</updated>
     
@@ -243,21 +243,21 @@
     
     
     
-    <category term="iOS" scheme="https://bqlin.github.io/categories/iOS/"/>
+    <category term="iOS" scheme="https://bqlin.gitee.io/categories/iOS/"/>
     
     
-    <category term="Apple" scheme="https://bqlin.github.io/tags/Apple/"/>
+    <category term="Apple" scheme="https://bqlin.gitee.io/tags/Apple/"/>
     
-    <category term="Objective-C" scheme="https://bqlin.github.io/tags/Objective-C/"/>
+    <category term="Objective-C" scheme="https://bqlin.gitee.io/tags/Objective-C/"/>
     
-    <category term="Runtime" scheme="https://bqlin.github.io/tags/Runtime/"/>
+    <category term="Runtime" scheme="https://bqlin.gitee.io/tags/Runtime/"/>
     
   </entry>
   
   <entry>
     <title>Runtime：综合面试题</title>
-    <link href="https://bqlin.github.io/posts/runtime_interview_question/"/>
-    <id>https://bqlin.github.io/posts/runtime_interview_question/</id>
+    <link href="https://bqlin.gitee.io/posts/runtime_interview_question/"/>
+    <id>https://bqlin.gitee.io/posts/runtime_interview_question/</id>
     <published>2021-11-11T09:43:11.000Z</published>
     <updated>2021-11-11T09:43:11.000Z</updated>
     
@@ -269,21 +269,21 @@
     
     
     
-    <category term="iOS" scheme="https://bqlin.github.io/categories/iOS/"/>
+    <category term="iOS" scheme="https://bqlin.gitee.io/categories/iOS/"/>
     
     
-    <category term="Apple" scheme="https://bqlin.github.io/tags/Apple/"/>
+    <category term="Apple" scheme="https://bqlin.gitee.io/tags/Apple/"/>
     
-    <category term="Objective-C" scheme="https://bqlin.github.io/tags/Objective-C/"/>
+    <category term="Objective-C" scheme="https://bqlin.gitee.io/tags/Objective-C/"/>
     
-    <category term="Runtime" scheme="https://bqlin.github.io/tags/Runtime/"/>
+    <category term="Runtime" scheme="https://bqlin.gitee.io/tags/Runtime/"/>
     
   </entry>
   
   <entry>
     <title>Objective-C：Tagged Pointer</title>
-    <link href="https://bqlin.github.io/posts/tagged_pointer/"/>
-    <id>https://bqlin.github.io/posts/tagged_pointer/</id>
+    <link href="https://bqlin.gitee.io/posts/tagged_pointer/"/>
+    <id>https://bqlin.gitee.io/posts/tagged_pointer/</id>
     <published>2021-11-10T10:32:32.000Z</published>
     <updated>2021-11-10T10:32:32.000Z</updated>
     
@@ -295,19 +295,19 @@
     
     
     
-    <category term="iOS" scheme="https://bqlin.github.io/categories/iOS/"/>
+    <category term="iOS" scheme="https://bqlin.gitee.io/categories/iOS/"/>
     
     
-    <category term="Apple" scheme="https://bqlin.github.io/tags/Apple/"/>
+    <category term="Apple" scheme="https://bqlin.gitee.io/tags/Apple/"/>
     
-    <category term="Objective-C" scheme="https://bqlin.github.io/tags/Objective-C/"/>
+    <category term="Objective-C" scheme="https://bqlin.gitee.io/tags/Objective-C/"/>
     
   </entry>
   
   <entry>
     <title>AVFoundation导出API</title>
-    <link href="https://bqlin.github.io/posts/avfoundation_export_api/"/>
-    <id>https://bqlin.github.io/posts/avfoundation_export_api/</id>
+    <link href="https://bqlin.gitee.io/posts/avfoundation_export_api/"/>
+    <id>https://bqlin.gitee.io/posts/avfoundation_export_api/</id>
     <published>2021-11-08T08:47:22.000Z</published>
     <updated>2021-11-08T08:47:22.000Z</updated>
     
@@ -319,19 +319,19 @@
     
     
     
-    <category term="AVFoundation" scheme="https://bqlin.github.io/categories/AVFoundation/"/>
+    <category term="AVFoundation" scheme="https://bqlin.gitee.io/categories/AVFoundation/"/>
     
     
-    <category term="Apple" scheme="https://bqlin.github.io/tags/Apple/"/>
+    <category term="Apple" scheme="https://bqlin.gitee.io/tags/Apple/"/>
     
-    <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title>AVFoundation影片编辑API</title>
-    <link href="https://bqlin.github.io/posts/avfoundation_movie_edit_api/"/>
-    <id>https://bqlin.github.io/posts/avfoundation_movie_edit_api/</id>
+    <link href="https://bqlin.gitee.io/posts/avfoundation_movie_edit_api/"/>
+    <id>https://bqlin.gitee.io/posts/avfoundation_movie_edit_api/</id>
     <published>2021-11-08T02:11:40.000Z</published>
     <updated>2021-11-08T02:11:40.000Z</updated>
     
@@ -343,19 +343,19 @@
     
     
     
-    <category term="AVFoundation" scheme="https://bqlin.github.io/categories/AVFoundation/"/>
+    <category term="AVFoundation" scheme="https://bqlin.gitee.io/categories/AVFoundation/"/>
     
     
-    <category term="Apple" scheme="https://bqlin.github.io/tags/Apple/"/>
+    <category term="Apple" scheme="https://bqlin.gitee.io/tags/Apple/"/>
     
-    <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title>x264编码器参数设置</title>
-    <link href="https://bqlin.github.io/posts/x264_encoder_parameter_setting/"/>
-    <id>https://bqlin.github.io/posts/x264_encoder_parameter_setting/</id>
+    <link href="https://bqlin.gitee.io/posts/x264_encoder_parameter_setting/"/>
+    <id>https://bqlin.gitee.io/posts/x264_encoder_parameter_setting/</id>
     <published>2021-11-07T15:45:52.000Z</published>
     <updated>2021-11-07T15:45:52.000Z</updated>
     
@@ -373,17 +373,17 @@
     
     
     
-    <category term="音视频概念" scheme="https://bqlin.github.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/"/>
+    <category term="音视频概念" scheme="https://bqlin.gitee.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/"/>
     
     
-    <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title>AVFoundation视频解码API</title>
-    <link href="https://bqlin.github.io/posts/avfoundation_video_decode_api/"/>
-    <id>https://bqlin.github.io/posts/avfoundation_video_decode_api/</id>
+    <link href="https://bqlin.gitee.io/posts/avfoundation_video_decode_api/"/>
+    <id>https://bqlin.gitee.io/posts/avfoundation_video_decode_api/</id>
     <published>2021-11-07T08:17:43.000Z</published>
     <updated>2021-11-07T08:17:43.000Z</updated>
     
@@ -395,19 +395,19 @@
     
     
     
-    <category term="AVFoundation" scheme="https://bqlin.github.io/categories/AVFoundation/"/>
+    <category term="AVFoundation" scheme="https://bqlin.gitee.io/categories/AVFoundation/"/>
     
     
-    <category term="Apple" scheme="https://bqlin.github.io/tags/Apple/"/>
+    <category term="Apple" scheme="https://bqlin.gitee.io/tags/Apple/"/>
     
-    <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title>Video Toolbox压缩配置</title>
-    <link href="https://bqlin.github.io/posts/video_toolbox_compression_configuration/"/>
-    <id>https://bqlin.github.io/posts/video_toolbox_compression_configuration/</id>
+    <link href="https://bqlin.gitee.io/posts/video_toolbox_compression_configuration/"/>
+    <id>https://bqlin.gitee.io/posts/video_toolbox_compression_configuration/</id>
     <published>2021-10-12T03:20:38.000Z</published>
     <updated>2021-10-12T03:20:38.000Z</updated>
     
@@ -419,19 +419,19 @@
     
     
     
-    <category term="AVFoundation" scheme="https://bqlin.github.io/categories/AVFoundation/"/>
+    <category term="AVFoundation" scheme="https://bqlin.gitee.io/categories/AVFoundation/"/>
     
     
-    <category term="Apple" scheme="https://bqlin.github.io/tags/Apple/"/>
+    <category term="Apple" scheme="https://bqlin.gitee.io/tags/Apple/"/>
     
-    <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title>Audio Queue Services Programming Guide：播放音频</title>
-    <link href="https://bqlin.github.io/posts/audio_queue_services_pg_playing_audio/"/>
-    <id>https://bqlin.github.io/posts/audio_queue_services_pg_playing_audio/</id>
+    <link href="https://bqlin.gitee.io/posts/audio_queue_services_pg_playing_audio/"/>
+    <id>https://bqlin.gitee.io/posts/audio_queue_services_pg_playing_audio/</id>
     <published>2021-09-27T04:18:11.000Z</published>
     <updated>2021-09-27T04:18:11.000Z</updated>
     
@@ -442,21 +442,21 @@
     
     
     
-    <category term="翻译" scheme="https://bqlin.github.io/categories/%E7%BF%BB%E8%AF%91/"/>
+    <category term="翻译" scheme="https://bqlin.gitee.io/categories/%E7%BF%BB%E8%AF%91/"/>
     
     
-    <category term="Apple" scheme="https://bqlin.github.io/tags/Apple/"/>
+    <category term="Apple" scheme="https://bqlin.gitee.io/tags/Apple/"/>
     
-    <category term="Audio Queue Services Programming Guide" scheme="https://bqlin.github.io/tags/Audio-Queue-Services-Programming-Guide/"/>
+    <category term="Audio Queue Services Programming Guide" scheme="https://bqlin.gitee.io/tags/Audio-Queue-Services-Programming-Guide/"/>
     
-    <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title>Audio Queue Services Programming Guide：录制音频</title>
-    <link href="https://bqlin.github.io/posts/audio_queue_services_pg_recording_audio/"/>
-    <id>https://bqlin.github.io/posts/audio_queue_services_pg_recording_audio/</id>
+    <link href="https://bqlin.gitee.io/posts/audio_queue_services_pg_recording_audio/"/>
+    <id>https://bqlin.gitee.io/posts/audio_queue_services_pg_recording_audio/</id>
     <published>2021-09-27T04:17:11.000Z</published>
     <updated>2021-09-27T04:17:11.000Z</updated>
     
@@ -467,21 +467,21 @@
     
     
     
-    <category term="翻译" scheme="https://bqlin.github.io/categories/%E7%BF%BB%E8%AF%91/"/>
+    <category term="翻译" scheme="https://bqlin.gitee.io/categories/%E7%BF%BB%E8%AF%91/"/>
     
     
-    <category term="Apple" scheme="https://bqlin.github.io/tags/Apple/"/>
+    <category term="Apple" scheme="https://bqlin.gitee.io/tags/Apple/"/>
     
-    <category term="Audio Queue Services Programming Guide" scheme="https://bqlin.github.io/tags/Audio-Queue-Services-Programming-Guide/"/>
+    <category term="Audio Queue Services Programming Guide" scheme="https://bqlin.gitee.io/tags/Audio-Queue-Services-Programming-Guide/"/>
     
-    <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title>Audio Queue Services Programming Guide：关于音频队列</title>
-    <link href="https://bqlin.github.io/posts/audio_queue_services_pg_about_audio_queues/"/>
-    <id>https://bqlin.github.io/posts/audio_queue_services_pg_about_audio_queues/</id>
+    <link href="https://bqlin.gitee.io/posts/audio_queue_services_pg_about_audio_queues/"/>
+    <id>https://bqlin.gitee.io/posts/audio_queue_services_pg_about_audio_queues/</id>
     <published>2021-09-27T04:16:11.000Z</published>
     <updated>2021-09-27T04:16:11.000Z</updated>
     
@@ -492,21 +492,21 @@
     
     
     
-    <category term="翻译" scheme="https://bqlin.github.io/categories/%E7%BF%BB%E8%AF%91/"/>
+    <category term="翻译" scheme="https://bqlin.gitee.io/categories/%E7%BF%BB%E8%AF%91/"/>
     
     
-    <category term="Apple" scheme="https://bqlin.github.io/tags/Apple/"/>
+    <category term="Apple" scheme="https://bqlin.gitee.io/tags/Apple/"/>
     
-    <category term="Audio Queue Services Programming Guide" scheme="https://bqlin.github.io/tags/Audio-Queue-Services-Programming-Guide/"/>
+    <category term="Audio Queue Services Programming Guide" scheme="https://bqlin.gitee.io/tags/Audio-Queue-Services-Programming-Guide/"/>
     
-    <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title>Audio Queue Services Programming Guide</title>
-    <link href="https://bqlin.github.io/posts/audio_queue_services_pg_introduction/"/>
-    <id>https://bqlin.github.io/posts/audio_queue_services_pg_introduction/</id>
+    <link href="https://bqlin.gitee.io/posts/audio_queue_services_pg_introduction/"/>
+    <id>https://bqlin.gitee.io/posts/audio_queue_services_pg_introduction/</id>
     <published>2021-09-27T04:15:11.000Z</published>
     <updated>2021-09-27T04:15:11.000Z</updated>
     
@@ -518,21 +518,21 @@
     
     
     
-    <category term="翻译" scheme="https://bqlin.github.io/categories/%E7%BF%BB%E8%AF%91/"/>
+    <category term="翻译" scheme="https://bqlin.gitee.io/categories/%E7%BF%BB%E8%AF%91/"/>
     
     
-    <category term="Apple" scheme="https://bqlin.github.io/tags/Apple/"/>
+    <category term="Apple" scheme="https://bqlin.gitee.io/tags/Apple/"/>
     
-    <category term="Audio Queue Services Programming Guide" scheme="https://bqlin.github.io/tags/Audio-Queue-Services-Programming-Guide/"/>
+    <category term="Audio Queue Services Programming Guide" scheme="https://bqlin.gitee.io/tags/Audio-Queue-Services-Programming-Guide/"/>
     
-    <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title>Concurrency Programming Guide：术语表</title>
-    <link href="https://bqlin.github.io/posts/concurrency_pg_glossary/"/>
-    <id>https://bqlin.github.io/posts/concurrency_pg_glossary/</id>
+    <link href="https://bqlin.gitee.io/posts/concurrency_pg_glossary/"/>
+    <id>https://bqlin.gitee.io/posts/concurrency_pg_glossary/</id>
     <published>2021-09-08T09:45:58.000Z</published>
     <updated>2021-10-24T04:12:53.000Z</updated>
     
@@ -545,21 +545,21 @@
     
     
     
-    <category term="翻译" scheme="https://bqlin.github.io/categories/%E7%BF%BB%E8%AF%91/"/>
+    <category term="翻译" scheme="https://bqlin.gitee.io/categories/%E7%BF%BB%E8%AF%91/"/>
     
     
-    <category term="Apple" scheme="https://bqlin.github.io/tags/Apple/"/>
+    <category term="Apple" scheme="https://bqlin.gitee.io/tags/Apple/"/>
     
-    <category term="Concurrency Programming Guide" scheme="https://bqlin.github.io/tags/Concurrency-Programming-Guide/"/>
+    <category term="Concurrency Programming Guide" scheme="https://bqlin.gitee.io/tags/Concurrency-Programming-Guide/"/>
     
-    <category term="多线程" scheme="https://bqlin.github.io/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
+    <category term="多线程" scheme="https://bqlin.gitee.io/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
     
   </entry>
   
   <entry>
     <title>Concurrency Programming Guide：迁移线程代码</title>
-    <link href="https://bqlin.github.io/posts/concurrency_pg_migrating_away_from_threads/"/>
-    <id>https://bqlin.github.io/posts/concurrency_pg_migrating_away_from_threads/</id>
+    <link href="https://bqlin.gitee.io/posts/concurrency_pg_migrating_away_from_threads/"/>
+    <id>https://bqlin.gitee.io/posts/concurrency_pg_migrating_away_from_threads/</id>
     <published>2021-09-08T09:44:58.000Z</published>
     <updated>2021-10-24T04:12:53.000Z</updated>
     
@@ -570,21 +570,21 @@
     
     
     
-    <category term="翻译" scheme="https://bqlin.github.io/categories/%E7%BF%BB%E8%AF%91/"/>
+    <category term="翻译" scheme="https://bqlin.gitee.io/categories/%E7%BF%BB%E8%AF%91/"/>
     
     
-    <category term="Apple" scheme="https://bqlin.github.io/tags/Apple/"/>
+    <category term="Apple" scheme="https://bqlin.gitee.io/tags/Apple/"/>
     
-    <category term="Concurrency Programming Guide" scheme="https://bqlin.github.io/tags/Concurrency-Programming-Guide/"/>
+    <category term="Concurrency Programming Guide" scheme="https://bqlin.gitee.io/tags/Concurrency-Programming-Guide/"/>
     
-    <category term="多线程" scheme="https://bqlin.github.io/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
+    <category term="多线程" scheme="https://bqlin.gitee.io/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
     
   </entry>
   
   <entry>
     <title>Concurrency Programming Guide：调度源</title>
-    <link href="https://bqlin.github.io/posts/concurrency_pg_dispatch_sources/"/>
-    <id>https://bqlin.github.io/posts/concurrency_pg_dispatch_sources/</id>
+    <link href="https://bqlin.gitee.io/posts/concurrency_pg_dispatch_sources/"/>
+    <id>https://bqlin.gitee.io/posts/concurrency_pg_dispatch_sources/</id>
     <published>2021-09-08T09:43:58.000Z</published>
     <updated>2021-10-24T04:12:53.000Z</updated>
     
@@ -595,21 +595,21 @@
     
     
     
-    <category term="翻译" scheme="https://bqlin.github.io/categories/%E7%BF%BB%E8%AF%91/"/>
+    <category term="翻译" scheme="https://bqlin.gitee.io/categories/%E7%BF%BB%E8%AF%91/"/>
     
     
-    <category term="Apple" scheme="https://bqlin.github.io/tags/Apple/"/>
+    <category term="Apple" scheme="https://bqlin.gitee.io/tags/Apple/"/>
     
-    <category term="Concurrency Programming Guide" scheme="https://bqlin.github.io/tags/Concurrency-Programming-Guide/"/>
+    <category term="Concurrency Programming Guide" scheme="https://bqlin.gitee.io/tags/Concurrency-Programming-Guide/"/>
     
-    <category term="多线程" scheme="https://bqlin.github.io/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
+    <category term="多线程" scheme="https://bqlin.gitee.io/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
     
   </entry>
   
   <entry>
     <title>Concurrency Programming Guide：调度队列</title>
-    <link href="https://bqlin.github.io/posts/concurrency_pg_dispatch_queues/"/>
-    <id>https://bqlin.github.io/posts/concurrency_pg_dispatch_queues/</id>
+    <link href="https://bqlin.gitee.io/posts/concurrency_pg_dispatch_queues/"/>
+    <id>https://bqlin.gitee.io/posts/concurrency_pg_dispatch_queues/</id>
     <published>2021-09-08T09:42:58.000Z</published>
     <updated>2021-11-13T09:49:10.000Z</updated>
     
@@ -621,21 +621,21 @@
     
     
     
-    <category term="翻译" scheme="https://bqlin.github.io/categories/%E7%BF%BB%E8%AF%91/"/>
+    <category term="翻译" scheme="https://bqlin.gitee.io/categories/%E7%BF%BB%E8%AF%91/"/>
     
     
-    <category term="Apple" scheme="https://bqlin.github.io/tags/Apple/"/>
+    <category term="Apple" scheme="https://bqlin.gitee.io/tags/Apple/"/>
     
-    <category term="Concurrency Programming Guide" scheme="https://bqlin.github.io/tags/Concurrency-Programming-Guide/"/>
+    <category term="Concurrency Programming Guide" scheme="https://bqlin.gitee.io/tags/Concurrency-Programming-Guide/"/>
     
-    <category term="多线程" scheme="https://bqlin.github.io/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
+    <category term="多线程" scheme="https://bqlin.gitee.io/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
     
   </entry>
   
   <entry>
     <title>Concurrency Programming Guide：操作队列</title>
-    <link href="https://bqlin.github.io/posts/concurrency_pg_operation_queues/"/>
-    <id>https://bqlin.github.io/posts/concurrency_pg_operation_queues/</id>
+    <link href="https://bqlin.gitee.io/posts/concurrency_pg_operation_queues/"/>
+    <id>https://bqlin.gitee.io/posts/concurrency_pg_operation_queues/</id>
     <published>2021-09-08T09:41:58.000Z</published>
     <updated>2021-10-24T04:12:53.000Z</updated>
     
@@ -646,21 +646,21 @@
     
     
     
-    <category term="翻译" scheme="https://bqlin.github.io/categories/%E7%BF%BB%E8%AF%91/"/>
+    <category term="翻译" scheme="https://bqlin.gitee.io/categories/%E7%BF%BB%E8%AF%91/"/>
     
     
-    <category term="Apple" scheme="https://bqlin.github.io/tags/Apple/"/>
+    <category term="Apple" scheme="https://bqlin.gitee.io/tags/Apple/"/>
     
-    <category term="Concurrency Programming Guide" scheme="https://bqlin.github.io/tags/Concurrency-Programming-Guide/"/>
+    <category term="Concurrency Programming Guide" scheme="https://bqlin.gitee.io/tags/Concurrency-Programming-Guide/"/>
     
-    <category term="多线程" scheme="https://bqlin.github.io/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
+    <category term="多线程" scheme="https://bqlin.gitee.io/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
     
   </entry>
   
   <entry>
     <title>Concurrency Programming Guide：并发与程序设计</title>
-    <link href="https://bqlin.github.io/posts/concurrency_pg_concurrency_and_application_design/"/>
-    <id>https://bqlin.github.io/posts/concurrency_pg_concurrency_and_application_design/</id>
+    <link href="https://bqlin.gitee.io/posts/concurrency_pg_concurrency_and_application_design/"/>
+    <id>https://bqlin.gitee.io/posts/concurrency_pg_concurrency_and_application_design/</id>
     <published>2021-09-08T09:40:58.000Z</published>
     <updated>2021-10-24T04:12:53.000Z</updated>
     
@@ -671,21 +671,21 @@
     
     
     
-    <category term="翻译" scheme="https://bqlin.github.io/categories/%E7%BF%BB%E8%AF%91/"/>
+    <category term="翻译" scheme="https://bqlin.gitee.io/categories/%E7%BF%BB%E8%AF%91/"/>
     
     
-    <category term="Apple" scheme="https://bqlin.github.io/tags/Apple/"/>
+    <category term="Apple" scheme="https://bqlin.gitee.io/tags/Apple/"/>
     
-    <category term="Concurrency Programming Guide" scheme="https://bqlin.github.io/tags/Concurrency-Programming-Guide/"/>
+    <category term="Concurrency Programming Guide" scheme="https://bqlin.gitee.io/tags/Concurrency-Programming-Guide/"/>
     
-    <category term="多线程" scheme="https://bqlin.github.io/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
+    <category term="多线程" scheme="https://bqlin.gitee.io/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
     
   </entry>
   
   <entry>
     <title>Concurrency Programming Guide</title>
-    <link href="https://bqlin.github.io/posts/concurrency_pg_introduction/"/>
-    <id>https://bqlin.github.io/posts/concurrency_pg_introduction/</id>
+    <link href="https://bqlin.gitee.io/posts/concurrency_pg_introduction/"/>
+    <id>https://bqlin.gitee.io/posts/concurrency_pg_introduction/</id>
     <published>2021-09-08T09:39:58.000Z</published>
     <updated>2021-10-24T04:12:53.000Z</updated>
     
@@ -698,21 +698,21 @@
     
     
     
-    <category term="翻译" scheme="https://bqlin.github.io/categories/%E7%BF%BB%E8%AF%91/"/>
+    <category term="翻译" scheme="https://bqlin.gitee.io/categories/%E7%BF%BB%E8%AF%91/"/>
     
     
-    <category term="Apple" scheme="https://bqlin.github.io/tags/Apple/"/>
+    <category term="Apple" scheme="https://bqlin.gitee.io/tags/Apple/"/>
     
-    <category term="Concurrency Programming Guide" scheme="https://bqlin.github.io/tags/Concurrency-Programming-Guide/"/>
+    <category term="Concurrency Programming Guide" scheme="https://bqlin.gitee.io/tags/Concurrency-Programming-Guide/"/>
     
-    <category term="多线程" scheme="https://bqlin.github.io/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
+    <category term="多线程" scheme="https://bqlin.gitee.io/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
     
   </entry>
   
   <entry>
     <title>FFmpeg基本API：源码分析</title>
-    <link href="https://bqlin.github.io/posts/ffmpeg_api_source_code_analysis/"/>
-    <id>https://bqlin.github.io/posts/ffmpeg_api_source_code_analysis/</id>
+    <link href="https://bqlin.gitee.io/posts/ffmpeg_api_source_code_analysis/"/>
+    <id>https://bqlin.gitee.io/posts/ffmpeg_api_source_code_analysis/</id>
     <published>2021-09-08T08:02:57.000Z</published>
     <updated>2021-09-08T08:02:57.000Z</updated>
     
@@ -724,17 +724,17 @@
     
     
     
-    <category term="FFmpeg" scheme="https://bqlin.github.io/categories/FFmpeg/"/>
+    <category term="FFmpeg" scheme="https://bqlin.gitee.io/categories/FFmpeg/"/>
     
     
-    <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title>FFmpeg基本API：常用操作</title>
-    <link href="https://bqlin.github.io/posts/ffmpeg_api/"/>
-    <id>https://bqlin.github.io/posts/ffmpeg_api/</id>
+    <link href="https://bqlin.gitee.io/posts/ffmpeg_api/"/>
+    <id>https://bqlin.gitee.io/posts/ffmpeg_api/</id>
     <published>2021-09-08T00:26:29.000Z</published>
     <updated>2021-09-08T00:26:29.000Z</updated>
     
@@ -755,17 +755,17 @@
     
     
     
-    <category term="FFmpeg" scheme="https://bqlin.github.io/categories/FFmpeg/"/>
+    <category term="FFmpeg" scheme="https://bqlin.gitee.io/categories/FFmpeg/"/>
     
     
-    <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title>KVO</title>
-    <link href="https://bqlin.github.io/posts/kvo/"/>
-    <id>https://bqlin.github.io/posts/kvo/</id>
+    <link href="https://bqlin.gitee.io/posts/kvo/"/>
+    <id>https://bqlin.gitee.io/posts/kvo/</id>
     <published>2021-07-27T04:21:29.000Z</published>
     <updated>2021-07-27T04:21:29.000Z</updated>
     
@@ -777,17 +777,17 @@
     
     
     
-    <category term="iOS" scheme="https://bqlin.github.io/categories/iOS/"/>
+    <category term="iOS" scheme="https://bqlin.gitee.io/categories/iOS/"/>
     
     
-    <category term="Apple" scheme="https://bqlin.github.io/tags/Apple/"/>
+    <category term="Apple" scheme="https://bqlin.gitee.io/tags/Apple/"/>
     
   </entry>
   
   <entry>
     <title>编译基础概念</title>
-    <link href="https://bqlin.github.io/posts/compilation_basic_concepts/"/>
-    <id>https://bqlin.github.io/posts/compilation_basic_concepts/</id>
+    <link href="https://bqlin.gitee.io/posts/compilation_basic_concepts/"/>
+    <id>https://bqlin.gitee.io/posts/compilation_basic_concepts/</id>
     <published>2021-07-10T03:03:33.000Z</published>
     <updated>2021-07-10T03:03:33.000Z</updated>
     
@@ -799,17 +799,17 @@
     
     
     
-    <category term="FFmpeg" scheme="https://bqlin.github.io/categories/FFmpeg/"/>
+    <category term="FFmpeg" scheme="https://bqlin.gitee.io/categories/FFmpeg/"/>
     
     
-    <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title>FFmpeg音视频同步</title>
-    <link href="https://bqlin.github.io/posts/ffmpeg_audio_and_video_synchronization/"/>
-    <id>https://bqlin.github.io/posts/ffmpeg_audio_and_video_synchronization/</id>
+    <link href="https://bqlin.gitee.io/posts/ffmpeg_audio_and_video_synchronization/"/>
+    <id>https://bqlin.gitee.io/posts/ffmpeg_audio_and_video_synchronization/</id>
     <published>2021-07-08T13:05:20.000Z</published>
     <updated>2021-07-08T13:05:20.000Z</updated>
     
@@ -821,17 +821,17 @@
     
     
     
-    <category term="FFmpeg" scheme="https://bqlin.github.io/categories/FFmpeg/"/>
+    <category term="FFmpeg" scheme="https://bqlin.gitee.io/categories/FFmpeg/"/>
     
     
-    <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title>FFmpeg新老API</title>
-    <link href="https://bqlin.github.io/posts/ffmpeg_api_new_deprecated/"/>
-    <id>https://bqlin.github.io/posts/ffmpeg_api_new_deprecated/</id>
+    <link href="https://bqlin.gitee.io/posts/ffmpeg_api_new_deprecated/"/>
+    <id>https://bqlin.gitee.io/posts/ffmpeg_api_new_deprecated/</id>
     <published>2021-07-06T08:00:03.000Z</published>
     <updated>2021-11-28T14:04:04.000Z</updated>
     
@@ -847,17 +847,17 @@
     
     
     
-    <category term="FFmpeg" scheme="https://bqlin.github.io/categories/FFmpeg/"/>
+    <category term="FFmpeg" scheme="https://bqlin.gitee.io/categories/FFmpeg/"/>
     
     
-    <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title>FFmpeg基本API：重要结构体</title>
-    <link href="https://bqlin.github.io/posts/ffmpeg_api_struct/"/>
-    <id>https://bqlin.github.io/posts/ffmpeg_api_struct/</id>
+    <link href="https://bqlin.gitee.io/posts/ffmpeg_api_struct/"/>
+    <id>https://bqlin.gitee.io/posts/ffmpeg_api_struct/</id>
     <published>2021-06-28T11:27:54.000Z</published>
     <updated>2021-06-28T11:27:54.000Z</updated>
     
@@ -869,17 +869,17 @@
     
     
     
-    <category term="FFmpeg" scheme="https://bqlin.github.io/categories/FFmpeg/"/>
+    <category term="FFmpeg" scheme="https://bqlin.gitee.io/categories/FFmpeg/"/>
     
     
-    <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title>FFmpeg常用命令</title>
-    <link href="https://bqlin.github.io/posts/ffmpeg_command/"/>
-    <id>https://bqlin.github.io/posts/ffmpeg_command/</id>
+    <link href="https://bqlin.gitee.io/posts/ffmpeg_command/"/>
+    <id>https://bqlin.gitee.io/posts/ffmpeg_command/</id>
     <published>2021-06-10T01:36:18.000Z</published>
     <updated>2021-10-02T04:20:44.000Z</updated>
     
@@ -891,17 +891,17 @@
     
     
     
-    <category term="FFmpeg" scheme="https://bqlin.github.io/categories/FFmpeg/"/>
+    <category term="FFmpeg" scheme="https://bqlin.gitee.io/categories/FFmpeg/"/>
     
     
-    <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title>FFmpeg基本概念</title>
-    <link href="https://bqlin.github.io/posts/ffmpeg_basic/"/>
-    <id>https://bqlin.github.io/posts/ffmpeg_basic/</id>
+    <link href="https://bqlin.gitee.io/posts/ffmpeg_basic/"/>
+    <id>https://bqlin.gitee.io/posts/ffmpeg_basic/</id>
     <published>2021-06-10T01:21:24.000Z</published>
     <updated>2021-10-25T16:02:45.000Z</updated>
     
@@ -921,17 +921,17 @@
     
     
     
-    <category term="FFmpeg" scheme="https://bqlin.github.io/categories/FFmpeg/"/>
+    <category term="FFmpeg" scheme="https://bqlin.gitee.io/categories/FFmpeg/"/>
     
     
-    <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title>FFmpeg实战 H264</title>
-    <link href="https://bqlin.github.io/posts/ffmpeg_coding_h264/"/>
-    <id>https://bqlin.github.io/posts/ffmpeg_coding_h264/</id>
+    <link href="https://bqlin.gitee.io/posts/ffmpeg_coding_h264/"/>
+    <id>https://bqlin.gitee.io/posts/ffmpeg_coding_h264/</id>
     <published>2021-06-02T02:46:17.000Z</published>
     <updated>2021-06-02T02:46:17.000Z</updated>
     
@@ -948,17 +948,17 @@
     
     
     
-    <category term="FFmpeg" scheme="https://bqlin.github.io/categories/FFmpeg/"/>
+    <category term="FFmpeg" scheme="https://bqlin.gitee.io/categories/FFmpeg/"/>
     
     
-    <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title>FFmpeg实战 YUV</title>
-    <link href="https://bqlin.github.io/posts/ffmpeg_coding_yuv/"/>
-    <id>https://bqlin.github.io/posts/ffmpeg_coding_yuv/</id>
+    <link href="https://bqlin.gitee.io/posts/ffmpeg_coding_yuv/"/>
+    <id>https://bqlin.gitee.io/posts/ffmpeg_coding_yuv/</id>
     <published>2021-06-02T02:46:17.000Z</published>
     <updated>2021-06-02T02:46:17.000Z</updated>
     
@@ -970,17 +970,17 @@
     
     
     
-    <category term="FFmpeg" scheme="https://bqlin.github.io/categories/FFmpeg/"/>
+    <category term="FFmpeg" scheme="https://bqlin.gitee.io/categories/FFmpeg/"/>
     
     
-    <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title>FFmpeg实战 音频录制、编码、重采样</title>
-    <link href="https://bqlin.github.io/posts/ffmpeg_coding_audio_recording_encoding_resampling/"/>
-    <id>https://bqlin.github.io/posts/ffmpeg_coding_audio_recording_encoding_resampling/</id>
+    <link href="https://bqlin.gitee.io/posts/ffmpeg_coding_audio_recording_encoding_resampling/"/>
+    <id>https://bqlin.gitee.io/posts/ffmpeg_coding_audio_recording_encoding_resampling/</id>
     <published>2021-05-26T17:56:00.000Z</published>
     <updated>2021-05-26T17:56:00.000Z</updated>
     
@@ -992,17 +992,17 @@
     
     
     
-    <category term="FFmpeg" scheme="https://bqlin.github.io/categories/FFmpeg/"/>
+    <category term="FFmpeg" scheme="https://bqlin.gitee.io/categories/FFmpeg/"/>
     
     
-    <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title>FFmpeg编译</title>
-    <link href="https://bqlin.github.io/posts/ffmpeg_compilation/"/>
-    <id>https://bqlin.github.io/posts/ffmpeg_compilation/</id>
+    <link href="https://bqlin.gitee.io/posts/ffmpeg_compilation/"/>
+    <id>https://bqlin.gitee.io/posts/ffmpeg_compilation/</id>
     <published>2021-05-26T01:55:03.000Z</published>
     <updated>2021-05-26T01:55:03.000Z</updated>
     
@@ -1014,17 +1014,17 @@
     
     
     
-    <category term="FFmpeg" scheme="https://bqlin.github.io/categories/FFmpeg/"/>
+    <category term="FFmpeg" scheme="https://bqlin.gitee.io/categories/FFmpeg/"/>
     
     
-    <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title>CMSampleBuffer专题</title>
-    <link href="https://bqlin.github.io/posts/cmsamplebuffer/"/>
-    <id>https://bqlin.github.io/posts/cmsamplebuffer/</id>
+    <link href="https://bqlin.gitee.io/posts/cmsamplebuffer/"/>
+    <id>https://bqlin.gitee.io/posts/cmsamplebuffer/</id>
     <published>2021-03-29T10:08:47.000Z</published>
     <updated>2021-03-29T10:08:47.000Z</updated>
     
@@ -1036,19 +1036,19 @@
     
     
     
-    <category term="AVFoundation" scheme="https://bqlin.github.io/categories/AVFoundation/"/>
+    <category term="AVFoundation" scheme="https://bqlin.gitee.io/categories/AVFoundation/"/>
     
     
-    <category term="Apple" scheme="https://bqlin.github.io/tags/Apple/"/>
+    <category term="Apple" scheme="https://bqlin.gitee.io/tags/Apple/"/>
     
-    <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title>直播优化</title>
-    <link href="https://bqlin.github.io/posts/live_optimization/"/>
-    <id>https://bqlin.github.io/posts/live_optimization/</id>
+    <link href="https://bqlin.gitee.io/posts/live_optimization/"/>
+    <id>https://bqlin.gitee.io/posts/live_optimization/</id>
     <published>2021-03-15T12:34:44.000Z</published>
     <updated>2021-10-28T04:26:38.000Z</updated>
     
@@ -1060,17 +1060,17 @@
     
     
     
-    <category term="音视频概念" scheme="https://bqlin.github.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/"/>
+    <category term="音视频概念" scheme="https://bqlin.gitee.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/"/>
     
     
-    <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title>压缩率和压缩比</title>
-    <link href="https://bqlin.github.io/posts/compression_rate_and_compression_ratio/"/>
-    <id>https://bqlin.github.io/posts/compression_rate_and_compression_ratio/</id>
+    <link href="https://bqlin.gitee.io/posts/compression_rate_and_compression_ratio/"/>
+    <id>https://bqlin.gitee.io/posts/compression_rate_and_compression_ratio/</id>
     <published>2021-03-15T11:34:44.000Z</published>
     <updated>2021-10-28T04:26:38.000Z</updated>
     
@@ -1084,17 +1084,17 @@
     
     
     
-    <category term="音视频概念" scheme="https://bqlin.github.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/"/>
+    <category term="音视频概念" scheme="https://bqlin.gitee.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/"/>
     
     
-    <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title>CDN网络</title>
-    <link href="https://bqlin.github.io/posts/cnd/"/>
-    <id>https://bqlin.github.io/posts/cnd/</id>
+    <link href="https://bqlin.gitee.io/posts/cnd/"/>
+    <id>https://bqlin.gitee.io/posts/cnd/</id>
     <published>2021-03-15T10:34:44.000Z</published>
     <updated>2021-10-28T04:26:38.000Z</updated>
     
@@ -1106,17 +1106,17 @@
     
     
     
-    <category term="音视频概念" scheme="https://bqlin.github.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/"/>
+    <category term="音视频概念" scheme="https://bqlin.gitee.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/"/>
     
     
-    <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title>CVPixelBuffer专题</title>
-    <link href="https://bqlin.github.io/posts/cvpixelbuffer/"/>
-    <id>https://bqlin.github.io/posts/cvpixelbuffer/</id>
+    <link href="https://bqlin.gitee.io/posts/cvpixelbuffer/"/>
+    <id>https://bqlin.gitee.io/posts/cvpixelbuffer/</id>
     <published>2021-03-15T10:08:47.000Z</published>
     <updated>2021-03-15T10:08:47.000Z</updated>
     
@@ -1128,19 +1128,19 @@
     
     
     
-    <category term="AVFoundation" scheme="https://bqlin.github.io/categories/AVFoundation/"/>
+    <category term="AVFoundation" scheme="https://bqlin.gitee.io/categories/AVFoundation/"/>
     
     
-    <category term="Apple" scheme="https://bqlin.github.io/tags/Apple/"/>
+    <category term="Apple" scheme="https://bqlin.gitee.io/tags/Apple/"/>
     
-    <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title>音视频同步</title>
-    <link href="https://bqlin.github.io/posts/audio_and_video_synchronization/"/>
-    <id>https://bqlin.github.io/posts/audio_and_video_synchronization/</id>
+    <link href="https://bqlin.gitee.io/posts/audio_and_video_synchronization/"/>
+    <id>https://bqlin.gitee.io/posts/audio_and_video_synchronization/</id>
     <published>2021-03-15T09:34:44.000Z</published>
     <updated>2021-10-28T04:26:38.000Z</updated>
     
@@ -1152,17 +1152,17 @@
     
     
     
-    <category term="音视频概念" scheme="https://bqlin.github.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/"/>
+    <category term="音视频概念" scheme="https://bqlin.gitee.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/"/>
     
     
-    <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title>视频码率控制</title>
-    <link href="https://bqlin.github.io/posts/video_bit_rate_control/"/>
-    <id>https://bqlin.github.io/posts/video_bit_rate_control/</id>
+    <link href="https://bqlin.gitee.io/posts/video_bit_rate_control/"/>
+    <id>https://bqlin.gitee.io/posts/video_bit_rate_control/</id>
     <published>2021-03-15T08:34:44.000Z</published>
     <updated>2021-11-22T02:42:40.000Z</updated>
     
@@ -1174,17 +1174,17 @@
     
     
     
-    <category term="音视频概念" scheme="https://bqlin.github.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/"/>
+    <category term="音视频概念" scheme="https://bqlin.gitee.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/"/>
     
     
-    <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title>常用视频参数设置（经验值）</title>
-    <link href="https://bqlin.github.io/posts/common_video_parameter_settings/"/>
-    <id>https://bqlin.github.io/posts/common_video_parameter_settings/</id>
+    <link href="https://bqlin.gitee.io/posts/common_video_parameter_settings/"/>
+    <id>https://bqlin.gitee.io/posts/common_video_parameter_settings/</id>
     <published>2021-03-15T07:34:44.000Z</published>
     <updated>2021-10-28T04:26:38.000Z</updated>
     
@@ -1196,17 +1196,17 @@
     
     
     
-    <category term="音视频概念" scheme="https://bqlin.github.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/"/>
+    <category term="音视频概念" scheme="https://bqlin.gitee.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/"/>
     
     
-    <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title>AVC Profile &amp; Level</title>
-    <link href="https://bqlin.github.io/posts/avc_profile_and_level/"/>
-    <id>https://bqlin.github.io/posts/avc_profile_and_level/</id>
+    <link href="https://bqlin.gitee.io/posts/avc_profile_and_level/"/>
+    <id>https://bqlin.gitee.io/posts/avc_profile_and_level/</id>
     <published>2021-03-15T06:34:44.000Z</published>
     <updated>2021-10-28T04:26:38.000Z</updated>
     
@@ -1218,17 +1218,17 @@
     
     
     
-    <category term="音视频概念" scheme="https://bqlin.github.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/"/>
+    <category term="音视频概念" scheme="https://bqlin.gitee.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/"/>
     
     
-    <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title>H.264/MPEG-4 AVC</title>
-    <link href="https://bqlin.github.io/posts/h264/"/>
-    <id>https://bqlin.github.io/posts/h264/</id>
+    <link href="https://bqlin.gitee.io/posts/h264/"/>
+    <id>https://bqlin.gitee.io/posts/h264/</id>
     <published>2021-03-15T05:34:44.000Z</published>
     <updated>2021-11-21T08:47:03.000Z</updated>
     
@@ -1240,17 +1240,17 @@
     
     
     
-    <category term="音视频概念" scheme="https://bqlin.github.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/"/>
+    <category term="音视频概念" scheme="https://bqlin.gitee.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/"/>
     
     
-    <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title>视频压缩技术</title>
-    <link href="https://bqlin.github.io/posts/video_compression_technology/"/>
-    <id>https://bqlin.github.io/posts/video_compression_technology/</id>
+    <link href="https://bqlin.gitee.io/posts/video_compression_technology/"/>
+    <id>https://bqlin.gitee.io/posts/video_compression_technology/</id>
     <published>2021-03-15T04:34:44.000Z</published>
     <updated>2021-10-28T04:26:38.000Z</updated>
     
@@ -1262,17 +1262,17 @@
     
     
     
-    <category term="音视频概念" scheme="https://bqlin.github.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/"/>
+    <category term="音视频概念" scheme="https://bqlin.gitee.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/"/>
     
     
-    <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title>YUV</title>
-    <link href="https://bqlin.github.io/posts/yuv/"/>
-    <id>https://bqlin.github.io/posts/yuv/</id>
+    <link href="https://bqlin.gitee.io/posts/yuv/"/>
+    <id>https://bqlin.gitee.io/posts/yuv/</id>
     <published>2021-03-15T03:34:44.000Z</published>
     <updated>2021-10-28T04:26:38.000Z</updated>
     
@@ -1284,17 +1284,17 @@
     
     
     
-    <category term="音视频概念" scheme="https://bqlin.github.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/"/>
+    <category term="音视频概念" scheme="https://bqlin.gitee.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/"/>
     
     
-    <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title>图像基础技术</title>
-    <link href="https://bqlin.github.io/posts/image_basic_technology/"/>
-    <id>https://bqlin.github.io/posts/image_basic_technology/</id>
+    <link href="https://bqlin.gitee.io/posts/image_basic_technology/"/>
+    <id>https://bqlin.gitee.io/posts/image_basic_technology/</id>
     <published>2021-03-15T02:34:44.000Z</published>
     <updated>2021-10-28T04:26:38.000Z</updated>
     
@@ -1306,15 +1306,15 @@
     
     
     
-    <category term="音视频概念" scheme="https://bqlin.github.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/"/>
+    <category term="音视频概念" scheme="https://bqlin.gitee.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/"/>
     
     
   </entry>
   
   <entry>
     <title>视频基础技术</title>
-    <link href="https://bqlin.github.io/posts/basic_video_technology/"/>
-    <id>https://bqlin.github.io/posts/basic_video_technology/</id>
+    <link href="https://bqlin.gitee.io/posts/basic_video_technology/"/>
+    <id>https://bqlin.gitee.io/posts/basic_video_technology/</id>
     <published>2021-03-15T01:34:44.000Z</published>
     <updated>2021-10-28T04:26:38.000Z</updated>
     
@@ -1333,17 +1333,17 @@
     
     
     
-    <category term="音视频概念" scheme="https://bqlin.github.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/"/>
+    <category term="音视频概念" scheme="https://bqlin.gitee.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/"/>
     
     
-    <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title>AAC 编解码器</title>
-    <link href="https://bqlin.github.io/posts/aac/"/>
-    <id>https://bqlin.github.io/posts/aac/</id>
+    <link href="https://bqlin.gitee.io/posts/aac/"/>
+    <id>https://bqlin.gitee.io/posts/aac/</id>
     <published>2021-03-15T00:34:44.000Z</published>
     <updated>2021-10-28T04:26:38.000Z</updated>
     
@@ -1355,17 +1355,17 @@
     
     
     
-    <category term="音视频概念" scheme="https://bqlin.github.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/"/>
+    <category term="音视频概念" scheme="https://bqlin.gitee.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/"/>
     
     
-    <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title>常见音频格式</title>
-    <link href="https://bqlin.github.io/posts/common_audio_formats/"/>
-    <id>https://bqlin.github.io/posts/common_audio_formats/</id>
+    <link href="https://bqlin.gitee.io/posts/common_audio_formats/"/>
+    <id>https://bqlin.gitee.io/posts/common_audio_formats/</id>
     <published>2021-03-14T23:34:44.000Z</published>
     <updated>2021-10-28T04:26:38.000Z</updated>
     
@@ -1377,17 +1377,17 @@
     
     
     
-    <category term="音视频概念" scheme="https://bqlin.github.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/"/>
+    <category term="音视频概念" scheme="https://bqlin.gitee.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/"/>
     
     
-    <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title>音频基础技术</title>
-    <link href="https://bqlin.github.io/posts/audio_basic_technology/"/>
-    <id>https://bqlin.github.io/posts/audio_basic_technology/</id>
+    <link href="https://bqlin.gitee.io/posts/audio_basic_technology/"/>
+    <id>https://bqlin.gitee.io/posts/audio_basic_technology/</id>
     <published>2021-03-14T22:34:44.000Z</published>
     <updated>2021-10-28T04:26:38.000Z</updated>
     
@@ -1399,17 +1399,17 @@
     
     
     
-    <category term="音视频概念" scheme="https://bqlin.github.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/"/>
+    <category term="音视频概念" scheme="https://bqlin.gitee.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/"/>
     
     
-    <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title>FLV格式</title>
-    <link href="https://bqlin.github.io/posts/flv/"/>
-    <id>https://bqlin.github.io/posts/flv/</id>
+    <link href="https://bqlin.gitee.io/posts/flv/"/>
+    <id>https://bqlin.gitee.io/posts/flv/</id>
     <published>2021-03-14T21:34:44.000Z</published>
     <updated>2021-10-28T04:26:38.000Z</updated>
     
@@ -1421,17 +1421,17 @@
     
     
     
-    <category term="音视频概念" scheme="https://bqlin.github.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/"/>
+    <category term="音视频概念" scheme="https://bqlin.gitee.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/"/>
     
     
-    <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title>多媒体容器</title>
-    <link href="https://bqlin.github.io/posts/multimedia_container/"/>
-    <id>https://bqlin.github.io/posts/multimedia_container/</id>
+    <link href="https://bqlin.gitee.io/posts/multimedia_container/"/>
+    <id>https://bqlin.gitee.io/posts/multimedia_container/</id>
     <published>2021-03-14T20:34:44.000Z</published>
     <updated>2021-10-28T04:26:38.000Z</updated>
     
@@ -1443,17 +1443,17 @@
     
     
     
-    <category term="音视频概念" scheme="https://bqlin.github.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/"/>
+    <category term="音视频概念" scheme="https://bqlin.gitee.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/"/>
     
     
-    <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title>RTMP</title>
-    <link href="https://bqlin.github.io/posts/rtmp/"/>
-    <id>https://bqlin.github.io/posts/rtmp/</id>
+    <link href="https://bqlin.gitee.io/posts/rtmp/"/>
+    <id>https://bqlin.gitee.io/posts/rtmp/</id>
     <published>2021-03-14T19:34:44.000Z</published>
     <updated>2021-10-28T04:26:38.000Z</updated>
     
@@ -1465,17 +1465,17 @@
     
     
     
-    <category term="音视频概念" scheme="https://bqlin.github.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/"/>
+    <category term="音视频概念" scheme="https://bqlin.gitee.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/"/>
     
     
-    <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title>流媒体传输协议</title>
-    <link href="https://bqlin.github.io/posts/streaming_transfer_protocol/"/>
-    <id>https://bqlin.github.io/posts/streaming_transfer_protocol/</id>
+    <link href="https://bqlin.gitee.io/posts/streaming_transfer_protocol/"/>
+    <id>https://bqlin.gitee.io/posts/streaming_transfer_protocol/</id>
     <published>2021-03-14T18:34:44.000Z</published>
     <updated>2021-10-28T04:26:38.000Z</updated>
     
@@ -1487,17 +1487,17 @@
     
     
     
-    <category term="音视频概念" scheme="https://bqlin.github.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/"/>
+    <category term="音视频概念" scheme="https://bqlin.gitee.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/"/>
     
     
-    <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title>音视频通用技术</title>
-    <link href="https://bqlin.github.io/posts/audio_and_video_general_technology/"/>
-    <id>https://bqlin.github.io/posts/audio_and_video_general_technology/</id>
+    <link href="https://bqlin.gitee.io/posts/audio_and_video_general_technology/"/>
+    <id>https://bqlin.gitee.io/posts/audio_and_video_general_technology/</id>
     <published>2021-03-14T17:34:44.000Z</published>
     <updated>2021-10-28T04:26:38.000Z</updated>
     
@@ -1509,17 +1509,17 @@
     
     
     
-    <category term="音视频概念" scheme="https://bqlin.github.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/"/>
+    <category term="音视频概念" scheme="https://bqlin.gitee.io/categories/%E9%9F%B3%E8%A7%86%E9%A2%91%E6%A6%82%E5%BF%B5/"/>
     
     
-    <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title>AVFoundation采集API</title>
-    <link href="https://bqlin.github.io/posts/avfoundation_capture_api/"/>
-    <id>https://bqlin.github.io/posts/avfoundation_capture_api/</id>
+    <link href="https://bqlin.gitee.io/posts/avfoundation_capture_api/"/>
+    <id>https://bqlin.gitee.io/posts/avfoundation_capture_api/</id>
     <published>2020-10-23T10:08:47.000Z</published>
     <updated>2020-10-23T10:08:47.000Z</updated>
     
@@ -1531,19 +1531,19 @@
     
     
     
-    <category term="AVFoundation" scheme="https://bqlin.github.io/categories/AVFoundation/"/>
+    <category term="AVFoundation" scheme="https://bqlin.gitee.io/categories/AVFoundation/"/>
     
     
-    <category term="Apple" scheme="https://bqlin.github.io/tags/Apple/"/>
+    <category term="Apple" scheme="https://bqlin.gitee.io/tags/Apple/"/>
     
-    <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title>iOS 配置认证证书</title>
-    <link href="https://bqlin.github.io/posts/ios_configuring_the_authentication_certificate/"/>
-    <id>https://bqlin.github.io/posts/ios_configuring_the_authentication_certificate/</id>
+    <link href="https://bqlin.gitee.io/posts/ios_configuring_the_authentication_certificate/"/>
+    <id>https://bqlin.gitee.io/posts/ios_configuring_the_authentication_certificate/</id>
     <published>2020-10-19T04:15:11.000Z</published>
     <updated>2020-10-19T04:15:11.000Z</updated>
     
@@ -1557,17 +1557,17 @@
     
     
     
-    <category term="iOS" scheme="https://bqlin.github.io/categories/iOS/"/>
+    <category term="iOS" scheme="https://bqlin.gitee.io/categories/iOS/"/>
     
     
-    <category term="Apple" scheme="https://bqlin.github.io/tags/Apple/"/>
+    <category term="Apple" scheme="https://bqlin.gitee.io/tags/Apple/"/>
     
   </entry>
   
   <entry>
     <title>获取时间接口对比</title>
-    <link href="https://bqlin.github.io/posts/get_the_time_api/"/>
-    <id>https://bqlin.github.io/posts/get_the_time_api/</id>
+    <link href="https://bqlin.gitee.io/posts/get_the_time_api/"/>
+    <id>https://bqlin.gitee.io/posts/get_the_time_api/</id>
     <published>2020-10-19T04:15:11.000Z</published>
     <updated>2020-10-19T04:15:11.000Z</updated>
     
@@ -1579,17 +1579,17 @@
     
     
     
-    <category term="iOS" scheme="https://bqlin.github.io/categories/iOS/"/>
+    <category term="iOS" scheme="https://bqlin.gitee.io/categories/iOS/"/>
     
     
-    <category term="Apple" scheme="https://bqlin.github.io/tags/Apple/"/>
+    <category term="Apple" scheme="https://bqlin.gitee.io/tags/Apple/"/>
     
   </entry>
   
   <entry>
     <title>AVFoundation支持格式</title>
-    <link href="https://bqlin.github.io/posts/avfoundation_movie_format/"/>
-    <id>https://bqlin.github.io/posts/avfoundation_movie_format/</id>
+    <link href="https://bqlin.gitee.io/posts/avfoundation_movie_format/"/>
+    <id>https://bqlin.gitee.io/posts/avfoundation_movie_format/</id>
     <published>2020-03-15T10:08:47.000Z</published>
     <updated>2020-03-15T10:08:47.000Z</updated>
     
@@ -1613,19 +1613,19 @@
     
     
     
-    <category term="AVFoundation" scheme="https://bqlin.github.io/categories/AVFoundation/"/>
+    <category term="AVFoundation" scheme="https://bqlin.gitee.io/categories/AVFoundation/"/>
     
     
-    <category term="Apple" scheme="https://bqlin.github.io/tags/Apple/"/>
+    <category term="Apple" scheme="https://bqlin.gitee.io/tags/Apple/"/>
     
-    <category term="音视频" scheme="https://bqlin.github.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://bqlin.gitee.io/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   
   <entry>
     <title>使用对象包装实现多代理</title>
-    <link href="https://bqlin.github.io/posts/implement_multiple_proxies_using_object_wrappers/"/>
-    <id>https://bqlin.github.io/posts/implement_multiple_proxies_using_object_wrappers/</id>
+    <link href="https://bqlin.gitee.io/posts/implement_multiple_proxies_using_object_wrappers/"/>
+    <id>https://bqlin.gitee.io/posts/implement_multiple_proxies_using_object_wrappers/</id>
     <published>2020-03-03T02:29:58.000Z</published>
     <updated>2020-03-03T02:29:58.000Z</updated>
     
@@ -1642,17 +1642,17 @@
     
     
     
-    <category term="iOS" scheme="https://bqlin.github.io/categories/iOS/"/>
+    <category term="iOS" scheme="https://bqlin.gitee.io/categories/iOS/"/>
     
     
-    <category term="Apple" scheme="https://bqlin.github.io/tags/Apple/"/>
+    <category term="Apple" scheme="https://bqlin.gitee.io/tags/Apple/"/>
     
   </entry>
   
   <entry>
     <title>静态库与动态库</title>
-    <link href="https://bqlin.github.io/posts/static_lib_vs_and_dynamic_lib/"/>
-    <id>https://bqlin.github.io/posts/static_lib_vs_and_dynamic_lib/</id>
+    <link href="https://bqlin.gitee.io/posts/static_lib_vs_and_dynamic_lib/"/>
+    <id>https://bqlin.gitee.io/posts/static_lib_vs_and_dynamic_lib/</id>
     <published>2019-09-09T06:20:52.000Z</published>
     <updated>2019-09-09T06:20:52.000Z</updated>
     
@@ -1664,17 +1664,17 @@
     
     
     
-    <category term="iOS" scheme="https://bqlin.github.io/categories/iOS/"/>
+    <category term="iOS" scheme="https://bqlin.gitee.io/categories/iOS/"/>
     
     
-    <category term="Apple" scheme="https://bqlin.github.io/tags/Apple/"/>
+    <category term="Apple" scheme="https://bqlin.gitee.io/tags/Apple/"/>
     
   </entry>
   
   <entry>
     <title>扩展名类型判断</title>
-    <link href="https://bqlin.github.io/posts/extension_type_determination/"/>
-    <id>https://bqlin.github.io/posts/extension_type_determination/</id>
+    <link href="https://bqlin.gitee.io/posts/extension_type_determination/"/>
+    <id>https://bqlin.gitee.io/posts/extension_type_determination/</id>
     <published>2017-08-24T14:08:56.000Z</published>
     <updated>2017-08-24T14:08:56.000Z</updated>
     
@@ -1685,10 +1685,10 @@
     
     
     
-    <category term="iOS" scheme="https://bqlin.github.io/categories/iOS/"/>
+    <category term="iOS" scheme="https://bqlin.gitee.io/categories/iOS/"/>
     
     
-    <category term="Apple" scheme="https://bqlin.github.io/tags/Apple/"/>
+    <category term="Apple" scheme="https://bqlin.gitee.io/tags/Apple/"/>
     
   </entry>
   
