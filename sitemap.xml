@@ -101,6 +101,15 @@
   </url>
   
   <url>
+    <loc>https://bqlin.github.io/posts/swift_underlying/</loc>
+    
+    <lastmod>2021-11-15</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://bqlin.github.io/posts/concurrency_pg_dispatch_queues/</loc>
     
     <lastmod>2021-11-13</lastmod>
@@ -230,6 +239,15 @@
     <loc>https://bqlin.github.io/posts/avfoundation_video_decode_api/</loc>
     
     <lastmod>2021-11-07</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://bqlin.github.io/posts/swift_byte_order_operation/</loc>
+    
+    <lastmod>2021-11-05</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -542,6 +560,15 @@
   </url>
   
   <url>
+    <loc>https://bqlin.github.io/posts/swift_interacts_with_c_language/</loc>
+    
+    <lastmod>2021-08-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://bqlin.github.io/posts/kvo/</loc>
     
     <lastmod>2021-07-27</lastmod>
@@ -747,6 +774,13 @@
   
   <url>
     <loc>https://bqlin.github.io/tags/Concurrency-Programming-Guide/</loc>
+    <lastmod>2021-11-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://bqlin.github.io/tags/Swift/</loc>
     <lastmod>2021-11-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

@@ -25,6 +25,10 @@
     <lastmod>2021-11-16</lastmod>
   </url>
   <url>
+    <loc>https://bqlin.github.io/posts/swift_underlying/</loc>
+    <lastmod>2021-11-15</lastmod>
+  </url>
+  <url>
     <loc>https://bqlin.github.io/posts/concurrency_pg_dispatch_queues/</loc>
     <lastmod>2021-11-13</lastmod>
   </url>
@@ -83,6 +87,10 @@
   <url>
     <loc>https://bqlin.github.io/posts/avfoundation_video_decode_api/</loc>
     <lastmod>2021-11-07</lastmod>
+  </url>
+  <url>
+    <loc>https://bqlin.github.io/posts/swift_byte_order_operation/</loc>
+    <lastmod>2021-11-05</lastmod>
   </url>
   <url>
     <loc>https://bqlin.github.io/posts/audio_and_video_general_technology/</loc>
@@ -219,6 +227,10 @@
   <url>
     <loc>https://bqlin.github.io/posts/ffmpeg_api/</loc>
     <lastmod>2021-09-08</lastmod>
+  </url>
+  <url>
+    <loc>https://bqlin.github.io/posts/swift_interacts_with_c_language/</loc>
+    <lastmod>2021-08-19</lastmod>
   </url>
   <url>
     <loc>https://bqlin.github.io/posts/kvo/</loc>
