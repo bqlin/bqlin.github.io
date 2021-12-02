@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/ficon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/icon.png">
+  <link rel="mask-icon" href="/images/icon.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"bqlin.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":false,"preload":false},"motion":{"enable":false,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="HTTP的缺点  通信使用明文（不加密），内容可能会被窃听。 不验证通信的身份，因此有可能遭遇伪装。 无法验证报文的完整性，所以有可能篡改。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="图解HTTP：HTTPS">
+<meta property="og:url" content="https://bqlin.github.io/posts/graphical_http_https/index.html">
+<meta property="og:site_name" content="權咚领域">
+<meta property="og:description" content="HTTP的缺点  通信使用明文（不加密），内容可能会被窃听。 不验证通信的身份，因此有可能遭遇伪装。 无法验证报文的完整性，所以有可能篡改。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/bqlin/image-land/raw/master/%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86.jpg">
+<meta property="og:image" content="https://gitee.com/bqlin/image-land/raw/master/%E6%B7%B7%E5%90%88%E5%8A%A0%E5%AF%86.jpg">
+<meta property="og:image" content="https://gitee.com/bqlin/image-land/raw/master/%E5%AE%A2%E6%88%B7%E7%AB%AF%E4%BA%8B%E5%85%88%E5%AE%89%E8%A3%85CA%E5%85%AC%E9%92%A5.jpg">
+<meta property="og:image" content="https://gitee.com/bqlin/image-land/raw/master/%E5%85%AC%E9%92%A5%E8%BD%AC%E8%AF%81%E4%B9%A6.jpg">
+<meta property="og:image" content="https://gitee.com/bqlin/image-land/raw/master/%E6%8F%90%E5%8F%96%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%85%AC%E9%92%A5.jpg">
+<meta property="og:image" content="https://gitee.com/bqlin/image-land/raw/master/HTTPS%E8%BF%87%E7%A8%8B.jpg">
+<meta property="og:image" content="https://gitee.com/bqlin/image-land/raw/master/HTTPS%E8%BF%87%E7%A8%8B_%E5%85%B7%E4%BD%93.jpg">
+<meta property="article:published_time" content="2021-12-01T06:25:37.000Z">
+<meta property="article:modified_time" content="2021-12-02T14:24:49.666Z">
+<meta property="article:author" content="權咚">
+<meta property="article:tag" content="网络">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/bqlin/image-land/raw/master/%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86.jpg">
+
+<link rel="canonical" href="https://bqlin.github.io/posts/graphical_http_https/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>图解HTTP：HTTPS | 權咚领域</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-105338942-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-105338942-1');
+      }
+    </script>
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?98fcf61fd269408d07dcbc1e49311f9a";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="權咚领域" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">權咚领域</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Making app a work of art.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://bqlin.github.io/posts/graphical_http_https/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/icon.png">
+      <meta itemprop="name" content="權咚">
+      <meta itemprop="description" content="🤘🤯👾">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="權咚领域">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          图解HTTP：HTTPS
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-12-01 14:25:37" itemprop="dateCreated datePublished" datetime="2021-12-01T14:25:37+08:00">2021-12-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-12-02 22:24:49" itemprop="dateModified" datetime="2021-12-02T22:24:49+08:00">2021-12-02</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">读书笔记</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.1k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="http的缺点">HTTP的缺点</h2>
+<ul>
+<li>通信使用明文（不加密），内容可能会被窃听。</li>
+<li>不验证通信的身份，因此有可能遭遇伪装。</li>
+<li>无法验证报文的完整性，所以有可能篡改。</li>
+</ul>
+<p>未加密的协议都会出现类似的问题。</p>
+<h2 id="https-http-加密-认证-完整性保护">HTTPS = HTTP + 加密 + 认证 + 完整性保护</h2>
+<p>HTTPS 是身披 SSL 外壳的 HTTP。HTTPS 并非是应用层的一种新协议，只是 HTTP 通信接口部分用 SSL 和 TLS 协议代替而已。</p>
+<p>原本HTTP直接和TCP通信；使用SSL时，先和SSL通信，再由SSL和TCP通信。</p>
+<p>SSL是独立于HTTP协议的，应用层的其他协议也可以配合SSL协议实现网络安全。</p>
+<h3 id="相互交换密钥的公开密钥加密技术">相互交换密钥的公开密钥加密技术</h3>
+<p>SSL使用公开密钥加密的加密处理方式。公开密钥加密使用一对非对称的密钥——公钥、私钥。</p>
+<p>公钥加密，私钥解密。客户端持有公钥，用私钥对发送的信息加密；服务器持有私钥，用私钥对客户端发送的密文解密。</p>
+<figure>
+<img src="https://gitee.com/bqlin/image-land/raw/master/%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86.jpg" alt="非对称加密" /><figcaption aria-hidden="true">非对称加密</figcaption>
+</figure>
+<p>注意：客户端的私钥是服务器事先传递过去的，即服务器先生成一对公钥私钥，把私钥发送到客户端，客户端才能用私钥进行加密。</p>
+<p>在HTTPS中，对称加密与非对称加密混合使用。因为非对称加密适合加密小量数据，一般数据应使用对称加密进行加密解密。所以在HTTPS中，使用非对称加密的是对称密钥，即客户端把对称密钥用私钥加密发送到服务器，后续服务器用对称密钥加密解密一般的消息。</p>
+<figure>
+<img src="https://gitee.com/bqlin/image-land/raw/master/%E6%B7%B7%E5%90%88%E5%8A%A0%E5%AF%86.jpg" alt="混合加密" /><figcaption aria-hidden="true">混合加密</figcaption>
+</figure>
+<h3 id="确保服务端公钥安全">确保服务端公钥安全</h3>
+<p>因为客户端需要用服务端的公钥进行加密，所以首先要确保客户端能拿到正确的服务端公钥。公钥在下发的时候会被替换劫持，这里通过第三方认证机（CA）构确认公钥的正确性。</p>
+<p>认证的方式通过数字签名校验实现，简单来说就是CA私钥加密HASH（通过内容生成），公钥解密得出HASH，比对从收到的内容生成的HASH是否相等。</p>
+<p>这个过程如下：</p>
+<p>前提准备：</p>
+<ul>
+<li>客户端提前安装了CA的公钥。</li>
+<li>服务端获取CA颁发的证书。
+<ol type="1">
+<li>服务端生成一对公钥、私钥，私钥自己存着，公钥最终要传给客户端。</li>
+<li>把公钥登记到CA，CA对公钥内容做HASH，对HASH值用CA私钥加密，密文+公钥打包成证书发送给服务器。</li>
+</ol></li>
+</ul>
+<figure>
+<img src="https://gitee.com/bqlin/image-land/raw/master/%E5%AE%A2%E6%88%B7%E7%AB%AF%E4%BA%8B%E5%85%88%E5%AE%89%E8%A3%85CA%E5%85%AC%E9%92%A5.jpg" alt="客户端事先安装CA公钥" /><figcaption aria-hidden="true">客户端事先安装CA公钥</figcaption>
+</figure>
+<figure>
+<img src="https://gitee.com/bqlin/image-land/raw/master/%E5%85%AC%E9%92%A5%E8%BD%AC%E8%AF%81%E4%B9%A6.jpg" alt="公钥转证书" /><figcaption aria-hidden="true">公钥转证书</figcaption>
+</figure>
+<p>校验流程：</p>
+<ol type="1">
+<li>服务端发送公钥证书给客户端；</li>
+<li>客户端对证书中的密文用CA的公钥解密得出HASH，对证书中的公钥内做HASH，对比两个HASH值。正确则提取公钥存到客户端。</li>
+<li>客户端使用服务端的公钥加密与服务器传输，开始加密通信。使用上述的混合加密方式，即非对称加密交换对称加密密钥，然后双方使用对称密钥进行加密通信。</li>
+</ol>
+<figure>
+<img src="https://gitee.com/bqlin/image-land/raw/master/%E6%8F%90%E5%8F%96%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%85%AC%E9%92%A5.jpg" alt="提取服务端公钥" /><figcaption aria-hidden="true">提取服务端公钥</figcaption>
+</figure>
+<h3 id="rsa公钥私钥的作用助记">RSA公钥、私钥的作用助记</h3>
+<p>既然是加密，那肯定是不希望别人知道我的消息，所以只有我才能解密，所以可得出<strong>公钥负责加密，私钥负责解密</strong>；同理，既然是签名，那肯定是不希望有人冒充我发消息，只有我才能发布这个签名，所以可得出<strong>私钥负责签名，公钥负责验证</strong>。</p>
+<p>数字签名就是使用私钥对数据摘要进行签名，并附带和数据一起发送。可以起到防篡改、防伪装、防否认的作用。</p>
+<p>证书则是由CA机构自己的私钥签发的数字签名。解决的签名的权威性问题，奠定了信任链的基础。</p>
+<h3 id="https安全通信过程">HTTPS安全通信过程</h3>
+<p>服务端已经生成公钥、私钥，并通过CA获得公钥证书。客户端已经事先安装CA公钥。</p>
+<figure>
+<img src="https://gitee.com/bqlin/image-land/raw/master/HTTPS%E8%BF%87%E7%A8%8B.jpg" alt="HTTPS过程" /><figcaption aria-hidden="true">HTTPS过程</figcaption>
+</figure>
+<p>具体过程：</p>
+<figure>
+<img src="https://gitee.com/bqlin/image-land/raw/master/HTTPS%E8%BF%87%E7%A8%8B_%E5%85%B7%E4%BD%93.jpg" alt="HTTPS过程_具体" /><figcaption aria-hidden="true">HTTPS过程_具体</figcaption>
+</figure>
+<ol type="1">
+<li>客-&gt;服，Handshake: ClientHello</li>
+</ol>
+<ul>
+<li>客户端通过发送 Client Hello 报文开始 SSL 通信。</li>
+<li>报文中包含客户端支持的 SSL 的指定版本、加密组件（Clipher Suite）列表（所使用的加密算法及密钥长度等）。</li>
+</ul>
+<ol start="2" type="1">
+<li>服-&gt;客，Handshake: ServerHello</li>
+</ol>
+<ul>
+<li>服务器进行 SSL 通信，以 Server Hello 报文作为应答。</li>
+<li>和客户端一样，在报文中包含 SSL 版本以及加密组件。</li>
+<li>服务器的加密组件内容是从接收到的客户端加密组件内筛选出来的。</li>
+</ul>
+<ol start="3" type="1">
+<li>服-&gt;客，Handshake: Certificate</li>
+</ol>
+<ul>
+<li>服务器发送 Certificate 报文。报文中包含公钥证书。</li>
+</ul>
+<ol start="4" type="1">
+<li>服-&gt;客，Handshake: ServerHelloDone</li>
+</ol>
+<ul>
+<li>最后服务器发送 Server Hello Done 报文通知客户端，最初阶段的 SSL 握手协商部分结束。</li>
+</ul>
+<ol start="5" type="1">
+<li>客-&gt;服，Handshake: ClientKeyExchange</li>
+</ol>
+<ul>
+<li>第一次握手结束后，客户端以 Client Key Exchange 报文作为回应。</li>
+<li>报文中包含通信加密中使用的一种称为 Pre-master secret 的随机密码串，该密码已用步骤 3 的公钥进行加密。</li>
+</ul>
+<ol start="6" type="1">
+<li>客-&gt;服，ChangeCipherSpec</li>
+</ol>
+<ul>
+<li>客户端继续发送 Change Cipher Spec 报文。告诉服务器之后的通信将采用该密码进行加密。</li>
+</ul>
+<ol start="7" type="1">
+<li>客-&gt;服，Handshake: Finished</li>
+</ol>
+<ul>
+<li>客户端发送 Finished 报文。该报文包含链接至今全部报文的整体校验值。</li>
+<li>这次握手协商成功的标准是服务器能正确解密该报文。</li>
+</ul>
+<ol start="8" type="1">
+<li>服-&gt;客，ChangeClipherSpec</li>
+<li>服-&gt;客，Handshake: Finished</li>
+<li>客-&gt;服，Application Data（HTTP）</li>
+</ol>
+<ul>
+<li>客户端和服务端的 Finished 报文交换完毕后，SSL 连接建立完成。从此开始发送 HTTP 请求。</li>
+</ul>
+<ol start="11" type="1">
+<li>服-&gt;客，Application Data（HTTP）</li>
+</ol>
+<ul>
+<li>应用层协议通信，发送 HTTP 响应。</li>
+</ul>
+<ol start="12" type="1">
+<li>客-&gt;服，Alert: warning, close notify</li>
+</ol>
+<ul>
+<li>由客户端断开连接。</li>
+</ul>
+<p>参考：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/fengf233/p/11775415.html">HTTPS加密流程理解 - fengf233 - 博客园</a></p>
+<h3 id="单向认证与双向认证">单向认证与双向认证</h3>
+<p>上述的HTTPS基本流程就是单向认证，即指认证服务端的证书。单向认证中需要额外代码的情况往往是服务器下发的证书是CA颁发的，而是自签的，所以在检验服务端私钥证书时就要自定义的逻辑。</p>
+<p>而双向认证，则是在ServerHelloDone前，发送来自客户端的公钥证书，服务端收到后用根证书解密客户端证书，取出客户端私钥。双向认证在确保了服务端的正确性，也确保了客户端的正确性。</p>
+<p>两者过程对比：</p>
+<p>单向认证：</p>
+<ol type="1">
+<li>客-&gt;服，发起HTTPS连接请求，把SSL协议版本发送给服务端。</li>
+<li>服-&gt;客，发送服务端把本机公钥证书（server.crt）。</li>
+<li>客，校验公钥证书（server.crt），取出服务端公钥。</li>
+<li>客-&gt;服，并发送用服务端公钥加密的随机生成密钥R。</li>
+<li>服，用私钥（server.key）解密得出密钥R。</li>
+<li>服&lt;-&gt;客，用密钥R进行加密通信。</li>
+</ol>
+<p>双向认证：</p>
+<ol type="1">
+<li>同上（客-&gt;服，发起HTTPS连接请求，把SSL协议版本发送给服务端）。</li>
+<li>同上（服-&gt;客，发送服务端把本机公钥证书（server.crt））。</li>
+<li>同上（客，校验公钥证书（server.crt），取出服务端公钥）。</li>
+<li><strong>客-&gt;服，把自己的公钥证书（client.crt）发送给服务端。</strong></li>
+<li><strong>服，用根证书（root.crt）解密客户端公钥证书，拿到客户端公钥。</strong></li>
+<li><strong>客-&gt;服，发送自己支持的加密方案。</strong></li>
+<li><strong>服-&gt;客，根据双端能力，选择双方都能接受的加密方案，使用客户端公钥加密后发送。</strong></li>
+<li><strong>客-&gt;服，使用私钥解密加密方案，生成随机密钥R，使用服务端公钥加密后发送。</strong></li>
+<li>同上5（服，用私钥（server.key）解密得出密钥R）。</li>
+<li>同上6（服&lt;-&gt;客，用密钥R进行加密通信）。</li>
+</ol>
+<p>参考：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/2b2d1f511959">HTTPS双向认证指南 - 简书</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/yaphetsfang/articles/12858356.html">HTTPS单向认证、双向认证、抓包原理、反抓包策略 - yaphetsfang - 博客园</a></li>
+</ul>
+<h3 id="ssl和tls">SSL和TLS</h3>
+<p>SSL 先有，TSL 是以 SSL 为原型开发的协议，有时会统一称该协议为 SSL。</p>
+<h3 id="不推荐一直使用https">不推荐一直使用HTTPS</h3>
+<ul>
+<li>与明文通信相比，加密通信会消耗更多的 CPU 及内存资源。所以敏感信息才使用 HTTPS 加密通信。</li>
+<li>证书的费用开销。</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag"># 网络</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/posts/graphical_http_web_server/" rel="prev" title="图解HTTP：Web服务器">
+      <i class="fa fa-chevron-left"></i> 图解HTTP：Web服务器
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/posts/graphical_http_certification/" rel="next" title="图解HTTP：认证">
+      图解HTTP：认证 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#http%E7%9A%84%E7%BC%BA%E7%82%B9"><span class="nav-text">HTTP的缺点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#https-http-%E5%8A%A0%E5%AF%86-%E8%AE%A4%E8%AF%81-%E5%AE%8C%E6%95%B4%E6%80%A7%E4%BF%9D%E6%8A%A4"><span class="nav-text">HTTPS &#x3D; HTTP + 加密 + 认证 + 完整性保护</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B8%E4%BA%92%E4%BA%A4%E6%8D%A2%E5%AF%86%E9%92%A5%E7%9A%84%E5%85%AC%E5%BC%80%E5%AF%86%E9%92%A5%E5%8A%A0%E5%AF%86%E6%8A%80%E6%9C%AF"><span class="nav-text">相互交换密钥的公开密钥加密技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A1%AE%E4%BF%9D%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%85%AC%E9%92%A5%E5%AE%89%E5%85%A8"><span class="nav-text">确保服务端公钥安全</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rsa%E5%85%AC%E9%92%A5%E7%A7%81%E9%92%A5%E7%9A%84%E4%BD%9C%E7%94%A8%E5%8A%A9%E8%AE%B0"><span class="nav-text">RSA公钥、私钥的作用助记</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#https%E5%AE%89%E5%85%A8%E9%80%9A%E4%BF%A1%E8%BF%87%E7%A8%8B"><span class="nav-text">HTTPS安全通信过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%95%E5%90%91%E8%AE%A4%E8%AF%81%E4%B8%8E%E5%8F%8C%E5%90%91%E8%AE%A4%E8%AF%81"><span class="nav-text">单向认证与双向认证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ssl%E5%92%8Ctls"><span class="nav-text">SSL和TLS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8D%E6%8E%A8%E8%8D%90%E4%B8%80%E7%9B%B4%E4%BD%BF%E7%94%A8https"><span class="nav-text">不推荐一直使用HTTPS</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="權咚"
+      src="/images/icon.png">
+  <p class="site-author-name" itemprop="name">權咚</p>
+  <div class="site-description" itemprop="description">🤘🤯👾</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/bqlin" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;bqlin" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/hearingdog" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;hearingdog" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://xiaozhuanlan.com/metal-reference-translation" title="https:&#x2F;&#x2F;xiaozhuanlan.com&#x2F;metal-reference-translation" rel="noopener" target="_blank">Metal内参</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://xiaozhuanlan.com/wwdc21" title="https:&#x2F;&#x2F;xiaozhuanlan.com&#x2F;wwdc21" rel="noopener" target="_blank">WWDC21 内参</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2016 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">權咚</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">279k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">4:14</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'default',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","vOffset":-100},"mobile":{"show":false,"scale":0.5},"log":false});</script></body>
+</html>
