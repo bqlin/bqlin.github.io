@@ -6,7 +6,7 @@
   <link href="https://bqlin.github.io/atom.xml" rel="self"/>
   
   <link href="https://bqlin.github.io/"/>
-  <updated>2021-12-02T06:25:37.000Z</updated>
+  <updated>2021-12-02T10:25:37.000Z</updated>
   <id>https://bqlin.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>图解HTTP</title>
+    <link href="https://bqlin.github.io/posts/graphical_http/"/>
+    <id>https://bqlin.github.io/posts/graphical_http/</id>
+    <published>2021-12-02T10:25:37.000Z</published>
+    <updated>2021-12-02T10:25:37.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>这本书是工作两年后买的，虽然说工作中都基本用不上，但对于面试其内容都是必考题。每次换工作面试都会拿出来读一遍，现在已经是第三刷了，每次读《图解HTTP》都有一种仪式感，嗯，面试了。</p><p>《图解HTTP》里面的内容虽然不深，但覆盖范围较广，用于面试也基本足够。之前整理在幕布的笔记太精简了，现在再读一遍，要补充的东西还是挺多的。</p><p>所以说这本书的内容更多的是一个引子、导读，更多的细节还是需要再去翻查资料。</p>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;这本书是工作两年后买的，虽然说工作中都基本用不上，但对于面试其内容都是必考题。每次换工作面试都会拿出来读一遍，现在已经是第三刷了，每次读《图解HTTP》都有一种仪式感，嗯，面试了。&lt;/p&gt;
+&lt;p&gt;《图解HTTP》里面的内容虽然不深，但覆盖范围较广，用于面试也基本足够。之前整理在幕布的笔记太精简了，现在再读一遍，要补充的东西还是挺多的。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="读书笔记" scheme="https://bqlin.github.io/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="网络" scheme="https://bqlin.github.io/tags/%E7%BD%91%E7%BB%9C/"/>
+    
+    <category term="图解HTTP" scheme="https://bqlin.github.io/tags/%E5%9B%BE%E8%A7%A3HTTP/"/>
+    
+  </entry>
   
   <entry>
     <title>图解HTTP：基于HTTP的功能追加协议</title>
@@ -211,9 +235,9 @@
     <link href="https://bqlin.github.io/posts/graphical_http_network_fundamentals/"/>
     <id>https://bqlin.github.io/posts/graphical_http_network_fundamentals/</id>
     <published>2021-11-30T10:25:37.000Z</published>
-    <updated>2021-11-30T10:25:37.000Z</updated>
+    <updated>2021-12-02T20:32:10.000Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="tcpip-协议族">TCP/IP 协议族</h2><p>与互联网相关联的协议集合起来总称。</p><h2 id="tcpip-分层管理">TCP/IP 分层管理</h2><ol type="1"><li>应用层。给用户提供应用服务。如：FTP、DNS、HTTP。</li><li>传输层。给应用层提供处理网络连接中的两台计算机之间的数据传输。如：TCP、UDP。</li><li>网络层/网络互连层。处理在网络上流动的数据包。在众多的传输路线中做出选择。如：IP。</li><li>数据链路层/网络接口层。处理连接网络的硬件部分。</li></ol><p>数据包是网络传输的最小数据单位。</p><h3 id="tcpip-通信传输流">TCP/IP 通信传输流</h3><p>通过分层顺序与对方网络通信。</p><p>发送端从应用层往下走：</p><ul><li>发送数据：应用层 -&gt; 传输层 -&gt; 网络层 -&gt; 链路层</li><li>每经过一层都打上一层的首部信息，层层封装。</li></ul><p>接收端则从链路层往上走，一直到达服务器：</p><ul><li>接收到数据：链路层 -&gt; 网络层 -&gt; 传输层 -&gt; 应用层</li><li>每经过一层就将对应的首部消掉，层层解封装。</li></ul><p>以HTTP举例：</p><figure><img src="https://gitee.com/bqlin/image-land/raw/master/HTTP%E4%BC%A0%E8%BE%93.jpg" alt="HTTP传输" /><figcaption aria-hidden="true">HTTP传输</figcaption></figure><ol type="1"><li>发送端/客户端在应用层（HTTP协议）发出一个HTTP请求。</li><li>为了方便传输，在传输层（TCP协议）把应用层收到的数据（HTTP请求报文）进行分割，并在各个报文上标记序号、端口号，然后转发给网络层。</li><li>在网络层（IP协议），增加作为通信目的地的MAC地址后转发给链路层。</li><li>接收端/服务器在链路层接收到数据，按序往上发送，一直到应用层，才算真正接收到HTTP请求。</li></ol><p>每一层的交互通过打上首部信息和消去首部信息（封装与解封装），发送端/客户端把应用层数据层层封装，到接收端/服务器才层层解封装拿到应用层数据。</p><h3 id="ip协议">IP协议</h3><p>IP，Internet Protocol，网络层。负责把各种数据传输到对方。其中两个重要条件是IP地址和MAC地址。</p><p>IP地址指明被分配到的地址；MAC地址指明网卡所属的固定地址。IP地址依赖MAC地址，通常不在发送端与接收端不在同一个局域网时，往往通过ARP协议进行多台计算机和网络设备中转。</p><p>中转时，利用下一站中转设备的MAC地址来搜索下一个中转目标。</p><p>ARP的作用时解析地址，根据通信方的IP地址反查出对应的MAC地址。</p><h3 id="tcp-协议">TCP 协议</h3><p>TCP协议，传输层，提供可靠的字节流服务。</p><p>为确保数据能到达目标，会进行三次握手策略建立连接：</p><ol type="1"><li>标有 SYN 的数据包发送给对方；</li><li>对方回复标有 SYN/ACK 的数据包；</li><li>再向对方发送标有 ACK 的数据包。</li></ol><h3 id="dns服务">DNS服务</h3><p>DNS服务，Domain Name System，应用层，提供域名到IP地址之间的解析服务。</p><p>若直接通过IP访问则不需要经过DNS服务。</p><h2 id="url-与-uri">URL 与 URI</h2><ul><li>URL（Uniform Resource Location），统一资源定位符。<ul><li>是 URI 的子集。表达的是一个位置。</li></ul></li><li>URI（Uniform Resource Identifier），统一资源标识符。</li></ul><p>URI格式：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://user:pass@www.example.com:80/dir/index.html?uid=1#ch1</span><br></pre></td></tr></table></figure><ul><li><code>http</code>：协议方案名</li><li><code>user:pass</code>：登录认证信息</li><li><code>www.example.com</code>：服务器地址</li><li><code>80</code>：服务器端口号</li><li><code>dir/index.html</code>：带层级的文件路径</li><li><code>uid=1</code>：查询字符串</li><li><code>ch1</code>：片段标识符</li></ul>]]></content>
+    <content type="html"><![CDATA[<h2 id="tcpip-协议族">TCP/IP 协议族</h2><p>与互联网相关联的协议集合起来总称。</p><h2 id="tcpip-分层管理">TCP/IP 分层管理</h2><ol type="1"><li>应用层。给用户提供应用服务。如：FTP、DNS、HTTP。</li><li>传输层。给应用层提供处理网络连接中的两台计算机之间的数据传输。如：TCP、UDP。</li><li>网络层/网络互连层。处理在网络上流动的数据包。在众多的传输路线中做出选择。如：IP。</li><li>数据链路层/网络接口层。处理连接网络的硬件部分。</li></ol><p>数据包是网络传输的最小数据单位。</p><h3 id="tcpip-通信传输流">TCP/IP 通信传输流</h3><p>通过分层顺序与对方网络通信。</p><p>发送端从应用层往下走：</p><ul><li>发送数据：应用层 -&gt; 传输层 -&gt; 网络层 -&gt; 链路层</li><li>每经过一层都打上一层的首部信息，层层封装。</li></ul><p>接收端则从链路层往上走，一直到达服务器：</p><ul><li>接收到数据：链路层 -&gt; 网络层 -&gt; 传输层 -&gt; 应用层</li><li>每经过一层就将对应的首部消掉，层层解封装。</li></ul><p>以HTTP举例：</p><figure><img src="https://gitee.com/bqlin/image-land/raw/master/HTTP%E4%BC%A0%E8%BE%93.jpg" alt="HTTP传输" /><figcaption aria-hidden="true">HTTP传输</figcaption></figure><ol type="1"><li>发送端/客户端在应用层（HTTP协议）发出一个HTTP请求。</li><li>为了方便传输，在传输层（TCP协议）把应用层收到的数据（HTTP请求报文）进行分割，并在各个报文上标记序号、端口号，然后转发给网络层。</li><li>在网络层（IP协议），增加作为通信目的地的MAC地址后转发给链路层。</li><li>接收端/服务器在链路层接收到数据，按序往上发送，一直到应用层，才算真正接收到HTTP请求。</li></ol><p>每一层的交互通过打上首部信息和消去首部信息（封装与解封装），发送端/客户端把应用层数据层层封装，到接收端/服务器才层层解封装拿到应用层数据。</p><h3 id="ip协议">IP协议</h3><p>IP，Internet Protocol，网络层。负责把各种数据传输到对方。其中两个重要条件是IP地址和MAC地址。</p><p>IP地址指明被分配到的地址；MAC地址指明网卡所属的固定地址。IP地址依赖MAC地址，通常不在发送端与接收端不在同一个局域网时，往往通过ARP协议进行多台计算机和网络设备中转。</p><p>中转时，利用下一站中转设备的MAC地址来搜索下一个中转目标。</p><p>ARP的作用时解析地址，根据通信方的IP地址反查出对应的MAC地址。</p><h3 id="tcp-协议">TCP 协议</h3><p>TCP协议，传输层，提供可靠的字节流服务。</p><p>为确保数据能到达目标，会进行三次握手策略建立连接：</p><figure><img src="https://gitee.com/bqlin/image-land/raw/master/TCP.jpg" alt="TCP" /><figcaption aria-hidden="true">TCP</figcaption></figure><h4 id="为什么握手要三次挥手却要四次呢">为什么握手要三次，挥手却要四次呢？</h4><p>那是因为握手的时候并没有数据传输，所以服务端的 SYN 和 ACK 报文可以一起发送，但是挥手的时候有数据在传输，所以 ACK 和 FIN 报文不能同时发送，需要分两步，所以会比握手多一步。</p><h3 id="dns服务">DNS服务</h3><p>DNS服务，Domain Name System，应用层，提供域名到IP地址之间的解析服务。</p><p>若直接通过IP访问则不需要经过DNS服务。</p><h2 id="url-与-uri">URL 与 URI</h2><ul><li>URL（Uniform Resource Location），统一资源定位符。<ul><li>是 URI 的子集。表达的是一个位置。</li></ul></li><li>URI（Uniform Resource Identifier），统一资源标识符。</li></ul><p>URI格式：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://user:pass@www.example.com:80/dir/index.html?uid=1#ch1</span><br></pre></td></tr></table></figure><ul><li><code>http</code>：协议方案名</li><li><code>user:pass</code>：登录认证信息</li><li><code>www.example.com</code>：服务器地址</li><li><code>80</code>：服务器端口号</li><li><code>dir/index.html</code>：带层级的文件路径</li><li><code>uid=1</code>：查询字符串</li><li><code>ch1</code>：片段标识符</li></ul>]]></content>
     
     
     <summary type="html">&lt;h2 id=&quot;tcpip-协议族&quot;&gt;TCP/IP 协议族&lt;/h2&gt;

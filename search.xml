@@ -7566,11 +7566,11 @@ IPBBPBBPBBPBBPB
 <h3 id="tcp-协议">TCP 协议</h3>
 <p>TCP协议，传输层，提供可靠的字节流服务。</p>
 <p>为确保数据能到达目标，会进行三次握手策略建立连接：</p>
-<ol type="1">
-<li>标有 SYN 的数据包发送给对方；</li>
-<li>对方回复标有 SYN/ACK 的数据包；</li>
-<li>再向对方发送标有 ACK 的数据包。</li>
-</ol>
+<figure>
+<img src="https://gitee.com/bqlin/image-land/raw/master/TCP.jpg" alt="TCP" /><figcaption aria-hidden="true">TCP</figcaption>
+</figure>
+<h4 id="为什么握手要三次挥手却要四次呢">为什么握手要三次，挥手却要四次呢？</h4>
+<p>那是因为握手的时候并没有数据传输，所以服务端的 SYN 和 ACK 报文可以一起发送，但是挥手的时候有数据在传输，所以 ACK 和 FIN 报文不能同时发送，需要分两步，所以会比握手多一步。</p>
 <h3 id="dns服务">DNS服务</h3>
 <p>DNS服务，Domain Name System，应用层，提供域名到IP地址之间的解析服务。</p>
 <p>若直接通过IP访问则不需要经过DNS服务。</p>
@@ -8120,6 +8120,21 @@ IPBBPBBPBBPBBPB
 <p>每个流都可以带上一个31 bit的优先值。服务器可以根据流的优先级，控制资源分配。</p>
 <h3 id="服务端推送">服务端推送</h3>
 <p>服务端可以对客户端请求发送多个响应，服务端向客户端推送资源无需明确发起请求。这可以让在遵循同源的情况下，不同的页面可以共享缓存资源。</p>
+]]></content>
+      <categories>
+        <category>读书笔记</category>
+      </categories>
+      <tags>
+        <tag>网络</tag>
+        <tag>图解HTTP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>图解HTTP</title>
+    <url>/posts/graphical_http/</url>
+    <content><![CDATA[<p>这本书是工作两年后买的，虽然说工作中都基本用不上，但对于面试其内容都是必考题。每次换工作面试都会拿出来读一遍，现在已经是第三刷了，每次读《图解HTTP》都有一种仪式感，嗯，面试了。</p>
+<p>《图解HTTP》里面的内容虽然不深，但覆盖范围较广，用于面试也基本足够。之前整理在幕布的笔记太精简了，现在再读一遍，要补充的东西还是挺多的。</p>
+<p>所以说这本书的内容更多的是一个引子、导读，更多的细节还是需要再去翻查资料。</p>
 ]]></content>
       <categories>
         <category>读书笔记</category>
