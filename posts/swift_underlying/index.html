@@ -368,7 +368,7 @@
 <p><img src="https://gitee.com/bqlin/image-land/raw/master/3qML8t.jpg" /></p>
 <p>所以闭包的内存布局与实例对象很相似：共享方法、各自管理自己的成员变量。</p>
 <p>空合并运算符<code>??</code>默认值是个自动闭包，这可以在可以解包的情况下不调用默认值的逻辑。</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">??</span> &lt;<span class="type">T</span>&gt;(<span class="params">optional</span>: <span class="type">T</span>?, <span class="params">defaultValue</span>: <span class="keyword">@autoclosure</span> () <span class="keyword">throws</span> -&gt; <span class="type">T</span>?)</span> <span class="keyword">rethrows</span> -&gt; <span class="type">T</span>?</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">func</span> <span class="title function_">??</span> &lt;<span class="type">T</span>&gt;(<span class="params">optional</span>: <span class="type">T</span>?, <span class="params">defaultValue</span>: <span class="keyword">@autoclosure</span> () <span class="keyword">throws</span> -&gt; <span class="type">T</span>?) <span class="keyword">rethrows</span> -&gt; <span class="type">T</span>?</span><br></pre></td></tr></table></figure>
 <h2 id="参考">参考</h2>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://juejin.cn/post/6966857669508825096">Swift底层原理探索5----闭包 - 掘金</a></li>

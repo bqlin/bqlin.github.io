@@ -291,7 +291,7 @@
 <p><code>avcodec_find_decoder</code>和<code>avcodec_find_encoder</code> 主要是查找 FFmpeg 的解码器和编码器。</p>
 <p>avcodec_find_decoder 和 avcodec_find_encoder 主要是利用 AVCodecID 来查找编解码器。 其实质是遍历AVCodec 链表并且获得符合AVCodecID的元素。</p>
 <h2 id="初始化io上下文">初始化IO上下文</h2>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">avio_open2</span><span class="params">(AVIOContext **s, <span class="keyword">const</span> <span class="keyword">char</span> *url, <span class="keyword">int</span> flags,</span></span></span><br><span class="line"><span class="params"><span class="function">               <span class="keyword">const</span>  AVIOInterruptCB *int_cb, AVDictionary **options)</span></span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">avio_open2</span><span class="params">(AVIOContext **s, <span class="type">const</span> <span class="type">char</span> *url, <span class="type">int</span> flags,</span></span><br><span class="line"><span class="params">               <span class="type">const</span>  AVIOInterruptCB *int_cb, AVDictionary **options)</span>;</span><br></pre></td></tr></table></figure>
 <p>avio_open2 主要实现创建并初始化一个 AVIOContext，用于访问由 url 指定文件。</p>
 <p>各个参数的含义如下：</p>
 <ul>
@@ -307,7 +307,7 @@
 <img src="http://lazybing.github.io/images/avio_open2/avio_open2.png" alt="img" /><figcaption aria-hidden="true">img</figcaption>
 </figure>
 <h2 id="初始化编解码上下文">初始化编解码上下文</h2>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">avcodec_open2</span><span class="params">(AVCodecContext *avctx, <span class="keyword">const</span> AVCodec *codec, AVDictionary **options)</span></span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">avcodec_open2</span><span class="params">(AVCodecContext *avctx, <span class="type">const</span> AVCodec *codec, AVDictionary **options)</span>;</span><br></pre></td></tr></table></figure>
 <p><code>avcodec_open2</code>函数实现的功能为利用给定的<code>AVCodec</code>结构初始化<code>AVCodecContext</code>结构。</p>
 <p>函数参数说明：</p>
 <ul>
@@ -329,7 +329,7 @@
 </ul>
 <p>此处重点分析调用<code>AVCodec</code>的init函数处。 以 HEVC 解码器为例。</p>
 <h2 id="读取压缩数据包">读取压缩数据包</h2>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">av_read_frame</span><span class="params">(AVFormatContext *s, AVPacket *pkt)</span></span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">av_read_frame</span><span class="params">(AVFormatContext *s, AVPacket *pkt)</span>;</span><br></pre></td></tr></table></figure>
 <p><code>av_read_frame</code>函数的作用是返回文件中保存的数据。它会文件中保存的数据分成不同的帧， 每次调用都会返回一帧。注意，该函数不会忽略帧与帧之间无效数据(非帧数据)，目的是给解码器 最多的信息用于解码。</p>
 <p>如果<code>pkt-&gt;buf</code>是 NULL，包直到下一次调用<code>av_read_frame</code>或<code>avformat_close_input</code>时都是有效的。 不需要时，包必须通过<code>av_free_packet</code>释放。对于视频，<code>packet</code>只包含一帧；对于音频，如果每帧有固定大小(如 PCM 或 ADPCM 数据)， <code>packet</code>可以包含多个音频帧（必须是整数帧），如果音频帧大小可变(如MPEG 音频)，它只能包含一帧数据。</p>
 <p><code>pkt-&gt;pts</code>、<code>pkt-&gt;dts</code>、<code>pkt-&gt;duration</code>都是以<code>AVStream.time_base_units</code>为单位的。 如果视频格式里包含 B 帧，<code>pkt-&gt;pts</code>可以是<code>AV_NOPTS_VALUE</code>，因此如果不解压缩数据，最好查看<code>pkt-&gt;dts</code>。</p>
@@ -340,7 +340,7 @@
 </figure>
 <p><code>av_read_frame</code>函数会判断在未解码缓存中是否有数据，如果有数据则调用<code>read_from_packet_buffer</code>。</p>
 <h2 id="提取流信息">提取流信息</h2>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">avformat_find_stream_info</span><span class="params">(AVFormatContext *ic, AVDictionary **options)</span></span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">avformat_find_stream_info</span><span class="params">(AVFormatContext *ic, AVDictionary **options)</span>;</span><br></pre></td></tr></table></figure>
 <p><code>avformat_find_stream_info</code>主要是读媒体文件的包(packets)，然后从中提取出流的信息。 对于没有头部信息的文件格式尤其有用，比如<code>MPEG</code>。文件的逻辑位置不会被改变，读取出来 的包会被缓存起来供以后处理。</p>
 <p>返回值：&gt;=0–&gt;OK,或出错返回AVERROR_xxx</p>
 <p>注意，该函数并不保证能够打开所有的 codec，因此将options 设置为非NULL用于返回一些信息是非常好的行为。</p>

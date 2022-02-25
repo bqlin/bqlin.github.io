@@ -342,7 +342,7 @@
 </ul>
 <p>备注：如果最终可执行程序是动态链接生成的，那么程序加载时默认到系统目录(一般是/usr/local/lib下)下搜索所引用的动态库(并非会到上面的dir中搜索)，如果设置了LD_LIBRAY_PATH环境变量的值，那么程序加载时动态库将优先去该路径搜索，然后按默认规则搜索。</p>
 <p>示例：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pkg-config --cflags --libs x264</span><br><span class="line">-DX264_API_IMPORTS -I/usr/<span class="built_in">local</span>/Cellar/x264/r3049/include -L/usr/<span class="built_in">local</span>/Cellar/x264/r3049/lib -lx264</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pkg-config --cflags --libs x264</span><br><span class="line">-DX264_API_IMPORTS -I/usr/local/Cellar/x264/r3049/include -L/usr/local/Cellar/x264/r3049/lib -lx264</span><br></pre></td></tr></table></figure>
 <ul>
 <li><code>-O0</code>、<code>-O1</code>、<code>-O2</code>、<code>-O3</code>：编译器的优化级别，<code>-O0</code> 表示没有优化, <code>-O1</code> 为默认值，<code>-O3</code> 优化级别最高。</li>
 <li><code>-static</code>：编译器将采用静态链接。</li>
